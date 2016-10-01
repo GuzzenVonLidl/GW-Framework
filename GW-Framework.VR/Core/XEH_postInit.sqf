@@ -1,0 +1,84 @@
+#define	COMPONENT CORE
+#define VERSION 1
+#define CUSTOM_FOLDER Core\Framework\Functions
+#include "scriptComponent.hpp"
+
+LOG("postInit started");
+if (isServer) then {
+	LOG("Loading Server Variables");
+	GVARMAIN(MACHINE) = "SERVER";
+} else {
+	if (isNil QGVARMAIN(Gamelogic)) then {
+		ERROR("ISNIL Gamelogic");
+	};
+	if (isNil QGVARMAIN(ZeuzModuleAdminLogged)) then {
+		ERROR("ISNIL ZeuzModuleAdminLogged");
+	};
+	GVARMAIN(MACHINE) = str(player);
+};
+
+if (hasInterface) then {
+	LOG("Loading Player Variables");
+	player addRating 100000;
+	player disableConversation true;
+//	disableRemoteSensors true;
+	player setVariable ["BIS_noCoreConversations", true, true];
+	player setVariable ["BIS_enableRandomization", false, true];
+
+	if ((getPlayerUID player) in GVARMAIN(adminList)) then {
+		GVARMAIN(isActiveAdmin) = true;
+	};
+	if (GVARMAIN(isActiveAdmin)) then {
+		[player, {GVARMAIN(activeAdmins) pushBack _this}] remoteExecCall [QFUNCMAIN(remoteCommand), 2];
+	} else {
+		[player, {GVARMAIN(activeAdmins) deleteAt (GVARMAIN(activeAdmins) find _this)}] remoteExecCall [QFUNCMAIN(remoteCommand), 2];
+	};
+
+	GVARMAIN(logModules) sort false;
+	player createDiarySubject ["framework_diary","Modules Loaded"];
+	{
+		player createDiaryRecord ["framework_diary", [FORMAT_1("%1", (_x select 0)),
+			FORMAT_3("Version: %2  by %1, <br/>Description: %3", (_x select 1), (_x select 2), (_x select 3))
+		]];
+	} forEach GVARMAIN(logModules);
+};
+
+{
+	[] call compile preprocessFileLineNumbers ("Modules\" + (_x select 0) +"\" + (_x select 1));
+	LOG(FORMAT_1("Module postInit: %1", (_x select 0)));
+} forEach GVARMAIN(postLoad);
+LOG(FORMAT_1("Modules Settings: %1", (count GVARMAIN(postLoad))));
+GVARMAIN(postLoad) = nil;
+
+if (DEVBUILD) then {
+	LOG("devBuild started");
+	{
+		deleteVehicle _x;
+	} forEach switchableUnits;
+
+	if !(isNil "GW_Menu_fnc_mapMonitor_Handler") then  {
+		[2] call GW_Menu_fnc_mapMonitor_Handler;
+	};
+	if !(isNil "GW_Menu_fnc_serverfps") then  {
+		[5] call GW_Menu_fnc_serverfps;
+	};
+} else {
+	{
+		private _unit = _x;
+		{
+			_unit disableAI _x;
+		} forEach ["Path","TARGET","AUTOTARGET","ANIM","FSM","CHECKVISIBLE"];
+	} forEach switchableUnits;
+};
+
+[{(getClientStateNumber isEqualTo 9) || !isMultiplayer}, {
+	LOG("Event mapLoaded");
+	[QGVARMAIN(mapLoaded), []] call CBA_fnc_localEvent;
+
+	[{(getClientStateNumber >= 10) || !isMultiplayer}, {
+		LOG("Event missionStarted");
+		[QGVARMAIN(missionStarted), []] call CBA_fnc_localEvent;
+	}, []] call CBA_fnc_waitUntilAndExecute;
+}, []] call CBA_fnc_waitUntilAndExecute;
+
+LOG("postInit finished");

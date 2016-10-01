@@ -1,0 +1,87 @@
+// *	DO NOT CHANCE THE ORDER/STRUCTIOR OF THE FILE
+//	https://community.bistudio.com/wiki/description.ext
+// ==============================================================================
+// *	Includes the most nessasary configs for the framework to work
+#define	isDescription
+#include "scriptComponent.hpp"
+
+briefingName = "GW@126 Framework";						// Mission Name
+overviewText = "Complete version";
+
+class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
+	class Core {
+		DebugConsole = FALSE;	// BOOL: Toggle enable and disable external console for extenceive debugging
+		ClearConsole = 3;		// NUMBER: 0: Disabled		1: mission preview		2: 3den preview		3: mission and 3den preview
+		devBuild = FALSE;		// BOOL: TRUE: Enables more debugging messages and dev version(including removing all players)
+		ResetSettings = TRUE;	// Force reset all settings for the ingame mission settings menu
+	};
+	class Naming {
+// 		currently broken		Name = "";				// Mission Name
+		Author = "GuzzenVonLidl";						// Author
+		Description = "Example mission for framework";	// Description in mission select
+		onLoad = "Dont get shoot";						// Description on loading
+		Picture = "";									// Picture on loading
+		version = 1;									// Version of mission
+		GameMode = "COOP";								// mission will be filterd with
+	};
+};
+
+
+// *	DO NOT EDIT BELOW
+// Global Mission Settings
+allowFunctionsLog = 0;
+aiKills = 0;
+allowFunctionsRecompile = 1;
+disableChannels[]={0,1,2,5};
+disabledAi = 1;
+disableRandomization[] = {"CAManBase"};	// Disable random gear for units
+enableDebugConsole = 1;
+enableTeamSwitch = 0;
+joinUnassigned = 1;
+scriptedPlayer = 1;
+showGroupIndicator = 0;
+
+corpseManagerMode = 0;
+wreckManagerMode = 0;
+
+respawn = "BASE";
+respawndelay = 30;
+respawnOnStart = 0;
+
+class Params {
+	#define LOAD_PARAMS
+		#include "Modules\Modules.cpp"
+	#undef LOAD_PARAMS
+};
+
+class GW_Modules {
+	#define LOAD_MODULES
+		#include "Modules\Modules.cpp"
+	#undef LOAD_MODULES
+};
+
+class Extended_PreInit_EventHandlers {
+	class preInit {
+		Init = QUOTE(call compile preprocessFileLineNumbers 'core\XEH_preInit.sqf');
+	};
+};
+
+class Extended_PostInit_EventHandlers {
+	class postInit {
+		Init = QUOTE(call compile preprocessFileLineNumbers 'core\XEH_postInit.sqf');
+	};
+};
+
+class ACE_Settings {
+	#define LOAD_ACE
+		#include "Modules\Modules.cpp"
+	#undef LOAD_ACE
+};
+
+
+/*
+		pos[]={50,50,0};
+		dir[]={0,-0.69999999,0.69999999};
+		up[]={0,0.69999999,0.69999999};
+		aside[]={0.89999998,0,0};
+*/
