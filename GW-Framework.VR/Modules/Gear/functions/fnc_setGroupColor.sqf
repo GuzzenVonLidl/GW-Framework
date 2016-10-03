@@ -11,7 +11,6 @@
 	Return Value: NO
 
 	Public: YES
-
 */
 #include "..\scriptComponent.hpp"
 #define	TrimString [format ["%1", player], 3] call BIS_fnc_trimString

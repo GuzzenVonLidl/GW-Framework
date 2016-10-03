@@ -11,11 +11,10 @@
 	Return Value: NO
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 
-//	if !(isServer) exitWith {false};
+if !(isServer) exitWith {false};
 params ["_var"];
 private ["_group"];
 

@@ -14,7 +14,6 @@
 	True if unit was added to blacklist else false
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 

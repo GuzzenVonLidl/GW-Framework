@@ -11,7 +11,6 @@
 	Return Value: NO
 
 	Public: No
-
 */
 #include "..\scriptComponent.hpp"
 

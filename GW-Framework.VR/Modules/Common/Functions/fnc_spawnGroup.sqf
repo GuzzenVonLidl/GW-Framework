@@ -12,7 +12,6 @@
 	Group that spawned
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 
@@ -27,8 +26,8 @@ _vehicleList = [];
 if ((count _vehicleArray) > 0) then {
 	{
 		_vehicle = createVehicle [(_x select 0), [0,0,0], [], 0, "FLY"];
+		_vehicle setDir (_x select 2);
 		_vehicle setPosATL (_x select 1);
-		_vehicle setdir (_x select 2);
 		_vehicleList pushBack [_vehicle, (_x select 3)];
 		TRACE_1("Created", _vehicle);
 		TRACE_1("List", _vehicleList);
@@ -38,8 +37,10 @@ if ((count _vehicleArray) > 0) then {
 _group = [GVAR(Faction), (count _unitArray)] call FUNC(createGroup);
 if !((count _unitArray) isEqualTo 0) then {
 	{
+		private _dir = ((_unitArray select _forEachIndex) select 1);
+		_x setFormDir _dir;
+		_x setDir _dir;
 		_x setPosATL ((_unitArray select _forEachIndex) select 0);
-		_x setDir ((_unitArray select _forEachIndex) select 1);
 	} forEach (units _group);
 
 };

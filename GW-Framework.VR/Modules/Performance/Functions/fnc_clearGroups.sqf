@@ -10,7 +10,6 @@
 	Return Value: NO
 
 	Public: YES
-
 */
 #include "..\scriptComponent.hpp"
 

@@ -10,7 +10,6 @@
 	Return Value: YES <ARRAY>
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 

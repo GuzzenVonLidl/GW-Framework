@@ -8,7 +8,7 @@
 	Arguments:
 	0: Year <NUMBER>
 
-	Return Value: YES <ARRAY>
+	Return Value: <ARRAY>
 
 	Public: No
 */

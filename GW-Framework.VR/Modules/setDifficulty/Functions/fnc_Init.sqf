@@ -4,7 +4,7 @@
 	params [
 		["_unit", objNull, [objNull]]
 	];
-
+/*
 	if (GVAR(enableSuppression)) then {
 		if (isPlayer _unit) then {
 			_unit addEventHandler ["Fired",{
@@ -22,6 +22,7 @@
 			_unit setVariable [QGVAR(running), false];
 		};
 	};
+*/
 
 	if !(GVAR(difficulty) isEqualTo 0) then {
 		if ((isPlayer _unit) || !(local _unit) || ((side _unit) isEqualTo sideLogic)) exitWith {false};

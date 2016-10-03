@@ -1,6 +1,7 @@
 #include "scriptComponent.hpp"
 
 PREP(addToCurators);
+PREP(buildingPop);
 PREP(createGroup);
 PREP(createUnits);	// Untested
 PREP(findAverage);

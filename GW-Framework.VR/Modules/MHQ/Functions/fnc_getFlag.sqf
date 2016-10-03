@@ -9,10 +9,9 @@
 	0: Unit <OBJECT>
 	1: Type <STRING>
 
-	Return Value: NO
+	Return Value: <OBJECT>
 
 	Public: No
-
 */
 #include "..\scriptComponent.hpp"
 

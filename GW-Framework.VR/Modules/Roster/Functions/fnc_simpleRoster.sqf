@@ -1,7 +1,5 @@
 /*
 	Author: GuzzenVonLidl
-
-	Description:
 	Creates a diary subject for the player's team, current units connected and roles
 	Only updated at mission start and new person joins
 	Note: This only takes predefined roles, changing role mid mission wont change it
@@ -14,7 +12,6 @@
 	Return Value: NO
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 

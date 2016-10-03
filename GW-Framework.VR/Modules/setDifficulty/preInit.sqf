@@ -45,7 +45,7 @@ GVAR(BulletArray) = [];
 ] call FUNCMAIN(settingsInit);
 [
 	QGVAR(enableSuppression), "LIST",
-	["Enable Suppression", "Enable suppression for ai units"],
+	["Enable Suppression", "WARNING: Experimental!, Enable suppression for ai units"],
 	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false
 ] call FUNCMAIN(settingsInit);
 
@@ -53,11 +53,13 @@ if (isServer) then {
 	["CAManBase", "Init", {
 		_this call FUNC(Init);
 	}] call CBA_fnc_addClassEventHandler;
+};
 
+/*
 	[QGVARMAIN(missionStarted), {
 		LOG("Event Suppression PFH");
 		if (GVAR(enableSuppression)) then {
 			[] call FUNC(handlePFH);
 		};
 	}] call CBA_fnc_addEventHandler;
-};
+*/

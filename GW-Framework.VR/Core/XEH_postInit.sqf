@@ -65,9 +65,11 @@ if (DEVBUILD) then {
 } else {
 	{
 		private _unit = _x;
-		{
-			_unit disableAI _x;
-		} forEach ["Path","TARGET","AUTOTARGET","ANIM","FSM","CHECKVISIBLE"];
+		if !(isPlayer _unit) then {
+			{
+				_unit disableAI _x;
+			} forEach ["Path","TARGET","AUTOTARGET","ANIM","FSM","CHECKVISIBLE"];
+		};
 	} forEach switchableUnits;
 };
 

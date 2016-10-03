@@ -5,7 +5,7 @@
 		What case tha should be called for the zone player is in
 
 	Usage:
-		[1] call GW_Fnc_spawnList;
+		null = [1] spawn GW_Fnc_spawnList;
 
 	Parameters:
 		#0: Number:	Activate zone

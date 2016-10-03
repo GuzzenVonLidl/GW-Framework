@@ -1,7 +1,5 @@
-/*	================================================================
+/*
 	AUTHOR: GuzzenVonLidl
-
-	Description:
 	Spawning in a group and attack, patrol or defend a area
 
 	Usage:
@@ -12,10 +10,12 @@
 	#0:	Faction:	Faction name from preInit
 	#1:	Number:		Number of units to spawn
 
-	Returning Value:
-	_group
+	Return Value: <GROUP>
+	Group that spawned
 
-// ================================================================ */
+	Public: NO
+
+*/
 #include "..\scriptComponent.hpp"
 
 params [

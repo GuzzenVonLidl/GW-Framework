@@ -11,7 +11,7 @@
 
 	Return Value: NO
 
-	Public: Yes
+	Public: YES
 
 	Available Roles:
 	pl		- Platoon leader			(Player)
@@ -28,7 +28,7 @@
 	mmg		- Medium Machine Gunner
 	ammg	- Asst. Medium Machine Gunner
 	crew	- Crew memeber				(Both)
-	p			- Pilot						(Both)
+	p		- Pilot						(Both)
 */
 #include "..\scriptComponent.hpp"
 #include "Functions.hpp"

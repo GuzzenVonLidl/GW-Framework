@@ -14,7 +14,6 @@
 	Return Value: NO
 
 	Public: No
-
 */
 #include "..\scriptComponent.hpp"
 if (!isServer) exitWith {false};

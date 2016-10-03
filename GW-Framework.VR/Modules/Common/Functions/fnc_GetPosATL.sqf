@@ -1,7 +1,5 @@
 /*
 	AUTHOR: GuzzenVonLidl
-
-	Description:
 	Gets location of a marker, object or array ([0,0,0])
 
 	Usage:
@@ -13,8 +11,10 @@
 	#0:	OBJECT || STRING || ARRAY - Gets location from a place
 	#1:	NUMBER - ONLY if #0 is OBJECT, 0 for normal, 1 for real height
 
-	Returning Value:
+	Return Value: <ARRAY>
 	Position
+
+	Public: NO
 */
 #include "..\scriptComponent.hpp"
 

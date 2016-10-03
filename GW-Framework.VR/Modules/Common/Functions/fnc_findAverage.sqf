@@ -11,7 +11,6 @@
 	Return Value: YES <NUMBER>
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 

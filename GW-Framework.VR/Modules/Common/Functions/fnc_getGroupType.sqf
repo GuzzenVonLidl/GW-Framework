@@ -1,7 +1,5 @@
 /*	================================================================
 	AUTHOR: GuzzenVonLidl
-
-	Description:
 	Selects a new faction to spawn
 
 	Usage:
@@ -25,6 +23,7 @@
 	#define FRIENDLY 6
 	#define LOGIC 7
 
+	Public: NO
 // ================================================================ */
 #include "..\scriptComponent.hpp"
 

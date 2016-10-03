@@ -5,12 +5,11 @@
 	Usage:
 	[] call GW_Common_Fnc_isNight;
 
-	Arguments:
+	Arguments: NO
 
-	Return Value: Bool
+	Return Value: BOOL
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 

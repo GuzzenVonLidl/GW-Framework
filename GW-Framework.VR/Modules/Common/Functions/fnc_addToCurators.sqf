@@ -1,7 +1,5 @@
 /*
 	Author: GuzzenVonLidl
-
-	Description:
 	Synchronise unit, vehicles & objects with all curators in mission
 	Puts a delay of 1 frame for better performance
 
@@ -14,7 +12,6 @@
 	Return Value: NO
 
 	Public: NO
-
 */
 #include "..\scriptComponent.hpp"
 

@@ -12,7 +12,6 @@
 	Return Value: <ARRAY>
 
 	Public: No
-
 */
 #include "..\scriptComponent.hpp"
 #define	GETOPTIC(VAR_1)	(((_Optics select 0) >> VAR_1) call BIS_fnc_getCfgData)

@@ -1,4 +1,16 @@
 
+_glHE = "CUP_1Rnd_HE_GP25_M";
+_glsmokeW = "CUP_1Rnd_SMOKE_GP25_M";
+_glsmokeB = "";
+_glsmokeG = "CUP_1Rnd_SmokeGreen_GP25_M";
+_glsmokeO = "";
+_glsmokeP = "";
+_glsmokeR = "CUP_1Rnd_SmokeRed_GP25_M";
+_glsmokeY = "CUP_1Rnd_SmokeYellow_GP25_M";
+
+_glflareG = "CUP_FlareGreen_GP25_M";
+_glflareR = "CUP_FlareRed_GP25_M";
+
 _goggles = "";
 _helmet = "CUP_H_RUS_6B27";
 _uniform = "CUP_U_O_RUS_EMR_2_VDV";

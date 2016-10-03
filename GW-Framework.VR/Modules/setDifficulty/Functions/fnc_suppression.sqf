@@ -14,7 +14,6 @@
 	Return Value: NO
 
 	Public: NO
-
 */
 //#define DEBUG_MODE_FULL
 #include "..\scriptComponent.hpp"
