@@ -7935,7 +7935,7 @@ class Mission
 			class Attributes
 			{
 				condition="!({(isPlayer _x) && ((getPosATL _x) select 2) < 5} count thislist isEqualTo 0)";
-				onActivation="[1] call GW_Fnc_spawnList;";
+				onActivation="null = [1] spawn GW_Fnc_spawnList;";
 				sizeC=0;
 				activationBy="ANY";
 				isServerOnly=1;
