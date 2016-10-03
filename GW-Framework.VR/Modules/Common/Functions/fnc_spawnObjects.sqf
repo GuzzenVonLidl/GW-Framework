@@ -21,7 +21,7 @@ private _objects = [];
 {
 	private _veh = createVehicle [(_x select 0), [0,0,0], [], 0, "NONE"];
 	_veh setPosATL (_x select 1);
-	_veh setDir (_x select 1);
+	_veh setDir (_x select 2);
 	_objects pushBack _veh;
 } forEach _this;
 
