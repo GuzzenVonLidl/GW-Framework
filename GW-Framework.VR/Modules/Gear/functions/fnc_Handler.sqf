@@ -140,7 +140,7 @@ if (_isMan) then {
 		};
 	};
 
-	switch (_side) do {
+	switch (toLower(_side)) do {
 		case "west": {
 			_side = toUpper(GVAR(Blufor));
 		};
