@@ -19,15 +19,17 @@ if (isServer) then {
 };
 
 if (hasInterface) then {
-	[{
-		[QGVAR(Enabled), !(GVAR(TimeLimit) isEqualTo -1)] call CBA_fnc_localEvent;
-		cutText ["","BLACK IN",10];
-		player switchMove "AmovPknlMstpSlowWrflDnon";
-	}, []] call CBA_fnc_execNextFrame;
+	[QGVARMAIN(missionStarted), {
+		[{
+			[QGVAR(Enabled), !(GVAR(TimeLimit) isEqualTo -1)] call CBA_fnc_localEvent;
+			cutText ["","BLACK IN",10];
+			player switchMove "AmovPknlMstpSlowWrflDnon";
+		}, []] call CBA_fnc_execNextFrame;
 
-	[{(player distance (markerPos format ["respawn_%1", (side player)]) > 50)},{
-		[QGVAR(Enabled), false] call CBA_fnc_localEvent;
-	}, []] call CBA_fnc_waitUntilAndExecute;
+		[{(player distance (markerPos format ["respawn_%1", (side player)]) > 50)},{
+			[QGVAR(Enabled), false] call CBA_fnc_localEvent;
+		}, []] call CBA_fnc_waitUntilAndExecute;
+	}] call CBA_fnc_addEventHandler;
 
 	private ["_nearbyLocations","_town","_time","_month"];
 	_town = "Unknown";

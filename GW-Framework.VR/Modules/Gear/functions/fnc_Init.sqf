@@ -21,6 +21,7 @@
 if (!GVAR(Auto_Assign) || !(local (_this select 0)) || ((_this select 0) isKindOf "HeadlessClient_F")) exitWith {false};
 
 [{MISSIONLOADED}, {
+	private _fastExit = false;
 	params [
 		["_unit", objNull, [objNull]],
 		["_role", "", ["",[]]]
@@ -35,10 +36,9 @@ if (!GVAR(Auto_Assign) || !(local (_this select 0)) || ((_this select 0) isKindO
 			if (_role isEqualTo "") then {
 				if (leader (group _unit) isEqualTo _unit) then {
 					(group _unit) setVariable [QGVAR(Loadout_Type), (selectRandom [true, false])];
-					if (((vehicle _unit) isEqualTo _unit) && (count (units (group _unit)) > 1)) then {
-						_role = "ftl";
-					};
+					_role = "ftl";
 				} else {
+					_fastExit = true;
 					[{(!isNil {((group (_this select 0)) getVariable QGVAR(Loadout_Type))})}, {
 						params ["_unit"];
 						private _role = "r";
@@ -113,7 +113,7 @@ if (!GVAR(Auto_Assign) || !(local (_this select 0)) || ((_this select 0) isKindO
 		};
 	};
 
-	if !(isNil "_role") then {
+	if !(_fastExit) then {
 		[{ _this call FUNC(Handler) }, [_unit, _role]] call CBA_fnc_execNextFrame;
 	};
 }, _this] call CBA_fnc_waitUntilAndExecute;

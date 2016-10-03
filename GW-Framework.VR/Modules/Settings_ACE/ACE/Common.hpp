@@ -208,8 +208,8 @@ class ace_frag_enabled {
 	typeName = "BOOL";
 	force = 1;
 };
-class ace_frag_spallEnabled {
-	value = 1;
+class ace_frag_spallEnabled {	// causes some errors
+	value = 0;
 	typeName = "BOOL";
 	force = 1;
 };

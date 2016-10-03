@@ -18,7 +18,7 @@
 */
 #include "..\scriptComponent.hpp"
 
-private ["_side","_unitList","_unitClass","_unit","_array","_unitsCreted"];
+private ["_unitClass","_unit","_array","_unitsCreted"];
 params [
 	"_faction",
 	["_number", 1, [0]],

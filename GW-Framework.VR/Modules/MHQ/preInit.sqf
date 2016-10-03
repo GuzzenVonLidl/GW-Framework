@@ -67,7 +67,7 @@ PREP(prefabCreate);
 		_id = _mhq addAction ["Disassemble MHQ",{([QGVAR(Assembled), [(_this select 0), false]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),(CONDITION_1 + "&& " + CONDITION_2),7];
 		_add pushback [_mhq, _id];
 
-		_id = _mhq addAction ["Teleport to Base",{[player, ([_mhq] call FUNC(getFlag))] call bis_fnc_moveToRespawnPosition},ARGUMENT(nil),(CONDITION_1),7];
+		_id = _mhq addAction ["Teleport to Base",{[player, ([(_this select 0)] call FUNC(getFlag))] call bis_fnc_moveToRespawnPosition},ARGUMENT(_mhq),(CONDITION_1),7];
 		_add pushback [_mhq, _id];
 
 		_id = (([_mhq] call FUNC(getFlag))) addAction[format ["Teleport to %1", _mhq],{[player, (_this select 3)] call bis_fnc_moveToRespawnPosition},ARGUMENT(_mhq),(CONDITION_1),7];
