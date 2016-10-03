@@ -20,6 +20,10 @@ private _objects = [];
 	private _veh = createVehicle [(_x select 0), [0,0,0], [], 0, "NONE"];
 	_veh setDir (_x select 2);
 	_veh setPosATL (_x select 1);
+<<<<<<< HEAD
+=======
+	_veh setDir (_x select 2);
+>>>>>>> origin/master
 	_objects pushBack _veh;
 } forEach _this;
 
