@@ -49,30 +49,11 @@ switch (_side) do {
 };
 
 /*
-
-switch (toUpper(GW_Gear_Opfor)) do {
-	case "VDV": {
-		#include "..\Scripts\Classes\Opfor\VDV.sqf"
-	};
-	case "INS": {
-		#include "..\Scripts\Classes\Opfor\INS.sqf"
-	};
 	case "Takistani Army": {
 		#include "..\Scripts\Classes\Opfor\TA.sqf"
-	};
-	case "Takistani Militian": {
-		#include "..\Scripts\Classes\Opfor\TM.sqf"
-	};
-};
-switch (toUpper(GW_Gear_Independent)) do {
-	case "GUE": {
-		#include "..\Scripts\Classes\Independent\GUE.sqf"
 	};
 	case "UN": {
 		#include "..\Scripts\Classes\Independent\UN.sqf"
 	};
-	case "PMC": {
-		#include "..\Scripts\Classes\Independent\PMC.sqf"
-	};
-};
+
 */

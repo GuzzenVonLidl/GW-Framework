@@ -66,7 +66,7 @@ switch (toLower(_role)) do {
 		[[_smokegrenadeG,4],[_grenademini,2],[_grenade,2],[_rifle_mag,3],[_rifle_mag_tr,2]] call _addToVest;
 		[[_rifle_mag,5],[_glHE,7],[_glsmokeR,5]] call _addToBackpack;
 		_rangefinder call _addBino;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
 	case "ftl": {
@@ -90,7 +90,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
 		[[_cables,1],[_defusalKit,1],[_clacker,1],[_demoCharge,2],[_satchelCharge,1]] call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		if (_LAT_ReUsable) then {
 			[[_LAT_mag,1]] call _addToBackpack;
 		};
@@ -103,7 +103,7 @@ switch (toLower(_role)) do {
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		if ((random 1) >= 0.7) then {
 			[_LAT, _LAT_mag, ""] call _addLaunchers;
 			if (_LAT_ReUsable) then {
@@ -122,7 +122,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag_tr,7]] call _addToVest;
 		[[_MAT_mag,2],[_MAT_mag_HE,2]] call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
 	case "ahat": {	// Used by AI
@@ -133,7 +133,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag_tr,6]] call _addToVest;
 		[[_MAT_mag,2],[_MAT_mag_HE,2]] call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
 	case "g": {
@@ -144,7 +144,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag_tr,4],[_rifle_mag,6]] call _addToVest;
 		[[_glHE,7],[_glsmokeR,3],[_glsmokeY,3]] call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		if (_LAT_ReUsable) then {
 			[[_LAT_mag,2]] call _addToBackpack;
 		};
@@ -158,7 +158,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,4],[_grenademini,2]] call _addToUniform;
 		[[_grenade,1],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
 		(_FAKSmall + [[_LMG_mag_tr,COUNT_AG_MAGS(_LMG_mag_tr)]]) call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		_rangefinder call _addBino;
 	};
 
@@ -170,7 +170,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,2]] call _addToUniform;
 		[[_grenade,2],[_grenademini,2]] call _addToVest;
 		[[_LMG_mag,COUNT_AR_MAGS(_LMG_mag)],[_LMG_mag_tr,COUNT_AR_MAGS(_LMG_mag_tr)]] call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
 	case "ammg": {	// Used by AI
@@ -181,7 +181,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,4],[_grenademini,2]] call _addToUniform;
 		[[_grenade,1],[_rifle_mag_tr,7]] call _addToVest;
 		[[_MMG_mag_tr,COUNT_AG_MAGS(_MMG_mag_tr)]] call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		_rangefinder call _addBino;
 	};
 
@@ -193,7 +193,7 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,2],[_grenademini,2]] call _addToUniform;
 		[[_grenade,2],[_MMG_mag,COUNT_AR_MAGS(_MMG_mag)]] call _addToVest;
 		[[_MMG_mag_tr,COUNT_AR_MAGS(_MMG_mag_tr)]] call _addToBackpack;
-		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
 	case "crew": {

@@ -26,4 +26,3 @@ if (GVAR(Mode) isEqualTo 2) then {
 };
 
 _respawns
-

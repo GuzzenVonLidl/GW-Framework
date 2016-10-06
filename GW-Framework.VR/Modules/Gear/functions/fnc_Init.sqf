@@ -17,21 +17,23 @@
 */
 #include "..\scriptComponent.hpp"
 
-if (!GVAR(Auto_Assign) || !(local (_this select 0)) || ((_this select 0) isKindOf "HeadlessClient_F")) exitWith {false};
+if (((_this select 0) isKindOf "HeadlessClient_F") || !(local (_this select 0))) exitWith {false};
 
 [{MISSIONLOADED}, {
-	private _fastExit = false;
 	params [
 		["_unit", objNull, [objNull]],
 		["_role", "", ["",[]]]
 	];
+	if !(_unit isKindOf "ReammoBox_F") then {
+		if !GVAR(Auto_Assign) exitWith {false};
+	};
+	private _fastExit = false;
 
 	if (_unit isKindOf "CAManBase") then {
+		_role = (_unit getVariable [QGVAR(Loadout), ""]);
 		if (isPlayer _unit) then {
-			_role = _unit getVariable [QGVAR(Loadout), ""];
 			(group _unit) setVariable [QGVAR(Loadout_Type), false];
 		} else {
-			_role = (_unit getVariable [QGVAR(Loadout), ""]);
 			if (_role isEqualTo "") then {
 				if (leader (group _unit) isEqualTo _unit) then {
 					(group _unit) setVariable [QGVAR(Loadout_Type), (selectRandom [true, false])];
@@ -113,6 +115,8 @@ if (!GVAR(Auto_Assign) || !(local (_this select 0)) || ((_this select 0) isKindO
 	};
 
 	if !(_fastExit) then {
-		[{ _this call FUNC(Handler) }, [_unit, _role]] call CBA_fnc_execNextFrame;
+		[{
+			_this call FUNC(Handler);
+		}, [_unit, _role], 0.5] call CBA_fnc_waitAndExecute;
 	};
 }, _this] call CBA_fnc_waitUntilAndExecute;

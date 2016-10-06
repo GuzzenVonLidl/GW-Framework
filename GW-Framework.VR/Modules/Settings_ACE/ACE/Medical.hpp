@@ -107,12 +107,10 @@ class ace_medical_allowDeadBodyMovement {
 class ace_medical_allowLitterCreation {
 	value = 1;
 	typeName = "BOOL";
-	force = 1;
 };
 class ace_medical_litterCleanUpDelay {
 	value = 900;
 	typeName = "SCALAR";
-	force = 1;
 };
 class ace_medical_medicSetting_basicEpi {
 	value = 0;
@@ -197,7 +195,6 @@ class ace_medical_delayUnconCaptive {
 class ace_medical_menu_allow {
 	value = 0;
 	typeName = "SCALAR";
-	force = 1;
 };
 class ace_medical_menu_maxRange {
 	value = 3;

@@ -65,12 +65,12 @@ class ace_advanced_fatigue_enableStaminaBar {
 	force = 1;
 };
 class ace_advanced_fatigue_performanceFactor {
-	value = 3;
+	value = 1.5;
 	typeName = "SCALAR";
 	force = 1;
 };
 class ace_advanced_fatigue_recoveryFactor {
-	value = 3;
+	value = 2;
 	typeName = "SCALAR";
 	force = 1;
 };
@@ -159,7 +159,6 @@ class ace_common_checkPBOsCheckAll {
 class ace_common_checkPBOsWhitelist {
 	value = "['ace_tracers']";
 	typeName = "STRING";
-	force = 1;
 };
 
 // -------------------------------------------
@@ -219,7 +218,7 @@ class ace_frag_reflectionsEnabled {
 	force = 1;
 };
 class ace_frag_maxTrack {
-	value = 100;
+	value = 2;
 	typeName = "SCALAR";
 	force = 1;
 };
@@ -258,7 +257,7 @@ class ace_hearing_enableCombatDeafness {
 	force = 1;
 };
 class ace_hearing_earplugsVolume {
-	value = 1;
+	value = 1.0;
 	typeName = "SCALAR";
 	force = 1;
 };
@@ -289,7 +288,7 @@ class ace_hitreactions_minDamageToTrigger {
 // -------------------------------------------
 
 class ace_interaction_enableTeamManagement {
-	value = 0;
+	value = 1;
 	typeName = "BOOL";
 	force = 1;
 };
@@ -429,54 +428,6 @@ class ace_mk6mortar_allowCompass {
 class ace_mk6mortar_useAmmoHandling {
 	value = 0;
 	typeName = "BOOL";
-	force = 1;
-};
-
-// -------------------------------------------
-
-class ace_nametags_defaultNametagColor {
-	value[] = {0.77, 0.51, 0.08, 1};
-	typeName = "COLOR";
-	force = 1;
-};
-class ace_nametags_showPlayerNames {
-	value = 3;
-	typeName = "SCALAR";
-	force = 1;
-};
-class ace_nametags_showPlayerRanks {
-	value = 0;
-	typeName = "BOOL";
-	force = 1;
-};
-class ace_nametags_showVehicleCrewInfo {
-	value = 1;
-	typeName = "BOOL";
-	force = 1;
-};
-class ace_nametags_showNamesForAI {
-	value = 0;
-	typeName = "BOOL";
-	force = 1;
-};
-class ace_nametags_showCursorTagForVehicles {
-	value = 1;
-	typeName = "BOOL";
-	force = 1;
-};
-class ace_nametags_showSoundWaves {
-	value = 0;
-	typeName = "SCALAR";
-	force = 1;
-};
-class ace_nametags_playerNamesViewDistance {
-	value = 100;
-	typeName = "SCALAR";
-	force = 1;
-};
-class ace_nametags_playerNamesMaxAlpha {
-	value = 0.8;
-	typeName = "SCALAR";
 	force = 1;
 };
 

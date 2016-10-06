@@ -25,15 +25,6 @@ if (hasInterface) then {
 	player setVariable ["BIS_noCoreConversations", true, true];
 	player setVariable ["BIS_enableRandomization", false, true];
 
-	if ((getPlayerUID player) in GVARMAIN(adminList)) then {
-		GVARMAIN(isActiveAdmin) = true;
-	};
-	if (GVARMAIN(isActiveAdmin)) then {
-		[player, {GVARMAIN(activeAdmins) pushBack _this}] remoteExecCall [QFUNCMAIN(remoteCommand), 2];
-	} else {
-		[player, {GVARMAIN(activeAdmins) deleteAt (GVARMAIN(activeAdmins) find _this)}] remoteExecCall [QFUNCMAIN(remoteCommand), 2];
-	};
-
 	GVARMAIN(logModules) sort false;
 	player createDiarySubject ["framework_diary","Modules Loaded"];
 	{
