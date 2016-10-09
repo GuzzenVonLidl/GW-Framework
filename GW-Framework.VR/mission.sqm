@@ -1,14 +1,14 @@
 version=52;
 class EditorData
 {
-	moveGridStep=8;
+	moveGridStep=4;
 	angleGridStep=1;
 	scaleGridStep=10;
 	autoGroupingDist=10;
-	toggles=613;
+	toggles=741;
 	class ItemIDProvider
 	{
-		nextID=194;
+		nextID=205;
 	};
 	class Camera
 	{
@@ -27,7 +27,8 @@ addons[]=
 	"A3_Ui_F",
 	"A3_Soft_F_Quadbike_01",
 	"A3_Structures_F_Mil_Flags",
-	"A3_Supplies_F_Exp_Ammoboxes"
+	"A3_Supplies_F_Exp_Ammoboxes",
+	"A3_Structures_F_Mil_Helipads"
 };
 class AddonsMetaData
 {
@@ -88,7 +89,14 @@ class AddonsMetaData
 randomSeed=5200744;
 class ScenarioData
 {
-	author="GuzzenVonLidl(swe)";
+	author="GuzzenVonLidl";
+	overviewText="Example mission for framework";
+	onLoadMission="Dont get shoot";
+	class Header
+	{
+		gameType="COOP";
+		maxPlayers=129;
+	};
 };
 class CustomAttributes
 {
@@ -463,7 +471,7 @@ class CustomAttributes
 																"STRING"
 															};
 														};
-														value="east";
+														value="west";
 													};
 												};
 												class Item1
@@ -477,7 +485,7 @@ class CustomAttributes
 																"BOOL"
 															};
 														};
-														value=0;
+														value=1;
 													};
 												};
 											};
@@ -598,7 +606,7 @@ class CustomAttributes
 																"STRING"
 															};
 														};
-														value="NATO-D";
+														value="NATO-W";
 													};
 												};
 												class Item1
@@ -1359,7 +1367,26 @@ class CustomAttributes
 				};
 			};
 		};
-		nAttributes=1;
+		class Attribute1
+		{
+			property="EnableDebugConsole";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
+		nAttributes=2;
 	};
 };
 class Mission
@@ -1383,7 +1410,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=68;
+		items=74;
 		class Item0
 		{
 			dataType="Group";
@@ -7388,7 +7415,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={24,5,16.999996};
+				position[]={24,5,16};
 			};
 			name="hc_slot1";
 			isPlayable=1;
@@ -7401,7 +7428,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={29,5,16.999996};
+				position[]={28,5,16};
 			};
 			name="hc_slot2";
 			isPlayable=1;
@@ -7414,7 +7441,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={34,5,16.999996};
+				position[]={32,5,16};
 			};
 			name="hc_slot3";
 			isPlayable=1;
@@ -7539,7 +7566,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={50,6.6262865,16.999996};
+				position[]={48,6.6262865,16};
 			};
 			side="Empty";
 			flags=4;
@@ -7942,6 +7969,101 @@ class Mission
 			};
 			id=193;
 			type="EmptyDetectorAreaR50";
+		};
+		class Item68
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={80,5,16};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="null = [this] spawn GW_ServiceStation_fnc_Init;";
+			};
+			id=199;
+			type="Land_HelipadCivil_F";
+		};
+		class Item69
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={68,5.6349964,16};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="null = [this, true] spawn GW_ServiceStation_fnc_Init;";
+			};
+			id=200;
+			type="CargoNet_01_box_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item70
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={80,5,12};
+			};
+			title="Service Station";
+			id=201;
+		};
+		class Item71
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={68,5,12};
+			};
+			title="Mobile Service Station";
+			id=202;
+		};
+		class Item72
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={48,5,12};
+			};
+			title="MHQ";
+			id=203;
+		};
+		class Item73
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={28,5,12};
+			};
+			title="Headless Clients";
+			id=204;
 		};
 	};
 };

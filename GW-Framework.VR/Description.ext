@@ -26,27 +26,19 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 	};
 };
 
-
 // *	DO NOT EDIT BELOW
 // Global Mission Settings
-allowFunctionsLog = 0;
 aiKills = 0;
+allowFunctionsLog = 0;
 allowFunctionsRecompile = 1;
 disableChannels[]={0,1,2,5};
-disabledAi = 1;
 disableRandomization[] = {"CAManBase"};	// Disable random gear for units
 enableDebugConsole = 1;
-enableTeamSwitch = 0;
-joinUnassigned = 1;
 scriptedPlayer = 1;
 showGroupIndicator = 0;
 
 corpseManagerMode = 0;
 wreckManagerMode = 0;
-
-respawn = "BASE";
-respawndelay = 30;
-respawnOnStart = 0;
 
 class Params {
 	#define LOAD_PARAMS
@@ -77,11 +69,3 @@ class ACE_Settings {
 		#include "Modules\Modules.cpp"
 	#undef LOAD_ACE
 };
-
-
-/*
-		pos[]={50,50,0};
-		dir[]={0,-0.69999999,0.69999999};
-		up[]={0,0.69999999,0.69999999};
-		aside[]={0.89999998,0,0};
-*/

@@ -1,4 +1,3 @@
-//	https://github.com/CBATeam/CBA_A3/blob/master/addons/settings/fnc_init.sqf
 
 #define QUOTE(var1) #var1
 #define DOUBLES(var1,var2) ##var1##_##var2
@@ -15,14 +14,6 @@
 Group: General
 ------------------------------------------- */
 // Custom
-
-#define	GUZZENVONLIDL	"76561197993196728"
-//#define	R4IDER	"76561197985030555"
-//#define	OKSMAN	"76561198013929549"
-//#define	CHRIS	"76561197973520734"
-//#define	BENY	"76561197995362215"
-
-// *************************************
 
 #define REMOTEONLYSERVER(A) remoteExecCall [A, 2]
 #define MISSIONLOADED getClientStateNumber >= 10 || !isMultiplayer
@@ -44,8 +35,8 @@ Group: General
 
 #define MAJOR 0
 #define MINOR 0
-#define PATCHLVL 4
-#define BUILD 161006	// We will use the DATE for the BUILD# in the format YYMMDD
+#define PATCHLVL 5
+#define BUILD 161009	// We will use the DATE for the BUILD# in the format YYMMDD
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 
 #define COMPONENTPATH(var1) CUSTOM_FOLDER\fnc_##var1.sqf
