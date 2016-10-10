@@ -31,7 +31,7 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 aiKills = 0;
 allowFunctionsLog = 0;
 allowFunctionsRecompile = 1;
-disableChannels[]={0,1,2,5};
+disableChannels[]={1,2,5};
 disableRandomization[] = {"CAManBase"};	// Disable random gear for units
 enableDebugConsole = 1;
 scriptedPlayer = 1;
