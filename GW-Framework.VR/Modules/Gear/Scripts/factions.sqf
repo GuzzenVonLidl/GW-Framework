@@ -46,7 +46,7 @@ switch (_side) do {
 		#include "Classes\USMC-W.sqf"
 	};
 	default {
-		_errorCode = 1;
+		_errorCode = true;
 		ERROR(FORMAT_1("Faction does not exist: %1", _side));
 	};
 };

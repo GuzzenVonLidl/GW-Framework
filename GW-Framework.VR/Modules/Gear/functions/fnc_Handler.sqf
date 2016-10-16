@@ -69,7 +69,7 @@ if !(local _unit) exitWith {false};
 _isMan = _unit isKindOf "CAManBase";
 _isCar = _unit isKindOf "Car";
 _isTank = _unit isKindOf "Tank";
-_errorCode = 0;
+_errorCode = false;
 
 if (_isMan) then {
 	if (getNumber(configfile >> "CfgVehicles" >> (typeOf _unit) >> "side") isEqualTo 3) exitWith {false};	// Civilians
@@ -109,7 +109,7 @@ if (_isMan) then {
 		};
 	};
 
-	if (_errorCode isEqualTo 0) then {
+	if !(_errorCode) then {
 		_unit setUnitLoadout _loadout;
 
 		if (isPlayer _unit) then {
@@ -172,7 +172,7 @@ if (_isMan) then {
 	ClearItemCargoGlobal _unit;
 	ClearBackpackCargoGlobal _unit;
 
-	if (_errorCode isEqualTo 0) then {
+	if !(_errorCode) then {
 		switch (_class) do {
 			case "gearbox": {
 				[_unit, _glsmokeY, 20] call _fnc_AddObjectsCargo;

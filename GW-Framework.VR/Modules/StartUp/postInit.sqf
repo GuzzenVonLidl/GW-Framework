@@ -1,7 +1,8 @@
 #include "scriptComponent.hpp"
+#define DEBUG_MODE_FULL
 
-if (isServer) then {
-	[QGVARMAIN(missionStarted), {
+[QGVARMAIN(missionStarted), {
+	if (isServer) then {
 		if !(GVAR(TimeLimit) isEqualTo -1) then {
 			for "_i" from 0 to GVAR(TimeLimit) do {
 				[{
@@ -15,21 +16,22 @@ if (isServer) then {
 				}, [(GVAR(TimeLimit) - _i)], (60 * _i)] call CBA_fnc_waitAndExecute;
 			};
 		};
-	}] call CBA_fnc_addEventHandler;
-};
-
-if (hasInterface) then {
-	[QGVARMAIN(missionStarted), {
+	};
+	if (hasInterface) then {
 		[{
 			[QGVAR(Enabled), !(GVAR(TimeLimit) isEqualTo -1)] call CBA_fnc_localEvent;
 			cutText ["","BLACK IN",10];
 			player switchMove "AmovPknlMstpSlowWrflDnon";
-			[{(player distance (getMarkerPos format ["respawn_%1", (side player)]) > 50)},{
-				[QGVAR(Enabled), false] call CBA_fnc_localEvent;
-			}, []] call CBA_fnc_waitUntilAndExecute;
-		}, []] call CBA_fnc_execNextFrame;
-	}] call CBA_fnc_addEventHandler;
+			if !(GVAR(DistanceLimit) isEqualTo -1) then {
+				[{(player distance (getMarkerPos ("respawn_" + gw_RealSide)) > GVAR(DistanceLimit))},{
+					[QGVAR(Enabled), false] call CBA_fnc_localEvent;
+				}, []] call CBA_fnc_waitUntilAndExecute;
+			};
+		}, [], 0.5] call CBA_fnc_waitAndExecute;
+	};
+}] call CBA_fnc_addEventHandler;
 
+if (hasInterface) then {
 	private ["_nearbyLocations","_town","_time","_month"];
 	_town = "Unknown";
 	_nearbyLocations = nearestLocations [position player, ["NameCityCapital","NameCity","NameMarine","NameVillage","NameLocal","Hill"], 1000];

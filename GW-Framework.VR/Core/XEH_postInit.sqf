@@ -33,6 +33,21 @@ if (hasInterface) then {
 			FORMAT_3("Version: %2  by %1, <br/>Description: %3", (_x select 1), (_x select 2), (_x select 3))
 		]];
 	} forEach GVARMAIN(logModules);
+
+	GVARMAIN(RealSide) = switch (GETSIDE(player)) do {
+		case 0: {
+			"east";
+		};
+		case 1: {
+			"West";
+		};
+		case 2: {
+			"Independent";
+		};
+		case 3: {
+			"Civilian";
+		};
+	};
 };
 
 {
@@ -72,6 +87,9 @@ if (DEVBUILD) then {
 	[{(getClientStateNumber >= 10) || !isMultiplayer}, {
 		LOG("Event missionStarted");
 		[QGVARMAIN(missionStarted), []] call CBA_fnc_localEvent;
+		if ((getPlayerUID player) in (["GW_FRAMEWORK", "Naming", "AuthorUID"] call BIS_fnc_getCfgData)) then {
+			[QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent;
+		};
 	}, []] call CBA_fnc_waitUntilAndExecute;
 }, []] call CBA_fnc_waitUntilAndExecute;
 

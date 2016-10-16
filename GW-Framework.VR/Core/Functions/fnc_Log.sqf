@@ -50,17 +50,17 @@ if (_component != "") then {
 _strText = (_logMsg + _msg);
 
 if (_global && isMultiplayer) then {
- if (isServer) then {
-	{
-		[_strNumbers, _strText, GVARMAIN(MACHINE)] remoteExecCall [QFUNCMAIN(LogAdmin), _x];
-	} forEach GVARMAIN(activeAdmins);
- } else {
-	[[_strNumbers, _strText, GVARMAIN(MACHINE)], {
+	if (isServer) then {
 		{
-			[(_this select 0),(_this select 1),(_this select 2)] remoteExecCall [QFUNCMAIN(LogAdmin), _x];
-		} forEach GVARMAIN(activeAdmins);
-	}] remoteExecCall [QFUNCMAIN(remoteCommand), 2];
- };
+			[_strNumbers, _strText, GVARMAIN(MACHINE)] remoteExecCall [QFUNCMAIN(LogAdmin), _x];
+		} forEach EGVAR(main,activeAdmins);
+	} else {
+		[[_strNumbers, _strText, GVARMAIN(MACHINE)], {
+			{
+				[(_this select 0),(_this select 1),(_this select 2)] remoteExecCall [QFUNCMAIN(LogAdmin), _x];
+			} forEach EGVAR(main,activeAdmins);
+		}] remoteExecCall [QFUNCMAIN(remoteCommand), 2];
+	};
 };
 
 if (DEVCONSOLEENABLED) then {

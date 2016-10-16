@@ -111,6 +111,13 @@ if (((_this select 0) isKindOf "HeadlessClient_F") || !(local (_this select 0)))
 				};
 			};
 		};
+		if ((GETSIDE(_unit) isEqualTo 3) && !(_unit isKindOf "ReammoBox_F")) then {
+			_mainScope = false;
+			ClearWeaponCargoGlobal _unit;
+			ClearMagazineCargoGlobal _unit;
+			ClearItemCargoGlobal _unit;
+			ClearBackpackCargoGlobal _unit;
+		};
 	};
 
 	if (_mainScope) then {
@@ -119,6 +126,3 @@ if (((_this select 0) isKindOf "HeadlessClient_F") || !(local (_this select 0)))
 		}, [_unit, _role]] call CBA_fnc_waitUntilAndExecute;
 	};
 }, _this] call CBA_fnc_execNextFrame;
-
-//		[{
-//		}, [_unit, _role], 0.5] call CBA_fnc_waitAndExecute;

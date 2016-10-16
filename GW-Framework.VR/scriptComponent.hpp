@@ -35,8 +35,8 @@ Group: General
 
 #define MAJOR 0
 #define MINOR 0
-#define PATCHLVL 5
-#define BUILD 161009	// We will use the DATE for the BUILD# in the format YYMMDD
+#define PATCHLVL 6
+#define BUILD 161016	// We will use the DATE for the BUILD# in the format YYMMDD
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 
 #define COMPONENTPATH(var1) CUSTOM_FOLDER\fnc_##var1.sqf

@@ -22,6 +22,8 @@ if (DEVCONSOLEENABLED) then {
 	};
 };
 
+LOG("Prepping all main functions");
+PREPMAIN(init3DEN);
 PREPMAIN(Log);
 PREPMAIN(LogAdmin);
 PREPMAIN(remoteCommand);
@@ -29,8 +31,6 @@ PREPMAIN(settingsInit);
 PREPMAINFOLDER(spawnList);
 
 GW_fnc_Dummy = {};
-
-LOG("Main functions have been Prepared");
 
 LOG("Prepping all main variables");
 enableSaving [false, false];
@@ -41,10 +41,24 @@ enableTeamSwitch false;
 0 fadeRadio 0;
 //	enableSatNormalOnDetail true;		//	<--------
 
-GVARMAIN(isAdmin) = false;
-GVARMAIN(isActiveAdmin) = false;
-GVARMAIN(activeAdmins) = [];
-GVARMAIN(adminList) = ["_SP_PLAYER_", GUZZENVONLIDL, R4IDER, BARON, RAPTOR, FILTHY];
+if !(isClass (configFile >> "CfgPatches" >> "GW_Main")) then {
+	GVARMAIN(isAdmin) = false;
+	GVARMAIN(isActiveAdmin) = false;
+	GVARMAIN(activeAdmins) = [];
+	GVARMAIN(adminList) = ["_SP_PLAYER_", GUZZENVONLIDL, R4IDER, BARON, RAPTOR, FILTHY];
+
+	[QGVARMAIN(AddAdmin), {
+		params ["_admin"];
+		GVARMAIN(activeAdmins) pushBackUnique _admin;
+	}] call CBA_fnc_addEventHandler;
+
+	[QGVARMAIN(RemoveAdmin), {
+		params ["_admin"];
+		if (_admin in GVARMAIN(activeAdmins)) then {
+			GVARMAIN(activeAdmins) deleteAt (GVARMAIN(activeAdmins) find _admin);
+		};
+	}] call CBA_fnc_addEventHandler;
+};
 GVARMAIN(settings3denArray) = [];
 
 // Get addon/mod/dlc availability from the A3 config file and store them in easy to use variables
@@ -56,6 +70,7 @@ GVARMAIN(mod_ACE3) 			= isClass (configFile >> "CfgPatches" >> "ACE_Common");
 GVARMAIN(mod_ACE3_Medical)	= isClass (configFile >> "CfgPatches" >> "ACE_Medical");
 GVARMAIN(mod_ACRE) 			= isClass (configFile >> "CfgPatches" >> "ACRE_Main");
 GVARMAIN(mod_AIA)	 		= isClass (configFile >> "CfgPatches" >> "AiA_Core");
+GVARMAIN(mod_GW)	= isClass (configFile >> "CfgPatches" >> "GW_Main");
 GVARMAIN(mod_CUP_TERRAINS)	= isClass (configFile >> "CfgPatches" >> "CUP_BaseConfig_F");
 GVARMAIN(mod_CUP_WEAPONS)	= isClass (configFile >> "CfgPatches" >> "CUP_BaseConfig_F");
 GVARMAIN(mod_CUP_VEHICLES)	= isClass (configFile >> "CfgPatches" >> "CUP_BaseConfig_F");
@@ -128,80 +143,21 @@ if (isServer) then {
 };
 
 if (is3DEN) then {
-	if (((["GW_FRAMEWORK", "Core", "ResetSettings"] call BIS_fnc_getCfgData) isEqualTo -2) ) then {
-		{
-			TRACE_1("CBA Settings", _x);
-			[_x, (_x call CBA_settings_fnc_get), true, "mission"] call CBA_settings_fnc_set;
-		} forEach GVARMAIN(settings3denArray);
+	if (isClass (configFile >> "CfgPatches" >> "GW_3den")) then {
+		["init"] call FUNCMAIN(init3DEN);
+	} else {
+		add3DENEventHandler ["OnMissionSave",{
+			removeAll3DENEventHandlers "OnMissionSave";
+			["init"] call FUNCMAIN(init3DEN);
+			LOG("XEH_preInit reloaded");
+		}];
 	};
 
-	add3DENEventHandler ["OnMissionSave",{
-		removeAll3DENEventHandlers "OnMissionSave";
-		if (isClass (missionConfigFile >> "GW_FRAMEWORK")) then {
-			[] call compile preprocessFileLineNumbers "core\XEH_preInit.sqf";
-			LOG("XEH_preInit reloaded");
 
-			private _3denArray = [];
-			private _allPlayers = {((_x get3DENAttribute "ControlMP") select 0) || ((_x get3DENAttribute "ControlSP") select 0)} count ((all3DENEntities select 0) + (all3DENEntities select 3));
-			private _gamemode = (["GW_FRAMEWORK", "Naming", "GameMode"] call BIS_fnc_getCfgData);
-			private _name = (["GW_FRAMEWORK", "Naming", "Name"] call BIS_fnc_getCfgData);
-
-			if (_gamemode isEqualTo "") then {
-				ERROR("GameMode in description is empty");
-			};
-			if (_allPlayers isEqualTo 0) then {
-				ERROR("No playable units in this mission");
-			};
-			if (_name isEqualTo "") then {
-				ERROR("Name in description is empty");
-			};
-			if !((_name isEqualTo "") && (_gamemode isEqualTo "") && (_allPlayers isEqualTo 0)) then {
-				private _compile = (format ["%1@%2 %3", _gamemode, _allPlayers, _name]);
-				TRACE_1("Cfg Settings", _compile);
-				_3denArray pushBack ["Scenario","IntelBriefingName", _compile];
-			} else {
-				ERROR("Mission failed Exported");
-			};
-
-			{
-				private _cfg = (_x select 2);
-				if (_x select 3) then {	// read from configs
-					_cfg = (["GW_FRAMEWORK", "Naming", (_x select 2)] call BIS_fnc_getCfgData);
-					TRACE_2("Cfg Settings", (_x select 2), _cfg);
-				};
-				if !(_cfg isEqualTo "") then {
-					_3denArray pushBack [(_x select 0), (_x select 1), _cfg];
-				};
-			} forEach [
-				["Scenario", "Author", "Author", true],
-				["Scenario", "OverviewText", "Description", true],
-				["Scenario", "LoadScreen", "Picture", true],
-				["Scenario", "OnLoadMission", "onLoad", true],
-				["Multiplayer", "GameType", _gamemode, false],
-				["Multiplayer", "MaxPlayers", _allPlayers, false]
-			];
-
-			if (((["GW_FRAMEWORK", "Core", "ResetSettings"] call BIS_fnc_getCfgData) isEqualTo -2) ) then {
-				{
-					_3denArray pushBack [(_x select 0), (_x select 1), (_x select 2)];
-				} forEach [
-					["Multiplayer", "MinPlayers", 1],
-					["Multiplayer", "DisabledAI", true],
-					["Multiplayer", "JoinUnassigned", true],
-					["Multiplayer", "Respawn", 3],
-					["Multiplayer", "RespawnDelay", 30],
-					["Multiplayer", "RespawnDialog", false],
-					["Multiplayer", "EnableTeamSwitch", false],
-					["Multiplayer", "AIKills", false]
-				];
-			};
-
-			if !((count _3denArray) isEqualTo 0) then {
-				set3DENMissionAttributes _3denArray;
-			};
-			LOG("Mission Exported");
-		};
-	}];
+	if (!(("Multiplayer" get3DENMissionAttribute "MinPlayers") isEqualTo 1) || ((["GW_FRAMEWORK", "Core", "ResetSettings"] call BIS_fnc_getCfgData) isEqualTo -2)) then {
+		["reconfigure"] call FUNCMAIN(init3DEN);
+		LOG("3den settings reconfigure");
+	};
 };
 
 LOG("preInit finished");

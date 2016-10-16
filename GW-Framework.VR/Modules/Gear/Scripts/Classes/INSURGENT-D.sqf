@@ -33,27 +33,27 @@ _pointer = "";
 _sight = "";
 _bipod = "";
 
-_rifle = ["CUP_arifle_AK74", _silencer, _pointer, _sight, _bipod];
+_rifle = ["arifle_AKM_F", _silencer, _pointer, _sight, _bipod];
 _rifleC = ["arifle_AKS_F", _silencer, _pointer, _sight, _bipod];
-_rifleGL = ["CUP_arifle_AK74_GL", _silencer, _pointer, _sight, _bipod];
-_rifle_mag = "CUP_30Rnd_545x39_AK_M";
-_rifle_mag_tr = "CUP_30Rnd_TE1_Green_Tracer_545x39_AK_M";
+_rifleGL = ["arifle_AK12_GL_F", _silencer, _pointer, _sight, _bipod];
+_rifle_mag = "30Rnd_545x39_Mag_F";
+_rifle_mag_tr = "30Rnd_545x39_Mag_Tracer_Green_F";
 _rifleC_mag = "30Rnd_545x39_Mag_Green_F";
 _rifleC_mag_tr = "30Rnd_545x39_Mag_Tracer_Green_F";
 
-_LMG = ["CUP_arifle_RPK74_45", _silencer, _pointer, _sight, _bipod];
-_LMG_mag = "CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M";
+_LMG = ["LMG_03_F", _silencer, _pointer, _sight, _bipod];
+_LMG_mag = "200Rnd_556x45_Box_F";
+if (GVARMAIN(mod_CUP_WEAPONS)) then {
+	_LMG = ["CUP_arifle_RPK74_45", _silencer, _pointer, _sight, _bipod];
+	_LMG_mag = "CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M";
 
-_MMG = ["CUP_lmg_Pecheneg", _silencer, _pointer, _sight, _bipod];
-_MMG_mag = "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
+	_MMG = ["CUP_lmg_Pecheneg", _silencer, _pointer, _sight, _bipod];
+	_MMG_mag = "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";
+};
 
-_LAT = ["CUP_launch_RPG18", _silencer, _pointer, _sight, _bipod];
-_LAT_mag = "";
-_LAT_ReUsable = false;
-
-_MAT = ["CUP_launch_RPG7V", _silencer, _pointer, "CUP_optic_PGO7V3", _bipod];
-_MAT_mag = "CUP_PG7VL_M";
-_MAT_mag_HE = "CUP_OG7_M";
+_LAT = ["launch_RPG7_F", _silencer, _pointer, _sight, _bipod];
+_LAT_mag = "RPG7_F";
+_LAT_ReUsable = true;
 
 _pistol = ["CUP_hgun_PB6P9", _silencer, _pointer, _sight, _bipod];
 _pistol_mag = "CUP_8Rnd_9x18_Makarov_M";
