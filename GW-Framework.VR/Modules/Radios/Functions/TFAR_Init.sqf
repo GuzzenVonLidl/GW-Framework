@@ -1,7 +1,8 @@
-
+/*
 	TFAR_fnc_processRespawn = GW_fnc_Dummy;
 	TFAR_fnc_processGroupFrequencySetting = GW_fnc_Dummy;
 	TFAR_fnc_sessionTracker = GW_fnc_Dummy;
+*/
 
 	TF_west_radio_code = "_golclan";
 	TF_east_radio_code = "_golclan";

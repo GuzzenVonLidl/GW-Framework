@@ -18,6 +18,9 @@ switch (_side) do {
 	case "CSAT-U": {
 		#include "Classes\CSAT-U.sqf"
 	};
+	case "CHINA-D": {
+		#include "Classes\CHINA-D.sqf"
+	};
 	case "INSURGENT-D": {
 		#include "Classes\INSURGENT-D.sqf"
 	};

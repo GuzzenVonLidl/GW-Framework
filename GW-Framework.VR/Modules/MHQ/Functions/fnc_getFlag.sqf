@@ -31,5 +31,3 @@ switch (_mhq getVariable [QGVAR(Side), "west"]) do {
 };
 
 _return
-
-//	mhq_1 getVariable "GW_mhq_side"

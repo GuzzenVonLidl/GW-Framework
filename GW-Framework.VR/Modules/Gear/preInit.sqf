@@ -1,7 +1,7 @@
 #include "scriptComponent.hpp"
 
 GVAR(Blufor) = "NATO-D";
-GVAR(Opfor) = "CSAT-H";
+GVAR(Opfor) = "CHINA-D";
 GVAR(Independent) = "AAF-W";
 GVAR(Civilian) = "CIVI";
 GVAR(Auto_Assign) = true;
@@ -14,10 +14,13 @@ PREP(getAttachments);
 PREP(Handler);
 PREP(Init);
 PREP(replaceAttachments);
-PREP(setGroupColor);
 
 ["AllVehicles", "init", {
-	_this call FUNC(Init);
+//	[{MAPLOADED}, {
+		[{
+			_this call FUNC(Init);
+		}, _this, 0.1] call CBA_fnc_waitAndExecute;
+//	}, _this] call CBA_fnc_waitUntilAndExecute;
 }] call CBA_fnc_addClassEventHandler;
 
 [
@@ -59,6 +62,7 @@ PREP(setGroupColor);
 			"CSAT-H",
 			"CSAT-W",
 			"CSAT-U",
+			"CHINA-D",
 			"RUSSIAN-W",
 			"TAKIARMY-D",
 			"INSURGENT-D",
@@ -68,6 +72,7 @@ PREP(setGroupColor);
 			"CSAT-Hex",
 			"CSAT-Woodland",
 			"CSAT-Urban",
+			"China-Desert",
 			"Russian-Woodland",
 			"Takistani Army-Desert",
 			"INSURGENT-Desert",

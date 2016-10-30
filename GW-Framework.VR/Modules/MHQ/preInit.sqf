@@ -1,23 +1,44 @@
 #include "scriptComponent.hpp"
 
-PREP(Handler);
 PREP(getDeployType);
 PREP(getFlag);
+PREP(Handler);
+PREP(HandlerRespawn);
 PREP(prefabCopy);
 PREP(prefabCreate);
 
+GVAR(AssembledArray) = [];
+
+["CAManBase", "Respawn", {
+	_this call FUNC(HandlerRespawn);
+}] call CBA_fnc_addClassEventHandler;
+
 [QGVAR(Enabled), {
+	private ["_realSide"];
 	params [
 		"_mhq",
 		["_toggle",false,[true]],
-		["_side","west",[""]]
+		["_side","west",["",0]]
 	];
 
 	_mhq setVariable [QGVAR(Active), _toggle, true];
 	TRACE_3("QGVAR(Enabled)", _mhq, (_mhq getVariable [QGVAR(Active), false]), _toggle);
 	if (_mhq getVariable [QGVAR(Active), false]) then {
 		_mhq setVariable [QGVAR(Fuel), (fuel _mhq)];
-		_mhq setVariable [QGVAR(Side), toLower(_side), true];
+		if (_side isEqualType 0) then {
+			switch (_side) do {
+				case 0: {
+					_realSide = "east";
+				};
+				case 1: {
+					_realSide = "west";
+				};
+				case 2: {
+					_realSide = "independent";
+				};
+			};
+		};
+		_mhq setVariable [QGVAR(Side), toLower(_realSide), true];
 		[_mhq,0] remoteExecCall ["setFuel", _mhq];
 	} else {	// restore fuel
 		[_mhq,(_mhq getVariable [QGVAR(Fuel), (fuel _mhq)])] remoteExecCall ["setFuel", _mhq];
@@ -40,6 +61,15 @@ PREP(prefabCreate);
 			deleteVehicle _x;
 		} forEach (_mhq getVariable QGVAR(objectsCreated));
 		_mhq setVariable [QGVAR(objectsCreated), [], true];
+	};
+
+	if (_toggle) then {
+		GVAR(AssembledArray) pushBackUnique _mhq;
+		if !(_mhq getVariable [QGVAR(Active), false]) then {
+			[QGVAR(Enabled), [_mhq, true]] call CBA_fnc_serverEvent;
+		};
+	} else {
+		GVAR(AssembledArray) deleteAt (GVAR(AssembledArray) find _mhq);
 	};
 	TRACE_3("QGVAR(Assembled)", _mhq, (_mhq getVariable [QGVAR(Assembled), false]), _toggle);
 }] call CBA_fnc_addEventHandler;
@@ -73,7 +103,7 @@ PREP(prefabCreate);
 		_id = (([_mhq] call FUNC(getFlag))) addAction[format ["Teleport to %1", _mhq],{[player, (_this select 3)] call bis_fnc_moveToRespawnPosition},ARGUMENT(_mhq),(CONDITION_1),7];
 		_add pushback [([_mhq] call FUNC(getFlag)), _id];
 	} else {
-		_id = _mhq addAction ["Activate MHQ",{([QGVAR(Enabled), [(_this select 0), true, str(side player)]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),CONDITION_1,7];
+		_id = _mhq addAction ["Activate MHQ",{([QGVAR(Enabled), [(_this select 0), true, GETSIDE(player)]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),CONDITION_1,7];
 		_add pushback [_mhq, _id];
 	};
 	_mhq setVariable [QGVAR(ActiveActions), _add];

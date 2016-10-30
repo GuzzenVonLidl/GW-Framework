@@ -15,39 +15,37 @@
 */
 #include "..\scriptComponent.hpp"
 
-if (hasInterface) exitWith {false};
+if (!hasInterface || !isMultiplayer) exitWith {false};
 
-[{
-	private _strFinal = "";
-	private _strColorGrp = "'#990099'";
+private _strFinal = "";
+private _strColorGrp = "'#990099'";
 
-	switch (playerSide) do {
-		case west:{
-			_strColorGrp = "'#0066CC'";
-		};
-		case east:{
-			_strColorGrp = "'#990000'";
-		};
-		case independent:{
-			_strColorGrp = "'#339900'";
-		};
-		case civilian:{
-			_strColorGrp = "'#990099'";
-		};
+switch (playerSide) do {
+	case west:{
+		_strColorGrp = "'#0066CC'";
 	};
-
-	{
-		if ((side _x) isEqualTo playerSide) then {
-			_group = _x;
-			_strFinal =  _strFinal + "<br/>";
-			{
-				_strFinal =  _strFinal + "<font color=" + _strColorGrp + ">" + (roleDescription _x) + ": </font>" + (name _x) +"<br/>";
-			} forEach units _group;
-		};
-	} forEach allGroups;
-
-	if !(player diarySubjectExists QGVAR(simpleRoster)) then {
-		player createDiarySubject [QGVAR(simpleRoster),"Platoon Roster"];
+	case east:{
+		_strColorGrp = "'#990000'";
 	};
-	player createDiaryRecord [QGVAR(simpleRoster),[format ["Platoon Roster - %1", [time, "H:MM:SS"] call CBA_fnc_formatElapsedTime],_strFinal]];
-}, []] call CBA_fnc_execNextFrame;
+	case independent:{
+		_strColorGrp = "'#339900'";
+	};
+	case civilian:{
+		_strColorGrp = "'#990099'";
+	};
+};
+
+{
+	_group = _x;
+	if (((side _group) isEqualTo playerSide) && (count (units _group) >= 1)) then {
+		_strFinal =  _strFinal + "<br/>";
+		{
+			_strFinal =  _strFinal + "<font color=" + _strColorGrp + ">" + (roleDescription _x) + ": </font>" + (name _x) +"<br/>";
+		} forEach units _group;
+	};
+} forEach allGroups;
+
+if !(player diarySubjectExists QGVAR(simpleRoster)) then {
+	player createDiarySubject [QGVAR(simpleRoster),"Platoon Roster"];
+};
+player createDiaryRecord [QGVAR(simpleRoster),[format ["Platoon Roster - %1", [time, "H:MM:SS"] call CBA_fnc_formatElapsedTime], _strFinal]];

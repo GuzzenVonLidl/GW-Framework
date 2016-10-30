@@ -43,7 +43,7 @@ private [
 	"_map","_gps","_radio","_compass","_watch","_nvg","_demoCharge","_satchelCharge",
 	"_cTab","_Android","_microDAGR","_HelmetCam",
 	"_bandage","_blood","_epi","_morph","_IFAK","_FAKSmall","_FAKBig",
-	"_barrel","_cables","_clacker","_defusalKit","_IRStrobe","_mapFlashLight","_mapTools","_rangefinder",
+	"_barrel","_cables","_clacker","_defusalKit","_IRStrobe","_mapFlashLight","_mapTools","_rangefinder","_laserDesignator",
 	"_flashBang","_handFlareG","_handFlareR","_handFlareW","_handFlareY",
 	"_goggles","_helmet","_uniform","_vest","_backpack","_backpackRadio",
 	"_silencer","_pointer","_sight","_bipod",
@@ -104,6 +104,9 @@ if (_isMan) then {
 	#include "isNilCheck.hpp"
 
 	switch (_loadoutFile) do {
+		case "CHINA": {
+			#include "..\Scripts\China.sqf"
+		};
 		default {
 			#include "..\Scripts\Default.sqf"
 		};
@@ -175,12 +178,20 @@ if (_isMan) then {
 	if !(_errorCode) then {
 		switch (_class) do {
 			case "gearbox": {
+				[_unit] remoteExecCall [QFUNC(actions), 0, true];	// Enables gear actions for all players
+
 				[_unit, _glsmokeY, 20] call _fnc_AddObjectsCargo;
 				[_unit, _glflareW, 20] call _fnc_AddObjectsCargo;
 				[_unit, _smokegrenadeY, 20] call _fnc_AddObjectsCargo;
 				[_unit, _smokegrenadeG, 5] call _fnc_AddObjectsCargo;
-				[_unit, "ACE_EarBuds", 100] call _fnc_AddObjectsCargo;
-				[_unit] remoteExecCall [QFUNC(actions), 0, true];
+				if (GVARMAIN(mod_ACE3)) then {
+					[_unit, "ACE_EarBuds", 50] call _fnc_AddObjectsCargo;
+				};
+				if (GVARMAIN(mod_TFAR)) then {
+					[_unit, "tf_pnr1000a", 50] call _fnc_AddObjectsCargo;
+					[_unit, "TF_anprc152", 50] call _fnc_AddObjectsCargo;
+				};
+
 			};
 
 			case "small_box": {
@@ -274,6 +285,9 @@ if (_isMan) then {
 				if (_LAT_ReUsable) then {
 					[_unit, _LAT_mag, 4] call _fnc_AddObjectsCargo;
 				};
+				if (GVARMAIN(mod_ACE3)) then {
+					[_unit, 3, "ACE_Wheel", true] call ace_repair_fnc_addSpareParts;
+				};
 			};
 
 			case "tank": {
@@ -282,6 +296,9 @@ if (_isMan) then {
 				[_unit, _smokegrenadeP, 2] call _fnc_AddObjectsCargo;
 				[_unit, _pistol_mag, 3] call _fnc_AddObjectsCargo;
 				[_unit, _rifle_mag, 4] call _fnc_AddObjectsCargo;
+				if (GVARMAIN(mod_ACE3)) then {
+					[_unit, 3, "ACE_Track", true] call ace_repair_fnc_addSpareParts;
+				};
 			};
 
 			case "heli": {

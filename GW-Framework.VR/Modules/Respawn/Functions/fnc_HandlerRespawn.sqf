@@ -10,8 +10,8 @@ if (!(isPlayer _unit) && !(local _unit)) exitWith {false};
 	_unit setUnitLoadout (_unit getVariable QGVAR(unitGear));
 	_unit selectWeapon (primaryWeapon _unit);
 	[{
-		_this call EFUNC(Radios,add);
-		[] call EFUNC(Gear,setGroupColor);
+//		_this call EFUNC(Radios,add);
+		[] call EFUNC(Roster,setGroupColor);
 	}, [_unit, (_unit getVariable QEGVAR(Gear,Loadout))], 0.3] call CBA_fnc_waitAndExecute;
 
 	if (EGVAR(Gear,Stamina)) then {

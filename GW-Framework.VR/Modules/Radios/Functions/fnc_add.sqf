@@ -18,8 +18,8 @@
 params ["_unit","_type"];
 private ["_radio1000a","_radio152"];
 
-_radio1000a = ["pl","fac","sl","sm","ftl","rat","g","ag","ar"];
-_radio152 = ["ftl","p","crew"];
+_radio1000a = ["sl","sm","ftl","rat","g","ag","ar"];
+_radio152 = ["pl","fac","ftl","p","crew"];
 
 if (GVARMAIN(mod_TFAR)) then {
 	if ({_x call TFAR_fnc_isRadio} count (items _unit + assignedItems _unit) > 0) then {

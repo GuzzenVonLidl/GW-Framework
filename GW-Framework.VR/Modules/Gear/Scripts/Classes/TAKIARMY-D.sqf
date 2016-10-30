@@ -45,9 +45,8 @@ _LAT = ["CUP_launch_RPG18", _silencer, _pointer, _sight, _bipod];
 _LAT_mag = "";
 _LAT_ReUsable = false;
 
-_MAT = ["CUP_launch_RPG7V", _silencer, _pointer, _sight, _bipod];
-_MAT_mag = "CUP_PG7VL_M";
-_MAT_mag_HE = "CUP_PG7VL_M";
+_MAT = ["launch_RPG7_F", _silencer, _pointer, _sight, _bipod];
+_MAT_mag = "RPG7_F";
 
 _pistol = ["CUP_hgun_PB6P9", _silencer, _pointer, _sight, _bipod];
 _pistol_mag = "CUP_8Rnd_9x18_Makarov_M";

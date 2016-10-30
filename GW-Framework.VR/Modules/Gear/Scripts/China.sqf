@@ -25,7 +25,6 @@ switch (toLower(_role)) do {
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_smokegrenadeG,5],[_grenademini,2],[_rifle_mag_tr,5]] call _addToVest;
-		[[_smokegrenadeG,5]] call _addToBackpack;
 		_rangefinder call _addBino;
 		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
@@ -83,12 +82,12 @@ switch (toLower(_role)) do {
 
 	case "rat": {
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
-		[_rifle, _rifle_mag, ""] call _addPrimary;
+		[_rifleC, _rifleC_mag, ""] call _addPrimary;
 		[_LAT, _LAT_mag, ""] call _addLaunchers;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
-		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
+		[[_grenademini,2],[_grenade,2],[_rifleC_mag,4],[_rifleC_mag_tr,4]] call _addToVest;
 		[[_cables,1],[_defusalKit,1],[_clacker,1],[_demoCharge,2],[_satchelCharge,1]] call _addToBackpack;
 		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		if (_LAT_ReUsable) then {
@@ -98,11 +97,11 @@ switch (toLower(_role)) do {
 
 	case "r": {		// Used by AI
 		[_goggles,_helmet,_uniform,_vest] call _addEquipment;
-		[_rifle, _rifle_mag, ""] call _addPrimary;
+		[_rifleC, _rifleC_mag, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
-		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
+		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifleC_mag_tr,4]] call _addToVest;
 		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		if ((random 1) >= 0.7) then {
 			[_LAT, _LAT_mag, ""] call _addLaunchers;

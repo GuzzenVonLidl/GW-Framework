@@ -23,5 +23,5 @@ _CopyObjects = [];
 		_CopyObjects pushBack [(typeOf _x), (getDir _x), (_copyFrom worldToModel (getPosATL _x))];
 	};
 } forEach (get3DENSelected "object");
-copyToClipboard (format ["[_mhq,%1] call %2;", str(_CopyObjects), FUNC(prefabCreate)]);
+copyToClipboard (format ["[_mhq,%1] call %2;", str(_CopyObjects), QFUNC(prefabCreate)]);
 delete3DENEntities [_copyFrom];

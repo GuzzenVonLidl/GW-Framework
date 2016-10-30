@@ -47,8 +47,8 @@ _LMG_mag = "CUP_200Rnd_TE4_Green_Tracer_556x45_L110A1";
 _MMG = ["CUP_lmg_L7A2", _silencer, _pointer, _sight, _bipod];
 _MMG_mag = "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M";
 
-_LAT = ["CUP_launch_NLAW", _silencer, _pointer, _sight, _bipod];
-_LAT_mag = "";
+_LAT = ["launch_NLAW_F", _silencer, _pointer, _sight, _bipod];
+_LAT_mag = "NLAW_F";
 _LAT_ReUsable = false;
 
 _MAT = ["CUP_launch_Javelin", _silencer, _pointer, "CUP_optic_SMAW_Scope", _bipod];

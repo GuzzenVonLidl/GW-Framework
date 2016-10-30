@@ -31,7 +31,7 @@ switch (_type) do {
 				["PortableHelipadLight_01_red_F",340,[-1.69991,-6.54645,0.807719]],
 				["Land_Sleeping_bag_folded_F",38,[-1.80033,-6.83354,0.807719]],
 				["Land_Sleeping_bag_folded_F",121.391,[-2.10519,-6.41302,0.807719]],
-				["Box_NATO_WpsSpecial_F",90,[-2.64225,-2.79993,-0.00528622],["small_box",(_mhq getVariable QGVAR(Side))]]
+				["Box_NATO_Equip_F",90,[-2.64225,-2.79993,-0.00528622],["gearbox",(_mhq getVariable QGVAR(Side))]]
 			]
 		] call FUNC(prefabCreate);
 	};
@@ -40,21 +40,47 @@ switch (_type) do {
 		[
 			_mhq,
 			[
-				["Land_IRMaskingCover_01_F",90,[0.764259,-2.32185,-0.00528431]],
-				["Land_CampingTable_F",55,[3.74195,-7.76796,-0.00530243]],
-				["Land_CampingChair_V2_F",9,[4.13631,-6.87442,-0.00527763]],
-				["Land_CampingChair_V2_F",230,[3.24062,-8.54305,-0.00529766]],
-				["Land_Portable_generator_F",110,[1.61208,0.909119,-0.00528717]],
-				["PortableHelipadLight_01_red_F",340,[3.69947,-7.66631,0.807703]],
-				["Land_BarrelWater_grey_F",0,[1.59785,-2.64888,-0.00528622]],
-				["Land_BarrelWater_grey_F",0,[1.88465,-2.10916,-0.00528622]],
-				["Land_CanisterFuel_F",185,[1.78939,1.53864,-0.00528574]],
-				["Land_CanisterFuel_F",320,[1.59416,0.130081,-0.00528622]],
-				["Land_CanisterFuel_F",0,[1.68509,1.88417,-0.00528622]],
-				["Land_Sleeping_bag_folded_F",38,[4.02016,-8.22243,0.807703]],
-				["Land_Sleeping_bag_folded_F",120,[3.40695,-7.24936,0.807703]],
-				["Box_NATO_WpsSpecial_F",65,[1.54897,-0.949875,-0.00528622],["small_box",(_mhq getVariable QGVAR(Side))]]
+				["Land_IRMaskingCover_01_F",90,[-0.500839,-5.47292,-0.00528622]],
+				["CargoNet_01_barrels_F",210,[3.62416,-6.34792,-0.00528622]],
+				["Land_WaterBarrel_F",0,[3.74916,-7.97292,-0.00528622]],
+				["Land_CampingTable_F",230,[-3.12584,-10.5979,-0.00528622]],
+				["Land_CampingChair_V1_F",30,[-2.87584,-9.47292,-0.00528622]],
+				["PortableHelipadLight_01_red_F",0,[-2.87584,-11.2229,0.807719]],
+				["Box_NATO_Equip_F",133.672,[3.37416,-8.97292,-0.00528622],["gearbox",(_mhq getVariable QGVAR(Side))]]
 			]
-		] call FUNC(prefabCreate);
+		] call GW_MHQ_fnc_prefabCreate;
+	};
+	case "fob": {
+		[
+			_mhq,
+			[
+				["Land_HBarrier_Big_F",45,[1.49596,6.9942,-0.00528622]],
+				["Land_HBarrier_Big_F",215,[-8.31532,16.5477,-0.00528622]],
+				["Land_HBarrierWall4_F",50,[-4.26378,11.1359,-0.00528622]],
+				["Land_HBarrier_Big_F",95,[4.08037,0.0249233,-0.00528622]],
+				["Land_HBarrierWall4_F",145,[-5.62723,-11.5474,-0.00528622]],
+				["Land_HBarrierWall_corner_F",145,[0.131363,-10.6316,-0.00528622]],
+				["Land_HBarrierWall_corner_F",55,[3.41786,-7.54755,-0.00528622]],
+				["Land_HBarrier_Big_F",50,[-17.8708,-11.5409,-0.00528622]],
+				["Land_HBarrier_Big_F",230,[-28.7146,0.409781,-0.00528622]],
+				["Land_HBarrier_Big_F",50,[-23.0594,-5.9409,-0.00528622]],
+				["Land_HBarrierWall_corner_F",230,[-32.4326,6.59099,-0.00528622]],
+				["Land_HBarrier_Big_F",5,[-11.2988,-14.5115,-0.00528622]],
+				["Land_HBarrierWall4_F",320,[-29.2914,10.0427,-0.00528622]],
+				["Land_HBarrierWall_corner_F",320,[-22.0327,16.9493,-0.00528622]],
+				["Land_HBarrierWall_corridor_F",230,[-26.2647,14.2141,-0.00528622]],
+				["Land_HBarrier_Big_F",5,[-15.9098,18.9867,-0.00528622]],
+				["Land_CargoBox_V1_F",80,[-26.6234,2.00134,-0.00528622]],
+				["Land_CargoBox_V1_F",25,[-24.6146,-0.392542,-0.00528622]],
+				["Land_PaperBox_closed_F",80,[-6.61691,6.55055,-0.00528622]],
+				["Land_PaperBox_open_full_F",35,[-7.4754,4.85114,-0.00528622]],
+				["Land_PaperBox_closed_F",45,[-5.33134,5.01846,-0.00528622]],
+				["WaterPump_01_sand_F",250,[-15.6401,14.9704,-0.00528622]],
+				["Land_WaterTank_F",195,[-12.2666,16.0062,-0.00528622]],
+				["Land_WaterTank_F",300,[-10.4374,14.604,-0.00528622]],
+				["Land_HelipadCircle_F",320,[-12.6296,-4.36905,-0.00528622]],
+				["Box_NATO_Equip_F",273.672,[-2.4827,-9.07201,-0.00528622],["gearbox",(_mhq getVariable QGVAR(Side))]]
+			]
+		] call GW_MHQ_fnc_prefabCreate;
 	};
 };

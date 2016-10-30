@@ -1,2 +1,2 @@
-#define	COMPONENT mhq
+#define	COMPONENT MHQ
 #include "..\scriptComponent.hpp"

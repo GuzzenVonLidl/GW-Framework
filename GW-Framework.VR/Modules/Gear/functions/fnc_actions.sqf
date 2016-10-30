@@ -14,8 +14,9 @@
 */
 #include "..\scriptComponent.hpp"
 #define	bullShit nil,1,false,false,"",""
-
 params [["_unit", objNull, [objNull]]];
+
+private _allowed = (!(isMultiplayer) || true);
 
 _unit addAction ["<t color='#ffff00'>Attachment Menu</t>", {["player", [], -100, ["_this call GW_Gear_Fnc_replaceAttachments","main"]] call cba_fnc_fleximenu_openMenuByDef},bullShit,7];
 _unit addAction ["Platoon > Actual","[player,'pl'] call GW_Gear_Fnc_Handler;",bullShit,5];
@@ -31,7 +32,7 @@ _unit addAction ["<t color='#4785f4'>Squad > Automatic Rifleman</t>","[player,'a
 _unit addAction ["Echo > Pilot","[player,'p'] call GW_Gear_Fnc_Handler;",bullShit,5];
 _unit addAction ["Echo > Crew","[player,'crew'] call GW_Gear_Fnc_Handler;",bullShit,5];
 
-if !(isMultiplayer) then {
+if (_allowed) then {
 	_unit addAction ["<t color='#4785f4'>Squad > Asst. Heavy AT</t>","[player,'ahat'] call GW_Gear_Fnc_Handler;",bullShit,5];
 	_unit addAction ["<t color='#4785f4'>Squad > Heavy AT</t>","[player,'hat'] call GW_Gear_Fnc_Handler;",bullShit,5];
 	_unit addAction ["<t color='#4785f4'>Squad > Asst. Medium Machine Gunner</t>","[player,'ammg'] call GW_Gear_Fnc_Handler;",bullShit,5];

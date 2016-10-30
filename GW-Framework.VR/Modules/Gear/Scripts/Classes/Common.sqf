@@ -11,7 +11,7 @@ _smokegrenadeO = "SmokeShellOrange";
 _smokegrenadeP = "SmokeShellPurple";
 _smokegrenadeR = "SmokeShellRed";
 _smokegrenadeY = "SmokeShellYellow";
-if !(isPlayer _unit) then {
+if !((isPlayer _unit) && (_unit isKindOf "ReammoBox_F")) then {
 	_smokegrenadeY = "SmokeShell";
 };
 
@@ -73,7 +73,7 @@ if (GVARMAIN(mod_ACE3_Medical)) then {	// ACE
 	_blood = "ACE_bloodIV";
 	_epi = "ACE_epinephrine";
 	_morph = "ACE_morphine";
-	_IFAK = [[_bandage,1]];
+	_IFAK = [[_bandage,3]];
 	_FAKSmall = [
 		[_bandage,20],
 		[_morph,5]
@@ -120,6 +120,7 @@ _IRStrobe = "";
 _mapFlashLight = "";
 _mapTools = "";
 _rangefinder = "Binocular";
+_laserDesignator = "Laserdesignator";
 
 _flashBang = "";
 _handFlareG = "";

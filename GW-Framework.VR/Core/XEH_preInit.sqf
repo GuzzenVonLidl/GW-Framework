@@ -143,16 +143,13 @@ if (isServer) then {
 };
 
 if (is3DEN) then {
-	if (isClass (configFile >> "CfgPatches" >> "GW_3den")) then {
-		["init"] call FUNCMAIN(init3DEN);
-	} else {
+	if !(isClass (configFile >> "CfgPatches" >> "GW_3den")) then {
 		add3DENEventHandler ["OnMissionSave",{
 			removeAll3DENEventHandlers "OnMissionSave";
 			["init"] call FUNCMAIN(init3DEN);
 			LOG("XEH_preInit reloaded");
 		}];
 	};
-
 
 	if (!(("Multiplayer" get3DENMissionAttribute "MinPlayers") isEqualTo 1) || ((["GW_FRAMEWORK", "Core", "ResetSettings"] call BIS_fnc_getCfgData) isEqualTo -2)) then {
 		["reconfigure"] call FUNCMAIN(init3DEN);

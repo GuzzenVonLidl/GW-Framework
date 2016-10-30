@@ -4,19 +4,21 @@
 	Value is grabbed from the unit name
 
 	Usage:
-	[] call GW_Gear_Fnc_setGroupColor;
+	[player] call GW_Roster_Fnc_setGroupColor;
 
-	Arguments: NO
+	Arguments:
+	0: Unit <OBJECT>
 
 	Return Value: NO
 
 	Public: YES
 */
 #include "..\scriptComponent.hpp"
-#define	TrimString [format ["%1", player], 3] call BIS_fnc_trimString
-#define	TrimString1st [format ["%1", player], 1] call BIS_fnc_trimString
+#define	TrimString [format ["%1", _unit], 3] call BIS_fnc_trimString
+#define	TrimString1st [format ["%1", _unit], 1] call BIS_fnc_trimString
 
 private ["_color"];
+params ["_unit"];
 
 switch (True) do {
 	case ((TrimString) in ["1"]): {
@@ -40,7 +42,7 @@ switch (True) do {
 	};
 };
 
-if !((player getVariable [QGVAR(GroupColor), "White"]) isEqualTo _color) then {
-	player setVariable [QGVAR(GroupColor), _color];
-	player assignTeam _color;
+if !((_unit getVariable [QGVAR(GroupColor), "White"]) isEqualTo _color) then {
+	_unit setVariable [QGVAR(GroupColor), _color];
+	_unit assignTeam _color;
 };

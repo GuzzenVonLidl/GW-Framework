@@ -21,28 +21,26 @@ if (!isServer) exitWith {false};
 [{
 	params ["_mhq",["_type","",[""]],["_side","west",[""]]];
 
-	_mhq setVariable [QGVAR(Info), [(typeOf _mhq),(getPosATL _mhq),(getdir _mhq),(vehicleVarName _mhq), _type]];	// Store for respawn
+	[QGVAR(Enabled), [_mhq, false]] call CBA_fnc_LocalEvent;
+	_jipID = [QGVAR(Actions), [_mhq], format ["GW_MHQ_JIP_%1", _mhq]] call CBA_fnc_globalEventJIP;
+	_mhq setVariable [QGVAR(Info), [(typeOf _mhq), (getPosATL _mhq), floor(getdir _mhq), (vehicleVarName _mhq), _type, _jipID]];	// Store for respawn
 	_mhq setVariable [QGVAR(Fuel), (fuel _mhq)];
 	_mhq setVariable [QGVAR(Side), toLower(_side), true];
-	[QGVAR(Enabled), [_mhq, false]] call CBA_fnc_LocalEvent;
-	[QGVAR(Actions), [_mhq], format ["GW_MHQ_JIP_%1", _mhq]] call CBA_fnc_globalEventJIP;
 
 	_mhq addEventHandler ["Killed", {
 		[{
-			private ["_mhqInfo","_mhq"];
 			params ["_mhqOld"];
 			removeAllActions _mhqOld;
-			_mhqInfo = (_mhqOld getVariable QGVAR(Info));
-			[QGVAR(Actions), format ["GW_MHQ_JIP_%1", _mhq]] call CBA_fnc_removeEventHandler;
+			private _mhqInfo = (_mhqOld getVariable QGVAR(Info));
 			if ((_mhqOld distance (_mhqInfo select 1)) < 50) then {
 				deleteVehicle _mhqOld;
 			};
-			_mhq = createVehicle [(_mhqInfo select 0), [0,0,0], [], 10, "NONE"];
+			private _mhq = createVehicle [(_mhqInfo select 0), [0,0,0], [], 10, "NONE"];
 			_mhq setPosATL (_mhqInfo select 1);
 			_mhq setDir (_mhqInfo select 2);
 			_mhq setVehicleVarName (_mhqInfo select 3);
 			Call Compile Format ["%1 = _mhq; PublicVariable '%1';", (_mhqInfo select 3)];
-			[_mhq] call FUNC(Handler);
+			[_mhq, (_mhqInfo select 4)] call FUNC(Handler);
 		}, _this, 5] call CBA_fnc_waitAndExecute;
 	}];
 }, _this, 1] call CBA_fnc_waitAndExecute;
