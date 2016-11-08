@@ -8,7 +8,7 @@ if (GVARMAIN(mod_TFAR)) then {
 	_backpackRadio = "tf_mr3000_multicam";
 };
 
-if (_role in ["r","rat","hat","ahat"]) then {
+if (_role in ["r","rat","mat","amat"]) then {
 	_vest = "CUP_V_B_MTV_Pouches";
 };
 if (_role in ["ag","ammg"]) then {

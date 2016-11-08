@@ -1,6 +1,7 @@
 
 	#include "Common\Module.hpp"
 	#include "Environment\Module.hpp"
+//	#include "FFIS\Module.hpp"
 	#include "Gear\Module.hpp"
 	#include "HeadlessController\Module.hpp"	// Update to higher standards to perform better
 	#include "MHQ\Module.hpp"

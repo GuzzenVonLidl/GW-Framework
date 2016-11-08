@@ -10,8 +10,9 @@
 */
 #include "scriptComponent.hpp"
 
-PREP(handleFired);
-PREP(handlePFH);
+PREP(HandleFired);
+PREP(HandlePFH);
+PREP(HandlerRespawn);
 PREP(Init);
 PREP(Suppression);
 FUNC(Get) = {
@@ -49,11 +50,19 @@ GVAR(BulletArray) = [];
 	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false
 ] call FUNCMAIN(settingsInit);
 
-if (isServer) then {
-	["CAManBase", "Init", {
-		_this call FUNC(Init);
-	}] call CBA_fnc_addClassEventHandler;
-};
+[
+	QGVAR(playerDetection), "SLIDER",
+	["Detect player skill", "How easily a player gets detected, lower value harder to detect"],
+	QUOTE(ADDON), [0.5, 1.5, 1.0, 1], false
+] call FUNCMAIN(settingsInit);
+
+["CAManBase", "Init", {
+	_this call FUNC(Init);
+}] call CBA_fnc_addClassEventHandler;
+
+["CAManBase", "Respawn", {
+	_this call FUNC(HandlerRespawn);
+}] call CBA_fnc_addClassEventHandler;
 
 /*
 	[QGVARMAIN(missionStarted), {

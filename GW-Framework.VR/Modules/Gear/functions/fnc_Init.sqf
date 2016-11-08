@@ -46,61 +46,61 @@ if (_unit isKindOf "CAManBase") then {
 		if !(isNil {(_unit getVariable QGVAR(Loadout))}) then {		// Specific role assigned
 			_role = (_unit getVariable [QGVAR(Loadout), _role]);
 		} else {
-			[{(!isNil {((group (_this select 0)) getVariable QGVAR(Loadout_Type))})}, {	// Auto detect
+			_mainScope = false;
+			_unit setVariable [QGVAR(Loadout_Time), (time + 1)];
+			[{(!isNil {((group (_this select 0)) getVariable QGVAR(Loadout_Type))}) || (time > ((_this select 0) getVariable QGVAR(Loadout_Time)))}, {	// Auto detect
 				params ["_unit"];
 				private _role = "r";
-				private _groupType = ((group _unit) getVariable QGVAR(Loadout_Type));
+				private _groupType = ((group _unit) getVariable [QGVAR(Loadout_Type), false]);
 				private _displayName = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
 
-				switch (true) do {
-					case (_displayName isEqualTo "Squad Leader"): {
-						_role = "sl";
-					};
-					case (_displayName isEqualTo "Team Leader"): {
-						_role = "ftl";
-					};
-					case (_displayName isEqualTo "Rifleman"): {
-						if (_groupType) then {
-							_role = "hat";
-						} else {
-							if (isPlayer _unit) then {
-								_role = "rat";
+				if ((isPlayer _unit) || !(([format ["%1", typeOf _unit], 2] call BIS_fnc_trimString) isEqualTo "engineer_F")) then {
+					switch (true) do {
+						case (_displayName isEqualTo "Squad Leader"): {
+							_role = "sl";
+						};
+						case (_displayName isEqualTo "Team Leader"): {
+							_role = "ftl";
+						};
+						case (_displayName isEqualTo "Rifleman"): {
+							if (_groupType) then {
+								_role = "mat";
+							} else {
+								if (isPlayer _unit) then {
+									_role = "rat";
+								};
 							};
 						};
-					};
-					case (_displayName isEqualTo "Rifleman (AT)"): {
-						_role = "hat";
-					};
-					case (_displayName isEqualTo "Grenadier"): {
-						if (_groupType) then {
-							_role = "ahat";
-						} else {
-							_role = "g";
+						case (_displayName isEqualTo "Grenadier"): {
+							if (_groupType) then {
+								_role = "amat";
+							} else {
+								_role = "g";
+							};
+						};
+						case (_displayName in ["Asst. Autorifleman","Combat Life Saver","Medic","Corpsman"]): {
+							if (_groupType) then {
+								_role = "ammg";
+							} else {
+								_role = "ag";
+							};
+						};
+						case (_displayName in ["Autorifleman","Machinegunner"]): {
+							if (_groupType) then {
+								_role = "mmg";
+							} else {
+								_role = "ar";
+							};
+						};
+						case (_displayName isEqualTo "Crewman"): {
+							_role = "crew";
+						};
+						case (_displayName in ["Helicopter Pilot","Pilot"]): {
+							_role = "p";
 						};
 					};
-					case (_displayName in ["Asst. Autorifleman","Combat Life Saver","Medic","Corpsman"]): {
-						if (_groupType) then {
-							_role = "ammg";
-						} else {
-							_role = "ag";
-						};
-					};
-					case (_displayName in ["Autorifleman","Machinegunner"]): {
-						if (_groupType) then {
-							_role = "mmg";
-						} else {
-							_role = "ar";
-						};
-					};
-					case (_displayName isEqualTo "Crewman"): {
-						_role = "crew";
-					};
-					case (_displayName in ["Helicopter Pilot","Pilot"]): {
-						_role = "p";
-					};
-					default {
-						_role = selectRandom ["ftl","r","hat","ahat","g","ag","ar","mmg","ammg"];	// Random role
-					};
+				} else {
+					_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
 				};
 				[_unit, _role] call FUNC(Handler);
 			}, [_unit]] call CBA_fnc_waitUntilAndExecute;

@@ -12,7 +12,7 @@ if (GVARMAIN(mod_TFAR)) then {
 if (_role isEqualTo "sl") then {
 	_vest = "CUP_V_BAF_Osprey_Mk2_DPM_Officer";
 };
-if (_role in ["r","rat","hat","ahat"]) then {
+if (_role in ["r","rat","mat","amat"]) then {
 	_vest = "CUP_V_BAF_Osprey_Mk2_DPM_Soldier2";
 };
 if (_role in ["ag","ammg"]) then {

@@ -20,7 +20,7 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 		Author = "GuzzenVonLidl";						// Author
 		AuthorUID[] = {"_SP_PLAYER_"};
 		Description = "Example mission for framework";	// Description in mission select
-		onLoad = "Dont get shoot";						// Description on loading
+		onLoad = "Don't get shot";						// Description on loading
 		Picture = "";									// Picture on loading
 		version = 1;									// Version of mission
 		GameMode = "Coop";								// mission will be filterd with

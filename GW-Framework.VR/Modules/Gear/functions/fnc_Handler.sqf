@@ -20,8 +20,8 @@
 	ftl		- Fire team leader			(Both)
 	r		- Rifleman
 	rat		- Rifleman AT				(Player)
-	hat		- Rifleman AT Heavy
-	ahat	- Asst. Rifleman AT
+	mat		- Rifleman AT Medium
+	amat	- Asst. Rifleman AT
 	g		- Grenadier					(Both)
 	ag		- Asst. Gunner				(Both)
 	ar		- Automatic Rifleman		(Both)

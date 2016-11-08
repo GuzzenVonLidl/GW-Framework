@@ -8,14 +8,14 @@ class EditorData
 	toggles=613;
 	class ItemIDProvider
 	{
-		nextID=1018;
+		nextID=1029;
 	};
 	class Camera
 	{
-		pos[]={50,50,0};
-		dir[]={0,-0.69999999,0.69999999};
-		up[]={0,0.69999999,0.69999999};
-		aside[]={0.89999998,0,0};
+		pos[]={40.101219,11.895391,41.008965};
+		dir[]={0.069802627,-0.47518218,0.86563736};
+		up[]={0.038193412,0.86844504,0.47364709};
+		aside[]={0.89708751,3.2825483e-007,-0.07233876};
 	};
 };
 binarizationWanted=0;
@@ -153,7 +153,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=21;
+									items=22;
 									class Item0
 									{
 										class data
@@ -448,6 +448,20 @@ class CustomAttributes
 											value="gw_startup_distancelimit";
 										};
 									};
+									class Item21
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_setdifficulty_playerdetection";
+										};
+									};
 								};
 							};
 						};
@@ -464,7 +478,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=21;
+									items=22;
 									class Item0
 									{
 										class data
@@ -1210,7 +1224,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=3;
+														value=2;
 													};
 												};
 												class Item1
@@ -1391,6 +1405,51 @@ class CustomAttributes
 															};
 														};
 														value=50;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item21
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=0.69216001;
 													};
 												};
 												class Item1
@@ -2275,7 +2334,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="w1c2";
-						description="1-1 Charlie Rifleman (HAT)";
+						description="1-1 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
 					id=20;
@@ -2317,7 +2376,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="w1c3";
-						description="1-1 Charlie Grenadier (AHAT)";
+						description="1-1 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
 					id=21;
@@ -3136,7 +3195,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="w2c2";
-						description="1-2 Charlie Rifleman (HAT)";
+						description="1-2 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
 					id=41;
@@ -3178,7 +3237,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="w2c3";
-						description="1-2 Charlie Grenadier (AHAT)";
+						description="1-2 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
 					id=42;
@@ -4492,7 +4551,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="e1c2";
-						description="1-1 Charlie Rifleman (HAT)";
+						description="1-1 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
 					id=77;
@@ -4534,7 +4593,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="e1c3";
-						description="1-1 Charlie Grenadier (AHAT)";
+						description="1-1 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
 					id=78;
@@ -5261,7 +5320,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="e2c2";
-						description="1-2 Charlie Rifleman (HAT)";
+						description="1-2 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
 					id=98;
@@ -5303,7 +5362,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="e2c3";
-						description="1-2 Charlie Grenadier (AHAT)";
+						description="1-2 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
 					id=99;
@@ -7094,7 +7153,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="i1c2";
-						description="1-1 Charlie Rifleman (HAT)";
+						description="1-1 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
 					id=581;
@@ -7136,7 +7195,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="i1c3";
-						description="1-1 Charlie Grenadier (AHAT)";
+						description="1-1 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
 					id=582;
@@ -7863,7 +7922,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="i2c2";
-						description="1-2 Charlie Rifleman (HAT)";
+						description="1-2 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
 					id=836;
@@ -7905,7 +7964,7 @@ class Mission
 					{
 						skill=0.40000001;
 						name="i2c3";
-						description="1-2 Charlie Grenadier (AHAT)";
+						description="1-2 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
 					id=837;

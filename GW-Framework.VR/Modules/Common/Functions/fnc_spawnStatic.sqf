@@ -17,11 +17,18 @@
 
 private _group = [GVAR(Faction), (count _this)] call FUNC(createGroup);
 {
-	private _dir = ((_this select _forEachIndex) select 1);
+	private _core = (_this select _forEachIndex);
+	private _dir = (_core select 1);
+	private _unitPos = (_core select 2);
 	_x setFormDir _dir;
 	_x setDir _dir;
-	_x setPosATL ((_this select _forEachIndex) select 0);
-	_x setUnitPos ((_this select _forEachIndex) select 2);
+	_x setPosATL (_core select 0);
 	_x disableAI "PATH";
+	doStop _x;
+	if (_unitPos isEqualTo "Auto") then {
+		_x setUnitPos (selectRandom ["Up","Middle"]);
+	} else {
+		_x setUnitPos _unitPos;
+	};
 } forEach (units _group);
 _group

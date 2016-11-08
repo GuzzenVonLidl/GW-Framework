@@ -54,7 +54,7 @@ if (isServer) then {
 		if ((count EGVAR(headlessController,headlessList)) > 0) then {
 			if (isServer) then {
 				setViewDistance 500;
-				setTerrainGrid 0;
+				setTerrainGrid 50;
 			};
 			if (CBA_isHeadlessClient) then {
 				setViewDistance 1500;

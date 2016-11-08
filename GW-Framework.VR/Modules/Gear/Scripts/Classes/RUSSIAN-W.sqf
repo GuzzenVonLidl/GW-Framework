@@ -21,7 +21,7 @@ if (GVARMAIN(mod_TFAR)) then {
 	_backpackRadio = "tf_anprc155";
 };
 
-if (_role in ["r","rat","hat","ahat"]) then {
+if (_role in ["r","rat","mat","amat"]) then {
 	_backpack = "CUP_B_RUS_Pack_AT";
 };
 if (_role in ["ag","ammg"]) then {

@@ -18,7 +18,7 @@
 params ["_unit","_type"];
 private ["_radio1000a","_radio152"];
 
-_radio1000a = ["sl","sm","ftl","rat","g","ag","ar"];
+_radio1000a = ["sl","sm","ftl","rat","g","ag","ar","mat","amat","ammg","mmg"];
 _radio152 = ["pl","fac","ftl","p","crew"];
 
 if (GVARMAIN(mod_TFAR)) then {

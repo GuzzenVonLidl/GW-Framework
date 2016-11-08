@@ -5,8 +5,8 @@ sl		- Squad leader
 ftl		- Fire team leader
 rat		- Rifleman AT Player
 r		- Rifleman
-hat		- Rifleman AT Heavy
-ahat	- Asst. Rifleman AT
+mat		- Rifleman AT Heavy
+amat	- Asst. Rifleman AT
 g		- Grenadier
 ag		- Asst. Gunner
 ar		- Automatic Rifleman
@@ -113,7 +113,7 @@ switch (toLower(_role)) do {
 		};
 	};
 
-	case "hat": {	// Used by AI
+	case "mat": {	// Used by AI
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
 		[_rifleC, _rifleC_mag, ""] call _addPrimary;
 		[_MAT, _MAT_mag, ""] call _addLaunchers;
@@ -125,7 +125,7 @@ switch (toLower(_role)) do {
 		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
-	case "ahat": {	// Used by AI
+	case "amat": {	// Used by AI
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
 		[_rifleC, _rifleC_mag, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;

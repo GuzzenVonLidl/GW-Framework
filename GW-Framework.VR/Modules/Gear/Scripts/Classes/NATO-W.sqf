@@ -54,5 +54,5 @@ _MAT = ["launch_RPG32_ghex_F", _silencer, _pointer, _sight, _bipod];
 _MAT_mag = "RPG32_F";
 _MAT_mag_HE = "RPG32_HE_F";
 
-_pistol = ["hgun_P07_khk_F", _silencer, _pointer, "optic_MRD", _bipod];
+_pistol = ["hgun_P07_khk_F", _silencer, _pointer, _sight, _bipod];
 _pistol_mag = "16Rnd_9x21_Mag";

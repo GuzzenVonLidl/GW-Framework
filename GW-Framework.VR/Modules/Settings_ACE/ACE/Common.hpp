@@ -278,6 +278,14 @@ class ace_mk6mortar_useAmmoHandling {
 
 // -------------------------------------------
 
+class ace_nametags_playerNamesViewDistance {
+	value = 100;
+	typeName = "BOOL";
+	force = 1;
+};
+
+// -------------------------------------------
+
 class ace_overheating_overheatingDispersion {
 	value = 1;
 	typeName = "BOOL";

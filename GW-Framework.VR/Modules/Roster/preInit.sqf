@@ -11,7 +11,7 @@ PREP(simpleRoster);
 }] call CBA_fnc_addEventHandler;
 
 if (hasInterface) then {
-	if (didJip) then {
+	if (didJip && time > 1) then {
 		[{
 			[QEGVAR(roster,update), []] call CBA_fnc_globalEvent;
 		}, [], 1] call CBA_fnc_waitAndExecute;

@@ -13,7 +13,7 @@ if ((random 1) > 0.90) then {
 	_goggles = "G_Squares";
 };
 
-if (_role in ["r","rat","hat","ahat"]) then {
+if (_role in ["r","rat","mat","amat"]) then {
 	_backpack = "CUP_B_TKI_Backpack_RPG";
 };
 if (_role in ["ag","ammg"]) then {
