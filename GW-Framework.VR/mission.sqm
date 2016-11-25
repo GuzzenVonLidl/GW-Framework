@@ -5,17 +5,21 @@ class EditorData
 	angleGridStep=0.08726646;
 	scaleGridStep=10;
 	autoGroupingDist=10;
-	toggles=613;
+	toggles=741;
 	class ItemIDProvider
 	{
-		nextID=1029;
+		nextID=1413;
+	};
+	class LayerIndexProvider
+	{
+		nextID=117;
 	};
 	class Camera
 	{
-		pos[]={40.101219,11.895391,41.008965};
-		dir[]={0.069802627,-0.47518218,0.86563736};
-		up[]={0.038193412,0.86844504,0.47364709};
-		aside[]={0.89708751,3.2825483e-007,-0.07233876};
+		pos[]={50,50,0};
+		dir[]={0,-0.69999999,0.69999999};
+		up[]={0,0.69999999,0.69999999};
+		aside[]={0.89999998,0,0};
 	};
 };
 binarizationWanted=0;
@@ -91,7 +95,7 @@ class ScenarioData
 {
 	author="GuzzenVonLidl";
 	overviewText="Example mission for framework";
-	onLoadMission="Dont get shoot";
+	onLoadMission="Don't get shot";
 	respawnDialog=0;
 	disabledAI=1;
 	respawn=3;
@@ -153,7 +157,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=22;
+									items=23;
 									class Item0
 									{
 										class data
@@ -462,6 +466,20 @@ class CustomAttributes
 											value="gw_setdifficulty_playerdetection";
 										};
 									};
+									class Item22
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_gear_randomzeusgear";
+										};
+									};
 								};
 							};
 						};
@@ -478,7 +496,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=22;
+									items=23;
 									class Item0
 									{
 										class data
@@ -1449,7 +1467,52 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=0.69216001;
+														value=1;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item22
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
 													};
 												};
 												class Item1
@@ -1533,7 +1596,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=76;
+		items=81;
 		class Item0
 		{
 			dataType="Group";
@@ -1583,7 +1646,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="enableSimulation";
+							expression="if !(is3DEN) then {_this enablesimulationglobal _value;};";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						nAttributes=2;
 					};
 				};
 				class Item1
@@ -6342,7 +6424,7 @@ class Mission
 			position[]={50,5,150};
 			class Attributes
 			{
-				condition="!({(isPlayer _x) && ((getPosATL _x) select 2) < 5} count thislist isEqualTo 0)";
+				condition="!({(isPlayer _x) && ((getPosATL _x) select 2) < 5} count thislist isEqualTo 0) && isServer";
 				onActivation="null = [1] spawn GW_Fnc_spawnList;";
 				sizeC=0;
 				activationBy="ANY";
@@ -8451,6 +8533,41 @@ class Mission
 			};
 			title="MHQ - Auto activate";
 			id=1017;
+		};
+		class Item76
+		{
+			dataType="Layer";
+			name="Camp Bravery";
+			id=1078;
+			atlOffset=-5;
+		};
+		class Item77
+		{
+			dataType="Layer";
+			name="Exterior";
+			id=1209;
+			atlOffset=-5;
+		};
+		class Item78
+		{
+			dataType="Layer";
+			name="Junk 1";
+			id=1269;
+			atlOffset=-5;
+		};
+		class Item79
+		{
+			dataType="Layer";
+			name="Military";
+			id=1328;
+			atlOffset=-5;
+		};
+		class Item80
+		{
+			dataType="Layer";
+			name="Tables and Shelves";
+			id=1389;
+			atlOffset=-5;
 		};
 	};
 };

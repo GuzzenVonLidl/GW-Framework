@@ -4,15 +4,6 @@ PREP(getRespawns);
 PREP(HandlerKilled);
 PREP(HandlerRespawn);
 
-GVAR(Mode) = 0;		// 0: Disabled 1: Player respawns 2: Team Respawns
-GVAR(Count) = 10;	// Ticket count, when you die 1 point is lost, 1: (Starting life, no respawn) 3: (Starting life + 2 respawns) etc...
-GVAR(JIP) = true;	// Allow Join in progress - false puts them in spectator mode
-
-GVAR(CountTeamWest) = GVAR(Count);
-GVAR(CountTeamEast) = GVAR(Count);
-GVAR(CountTeamIndependent) = GVAR(Count);
-GVAR(CountTeamCivilian) = GVAR(Count);
-
 GVAR(ServerConnections) = [];
 GVAR(ServerDead) = [];
 GVAR(ServerDeadPermanent) = [];

@@ -4,7 +4,7 @@
 	class COMPONENT {
 		name = COMPONENT;
 		authors = "GuzzenVonLidl";
-		version = 1;
+		version = 1.1;
 		description = "set Skill level for each unit";
 		preInit = "preInit.sqf";
 		postInit = "";

@@ -3,7 +3,7 @@
 PREP(addToCurators);
 PREP(buildingPop);
 PREP(createGroup);
-PREP(createUnits);	// Untested
+PREP(createUnits);
 PREP(findAverage);
 PREP(getGroupType);
 PREP(GetPosASL);
@@ -11,14 +11,13 @@ PREP(GetPosATL);
 PREP(isNight);
 PREP(spawnGroup);
 PREP(spawnObjects);
-PREP(spawnStatic);
-
-GVAR(Faction) = "Independent";
 
 if (isServer) then {
 	["AllVehicles", "init", {
-		_this call FUNC(addToCurators);
-//		_this call FUNC(autoLock);
+		[{
+			_this call FUNC(addToCurators);
+//			_this call FUNC(autoLock);
+		}, _this, 0.5] call CBA_fnc_waitAndExecute;
 	}] call CBA_fnc_addClassEventHandler;
 };
 

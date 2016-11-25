@@ -48,13 +48,13 @@ if (_unit isKindOf "CAManBase") then {
 		} else {
 			_mainScope = false;
 			_unit setVariable [QGVAR(Loadout_Time), (time + 1)];
-			[{(!isNil {((group (_this select 0)) getVariable QGVAR(Loadout_Type))}) || (time > ((_this select 0) getVariable QGVAR(Loadout_Time)))}, {	// Auto detect
+			[{	// Auto detect
 				params ["_unit"];
 				private _role = "r";
 				private _groupType = ((group _unit) getVariable [QGVAR(Loadout_Type), false]);
 				private _displayName = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
 
-				if ((isPlayer _unit) || !(([format ["%1", typeOf _unit], 2] call BIS_fnc_trimString) isEqualTo "engineer_F")) then {
+				if ((isPlayer _unit) || (!GVAR(randomZeusGear) && !(([format ["%1", typeOf _unit], 2] call BIS_fnc_trimString) isEqualTo "engineer_F"))) then {
 					switch (true) do {
 						case (_displayName isEqualTo "Squad Leader"): {
 							_role = "sl";
@@ -65,10 +65,6 @@ if (_unit isKindOf "CAManBase") then {
 						case (_displayName isEqualTo "Rifleman"): {
 							if (_groupType) then {
 								_role = "mat";
-							} else {
-								if (isPlayer _unit) then {
-									_role = "rat";
-								};
 							};
 						};
 						case (_displayName isEqualTo "Grenadier"): {
@@ -98,12 +94,15 @@ if (_unit isKindOf "CAManBase") then {
 						case (_displayName in ["Helicopter Pilot","Pilot"]): {
 							_role = "p";
 						};
+						default {
+							_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
+						};
 					};
 				} else {
 					_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
 				};
 				[_unit, _role] call FUNC(Handler);
-			}, [_unit]] call CBA_fnc_waitUntilAndExecute;
+			}, [_unit], 0.05] call CBA_fnc_waitAndExecute;
 		};
 	};
 } else {

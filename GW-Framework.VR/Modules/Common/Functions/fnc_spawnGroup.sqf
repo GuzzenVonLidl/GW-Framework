@@ -18,10 +18,32 @@
 params [
 	"_unitArray",
 	"_vehicleArray",
-	"_waypointArray"
+	["_waypointArray", nil]
 ];
-private ["_vehicle","_vehicleList","_group","_waypoint"];
-_vehicleList = [];
+private _vehicleList = [];
+private _group = [GVAR(Faction), (count _unitArray)] call FUNC(createGroup);
+
+if !((count _unitArray) isEqualTo 0) then {
+	{
+		private _core = (_unitArray select _forEachIndex);
+		private _pos = (_core select 0);
+		private _dir = (_core select 1);
+		_x setFormDir _dir;
+		_x setDir _dir;
+		_x setPosATL _pos;
+		if (isNil "_waypointArray") then {
+			private _unitPos = (_core select 2);
+			_x disableAI "PATH";
+			doStop _x;
+			if (_unitPos isEqualTo "Auto") then {
+				_x setUnitPos (selectRandom ["Up","Middle"]);
+			} else {
+				_x setUnitPos _unitPos;
+			};
+		};
+	} forEach (units _group);
+
+};
 
 if ((count _vehicleArray) > 0) then {
 	{
@@ -29,20 +51,12 @@ if ((count _vehicleArray) > 0) then {
 		_vehicle setDir (_x select 2);
 		_vehicle setPosATL (_x select 1);
 		_vehicleList pushBack [_vehicle, (_x select 3)];
+		if (isNil "_waypointArray") then {
+			_vehicle setFuel 0;
+		};
 		TRACE_1("Created", _vehicle);
 		TRACE_1("List", _vehicleList);
 	} forEach _vehicleArray;
-};
-
-_group = [GVAR(Faction), (count _unitArray)] call FUNC(createGroup);
-if !((count _unitArray) isEqualTo 0) then {
-	{
-		private _dir = ((_unitArray select _forEachIndex) select 1);
-		_x setFormDir _dir;
-		_x setDir _dir;
-		_x setPosATL ((_unitArray select _forEachIndex) select 0);
-	} forEach (units _group);
-
 };
 
 if !((count _vehicleList) isEqualTo 0) then {
@@ -58,7 +72,7 @@ if !((count _vehicleList) isEqualTo 0) then {
 			_groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
 		};
 		{
-			switch ((_slots select _forEachIndex) select 0) do {
+			switch toLower((_slots select _forEachIndex) select 0) do {
 				case "driver": {
 					_x moveInDriver _vehicle;
 				};
@@ -82,18 +96,20 @@ if !((count _vehicleList) isEqualTo 0) then {
 	} forEach _vehicleList;
 };
 
-if !((count _waypointArray) isEqualTo 0) then {
-	{
-		_x params ["_position",["_type", "MOVE", [""]],["_behaviour", "UNCHANGED", [""]],["_combatMode", "NO CHANGE", [""]],["_completionRadius", 10, [0]],["_formation", "NO CHANGE", [""]],["_speed", "UNCHANGED", [""]]];
-		_waypoint = _group addWaypoint [_position, 5];
-		_waypoint setWaypointType _type;
-		_waypoint setWaypointBehaviour _behaviour;
-		_waypoint setWaypointCombatMode _combatMode;
-		_waypoint setWaypointCompletionRadius _completionRadius;
-		_waypoint setWaypointFormation _formation;
-		_waypoint setWaypointSpeed _speed;
-	} forEach _waypointArray;
-	TRACE_2("Waypoints added to ", _group, (waypoints _group));
+if (isNil "_waypointArray") then {
+	if !((count _waypointArray) isEqualTo 0) then {
+		{
+			_x params ["_position",["_type", "MOVE", [""]],["_behaviour", "UNCHANGED", [""]],["_combatMode", "NO CHANGE", [""]],["_completionRadius", 10, [0]],["_formation", "NO CHANGE", [""]],["_speed", "UNCHANGED", [""]]];
+			_waypoint = _group addWaypoint [_position, 5];
+			_waypoint setWaypointType _type;
+			_waypoint setWaypointBehaviour _behaviour;
+			_waypoint setWaypointCombatMode _combatMode;
+			_waypoint setWaypointCompletionRadius _completionRadius;
+			_waypoint setWaypointFormation _formation;
+			_waypoint setWaypointSpeed _speed;
+		} forEach _waypointArray;
+		TRACE_2("Waypoints added to ", _group, (waypoints _group));
+	};
 };
 
 _group

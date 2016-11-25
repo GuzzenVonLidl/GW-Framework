@@ -1,11 +1,5 @@
 #include "scriptComponent.hpp"
 
-GVAR(Blufor) = "NATO-D";
-GVAR(Opfor) = "CHINA-D";
-GVAR(Independent) = "AAF-W";
-GVAR(Civilian) = "CIVI";
-GVAR(Auto_Assign) = true;
-
 GVAR(Stamina) = true;
 GVAR(StaminaCoef) = 0;
 
@@ -16,11 +10,9 @@ PREP(Init);
 PREP(replaceAttachments);
 
 ["AllVehicles", "init", {
-//	[{MAPLOADED}, {
-		[{
-			_this call FUNC(Init);
-		}, _this, 0.1] call CBA_fnc_waitAndExecute;
-//	}, _this] call CBA_fnc_waitUntilAndExecute;
+	[{
+		_this call FUNC(Init);
+	}, _this, 0.1] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addClassEventHandler;
 
 [
@@ -62,7 +54,6 @@ PREP(replaceAttachments);
 			"CSAT-H",
 			"CSAT-W",
 			"CSAT-U",
-			"CHINA-D",
 			"RUSSIAN-W",
 			"TAKIARMY-D",
 			"INSURGENT-D",
@@ -72,7 +63,6 @@ PREP(replaceAttachments);
 			"CSAT-Hex",
 			"CSAT-Woodland",
 			"CSAT-Urban",
-			"China-Desert",
 			"Russian-Woodland",
 			"Takistani Army-Desert",
 			"INSURGENT-Desert",
@@ -112,16 +102,8 @@ PREP(replaceAttachments);
 	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
 ] call FUNCMAIN(settingsInit);
 
-/*
-	[
-		QGVAR(Civilian),
-		"LIST", ["Loadout Civilian", "Loadout for civilian units"],
-		QUOTE(ADDON),
-		[
-			["urban","workers"],
-			["Urban","Workers"],
-			0
-		],
-		false
-	] call FUNCMAIN(settingsInit);
-*/
+[
+	QGVAR(randomZeusGear), "LIST",
+	["Random Role for Zeus Units", "Should Zeus units get random gear"],
+	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
+] call FUNCMAIN(settingsInit);

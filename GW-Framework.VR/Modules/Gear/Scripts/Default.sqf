@@ -3,9 +3,8 @@ pl		- Platoon leader
 fac		- Forward Air Controller
 sl		- Squad leader
 ftl		- Fire team leader
-rat		- Rifleman AT Player
 r		- Rifleman
-mat		- Rifleman AT Heavy
+mat		- Rifleman AT Medium
 amat	- Asst. Rifleman AT
 g		- Grenadier
 ag		- Asst. Gunner
@@ -51,8 +50,8 @@ switch (toLower(_role)) do {
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,4]] call _addToUniform;
-		[[_smokegrenadeG,3],[_grenademini,2],[_grenade,2],[_rifleGL_mag_tr,5]] call _addToVest;
-		[[_rifleGL_mag,5],[_glHE,7],[_glsmokeR,5]] call _addToBackpack;
+		[[_smokegrenadeG,3],[_grenademini,2],[_grenade,2],[_rifleGL_mag_tr,4]] call _addToVest;
+		[[_rifleGL_mag,4],[_glHE,7],[_glsmokeR,5]] call _addToBackpack;
 		_rangefinder call _addBino;
 		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
@@ -75,63 +74,57 @@ switch (toLower(_role)) do {
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,4]] call _addToUniform;
-		[[_smokegrenadeG,3],[_grenademini,2],[_grenade,2],[_rifleGL_mag_tr,5]] call _addToVest;
-		[[_rifleGL_mag,5],[_glHE,7],[_glsmokeR,5]] call _addToBackpack;
+		[[_smokegrenadeG,3],[_grenademini,2],[_grenade,2],[_rifleGL_mag_tr,4]] call _addToVest;
+		[[_rifleGL_mag,4],[_glHE,7],[_glsmokeR,5]] call _addToBackpack;
 		_rangefinder call _addBino;
 		[_map, _gps, _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
-	case "rat": {
-		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
-		[_rifle, _rifle_mag, ""] call _addPrimary;
-		[_LAT, _LAT_mag, ""] call _addLaunchers;
-		[_pistol, _pistol_mag, ""] call _addHandGun;
-		_IFAK call _addToUniform;
-		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
-		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
-		[[_cables,1],[_defusalKit,1],[_clacker,1],[_demoCharge,2],[_satchelCharge,1]] call _addToBackpack;
-		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
-		if (_LAT_ReUsable) then {
-			[[_LAT_mag,1]] call _addToBackpack;
-		};
-	};
-
-	case "r": {		// Used by AI
+	case "r": {
 		[_goggles,_helmet,_uniform,_vest] call _addEquipment;
 		[_rifle, _rifle_mag, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
-		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
-		if ((random 1) >= 0.7) then {
+		if (isPlayer _unit) then {
+			["","","","",_backpack] call _addEquipment;
 			[_LAT, _LAT_mag, ""] call _addLaunchers;
+			[[_cables,1],[_defusalKit,1],[_clacker,1],[_demoCharge,2],[_satchelCharge,1]] call _addToBackpack;
+			[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 			if (_LAT_ReUsable) then {
-				["","","","",_backpack] call _addEquipment;
-				[[_LAT_mag,2]] call _addToBackpack;
+				[[_LAT_mag,1]] call _addToBackpack;
+			};
+		} else {
+			if ((random 1) >= 0.7) then {
+				[_LAT, _LAT_mag, ""] call _addLaunchers;
+				if (_LAT_ReUsable) then {
+					["","","","",_backpack] call _addEquipment;
+					[[_LAT_mag,2]] call _addToBackpack;
+				};
 			};
 		};
 	};
 
-	case "mat": {	// Used by AI
+	case "mat": {
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
-		[_rifleC, _rifleC_mag, ""] call _addPrimary;
+		[_rifle, _rifle_mag, ""] call _addPrimary;
 		[_MAT, _MAT_mag, ""] call _addLaunchers;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
-		[[_grenademini,2],[_grenade,2],[_rifleC_mag_tr,7]] call _addToVest;
-		[[_MAT_mag,2],[_MAT_mag_HE,2]] call _addToBackpack;
+		[[_grenademini,2],[_grenade,2],[_rifle_mag_tr,5]] call _addToVest;
+		[[_MAT_mag,1],[_MAT_mag_HE,2]] call _addToBackpack;
 		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
-	case "amat": {	// Used by AI
+	case "amat": {
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
-		[_rifleC, _rifleC_mag, ""] call _addPrimary;
+		[_rifle, _rifle_mag, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
-		[[_grenademini,2],[_grenade,2],[_rifleC_mag_tr,6]] call _addToVest;
+		[[_grenademini,2],[_grenade,2],[_rifle_mag_tr,6]] call _addToVest;
 		[[_MAT_mag,2],[_MAT_mag_HE,2]] call _addToBackpack;
 		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
@@ -173,7 +166,7 @@ switch (toLower(_role)) do {
 		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
-	case "ammg": {	// Used by AI
+	case "ammg": {
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
 		[_rifle, _rifle_mag, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
@@ -185,7 +178,7 @@ switch (toLower(_role)) do {
 		_rangefinder call _addBino;
 	};
 
-	case "mmg": {	// Used by AI
+	case "mmg": {
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
 		[_MMG, _MMG_mag, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
@@ -219,6 +212,7 @@ switch (toLower(_role)) do {
 
 	default {
 		ERROR(FORMAT_2("ERROR: Unit: %1 Role does not exist: %2", _unit, _role));
+		[_unit, "r"] call FUNC(Handler);
 	};
 };
 

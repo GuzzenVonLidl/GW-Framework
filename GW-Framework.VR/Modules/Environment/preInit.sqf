@@ -4,7 +4,6 @@ PREP(LightningEffect);
 PREP(LightningLoop);
 PREP(fullMoonDates);
 
-GVAR(AdvLightning) = true;			//	Enable advanced lightning that everytime it hits does damage to objects & units.
 GVAR(AdvLightningWeather) = true;	//	Enabled: only when weather is cloudy enought to have lightning, Disabled: ignores weather params
 
 [

@@ -3,18 +3,29 @@
 PREP(addHC);
 PREP(BlackList);
 PREP(countBalance);
-PREP(rebalance);
+PREP(HandlePFH);
 PREP(transferer);
+PREP(UpdateBalance);
 
-GVAR(headlessList) = [];
-GVAR(groupCount) = [];
-GVAR(TrasfererActive) = false;
+GVAR(ForceRebalance) = false;
+GVAR(HeadlessList) = [];
 GVAR(Transfered) = [];
 GVAR(ToTransfer) = [];
-GVAR(TransferedFailed) = [];
 
-if (isServer) then {
+if (isServer && isMultiplayer) then {
 	["CAManBase", "init", {
-		[group (_this select 0)] call FUNC(transferer);
+		[{
+			_this call FUNC(transferer);
+		}, _this, 2.5] call CBA_fnc_waitAndExecute;
 	}] call CBA_fnc_addClassEventHandler;
+
+	[{
+		[] call FUNC(HandlePFH);
+//		[] call FUNC(UpdateBalance);
+	}, 15, []] call CBA_fnc_addPerFrameHandler;
 };
+
+[QGVAR(addHC), {
+	TRACE_1("QGVAR(addHC)", _this);
+	_this call FUNC(addHC);
+}] call CBA_fnc_addEventHandler;

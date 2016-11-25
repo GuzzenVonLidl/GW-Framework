@@ -1,13 +1,8 @@
 #include "scriptComponent.hpp"
 
-PREP(clearGroups);
-PREP(clearLoop);
-PREP(clearObjects);
-PREP(clearTriggers);
-PREP(getFps);
 PREP(HandlerKilled);
-PREP(HandleDistance);
-PREP(setDistance);
+PREP(HandlerCleanUp);
+PREP(HandlerAdjustFPS);
 PREP(Simulation);
 
 GVAR(Enabled) = true;				//	Enable removal of most things for performance
@@ -42,15 +37,24 @@ if (isServer) then {
 
 [
 	QGVAR(EnabledDistance), "LIST",
-	["Dynamic viewDistance", "Warning: Experimental!"],
-	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false, {
-		params ["_value"];
-		[_value] call FUNC(HandleDistance);
-	}, "client"
+	["Dynamic viewDistance (DVD)", "Automatically adjust view distance based on frame rate"],
+	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false, {}, "client"
+] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(AvgTargetDistance), "SLIDER",
+	["Target FPS (DVD)", "viewDistance will automaticly be changed to keep avg with a 5 fps diff"],
+	QUOTE(ADDON), [20, 50, 25, 0], false, {}, "client"
 ] call FUNCMAIN(settingsInit);
 
 [QGVARMAIN(missionStarted), {
 	[{
+		if (isServer && GVAR(Enabled)) then {
+			[{
+				[] call FUNC(HandlerCleanUp);
+			}, 5, []] call CBA_fnc_addPerFrameHandler;
+		};
+
 		if ((count EGVAR(headlessController,headlessList)) > 0) then {
 			if (isServer) then {
 				setViewDistance 500;
@@ -61,8 +65,13 @@ if (isServer) then {
 				setTerrainGrid 25;
 			};
 		};
-		if (isServer && GVAR(Enabled)) then {
-			[] call FUNC(clearLoop);
+
+		if (hasInterface) then {
+			[{
+				if (GVAR(EnabledDistance)) then {
+					[] call FUNC(HandlerAdjustFPS);
+				};
+			}, 0.1, []] call CBA_fnc_addPerFrameHandler;
 		};
-	}, [], GVAR(Delay)] call CBA_fnc_waitAndExecute;
+	}, [], 5] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;

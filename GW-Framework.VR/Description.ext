@@ -15,6 +15,7 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 		devBuild = FALSE;		// BOOL: TRUE: Enables more debugging messages and dev version(including removing all players)
 		ResetSettings = FALSE;	// Force reset all settings for the ingame mission settings menu
 	};
+
 	class Naming {
 // 		currently broken		Name = "";				// Mission Name
 		Author = "GuzzenVonLidl";						// Author

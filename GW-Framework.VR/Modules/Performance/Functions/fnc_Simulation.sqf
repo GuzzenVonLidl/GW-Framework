@@ -24,5 +24,5 @@ if !((vehicle _unit) isEqualTo _unit) then {
 	[{
 		_this enableSimulationGlobal true;
 		_this setPosATL (getPosATL _this);
-	}, _unit, (1 + (random 3))] call CBA_fnc_waitAndExecute;
+	}, _unit, (2 + (random 3))] call CBA_fnc_waitAndExecute;
 };

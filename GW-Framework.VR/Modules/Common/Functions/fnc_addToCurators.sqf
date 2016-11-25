@@ -15,11 +15,9 @@
 */
 #include "..\scriptComponent.hpp"
 
-[{
-	params ["_unit"];
-	if (_unit isKindOf "HeadlessClient_F") exitWith {false};
+params ["_unit"];
+if (_unit isKindOf "HeadlessClient_F") exitWith {false};
 
-	{
-		_x addCuratorEditableObjects [[_unit],true];
-	} foreach (allCurators);
-}, _this] call CBA_fnc_execNextFrame;
+{
+	_x addCuratorEditableObjects [[_unit],true];
+} foreach (allCurators);

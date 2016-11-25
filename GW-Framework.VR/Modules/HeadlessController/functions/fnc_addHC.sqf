@@ -15,14 +15,15 @@
 #include "..\scriptComponent.hpp"
 
 params ["_headless"];
-GVAR(headlessList) pushBack _headless;
-publicVariable QGVAR(headlessList);
 LOG_ADMIN(FORMAT_1("Headless Client: %1 Connected", _headless));
 _headless setVariable [QGVAR(currentUnits), 0, true];
 
+GVAR(headlessList) pushBack _headless;
+publicVariable QGVAR(headlessList);
+
 if (didJIPOwner _headless) then {
-	if (count GVAR(headlessList) >= 1) then {
-		[true] call FUNC(Rebalance);
+	if !((count GVAR(headlessList)) isEqualTo 0) then {
+		GVAR(forceRebalance) = true;
 	};
 };
 
@@ -34,11 +35,10 @@ addMissionEventHandler ["HandleDisconnect", {
 	publicVariable QGVAR(headlessList);
 	LOG_ADMIN(FORMAT_1("Headless Client: %1 Disconnected", _unit));
 	LOG_ADMIN(FORMAT_1("There are %1 Headless left in the mission", count GVAR(headlessList)));
-	if (count GVAR(headlessList) >= 1) then {
-		[true] call FUNC(Rebalance);
+	if !((count GVAR(headlessList)) isEqualTo 0) then {
+		GVAR(forceRebalance) = true;
 	} else {
 		GVAR(Transfered) = [];
-		GVAR(TransferedFailed) = [];
 		{
 			_x setVariable [QGVAR(Transfered), false];
 		} forEach allGroups;

@@ -7,7 +7,7 @@
 	[] call GW_HeadlessController_Fnc_BlackList
 
 	Arguments:
-	0: _var <OBJECT> or <GROUP>
+	0: _unit <OBJECT> or <GROUP>
 	1: _toggle <BOOL>
 
 	Return Value: YES <BOOl>
@@ -18,8 +18,9 @@
 #include "..\scriptComponent.hpp"
 
 private ["_group"];
-params ["_var",["_toggle", true]];
-_group = _var call CBA_fnc_getGroup;
+params ["_unit",["_toggle", true]];
+_group = _unit call CBA_fnc_getGroup;
+//_group = (group _unit);
 
 _group setVariable [QGVAR(BlackList), _toggle, true];
 

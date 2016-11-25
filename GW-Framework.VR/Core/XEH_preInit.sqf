@@ -16,7 +16,6 @@ if (DEVCONSOLEENABLED) then {
 			DEVCONSOLE("C");
 		};
 	};
-
 	if (isMultiplayer && !isDedicated) then {
 		DEVCONSOLE("X");
 	};
@@ -143,7 +142,9 @@ if (isServer) then {
 };
 
 if (is3DEN) then {
-	if !(isClass (configFile >> "CfgPatches" >> "GW_3den")) then {
+	if (isClass (configFile >> "CfgPatches" >> "GW_3den")) then {
+		["init"] call FUNCMAIN(init3DEN);
+	} else {
 		add3DENEventHandler ["OnMissionSave",{
 			removeAll3DENEventHandlers "OnMissionSave";
 			["init"] call FUNCMAIN(init3DEN);

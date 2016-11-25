@@ -82,12 +82,12 @@ if (DEVBUILD) then {
 
 [{(getClientStateNumber isEqualTo 9) || !isMultiplayer}, {
 	LOG("Event mapLoaded");
-	[QGVARMAIN(mapLoaded), []] call CBA_fnc_localEvent;
 	if (isServer) then {
 		publicVariable QGVARMAIN(Gamelogic);
 		publicVariable QGVARMAIN(ZeuzModuleAdminLogged);
 	};
 
+	[QGVARMAIN(mapLoaded), []] call CBA_fnc_localEvent;
 	[{(getClientStateNumber >= 10) || !isMultiplayer}, {
 		LOG("Event missionStarted");
 		[QGVARMAIN(missionStarted), []] call CBA_fnc_localEvent;

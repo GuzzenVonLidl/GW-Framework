@@ -17,18 +17,17 @@
 	pl		- Platoon leader			(Player)
 	fac		- Forward Air Controller	(Player)
 	sl		- Squad Leader				(Player)
-	ftl		- Fire team leader			(Both)
+	ftl		- Fire team leader
 	r		- Rifleman
-	rat		- Rifleman AT				(Player)
 	mat		- Rifleman AT Medium
 	amat	- Asst. Rifleman AT
-	g		- Grenadier					(Both)
-	ag		- Asst. Gunner				(Both)
-	ar		- Automatic Rifleman		(Both)
+	g		- Grenadier
+	ag		- Asst. Gunner
+	ar		- Automatic Rifleman
 	mmg		- Medium Machine Gunner
 	ammg	- Asst. Medium Machine Gunner
-	crew	- Crew memeber				(Both)
-	p		- Pilot						(Both)
+	crew	- Crew memeber
+	p		- Pilot
 */
 #include "..\scriptComponent.hpp"
 #include "Functions.hpp"
@@ -55,7 +54,8 @@ private [
 	"_MMG","_MMG_mag","_MMG_mag_tr",
 	"_LAT","_LAT_mag","_LAT_ReUsable",
 	"_MAT","_MAT_mag","_MAT_mag_HE",
-	"_pistol","_pistol_mag","_pistol_mag_tr"
+	"_pistol","_pistol_mag","_pistol_mag_tr",
+	"_useFactionRadio","_roleUseRadio"
 ];
 
 params [
@@ -75,6 +75,8 @@ if (_isMan) then {
 	if (getNumber(configfile >> "CfgVehicles" >> (typeOf _unit) >> "side") isEqualTo 3) exitWith {false};	// Civilians
 	_loadout = [[],[],[],[],[],[],"","",[],[]];
 	_loadoutFile = "Default";
+	_useFactionRadio = true;
+	_roleUseRadio = true;
 
 	_unit setVariable ["BIS_enableRandomization", false];
 	_unit setVariable ["ACE_Medical_MedicClass", 1];
@@ -104,9 +106,6 @@ if (_isMan) then {
 	#include "isNilCheck.hpp"
 
 	switch (_loadoutFile) do {
-		case "CHINA": {
-			#include "..\Scripts\China.sqf"
-		};
 		default {
 			#include "..\Scripts\Default.sqf"
 		};
@@ -115,7 +114,7 @@ if (_isMan) then {
 	if !(_errorCode) then {
 		_unit setUnitLoadout _loadout;
 
-		if (isPlayer _unit) then {
+		if ((isPlayer _unit) && _useFactionRadio && _roleUseRadio) then {
 			if (isClass ((missionConfigFile >> "GW_Modules" >> "Radios"))) then {
 				[{
 					_this call EFUNC(Radios,add);

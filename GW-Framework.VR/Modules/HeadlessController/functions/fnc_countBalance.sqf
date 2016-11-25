@@ -13,11 +13,9 @@
 */
 #include "..\scriptComponent.hpp"
 
-private ["_groupCount"];
-_groupCount = [];
+private _groupCount = [];
 {
-	private ["_headless"];
-	_headless = _x;
+	_x params ["_headless"];
 	_groupCount pushBack [({(groupOwner _x) isEqualTo (owner _headless)} count allGroups), _headless];
 } forEach GVAR(headlessList);
 _groupCount sort true;
