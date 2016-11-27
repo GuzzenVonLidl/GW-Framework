@@ -2,8 +2,6 @@
 
 if (!GVARMAIN(mod_ACE3)) exitWith {false};
 
-GVAR(medical_level) = 1;
-
 [
 	QGVAR(medical_level), "LIST",
 	["Medical Level", "Medical difficulty (Only works at mission start)"],

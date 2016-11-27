@@ -32,9 +32,7 @@ _unit addAction ["<t color='#4785f4'>Squad > Automatic Rifleman</t>","[player,'a
 _unit addAction ["Echo > Pilot","[player,'p'] call GW_Gear_Fnc_Handler;",bullShit,5];
 _unit addAction ["Echo > Crew","[player,'crew'] call GW_Gear_Fnc_Handler;",bullShit,5];
 
-if (_allowed) then {
-	_unit addAction ["<t color='#4785f4'>Squad > Asst. Medium AT</t>","[player,'amat'] call GW_Gear_Fnc_Handler;",bullShit,5];
-	_unit addAction ["<t color='#4785f4'>Squad > Medium AT</t>","[player,'mat'] call GW_Gear_Fnc_Handler;",bullShit,5];
-	_unit addAction ["<t color='#4785f4'>Squad > Asst. Medium Machine Gunner</t>","[player,'ammg'] call GW_Gear_Fnc_Handler;",bullShit,5];
-	_unit addAction ["<t color='#4785f4'>Squad > Medium Machine Gunner</t>","[player,'mmg'] call GW_Gear_Fnc_Handler;",bullShit,5];
-};
+_unit addAction ["<t color='#4785f4'>Squad > Asst. Medium AT</t>","[player,'amat'] call GW_Gear_Fnc_Handler;",bullShit,5];
+_unit addAction ["<t color='#4785f4'>Squad > Medium AT</t>","[player,'mat'] call GW_Gear_Fnc_Handler;",bullShit,5];
+_unit addAction ["<t color='#4785f4'>Squad > Asst. Medium Machine Gunner</t>","[player,'ammg'] call GW_Gear_Fnc_Handler;",bullShit,5];
+_unit addAction ["<t color='#4785f4'>Squad > Medium Machine Gunner</t>","[player,'mmg'] call GW_Gear_Fnc_Handler;",bullShit,5];

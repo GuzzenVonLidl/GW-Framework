@@ -16,7 +16,7 @@
 #include "..\scriptComponent.hpp"
 
 params ["_unit"];
-if (!(GVAR(Simulation)) || (time < 5) || !(local _unit) || (isPlayer _unit) || !((vehicleVarName _unit) isEqualType "")) exitWith {false};
+if (!(GVAR(Simulation)) || (time < 5) || !(local _unit) || (isPlayer _unit) || !((vehicleVarName _unit) isEqualType "") || !(alive _unit)) exitWith {false};
 
 if !((vehicle _unit) isEqualTo _unit) then {
 	_unit enableSimulationGlobal false;

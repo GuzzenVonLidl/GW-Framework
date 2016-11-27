@@ -15,7 +15,7 @@
 
 GVAR(getAvgFPS) pushBack diag_fps;
 
-if ((count GVAR(getAvgFPS)) isEqualTo 5) then {
+if ((count GVAR(getAvgFPS)) isEqualTo 10) then {
 	private ["_getAvg","_changeView","_changeTo","_diff","_changeToObject"];
 	_getAvg = (GVAR(getAvgFPS) call EFUNC(Common,findAverage));
 	GVAR(getAvgFPS) = [];

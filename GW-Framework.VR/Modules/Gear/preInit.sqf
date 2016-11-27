@@ -28,7 +28,8 @@ PREP(replaceAttachments);
 			"USMC-D",
 			"USMC-W",
 			"INSURGENT-D",
-			"INSURGENT-W"
+			"INSURGENT-W",
+			"CAMPAIGN-W"
 		],
 		[
 			"NATO-Desert",
@@ -38,7 +39,8 @@ PREP(replaceAttachments);
 			"USMC-Desert",
 			"USMC-Woodland",
 			"INSURGENT-Desert",
-			"INSURGENT-Woodland"
+			"INSURGENT-Woodland",
+			"Campaign-"
 		],
 		0
 	],
@@ -57,7 +59,8 @@ PREP(replaceAttachments);
 			"RUSSIAN-W",
 			"TAKIARMY-D",
 			"INSURGENT-D",
-			"INSURGENT-W"
+			"INSURGENT-W",
+			"CAMPAIGN-E"
 		],
 		[
 			"CSAT-Hex",
@@ -66,7 +69,8 @@ PREP(replaceAttachments);
 			"Russian-Woodland",
 			"Takistani Army-Desert",
 			"INSURGENT-Desert",
-			"INSURGENT-Woodland"
+			"INSURGENT-Woodland",
+			"Campaign-"
 		],
 		0
 	]
@@ -83,13 +87,15 @@ PREP(replaceAttachments);
 			"AAF-W",
 			"PMC",
 			"INSURGENT-D",
-			"INSURGENT-W"
+			"INSURGENT-W",
+			"CAMPAIGN-I"
 		],
 		[
 			"AAF-Woodland",
 			"PMC",
 			"INSURGENT-Desert",
-			"INSURGENT-Woodland"
+			"INSURGENT-Woodland",
+			"Campaign-"
 		],
 		0
 	],

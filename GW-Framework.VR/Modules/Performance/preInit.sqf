@@ -5,12 +5,9 @@ PREP(HandlerCleanUp);
 PREP(HandlerAdjustFPS);
 PREP(Simulation);
 
-GVAR(Enabled) = true;				//	Enable removal of most things for performance
-GVAR(UnitEnabled) = true;			//	Remove equipment from unit
 GVAR(Simulation) = true;			//	Removes lag from spawning units
 GVAR(Delay) = 60;					//	Delay between each loop for removing objects
 
-GVAR(EnabledDistance) = false;
 GVAR(getAvgFPS) = [];
 
 if (isServer) then {
@@ -26,7 +23,17 @@ if (isServer) then {
 [
 	QGVAR(Enabled), "LIST",
 	["Enable clean up", "Toggle clean up"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
+	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false, {
+		params ["_enable"];
+		if (_enable && (isNil QGVAR(PFH)) && (time > 5)) then {
+			GVAR(PFH) = [{
+				[] call FUNC(HandlerCleanUp);
+			}, GVAR(Delay), []] call CBA_fnc_addPerFrameHandler;
+		} else {
+			[GVAR(PFH)] call CBA_fnc_removePerFrameHandler;
+			GVAR(PFH) = nil;
+		};
+	}
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -38,7 +45,17 @@ if (isServer) then {
 [
 	QGVAR(EnabledDistance), "LIST",
 	["Dynamic viewDistance (DVD)", "Automatically adjust view distance based on frame rate"],
-	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false, {}, "client"
+	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false, {
+		params ["_enable"];
+		if (_enable && (isNil QGVAR(PFH_FPS)) && (time > 5)) then {
+			GVAR(PFH_FPS) = [{
+				[] call FUNC(HandlerAdjustFPS);
+			}, 0.1, []] call CBA_fnc_addPerFrameHandler;
+		} else {
+			[GVAR(PFH_FPS)] call CBA_fnc_removePerFrameHandler;
+			GVAR(PFH_FPS) = nil;
+		};
+	}, "client"
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -47,31 +64,37 @@ if (isServer) then {
 	QUOTE(ADDON), [20, 50, 25, 0], false, {}, "client"
 ] call FUNCMAIN(settingsInit);
 
+[QGVAR(removeGroup), {
+	deleteGroup _this;
+}] call CBA_fnc_addEventHandler;
+
 [QGVARMAIN(missionStarted), {
 	[{
-		if (isServer && GVAR(Enabled)) then {
-			[{
+		if (hasInterface && GVAR(EnabledDistance) && (isNil QGVAR(PFH_FPS))) then {
+			GVAR(PFH_FPS) = [{
+				[] call FUNC(HandlerAdjustFPS);
+			}, 0.1, []] call CBA_fnc_addPerFrameHandler;
+		};
+		if (isServer && GVAR(Enabled) && (isNil QGVAR(PFH))) then {
+			GVAR(PFH) = [{
 				[] call FUNC(HandlerCleanUp);
-			}, 5, []] call CBA_fnc_addPerFrameHandler;
+			}, GVAR(Delay), []] call CBA_fnc_addPerFrameHandler;
 		};
 
 		if ((count EGVAR(headlessController,headlessList)) > 0) then {
 			if (isServer) then {
-				setViewDistance 500;
+				setViewDistance 750;
 				setTerrainGrid 50;
 			};
 			if (CBA_isHeadlessClient) then {
 				setViewDistance 1500;
 				setTerrainGrid 25;
 			};
-		};
-
-		if (hasInterface) then {
-			[{
-				if (GVAR(EnabledDistance)) then {
-					[] call FUNC(HandlerAdjustFPS);
-				};
-			}, 0.1, []] call CBA_fnc_addPerFrameHandler;
+		} else {
+			if (isServer) then {
+				setViewDistance 1500;
+				setTerrainGrid 25;
+			};
 		};
 	}, [], 5] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;

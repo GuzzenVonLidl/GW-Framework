@@ -26,3 +26,7 @@ if ((isPlayer _unit) || (_unit isKindOf "HeadlessClient_F")) exitWith {false};
 	_unit removeMagazine _x;
 	_unit removeItem _x;
 } forEach ((magazines _unit) + (items _unit) + (assignedItems _unit));
+
+if !(simulationEnabled _unit) then {
+	_unit enableSimulationGlobal true;
+};

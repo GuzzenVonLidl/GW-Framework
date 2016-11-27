@@ -45,7 +45,7 @@
 {
 	if (count (units _x) isEqualTo 0) then {
 		TRACE_1("Deleting group", _x);
-		deleteGroup _x;
+		[QGVAR(removeGroup), _x] call CBA_fnc_GlobalEvent;
 	};
 } forEach allGroups;
 

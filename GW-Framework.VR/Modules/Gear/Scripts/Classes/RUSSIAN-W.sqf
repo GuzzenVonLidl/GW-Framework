@@ -55,7 +55,6 @@ _rifle_mag_tr = "CUP_30Rnd_TE1_Green_Tracer_545x39_AK_M";
 
 _LMG = ["CUP_arifle_RPK74M", _silencer, _pointer, _sight, _bipod];
 _LMG_mag = "CUP_75Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M";
-//_LMG_mag = "CUP_45Rnd_TE4_LRT4_Green_Tracer_545x39_RPK_M";
 
 _MMG = ["CUP_lmg_Pecheneg", _silencer, _pointer, _sight, _bipod];
 _MMG_mag = "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";

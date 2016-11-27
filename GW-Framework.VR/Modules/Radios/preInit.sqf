@@ -3,8 +3,6 @@
 PREP(add);
 PREP(groupInit);
 
-//	GVAR(Auto_Assign) = true;
-
 if (GVARMAIN(mod_ACRE)) then {
 	#include "Functions\ACRE_Init.sqf"
 };

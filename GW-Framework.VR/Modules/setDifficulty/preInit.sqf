@@ -33,8 +33,8 @@ GVAR(difficulty) = 1;	// 1:Easy	2:Medium	3:Hard
 
 //	[aiming, general, spotting]
 GVAR(easy) = [0.20, 0.30, 0.80];
-GVAR(medium) = [0.25, 0.50, 0.80];
-GVAR(hard) = [0.30, 0.70, 1.0];
+GVAR(medium) = [0.27, 0.50, 0.80];
+GVAR(hard) = [0.35, 0.70, 1.0];
 
 GVAR(enableSuppression) = false;
 GVAR(BulletArray) = [];

@@ -1,5 +1,4 @@
 
-// Cloths
 _goggles = "";
 _helmet = "H_HelmetB";
 _uniform = "U_B_CombatUniform_mcam";
@@ -23,7 +22,6 @@ if (_role isEqualTo "p") then {
 	_vest = "V_TacVest_blk";
 };
 
-// Primary Weapon
 _silencer = "";
 _pointer = "";
 _sight = "optic_Aco";
@@ -43,7 +41,6 @@ _MMG = ["LMG_Mk200_F", _silencer, _pointer, _sight, _bipod];
 _MMG_mag = "200Rnd_65x39_cased_Box";
 _MMG_mag_tr = "200Rnd_65x39_cased_Box_Tracer";
 
-// Launchers
 _silencer = "";
 _pointer = "";
 _sight = "";
@@ -57,6 +54,5 @@ _MAT = ["launch_RPG32_F", _silencer, _pointer, _sight, _bipod];
 _MAT_mag = "RPG32_F";
 _MAT_mag_HE = "RPG32_HE_F";
 
-// Pistol
 _pistol = ["hgun_Pistol_heavy_01_F", _silencer, _pointer, "optic_MRD", _bipod];
 _pistol_mag = "11Rnd_45ACP_Mag";

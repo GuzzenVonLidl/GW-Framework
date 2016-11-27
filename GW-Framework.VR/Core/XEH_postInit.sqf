@@ -88,13 +88,16 @@ if (DEVBUILD) then {
 	};
 
 	[QGVARMAIN(mapLoaded), []] call CBA_fnc_localEvent;
-	[{(getClientStateNumber >= 10) || !isMultiplayer}, {
+}, []] call CBA_fnc_waitUntilAndExecute;
+
+[{(getClientStateNumber >= 10) || !isMultiplayer}, {
+	[{
 		LOG("Event missionStarted");
 		[QGVARMAIN(missionStarted), []] call CBA_fnc_localEvent;
 		if ((getPlayerUID player) in (["GW_FRAMEWORK", "Naming", "AuthorUID"] call BIS_fnc_getCfgData)) then {
 			[QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent;
 		};
-	}, []] call CBA_fnc_waitUntilAndExecute;
+	}, [], 0.5] call CBA_fnc_waitAndExecute;
 }, []] call CBA_fnc_waitUntilAndExecute;
 
 LOG("postInit finished");
