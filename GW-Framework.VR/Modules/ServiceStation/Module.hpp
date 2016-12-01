@@ -4,7 +4,7 @@
 	class COMPONENT {
 		name = COMPONENT;
 		authors = "GuzzenVonLidl";
-		version = 1;			// Current version of this module, used to keep track of every update for all mission makers
+		version = 1;
 		description = "NeKo-Arrow's ServiceStation";
 		preInit = "preInit.sqf";
 		postInit = "";

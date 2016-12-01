@@ -14,6 +14,7 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 		ClearConsole = 3;		// NUMBER: 0: Disabled		1: mission preview		2: 3den preview		3: mission and 3den preview
 		devBuild = FALSE;		// BOOL: TRUE: Enables more debugging messages and dev version(including removing all players)
 		ResetSettings = FALSE;	// Force reset all settings for the ingame mission settings menu
+		Version = QUOTE(VERSION);
 	};
 
 	class Naming {

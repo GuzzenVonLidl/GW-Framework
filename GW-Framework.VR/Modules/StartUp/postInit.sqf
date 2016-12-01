@@ -20,10 +20,8 @@
 	if (hasInterface) then {
 		[{
 			[QGVAR(Enabled), !(GVAR(TimeLimit) isEqualTo -1)] call CBA_fnc_localEvent;
-			cutText ["","BLACK IN",10];
-			player switchMove "AmovPknlMstpSlowWrflDnon";
 			if !(GVAR(DistanceLimit) isEqualTo -1) then {
-				[{(player distance (getMarkerPos ("respawn_" + gw_RealSide)) > GVAR(DistanceLimit))},{
+				[{(player distance (getMarkerPos format ["respawn_%1", GETSIDESTRING(player)]) > GVAR(DistanceLimit))},{
 					[QGVAR(Enabled), false] call CBA_fnc_localEvent;
 				}, []] call CBA_fnc_waitUntilAndExecute;
 			};

@@ -59,6 +59,7 @@ if !(isClass (configFile >> "CfgPatches" >> "GW_Main")) then {
 	}] call CBA_fnc_addEventHandler;
 };
 GVARMAIN(settings3denArray) = [];
+GVARMAIN(Version) = (["GW_FRAMEWORK", "Core", "Version"] call BIS_fnc_getCfgData);
 
 // Get addon/mod/dlc availability from the A3 config file and store them in easy to use variables
 GVARMAIN(DLC_Bundle) 	= isClass (configFile >> "CfgMods" >> "DLCBundle");

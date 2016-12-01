@@ -20,13 +20,13 @@
 
 	if (isNil {_object getVariable QGVAR(ObjectRemovalTimer)}) then {
 		if (_object isKindOf "AllVehicles") then {
-			if (_object isKindOf "CAManBase") then {	// Man
-				_timer = 10;
-			} else {	// Vehicle
-				_timer = 20;
+			if (_object isKindOf "CAManBase") then {
+				_timer = 10;	// Man
+			} else {
+				_timer = 20;	// Vehicle
 			};
-		} else {	// Other(Ruins, WeaponDrops, etc)
-			_timer = 5;
+		} else {
+			_timer = 5;			// Other(Ruins, WeaponDrops, etc)
 		};
 		_object setVariable [QGVAR(ObjectRemovalTimer), _timer];
 	};

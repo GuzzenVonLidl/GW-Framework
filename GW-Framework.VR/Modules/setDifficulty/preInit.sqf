@@ -58,6 +58,14 @@ GVAR(BulletArray) = [];
 	QUOTE(ADDON), [0.5, 1.5, 1.0, 1], false
 ] call FUNCMAIN(settingsInit);
 
+if (true) then {
+	[
+		"Vcom_ActivateAI", "LIST",
+		["Enable advanced AI", "Might cause a slowdown in larger scales"],
+		QUOTE(ADDON), [[true, false], ["Enable","Disable"], 0], false
+	] call FUNCMAIN(settingsInit);
+};
+
 ["CAManBase", "Init", {
 	_this call FUNC(Init);
 }] call CBA_fnc_addClassEventHandler;

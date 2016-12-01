@@ -37,7 +37,7 @@ Group: General
 #define MAJOR 0
 #define MINOR 0
 #define PATCHLVL 9
-#define BUILD 271116	// We will use the DATE for the BUILD# in the format DDMMYY
+#define BUILD 011216	// We will use the DATE for the BUILD# in the format DDMMYY
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 
 #define COMPONENTPATH(var1) CUSTOM_FOLDER\fnc_##var1.sqf
@@ -46,6 +46,21 @@ Group: General
 #define PREPMAINFOLDER(var1) ##PREFIX##_fnc_##var1 = compile preProcessFileLineNumbers QUOTE(var1.sqf);
 
 #define	GETSIDE(var1) (configfile >> "CfgVehicles" >> (typeOf var1) >> "side") call BIS_fnc_getCfgData
+#define	GETSIDESTRING(var1) \
+	switch (GETSIDE(var1)) do { \
+		case 0: { \
+			"East" \
+		}; \
+		case 1: { \
+			"West" \
+		}; \
+		case 2: { \
+			"Independent" \
+		}; \
+		case 3: { \
+			"Civilian" \
+		}; \
+	}
 
 /* -------------------------------------------
 Group: Debugging

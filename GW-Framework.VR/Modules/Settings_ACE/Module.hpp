@@ -5,7 +5,7 @@
 		name = COMPONENT;
 		authors = "GuzzenVonLidl";
 		version = 3.7.0;
-		description = "Description of this module";
+		description = "Configures all ACE settings";
 		preInit = "preInit.sqf";
 		postInit = "";
 	};

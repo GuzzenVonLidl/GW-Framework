@@ -22,7 +22,7 @@ if (hasInterface) then {
 	player addRating 100000;
 	player disableConversation true;
 //	disableRemoteSensors true;
-	enableEnvironment false;
+	enableEnvironment true;
 	player setVariable ["BIS_noCoreConversations", true, true];
 	player setVariable ["BIS_enableRandomization", false, true];
 
@@ -33,21 +33,6 @@ if (hasInterface) then {
 			FORMAT_3("Version: %2  by %1, <br/>Description: %3", (_x select 1), (_x select 2), (_x select 3))
 		]];
 	} forEach GVARMAIN(logModules);
-
-	GVARMAIN(RealSide) = switch (GETSIDE(player)) do {
-		case 0: {
-			"east";
-		};
-		case 1: {
-			"West";
-		};
-		case 2: {
-			"Independent";
-		};
-		case 3: {
-			"Civilian";
-		};
-	};
 };
 
 {
@@ -80,7 +65,7 @@ if (DEVBUILD) then {
 	} forEach switchableUnits;
 };
 
-[{(getClientStateNumber isEqualTo 9) || !isMultiplayer}, {
+[{(getClientStateNumber >= 9) || !isMultiplayer}, {
 	LOG("Event mapLoaded");
 	if (isServer) then {
 		publicVariable QGVARMAIN(Gamelogic);
@@ -88,6 +73,20 @@ if (DEVBUILD) then {
 	};
 
 	[QGVARMAIN(mapLoaded), []] call CBA_fnc_localEvent;
+	if (hasInterface) then {
+		private _framework = "==============================================
+				<br/>
+				<br/>	Framework by: GuzzenVonLidl
+				<br/>	Version: "+GVARMAIN(Version)+"
+				<br/>
+				<br/>	==============================================
+				<br/>
+				<br/>	Guerrillas of Liberation
+				<br/>	Teamspeak: teamspeak.gol-clan.co.uk
+				<br/>	Website: http://www.gol-clan.co.uk/
+				<br/>	==============================================";
+		player createDiaryRecord ["Log", ["Framework",_framework]];
+	};
 }, []] call CBA_fnc_waitUntilAndExecute;
 
 [{(getClientStateNumber >= 10) || !isMultiplayer}, {
@@ -98,6 +97,20 @@ if (DEVBUILD) then {
 			[QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent;
 		};
 	}, [], 0.5] call CBA_fnc_waitAndExecute;
+	if (hasInterface) then {
+		[{
+			cutText ["Finalizing Settings","BLACK FADED",10];
+			GVARMAIN(blockMovement) = player addeventhandler ["animChanged",{player switchMove "AmovPercMstpSnonWnonDnon_Ease";}];
+		}, []] call CBA_fnc_execNextFrame;
+		[{
+			if !(isNil QGVARMAIN(blockMovement)) then {
+				player removeEventHandler ["animChanged", GVARMAIN(blockMovement)];
+			};
+			player playMoveNow "AmovPercMstpSnonWnonDnon_EaseOut";
+			player playMoveNow "AmovPknlMstpSlowWrflDnon";
+			cutText ["","BLACK IN",10];
+		}, [], 5] call CBA_fnc_waitAndExecute;
+	};
 }, []] call CBA_fnc_waitUntilAndExecute;
 
 LOG("postInit finished");

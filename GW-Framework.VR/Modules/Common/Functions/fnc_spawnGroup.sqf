@@ -96,7 +96,7 @@ if !((count _vehicleList) isEqualTo 0) then {
 	} forEach _vehicleList;
 };
 
-if (isNil "_waypointArray") then {
+if !(isNil "_waypointArray") then {
 	if !((count _waypointArray) isEqualTo 0) then {
 		{
 			_x params ["_position",["_type", "MOVE", [""]],["_behaviour", "UNCHANGED", [""]],["_combatMode", "NO CHANGE", [""]],["_completionRadius", 10, [0]],["_formation", "NO CHANGE", [""]],["_speed", "UNCHANGED", [""]]];

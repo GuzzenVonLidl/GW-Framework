@@ -10,35 +10,23 @@ PREP(prefabCreate);
 GVAR(AssembledArray) = [];
 
 ["CAManBase", "Respawn", {
-	_this call FUNC(HandlerRespawn);
+	[{
+		_this call FUNC(HandlerRespawn);
+	}, _this] call CBA_fnc_execNextFrame;
 }] call CBA_fnc_addClassEventHandler;
 
 [QGVAR(Enabled), {
-	private ["_realSide"];
 	params [
 		"_mhq",
 		["_toggle",false,[true]],
-		["_side","west",["",0]]
+		["_side","West",["",0]]
 	];
 
 	_mhq setVariable [QGVAR(Active), _toggle, true];
 	TRACE_3("QGVAR(Enabled)", _mhq, (_mhq getVariable [QGVAR(Active), false]), _toggle);
 	if (_mhq getVariable [QGVAR(Active), false]) then {
 		_mhq setVariable [QGVAR(Fuel), (fuel _mhq)];
-		if (_side isEqualType 0) then {
-			switch (_side) do {
-				case 0: {
-					_realSide = "east";
-				};
-				case 1: {
-					_realSide = "west";
-				};
-				case 2: {
-					_realSide = "independent";
-				};
-			};
-		};
-		_mhq setVariable [QGVAR(Side), toLower(_realSide), true];
+		_mhq setVariable [QGVAR(Side), toLower(_side), true];
 		[_mhq,0] remoteExecCall ["setFuel", _mhq];
 	} else {	// restore fuel
 		[_mhq,(_mhq getVariable [QGVAR(Fuel), (fuel _mhq)])] remoteExecCall ["setFuel", _mhq];
@@ -103,7 +91,7 @@ GVAR(AssembledArray) = [];
 		_id = (([_mhq] call FUNC(getFlag))) addAction[format ["Teleport to %1", _mhq],{[player, (_this select 3)] call bis_fnc_moveToRespawnPosition},ARGUMENT(_mhq),(CONDITION_1),7];
 		_add pushback [([_mhq] call FUNC(getFlag)), _id];
 	} else {
-		_id = _mhq addAction ["Activate MHQ",{([QGVAR(Enabled), [(_this select 0), true, GETSIDE(player)]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),CONDITION_1,7];
+		_id = _mhq addAction ["Activate MHQ",{([QGVAR(Enabled), [(_this select 0), true, GETSIDESTRING(player)]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),CONDITION_1,7];
 		_add pushback [_mhq, _id];
 	};
 	_mhq setVariable [QGVAR(ActiveActions), _add];

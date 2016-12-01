@@ -53,4 +53,5 @@ private _objects = [];
 		};
 	} forEach (_x select 3);
 } forEach _this;
+
 _objects
