@@ -28,8 +28,14 @@ if !((count _unitArray) isEqualTo 0) then {
 		private _core = (_unitArray select _forEachIndex);
 		private _pos = (_core select 0);
 		private _dir = (_core select 1);
-		_x setFormDir _dir;
-		_x setDir _dir;
+		if (_dir isEqualType []) then {
+			_x setVectorDirAndUp _dir;
+			_x setFormDir (getDir _x);
+			_x setDir (getDir _x);
+		} else {
+			_x setFormDir _dir;
+			_x setDir _dir;
+		};
 		_x setPosATL _pos;
 		if (isNil "_waypointArray") then {
 			private _unitPos = (_core select 2);
