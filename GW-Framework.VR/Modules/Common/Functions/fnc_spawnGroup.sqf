@@ -53,8 +53,13 @@ if !((count _unitArray) isEqualTo 0) then {
 
 if ((count _vehicleArray) > 0) then {
 	{
+		private _dir = (_x select 2);
 		_vehicle = createVehicle [(_x select 0), [0,0,0], [], 0, "FLY"];
-		_vehicle setDir (_x select 2);
+		if (_dir isEqualType []) then {
+			_vehicle setVectorDirAndUp _dir;
+		} else {
+			_vehicle setDir _dir;
+		};
 		_vehicle setPosATL (_x select 1);
 		_vehicleList pushBack [_vehicle, (_x select 3)];
 		if (isNil "_waypointArray") then {
