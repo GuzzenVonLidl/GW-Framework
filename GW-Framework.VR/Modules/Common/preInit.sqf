@@ -9,6 +9,7 @@ PREP(getGroupType);
 PREP(GetPosASL);
 PREP(GetPosATL);
 PREP(isNight);
+PREP(setAttributes);
 PREP(spawnGroup);
 PREP(spawnObjects);
 
@@ -39,4 +40,10 @@ if (isServer) then {
 		0
 	],
 	false
+] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(AutoLock), "LIST",
+	["Auto Lock Vehicles", "Note: Only effects vehicles with units in and spawned though the framework"],
+	QUOTE(ADDON), [[true,false], ["Enabled","Disabled"], 1], false
 ] call FUNCMAIN(settingsInit);

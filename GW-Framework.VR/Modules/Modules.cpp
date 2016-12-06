@@ -1,7 +1,6 @@
 
 	#include "Common\Module.hpp"
 	#include "Environment\Module.hpp"
-//	#include "FFIS\Module.hpp"
 	#include "Gear\Module.hpp"
 	#include "HeadlessController\Module.hpp"	// Update to higher standards to perform better
 	#include "MHQ\Module.hpp"
@@ -13,6 +12,3 @@
 	#include "setDifficulty\Module.hpp"			// WIP-(Simple-Suppression)
 	#include "Settings_ACE\Module.hpp"
 	#include "StartUp\Module.hpp"
-
-//	#include "Caching\Module.hpp"				// Testing - Will do a rework of this later
-//	#include "ServerMonitor\Module.hpp"			// Dont use

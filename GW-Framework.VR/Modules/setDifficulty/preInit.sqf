@@ -58,7 +58,7 @@ GVAR(BulletArray) = [];
 	QUOTE(ADDON), [0.5, 1.5, 1.0, 1], false
 ] call FUNCMAIN(settingsInit);
 
-if (true) then {
+if (isClass ((missionConfigFile >> "GW_Modules" >> "VCOM"))) then {
 	[
 		"Vcom_ActivateAI", "LIST",
 		["Enable advanced AI", "Might cause a slowdown in larger scales"],

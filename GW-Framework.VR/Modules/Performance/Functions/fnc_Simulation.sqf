@@ -22,7 +22,8 @@ if !((vehicle _unit) isEqualTo _unit) then {
 	_unit enableSimulationGlobal false;
 
 	[{
-		_this enableSimulationGlobal true;
-		_this setPosATL (getPosATL _this);
+		params ["_unit"];
+		_unit enableSimulationGlobal true;
+		_unit setPosATL (getPosATL _unit);
 	}, _unit, (2 + (random 3))] call CBA_fnc_waitAndExecute;
 };

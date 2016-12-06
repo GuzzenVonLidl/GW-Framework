@@ -25,75 +25,103 @@ private _group = [GVAR(Faction), (count _unitArray)] call FUNC(createGroup);
 
 if !((count _unitArray) isEqualTo 0) then {
 	{
+		private ["_unitPos","_specials"];
+		private _unit = _x;
 		private _core = (_unitArray select _forEachIndex);
 		private _pos = (_core select 0);
 		private _dir = (_core select 1);
-		_x setFormDir _dir;
-		_x setDir _dir;
-		_x setPosATL _pos;
+		if ((count _core) isEqualTo 4) then {
+			_unitPos = (_core select 2);
+			_specials = (_core select 3);
+//			_core params ["_pos","_dir","_unitPos","_specials"];
+		} else {
+			_specials = (_core select 2);
+//			_core params ["_pos","_dir","_specials"];
+		};
+
+		if (_dir isEqualType []) then {
+			_unit setVectorDirAndUp _dir;
+			_unit setFormDir (getDir _unit);
+			_unit setDir (getDir _unit);
+		} else {
+			_unit setFormDir _dir;
+			_unit setDir _dir;
+		};
+		_unit setPosATL _pos;
 		if (isNil "_waypointArray") then {
-			private _unitPos = (_core select 2);
-			_x disableAI "PATH";
-			doStop _x;
+			_unit disableAI "PATH";
+			doStop _unit;
 			if (_unitPos isEqualTo "Auto") then {
-				_x setUnitPos (selectRandom ["Up","Middle"]);
+				_unit setUnitPos (selectRandom ["Up","Middle"]);
 			} else {
-				_x setUnitPos _unitPos;
+				_unit setUnitPos _unitPos;
 			};
 		};
+		[_unit, _specials] call FUNC(setAttributes);
 	} forEach (units _group);
-
 };
 
 if ((count _vehicleArray) > 0) then {
 	{
-		_vehicle = createVehicle [(_x select 0), [0,0,0], [], 0, "FLY"];
-		_vehicle setDir (_x select 2);
-		_vehicle setPosATL (_x select 1);
-		_vehicleList pushBack [_vehicle, (_x select 3)];
+		_x params ["_class","_pos","_dir","_crewCount","_specials"];
+		_vehicle = createVehicle [_class, [0,0,0], [], 0, "FLY"];
+		if (_dir isEqualType []) then {
+			_vehicle setVectorDirAndUp _dir;
+		} else {
+			_vehicle setDir _dir;
+			_vehicle setVectorUp surfaceNormal position _vehicle;
+		};
+		_vehicle setPosATL _pos;
+		if (GVAR(AutoLock)) then {
+			_vehicle setVehicleLock "LOCKEDPLAYER";
+		};
 		if (isNil "_waypointArray") then {
 			_vehicle setFuel 0;
 		};
+		_vehicle allowCrewInImmobile (selectRandom [true, false]);
+		[_vehicle, _specials] call FUNC(setAttributes);
+		_vehicleList pushBack [_vehicle, _crewCount];
 		TRACE_1("Created", _vehicle);
-		TRACE_1("List", _vehicleList);
 	} forEach _vehicleArray;
-};
+	TRACE_1("List", _vehicleList);
 
-if !((count _vehicleList) isEqualTo 0) then {
-	{
-		private ["_vehicle","_slots","_groupNew"];
-		_vehicle = (_x select 0);
-		_slots = (_x select 1);
-		_group addVehicle _vehicle;
-
-		if (_slots isEqualTo 0) then {
-			_groupNew = [GVAR(Faction),{((_x select 1) in ["driver","commander","gunner","turret"]) && !(_x select 4)} count (fullCrew [_vehicle,"",true]), _group] call FUNC(createGroup);
-		} else {
-			_groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
-		};
+	if !((count _vehicleList) isEqualTo 0) then {
 		{
-			switch toLower((_slots select _forEachIndex) select 0) do {
-				case "driver": {
-					_x moveInDriver _vehicle;
-				};
-				case "commander": {
-					_x moveInCommander _vehicle;
-				};
-				case "gunner": {
-					_x moveInGunner _vehicle;
-				};
-				case "turret": {
-					_x moveInTurret [_vehicle, (_slots select _forEachIndex) select 2];
-				};
-				case "cargo": {
-					_x moveInCargo [_vehicle, (_slots select _forEachIndex) select 1];
-				};
+			private ["_vehicle","_slots","_groupNew"];
+			_x params ["_vehicle","_slots",""];
+			_vehicle = (_x select 0);
+			_slots = (_x select 1);
+			_group addVehicle _vehicle;
+
+			if (_slots isEqualTo 0) then {
+				_groupNew = [GVAR(Faction),{(_slots in ["driver","commander","gunner","turret"])} count (fullCrew [_vehicle,"",true]), _group] call FUNC(createGroup);
+			} else {
+				_groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
 			};
-			TRACE_2("Unit Moved to", _vehicle, (_slots select _forEachIndex));
-		} forEach (_groupNew select 1);
-		TRACE_1("Vehicle added to group", _vehicle);
-		TRACE_1("Units added to vehicle", _groupNew);
-	} forEach _vehicleList;
+			{
+				switch toLower((_slots select _forEachIndex) select 0) do {
+					case "driver": {
+						_x moveInDriver _vehicle;
+					};
+					case "commander": {
+						_x moveInCommander _vehicle;
+					};
+					case "gunner": {
+						_x moveInGunner _vehicle;
+					};
+					case "turret": {
+						_x moveInTurret [_vehicle, (_slots select _forEachIndex) select 2];
+					};
+					case "cargo": {
+						_x moveInCargo [_vehicle, (_slots select _forEachIndex) select 1];
+					};
+				};
+				TRACE_2("Unit Moved to", _vehicle, (_slots select _forEachIndex));
+			} forEach (_groupNew select 1);
+			TRACE_1("Vehicle added to group", _vehicle);
+			TRACE_1("Units added to vehicle", _groupNew);
+		} forEach _vehicleList;
+	};
 };
 
 if !(isNil "_waypointArray") then {

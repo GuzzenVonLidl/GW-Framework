@@ -5,14 +5,14 @@ class EditorData
 	angleGridStep=0.08726646;
 	scaleGridStep=10;
 	autoGroupingDist=10;
-	toggles=741;
+	toggles=229;
 	class ItemIDProvider
 	{
-		nextID=1413;
+		nextID=1448;
 	};
 	class LayerIndexProvider
 	{
-		nextID=297;
+		nextID=342;
 	};
 	class Camera
 	{
@@ -105,6 +105,7 @@ class ScenarioData
 	{
 		gameType="Coop";
 		minPlayers=1;
+		maxPlayers=129;
 	};
 };
 class CustomAttributes
@@ -157,7 +158,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=24;
+									items=25;
 									class Item0
 									{
 										class data
@@ -494,6 +495,20 @@ class CustomAttributes
 											value="vcom_activateai";
 										};
 									};
+									class Item24
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_common_autolock";
+										};
+									};
 								};
 							};
 						};
@@ -510,7 +525,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=24;
+									items=25;
 									class Item0
 									{
 										class data
@@ -1591,6 +1606,51 @@ class CustomAttributes
 											};
 										};
 									};
+									class Item24
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=0;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
 								};
 							};
 						};
@@ -1705,26 +1765,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="enableSimulation";
-							expression="if !(is3DEN) then {_this enablesimulationglobal _value;};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=2;
+						nAttributes=1;
 					};
 				};
 				class Item1

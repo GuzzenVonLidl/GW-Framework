@@ -12,7 +12,7 @@ PREP(replaceAttachments);
 ["AllVehicles", "init", {
 	[{
 		_this call FUNC(Init);
-	}, _this, 0.1] call CBA_fnc_waitAndExecute;
+	}, _this, 0.5] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addClassEventHandler;
 
 [
