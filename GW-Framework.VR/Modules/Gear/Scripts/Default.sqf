@@ -87,6 +87,7 @@ switch (toLower(_role)) do {
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
+		[_map, "", _radio, _compass, _watch, _nvg] call _addLinkedItems;
 		if (isPlayer _unit) then {
 			["","","","",_backpack] call _addEquipment;
 			[_LAT, _LAT_mag, ""] call _addLaunchers;

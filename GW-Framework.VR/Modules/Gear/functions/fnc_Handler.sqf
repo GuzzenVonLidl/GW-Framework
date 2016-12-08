@@ -80,6 +80,7 @@ if (_isMan) then {
 
 	_unit setVariable ["BIS_enableRandomization", false];
 	_unit setVariable ["ACE_Medical_MedicClass", 1];
+	_unit getVariable ["ACE_IsEngineer", 1];
 	_unit setVariable [QGVAR(Loadout), _role];
 
 	if (_forceFaction isEqualTo "") then {

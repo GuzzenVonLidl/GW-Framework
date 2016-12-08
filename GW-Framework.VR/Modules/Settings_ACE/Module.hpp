@@ -14,4 +14,5 @@
 #ifdef LOAD_ACE		// ACE3 - Version 3.6.2
 	#include "ACE\Common.hpp"	// Everything else
 	#include "ACE\Medical.hpp"	// Only medical
+	#include "ACE\ACE_Repair.hpp"
 #endif

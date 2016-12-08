@@ -1,8 +1,9 @@
 
 	#include "Common\Module.hpp"
 	#include "Environment\Module.hpp"
+	#include "FPS_Handler\Module.hpp"
 	#include "Gear\Module.hpp"
-	#include "HeadlessController\Module.hpp"	// Update to higher standards to perform better
+	#include "HeadlessController\Module.hpp"
 	#include "MHQ\Module.hpp"
 	#include "Performance\Module.hpp"
 	#include "Radios\Module.hpp"				// WIP-(ACRE)
