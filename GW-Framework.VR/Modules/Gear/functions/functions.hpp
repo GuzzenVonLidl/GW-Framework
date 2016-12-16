@@ -70,7 +70,12 @@ _fnc_AddObjectsCargo = {
 			_unit addMagazineCargoGlobal [_item, _number];
 		};
 		if (([_item] call BIS_fnc_itemType select 0) isEqualTo "Weapon") then {
-			_unit addWeaponCargoGlobal [_item, _number];
+			if (_item isEqualTo "HandGrenade") then {
+				_unit addMagazineCargoGlobal [_item, _number];
+			} else {
+				_unit addWeaponCargoGlobal [_item, _number];
+			};
+
 		};
 	};
 };

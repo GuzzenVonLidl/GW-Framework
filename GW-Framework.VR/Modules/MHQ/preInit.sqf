@@ -53,11 +53,13 @@ GVAR(AssembledArray) = [];
 
 	if (_toggle) then {
 		GVAR(AssembledArray) pushBackUnique _mhq;
+		publicVariable QGVAR(AssembledArray);
 		if !(_mhq getVariable [QGVAR(Active), false]) then {
 			[QGVAR(Enabled), [_mhq, true]] call CBA_fnc_serverEvent;
 		};
 	} else {
 		GVAR(AssembledArray) deleteAt (GVAR(AssembledArray) find _mhq);
+		publicVariable QGVAR(AssembledArray);
 	};
 	TRACE_3("QGVAR(Assembled)", _mhq, (_mhq getVariable [QGVAR(Assembled), false]), _toggle);
 }] call CBA_fnc_addEventHandler;

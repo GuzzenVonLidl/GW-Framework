@@ -18,7 +18,7 @@
 
 params [["_unit", objNull, [objNull]]];
 if (!(isPlayer _unit) && !(local _unit)) exitWith {false};
-if (([format ["%1", player], 1] call BIS_fnc_trimString) in BLACKLIST) exitWith {false};
+if (([format ["%1", _unit], 1] call BIS_fnc_trimString) in BLACKLIST) exitWith {false};
 
 {
 	if ((_x getVariable QGVAR(Side)) isEqualTo toLower(GETSIDESTRING(_unit))) exitWith {

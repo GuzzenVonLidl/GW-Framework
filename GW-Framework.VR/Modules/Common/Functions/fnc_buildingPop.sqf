@@ -17,6 +17,8 @@
 */
 #include "..\scriptComponent.hpp"
 
+ERROR("Deprecated function used: GW_Common_Fnc_BuildingPop");
+
 params ["_searchPos","_radius","_unitCount"];
 private _getPos = [_searchPos] call FUNC(getPosATL);
 private _buildings = [];

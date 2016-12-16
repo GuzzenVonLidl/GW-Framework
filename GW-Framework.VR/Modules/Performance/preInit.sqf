@@ -1,8 +1,8 @@
 #include "scriptComponent.hpp"
 
-PREP(HandlerKilled);
-PREP(HandlerCleanUp);
 PREP(HandlerAdjustFPS);
+PREP(HandlerCleanUp);
+PREP(HandlerKilled);
 PREP(Simulation);
 
 GVAR(Simulation) = true;			//	Removes lag from spawning units
@@ -23,17 +23,7 @@ if (isServer) then {
 [
 	QGVAR(Enabled), "LIST",
 	["Enable clean up", "Toggle clean up"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false, {
-		params ["_enable"];
-		if (_enable && (isNil QGVAR(PFH)) && (time > 5)) then {
-			GVAR(PFH) = [{
-				[] call FUNC(HandlerCleanUp);
-			}, GVAR(Delay), []] call CBA_fnc_addPerFrameHandler;
-		} else {
-			[GVAR(PFH)] call CBA_fnc_removePerFrameHandler;
-			GVAR(PFH) = nil;
-		};
-	}
+	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -46,15 +36,7 @@ if (isServer) then {
 	QGVAR(EnabledDistance), "LIST",
 	["Dynamic viewDistance (DVD)", "Automatically adjust view distance based on frame rate"],
 	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false, {
-		params ["_enable"];
-		if (_enable && (isNil QGVAR(PFH_FPS)) && (time > 5)) then {
-			GVAR(PFH_FPS) = [{
-				[] call FUNC(HandlerAdjustFPS);
-			}, 0.1, []] call CBA_fnc_addPerFrameHandler;
-		} else {
-			[GVAR(PFH_FPS)] call CBA_fnc_removePerFrameHandler;
-			GVAR(PFH_FPS) = nil;
-		};
+		[QGVAR(EnableDynamicViewDistance), _this] call CBA_fnc_LocalEvent;
 	}, "client"
 ] call FUNCMAIN(settingsInit);
 
@@ -68,16 +50,31 @@ if (isServer) then {
 	deleteGroup _this;
 }] call CBA_fnc_addEventHandler;
 
-[QGVARMAIN(missionStarted), {
-	[{
-		if (hasInterface && GVAR(EnabledDistance) && (isNil QGVAR(PFH_FPS))) then {
-			GVAR(PFH_FPS) = [{
+[QGVAR(EnableDynamicViewDistance), {
+	params ["_enable"];
+	if (time >= 5) then {
+		if (_enable && (isNil QGVAR(viewDistance_PFH))) then {
+			GVAR(viewDistance_PFH) = [{
 				[] call FUNC(HandlerAdjustFPS);
 			}, 0.1, []] call CBA_fnc_addPerFrameHandler;
+		} else {
+			[GVAR(viewDistance_PFH)] call CBA_fnc_removePerFrameHandler;
+			GVAR(viewDistance_PFH) = nil;
 		};
-		if (isServer && GVAR(Enabled) && (isNil QGVAR(PFH))) then {
-			GVAR(PFH) = [{
-				[] call FUNC(HandlerCleanUp);
+	} else {
+		[{
+			[QGVAR(EnableDynamicViewDistance), _this] call CBA_fnc_LocalEvent;
+		}, _this, 5] call CBA_fnc_waitAndExecute;
+	};
+}] call CBA_fnc_addEventHandler;
+
+[QGVARMAIN(missionStarted), {
+	[{
+		if (isServer && (isNil QGVAR(CleanUp_PFH))) then {
+			GVAR(CleanUp_PFH) = [{
+				if (GVAR(Enabled)) then {
+					[] call FUNC(HandlerCleanUp);
+				};
 			}, GVAR(Delay), []] call CBA_fnc_addPerFrameHandler;
 		};
 

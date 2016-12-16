@@ -23,6 +23,11 @@
 private ["_log_write", "_logType", "_logMsg", "_strArr", "_strNumbers", "_strText", "_logColor"];
 params ["_line", ["_component", ""], "_msg", "_type", ["_global", false]];
 _strNumbers = [diag_frameNo, diag_tickTime, time, _line];
+_logVisualy = false;
+
+#ifdef DEBUG_MODE_FULL
+	_logVisualy = false;
+#endif
 
 switch (_type) do  {
 	case "DEBUG": {
@@ -32,10 +37,12 @@ switch (_type) do  {
 	case "WARNING": {
 		_logType = "WARNING";
 		_logColor = "#1101";
+		_logVisualy = true;
 	};
 	case "ERROR": {
 		_logType = "ERROR";
 		_logColor = "#1001";
+		_logVisualy = true;
 	};
 	default {
 		_logType = "";
@@ -67,5 +74,7 @@ if (DEVCONSOLEENABLED) then {
 	DEVCONSOLE(str(_strNumbers) + _strText + _logColor);
 };
 diag_log (_strText);
-
+if (_logVisualy) then {
+	systemChat (_strText);
+};
 true
