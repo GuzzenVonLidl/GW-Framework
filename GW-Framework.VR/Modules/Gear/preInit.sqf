@@ -1,5 +1,14 @@
 #include "scriptComponent.hpp"
 
+GVAR(Enabled_101) = true;
+GVAR(Enabled_201) = true;
+GVAR(Enabled_301) = true;
+GVAR(Enabled_302) = true;
+
+GVAR(Index101) = 0;
+GVAR(Index201) = 0;
+GVAR(Index301) = 0;
+GVAR(Index302) = 0;
 GVAR(Stamina) = true;
 GVAR(StaminaCoef) = 0;
 
@@ -111,5 +120,11 @@ PREP(replaceAttachments);
 [
 	QGVAR(randomZeusGear), "LIST",
 	["Random Role for Zeus Units", "Should Zeus units get random gear"],
+	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
+] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(BlockAIGear), "LIST",
+	["Blocks access to ai Inventories", "Stops players from being able to scavenge dead AI"],
 	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
 ] call FUNCMAIN(settingsInit);

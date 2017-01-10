@@ -28,7 +28,7 @@ switch (_switch) do {
 			ERROR("GameMode in description is empty");
 		};
 		if (_allPlayers isEqualTo 0) then {
-			ERROR("No playable units in this mission");
+//			ERROR("No playable units in this mission");
 		};
 		if (_name isEqualTo "") then {
 			ERROR("Name in description is empty");

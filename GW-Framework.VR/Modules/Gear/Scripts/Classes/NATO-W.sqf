@@ -41,14 +41,14 @@ _MMG = ["LMG_Mk200_F", _silencer, _pointer, _sight, _bipod];
 _MMG_mag = "200Rnd_65x39_cased_Box";
 _MMG_mag_tr = "200Rnd_65x39_cased_Box_Tracer";
 
-_silencer = "";
-_pointer = "";
 _sight = "";
-_bipod = "";
 
 _LAT = ["launch_NLAW_F", _silencer, _pointer, _sight, _bipod];
 _LAT_mag = "NLAW_F";
 _LAT_ReUsable = false;
+if (GVARMAIN(mod_ACE3)) then {
+	_LAT_ReUsable = true;
+};
 
 _MAT = ["launch_RPG32_ghex_F", _silencer, _pointer, _sight, _bipod];
 _MAT_mag = "RPG32_F";

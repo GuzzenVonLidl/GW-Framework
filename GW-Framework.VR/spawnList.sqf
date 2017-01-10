@@ -28,10 +28,3 @@ switch (_case) do {
 		ERROR(FORMAT_1("Case missing: %1", _case));
 	};
 };
-
-/*
-	["HandGrenade"] call BIS_fnc_itemType - Returns
-	["Weapon","UnknownWeapon"] - Wrong
-	["Magazine","Grenade"] - Correct
-	["GW_Gear_Blufor", "USMC-W", true, "server"] call CBA_settings_fnc_set
-*/

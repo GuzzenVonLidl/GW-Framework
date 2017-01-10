@@ -20,7 +20,7 @@ _copyFrom = create3DENEntity ["Object","Land_Compass_F", [(getPosATL _mhq) selec
 _CopyObjects = [];
 {
 	if ((_x isEqualTo ((get3DENSelected "object") select 0)) || !(_x isKindOf "CAManBase")) then {
-		_CopyObjects pushBack [(typeOf _x), (getDir _x), (_copyFrom worldToModel (getPosATL _x))];
+		_CopyObjects pushBack [(typeOf _x), round(getDir _x), (_copyFrom worldToModel (getPosATL _x))];
 	};
 } forEach (get3DENSelected "object");
 copyToClipboard (format ["[_mhq,%1] call %2;", str(_CopyObjects), QFUNC(prefabCreate)]);

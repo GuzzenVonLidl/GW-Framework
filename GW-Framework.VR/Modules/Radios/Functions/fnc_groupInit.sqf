@@ -3,7 +3,7 @@
 [{
 	params ["_unit"];
 	if (isPlayer _unit) then {
-		_unit setVariable ["TF_receivingDistanceMultiplicator", 1.2];
+		_unit setVariable ["TF_receivingDistanceMultiplicator", 0.7];
 		_unit setVariable ["TF_sendingDistanceMultiplicator", 0.7];
 		private _group = group _unit;
 

@@ -1,24 +1,26 @@
 #include "..\scriptComponent.hpp"
 
-#define	getName(Var1)	format ["%1",getText(configfile >> "CfgWeapons" >> Var1 >> "displayName")]
-#define	getPicture(Var1)	format ["%1",getText(configfile >> "CfgWeapons" >> Var1 >> "picture")]
-#define	setItem(Var1,Var2)	compile Format ["player addPrimaryWeaponItem '%1';", Var1, ["player", [], -100, ["_this call GW_Gear_Fnc_replaceAttachments",Var2]]]
+#define	OPENMENU(Var1) Format ["['player', [], -100, ['_this call GW_Gear_Fnc_replaceAttachments', 'main']] call cba_fnc_fleximenu_openMenuByDef;", Var1]
+#define	FIRSTPAGE(Var1,Var2) compile ((Format ["%1 = 0;", Var1]) + (OPENMENU(Var2)))
+#define	NEXTPAGE(Var1,Var2) compile ((Format ["%1 = %1 + 1;", Var1]) + (OPENMENU(Var2)))
 
-//	[currentWeapon player] call GW_Gear_Fnc_getAttachments; -> [_muzzle,_optic,_pointer,_bipod]
+#define	GETNAME(Var1)	format ["%1",getText(configfile >> "CfgWeapons" >> Var1 >> "displayName")]
+#define	GETPICTURE(Var1)	format ["%1",getText(configfile >> "CfgWeapons" >> Var1 >> "picture")]
+#define	SETITEM(Var1,Var2)	compile ((Format ["switch (currentWeapon player) do {case (primaryWeapon player): {player addPrimaryWeaponItem '%1';};case (handgunWeapon player): {player addHandgunItem '%1';};case (secondaryWeapon player): {player addSecondaryWeaponItem '%1';};};", Var1]) + (OPENMENU(Var2)))
 
-private ["_params","_menuName","_menuRsc","_suboptions_101","_suboptions_201","_suboptions_301","_suboptions_302","_allAttatchments","_menus","_menuDef"];
-_params = _this select 1;
-_menuName = "";
-_menuRsc = "popup";
-_suboptions_101 = [];
-_suboptions_201 = [];
-_suboptions_301 = [];
-_suboptions_302 = [];
-_allAttatchments = ([currentWeapon player] call GW_Gear_Fnc_getAttachments);
+private _params = (_this select 1);
+private _menuName = "";
+private _menuRsc = "popup";
+private _maxValue = 10;
+private _suboptions_101 = [];
+private _suboptions_201 = [];
+private _suboptions_301 = [];
+private _suboptions_302 = [];
+private _allAttatchments = ([currentWeapon player] call GW_Gear_Fnc_getAttachments);
 
-if (typeName _params == typeName []) then {
+if ((typeName _params) isEqualTo (typeName [])) then {
 	if (count _params < 1) exitWith {diag_log format["Error: Invalid params: %1, %2", _this, __FILE__];};
-	_menuName = _params select 0;
+	_menuName = (_params select 0);
 	_menuRsc = if (count _params > 1) then {_params select 1} else {_menuRsc};
 } else {
 	_menuName = _params;
@@ -32,23 +34,32 @@ _menus =
 			[
 				"Replace Muzzle >",
 				"","","",
-				["_this call GW_Gear_Fnc_replaceAttachments","101", 1]
+				["_this call GW_Gear_Fnc_replaceAttachments","101", 1],
+				-1,true,
+				GVAR(Enabled_101)
 			],
 			[
 				"Replace Optic >",
 				"","","",
-				["_this call GW_Gear_Fnc_replaceAttachments","201", 1]
+				["_this call GW_Gear_Fnc_replaceAttachments","201", 1],
+				-1,true,
+				GVAR(Enabled_201)
 			],
 			[
 				"Replace Pointer >",
 				"","","",
-				["_this call GW_Gear_Fnc_replaceAttachments","301", 1]
+				["_this call GW_Gear_Fnc_replaceAttachments","301", 1],
+				-1,true,
+				GVAR(Enabled_301)
 			],
 			[
 				"Replace Bipod >",
 				"","","",
-				["_this call GW_Gear_Fnc_replaceAttachments","302", 1]
-			]
+				["_this call GW_Gear_Fnc_replaceAttachments","302", 1],
+				-1,true,
+				GVAR(Enabled_302)
+			],
+			["Reset Colums", {GVAR(Index101) = 0; GVAR(Index201) = 0; GVAR(Index301) = 0; GVAR(Index302) = 0;}]
 		]
 	]
 ];
@@ -56,31 +67,115 @@ _menus =
 // -------------------------------- Player Actions ----------------------------------- \\
 
 if (_menuName == "101") then {
-	{
-		_suboptions_101 pushBack [getName(_x),setItem(_x,"101"),getPicture(_x),"",""];
-	} forEach (_allAttatchments select 0);
-	_menus pushBack [["101", "Muzzle List", _menuRsc],_suboptions_101];
+	private _attachments = (_allAttatchments select 0);
+	private _loadPage = "101";
+	private _From = (0 + (_maxValue * GVAR(Index101)));
+	private _To = (_maxValue + (_maxValue * GVAR(Index101)));
+	if ((count _attachments) > _maxValue) then {
+		for "_i" from _From to _To step 1 do {
+			if ((_i isEqualTo _To) && (_i < (count _attachments))) then {
+					_suboptions_101 pushBack ["Next >", NEXTPAGE(QGVAR(Index101),'main'),"","",""];
+			} else {
+				if (_i isEqualTo (Count _attachments)) then {
+					_suboptions_101 pushBack ["First Page >", FIRSTPAGE(QGVAR(Index101),'main'),"","",""];
+				} else {
+					if (!(_i isEqualTo _To) && (_i < (Count _attachments))) then {
+						_index = (_attachments select _i);
+						_suboptions_101 pushBack [format ["%1:%2", _i, _index],{format ["%1", _i]},"","",""];
+					};
+				};
+			};
+		};
+	} else {
+		{
+			_suboptions_101 pushBack [GETNAME(_x),SETITEM(_x,_loadPage),GETPICTURE(_x),"",""];
+		} forEach _attachments;
+	};
+	_menus pushBack [[_loadPage, "Muzzle List", _menuRsc],_suboptions_101];
 };
 
 if (_menuName == "201") then {
-	{
-		_suboptions_201 pushBack [getName(_x),setItem(_x,"201"),getPicture(_x),"",""];
-	} forEach (_allAttatchments select 1);
-	_menus pushBack [["201", "Optics List", _menuRsc],_suboptions_201];
+	private _attachments = (_allAttatchments select 1);
+	private _loadPage = "201";
+	private _From = (0 + (_maxValue * GVAR(Index201)));
+	private _To = (_maxValue + (_maxValue * GVAR(Index201)));
+	if ((count _attachments) > _maxValue) then {
+		for "_i" from _From to _To step 1 do {
+			if ((_i isEqualTo _To) && (_i < (count _attachments))) then {
+					_suboptions_201 pushBack ["Next >", NEXTPAGE(QGVAR(Index201),'main'),"","",""];
+			} else {
+				if (_i isEqualTo (Count _attachments)) then {
+					_suboptions_201 pushBack ["First Page >", FIRSTPAGE(QGVAR(Index201),'main'),"","",""];
+				} else {
+					if (!(_i isEqualTo _To) && (_i < (Count _attachments))) then {
+						_index = (_attachments select _i);
+						_suboptions_201 pushBack [format ["%1:%2", _i, _index],{format ["%1", _i]},"","",""];
+					};
+				};
+			};
+		};
+	} else {
+		{
+			_suboptions_201 pushBack [GETNAME(_x),SETITEM(_x,_loadPage),GETPICTURE(_x),"",""];
+		} forEach _attachments;
+	};
+	_menus pushBack [[_loadPage, "Optics List", _menuRsc],_suboptions_201];
 };
 
 if (_menuName == "301") then {
-	{
-		_suboptions_301 pushBack [getName(_x),setItem(_x,"301"),getPicture(_x),"",""];
-	} forEach (_allAttatchments select 2);
-	_menus pushBack [["301", "Pointer List", _menuRsc],_suboptions_301];
+	private _attachments = (_allAttatchments select 2);
+	private _loadPage = "301";
+	private _From = (0 + (_maxValue * GVAR(Index301)));
+	private _To = (_maxValue + (_maxValue * GVAR(Index301)));
+	if ((count _attachments) > _maxValue) then {
+		for "_i" from _From to _To step 1 do {
+			if ((_i isEqualTo _To) && (_i < (count _attachments))) then {
+					_suboptions_301 pushBack ["Next >", NEXTPAGE(QGVAR(Index301),'main'),"","",""];
+			} else {
+				if (_i isEqualTo (Count _attachments)) then {
+					_suboptions_301 pushBack ["First Page >", FIRSTPAGE(QGVAR(Index301),'main'),"","",""];
+				} else {
+					if (!(_i isEqualTo _To) && (_i < (Count _attachments))) then {
+						_index = (_attachments select _i);
+						_suboptions_301 pushBack [format ["%1:%2", _i, _index],{format ["%1", _i]},"","",""];
+					};
+				};
+			};
+		};
+	} else {
+		{
+			_suboptions_301 pushBack [GETNAME(_x),SETITEM(_x,_loadPage),GETPICTURE(_x),"",""];
+		} forEach _attachments;
+	};
+	_menus pushBack [[_loadPage, "Pointer List", _menuRsc],_suboptions_301];
 };
 
 if (_menuName == "302") then {
-	{
-		_suboptions_302 pushBack [getName(_x),setItem(_x,"302"),getPicture(_x),"",""];
-	} forEach (_allAttatchments select 3);
-	_menus pushBack [["302", "Bipod List", _menuRsc],_suboptions_302];
+	private _attachments = (_allAttatchments select 3);
+	private _loadPage = "302";
+	private _From = (0 + (_maxValue * GVAR(Index302)));
+	private _To = (_maxValue + (_maxValue * GVAR(Index302)));
+	if ((count _attachments) > _maxValue) then {
+		for "_i" from _From to _To step 1 do {
+			if ((_i isEqualTo _To) && (_i < (count _attachments))) then {
+					_suboptions_302 pushBack ["Next >", NEXTPAGE(QGVAR(Index302),'main'),"","",""];
+			} else {
+				if (_i isEqualTo (Count _attachments)) then {
+					_suboptions_302 pushBack ["First Page >", FIRSTPAGE(QGVAR(Index302),'main'),"","",""];
+				} else {
+					if (!(_i isEqualTo _To) && (_i < (Count _attachments))) then {
+						_index = (_attachments select _i);
+						_suboptions_302 pushBack [format ["%1:%2", _i, _index],{format ["%1", _i]},"","",""];
+					};
+				};
+			};
+		};
+	} else {
+		{
+			_suboptions_302 pushBack [GETNAME(_x),SETITEM(_x,_loadPage),GETPICTURE(_x),"",""];
+		} forEach _attachments;
+	};
+	_menus pushBack [[_loadPage, "Bipod List", _menuRsc],_suboptions_302];
 };
 
 _menuDef = [];

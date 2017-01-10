@@ -1,3 +1,4 @@
+_allowedNightStuff = false;
 
 _goggles = "";
 _helmet = selectRandom ["CUP_H_TKI_Lungee_01","CUP_H_TKI_Lungee_02","CUP_H_TKI_Lungee_04","CUP_H_TKI_Lungee_05","CUP_H_TK_Lungee"];

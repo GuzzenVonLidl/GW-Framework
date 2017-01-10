@@ -1,3 +1,4 @@
+_allowedNightStuff = false;
 
 _goggles = "";
 _helmet = "CUP_H_TK_Helmet";

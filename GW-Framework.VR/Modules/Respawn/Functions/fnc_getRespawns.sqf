@@ -8,6 +8,7 @@ private _respawns = -1;
 if (GVAR(Mode) isEqualTo 1) then {
 	_respawns = (_unit getVariable [QGVAR(Count), -1]);
 };
+
 if (GVAR(Mode) isEqualTo 2) then {
 	switch (GETSIDE(_unit)) do {
 		case 0: {

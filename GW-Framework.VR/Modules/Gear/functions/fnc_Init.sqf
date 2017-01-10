@@ -47,7 +47,6 @@ if (_unit isKindOf "CAManBase") then {
 			_role = (_unit getVariable [QGVAR(Loadout), _role]);
 		} else {
 			_mainScope = false;
-			_unit setVariable [QGVAR(Loadout_Time), (time + 1)];
 			[{	// Auto detect
 				params ["_unit"];
 				private _role = "r";
@@ -102,7 +101,7 @@ if (_unit isKindOf "CAManBase") then {
 					_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
 				};
 				[_unit, _role] call FUNC(Handler);
-			}, [_unit], 0.05] call CBA_fnc_waitAndExecute;
+			}, [_unit], 0.1] call CBA_fnc_waitAndExecute;
 		};
 	};
 } else {
@@ -131,7 +130,7 @@ if (_unit isKindOf "CAManBase") then {
 };
 
 if (_mainScope) then {
-	[{MISSIONLOADED}, {
+	[{
 		_this call FUNC(Handler);
-	}, [_unit, _role]] call CBA_fnc_waitUntilAndExecute;
+	}, [_unit, _role], 0.5] call CBA_fnc_waitAndExecute;
 };

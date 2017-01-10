@@ -1,2 +1,2 @@
-#define	COMPONENT FPS_Handler
+#define	COMPONENT VCOMAI
 #include "..\scriptComponent.hpp"

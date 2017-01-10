@@ -36,38 +36,30 @@ GVAR(easy) = [0.20, 0.30, 0.80];
 GVAR(medium) = [0.27, 0.50, 0.80];
 GVAR(hard) = [0.35, 0.70, 1.0];
 
-GVAR(enableSuppression) = false;
-GVAR(BulletArray) = [];
-
 [
 	QGVAR(difficulty), "LIST",
 	["Difficulty", "Sets the difficulty of newly spawned units"],
 	QUOTE(ADDON), [[0,1,2,3], ["Disable","Easy","Medium","Hard"], 2], false
 ] call FUNCMAIN(settingsInit);
-/*
-[
-	QGVAR(enableSuppression), "LIST",
-	["Enable Suppression", "WARNING: Experimental!, Enable suppression for ai units"],
-	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false
-] call FUNCMAIN(settingsInit);
-*/
 
 [
 	QGVAR(playerDetection), "SLIDER",
 	["Detect player skill", "How easily a player gets detected, lower value harder to detect"],
-	QUOTE(ADDON), [0.5, 1.5, 1.0, 1], false
+	QUOTE(ADDON), [0.5, 2, 1.0, 1], false
 ] call FUNCMAIN(settingsInit);
 
-if (isClass ((missionConfigFile >> "GW_Modules" >> "VCOM"))) then {
+if (isClass ((missionConfigFile >> "GW_Modules" >> "VCOMAI"))) then {
 	[
-		"Vcom_ActivateAI", "LIST",
+		QEGVAR(VCOMAI,Enabled), "LIST",
 		["Enable advanced AI", "Might cause a slowdown in larger scales"],
-		QUOTE(ADDON), [[true, false], ["Enable","Disable"], 0], false
+		QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false
 	] call FUNCMAIN(settingsInit);
 };
 
 ["CAManBase", "Init", {
-	_this call FUNC(Init);
+	[{
+		_this call FUNC(Init);
+	}, _this, 0.5] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addClassEventHandler;
 
 ["CAManBase", "Respawn", {
@@ -75,10 +67,21 @@ if (isClass ((missionConfigFile >> "GW_Modules" >> "VCOM"))) then {
 }] call CBA_fnc_addClassEventHandler;
 
 /*
-	[QGVARMAIN(missionStarted), {
-		LOG("Event Suppression PFH");
-		if (GVAR(enableSuppression)) then {
-			[] call FUNC(handlePFH);
-		};
-	}] call CBA_fnc_addEventHandler;
+
+GVAR(enableSuppression) = false;
+GVAR(BulletArray) = [];
+
+[
+	QGVAR(enableSuppression), "LIST",
+	["Enable Suppression", "WARNING: Experimental!, Enable suppression for ai units"],
+	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false
+] call FUNCMAIN(settingsInit);
+
+[QGVARMAIN(missionStarted), {
+	LOG("Event Suppression PFH");
+	if (GVAR(enableSuppression)) then {
+		[] call FUNC(handlePFH);
+	};
+}] call CBA_fnc_addEventHandler;
+
 */

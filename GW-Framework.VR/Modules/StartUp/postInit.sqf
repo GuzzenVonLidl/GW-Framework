@@ -1,5 +1,4 @@
 #include "scriptComponent.hpp"
-#define DEBUG_MODE_FULL
 
 [QGVARMAIN(missionStarted), {
 	if (isServer) then {

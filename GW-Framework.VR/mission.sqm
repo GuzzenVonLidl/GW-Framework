@@ -5,14 +5,14 @@ class EditorData
 	angleGridStep=0.08726646;
 	scaleGridStep=10;
 	autoGroupingDist=10;
-	toggles=229;
+	toggles=101;
 	class ItemIDProvider
 	{
 		nextID=1703;
 	};
 	class LayerIndexProvider
 	{
-		nextID=472;
+		nextID=577;
 	};
 	class Camera
 	{
@@ -27,10 +27,10 @@ addons[]=
 {
 	"A3_Characters_F",
 	"A3_Weapons_F_Ammoboxes",
-	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Ui_F",
 	"A3_Structures_F_Mil_Flags",
 	"A3_Supplies_F_Exp_Ammoboxes",
+	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Structures_F_Mil_Helipads",
 	"A3_Soft_F_Quadbike_01"
 };
@@ -55,29 +55,29 @@ class AddonsMetaData
 		};
 		class Item2
 		{
-			className="A3_Supplies_F_Heli";
-			name="Arma 3 Helicopters - Ammoboxes and Supplies";
-			author="Bohemia Interactive";
-			url="http://www.arma3.com";
-		};
-		class Item3
-		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item4
+		class Item3
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item5
+		class Item4
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item5
+		{
+			className="A3_Supplies_F_Heli";
+			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
@@ -105,7 +105,6 @@ class ScenarioData
 	{
 		gameType="Coop";
 		minPlayers=1;
-		maxPlayers=129;
 	};
 };
 class CustomAttributes
@@ -158,7 +157,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=25;
+									items=28;
 									class Item0
 									{
 										class data
@@ -509,6 +508,48 @@ class CustomAttributes
 											value="gw_common_autolock";
 										};
 									};
+									class Item25
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_respawn_countteamwest";
+										};
+									};
+									class Item26
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_gear_blockaigear";
+										};
+									};
+									class Item27
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_vcomai_enabled";
+										};
+									};
 								};
 							};
 						};
@@ -525,7 +566,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=25;
+									items=28;
 									class Item0
 									{
 										class data
@@ -1496,7 +1537,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=1.5032856;
 													};
 												};
 												class Item1
@@ -1586,7 +1627,7 @@ class CustomAttributes
 																"BOOL"
 															};
 														};
-														value=1;
+														value=0;
 													};
 												};
 												class Item1
@@ -1607,6 +1648,141 @@ class CustomAttributes
 										};
 									};
 									class Item24
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=0;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item25
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=0;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item26
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"BOOL"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item27
 									{
 										class data
 										{
@@ -3061,6 +3237,398 @@ class Mission
 		};
 		class Item15
 		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={24,5,16};
+			};
+			name="hc_slot1";
+			isPlayable=1;
+			description="Headless Client 1";
+			id=171;
+			type="HeadlessClient_F";
+		};
+		class Item16
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={28,5,16};
+			};
+			name="hc_slot2";
+			isPlayable=1;
+			description="Headless Client 2";
+			id=172;
+			type="HeadlessClient_F";
+		};
+		class Item17
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={32,5,16};
+			};
+			name="hc_slot3";
+			isPlayable=1;
+			description="Headless Client 3";
+			id=173;
+			type="HeadlessClient_F";
+		};
+		class Item18
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={44,5.8924227,79};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="[this, [""small_box"",""west""]] call GW_Gear_Fnc_Init;";
+				description="Resupplie Small";
+			};
+			id=178;
+			type="B_supplyCrate_F";
+		};
+		class Item19
+		{
+			dataType="Marker";
+			position[]={48,5943446,64};
+			name="respawn_west";
+			text=" respawn_west";
+			type="Empty";
+			colorName="ColorWEST";
+			id=179;
+			atlOffset=5943441;
+		};
+		class Item20
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={47.805,8.9768047,86.971008};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				name="flag_west_1";
+			};
+			id=183;
+			type="Flag_Blue_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item21
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={48,5.3815289,81};
+				angles[]={0,4.6892109,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="[this, [""gearbox"",""west""]] call GW_Gear_Fnc_Init;";
+				description="Gearbox";
+			};
+			id=186;
+			type="Box_NATO_Equip_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item22
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={50,5.1799846,81};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="[this, [""med_box"",""west""]] call GW_Gear_Fnc_Init;";
+				description="Medical box";
+			};
+			id=187;
+			type="Box_Syndicate_WpsLaunch_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item23
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={44,5.8253026,81};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="[this, [""big_box"",""west""]] call GW_Gear_Fnc_Init; ";
+				description="Resupplie Big";
+			};
+			id=188;
+			type="B_CargoNet_01_ammo_F";
+		};
+		class Item24
+		{
+			dataType="Trigger";
+			position[]={50,5,150};
+			class Attributes
+			{
+				condition="!({(isPlayer _x) && ((getPosATL _x) select 2) < 5} count thislist isEqualTo 0) && isServer";
+				onActivation="null = [1] spawn GW_Fnc_spawnList;";
+				sizeC=0;
+				activationBy="ANY";
+				isServerOnly=1;
+			};
+			id=193;
+			type="EmptyDetectorAreaR50";
+		};
+		class Item25
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={80,5,16};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="null = [this] spawn GW_ServiceStation_fnc_Init;";
+			};
+			id=199;
+			type="Land_HelipadCivil_F";
+		};
+		class Item26
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={68,5.6349964,16};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="null = [this, true] spawn GW_ServiceStation_fnc_InitMobile;";
+			};
+			id=200;
+			type="CargoNet_01_box_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item27
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={80,5,12};
+			};
+			title="Service Station";
+			id=201;
+		};
+		class Item28
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={68,5,12};
+			};
+			title="Mobile Service Station";
+			id=202;
+		};
+		class Item29
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={48,5,12};
+			};
+			title="MHQ";
+			id=203;
+		};
+		class Item30
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={28,5,12};
+			};
+			title="Headless Clients";
+			id=204;
+		};
+		class Item31
+		{
+			dataType="Trigger";
+			position[]={53,5,15};
+			class Attributes
+			{
+				condition="false && (time > 5)";
+				onActivation="[""GW_MHQ_Enabled"", [mhq_1, true, ""west""]] call CBA_fnc_serverEvent;" \n "" \n "[""GW_MHQ_Assembled"", [mhq_1, true]] call CBA_fnc_serverEvent;";
+				sizeA=0;
+				sizeB=0;
+				isServerOnly=1;
+			};
+			id=945;
+			type="EmptyDetector";
+		};
+		class Item32
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={48,6.6262865,16};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				health=0.89999998;
+				init="[this, ""medium""] call GW_MHQ_Fnc_Handler;";
+				name="mhq_1";
+			};
+			id=182;
+			type="B_Quadbike_01_F";
+		};
+		class Item33
+		{
+			dataType="Comment";
+			class PositionInfo
+			{
+				position[]={53,5,13};
+			};
+			title="MHQ - Auto activate";
+			id=1017;
+		};
+		class Item34
+		{
+			dataType="Layer";
+			name="Camp Bravery";
+			id=1078;
+			atlOffset=-5;
+		};
+		class Item35
+		{
+			dataType="Layer";
+			name="Exterior";
+			id=1209;
+			atlOffset=-5;
+		};
+		class Item36
+		{
+			dataType="Layer";
+			name="Junk 1";
+			id=1269;
+			atlOffset=-5;
+		};
+		class Item37
+		{
+			dataType="Layer";
+			name="Military";
+			id=1328;
+			atlOffset=-5;
+		};
+		class Item38
+		{
+			dataType="Layer";
+			name="Tables and Shelves";
+			id=1389;
+			atlOffset=-5;
+		};
+		class Item39
+		{
 			dataType="Group";
 			side="East";
 			class Entities
@@ -3113,7 +3681,7 @@ class Mission
 			};
 			id=57;
 		};
-		class Item16
+		class Item40
 		{
 			dataType="Group";
 			side="East";
@@ -3166,7 +3734,7 @@ class Mission
 			};
 			id=60;
 		};
-		class Item17
+		class Item41
 		{
 			dataType="Group";
 			side="East";
@@ -3275,7 +3843,7 @@ class Mission
 			};
 			id=63;
 		};
-		class Item18
+		class Item42
 		{
 			dataType="Group";
 			side="East";
@@ -3383,7 +3951,7 @@ class Mission
 			};
 			id=69;
 		};
-		class Item19
+		class Item43
 		{
 			dataType="Group";
 			side="East";
@@ -3492,7 +4060,7 @@ class Mission
 			};
 			id=75;
 		};
-		class Item20
+		class Item44
 		{
 			dataType="Group";
 			side="East";
@@ -3545,7 +4113,7 @@ class Mission
 			};
 			id=81;
 		};
-		class Item21
+		class Item45
 		{
 			dataType="Group";
 			side="East";
@@ -3653,7 +4221,7 @@ class Mission
 			};
 			id=84;
 		};
-		class Item22
+		class Item46
 		{
 			dataType="Group";
 			side="East";
@@ -3761,7 +4329,7 @@ class Mission
 			};
 			id=90;
 		};
-		class Item23
+		class Item47
 		{
 			dataType="Group";
 			side="East";
@@ -3870,7 +4438,7 @@ class Mission
 			};
 			id=96;
 		};
-		class Item24
+		class Item48
 		{
 			dataType="Group";
 			side="East";
@@ -3902,7 +4470,7 @@ class Mission
 			};
 			id=102;
 		};
-		class Item25
+		class Item49
 		{
 			dataType="Group";
 			side="East";
@@ -3933,7 +4501,7 @@ class Mission
 			};
 			id=104;
 		};
-		class Item26
+		class Item50
 		{
 			dataType="Group";
 			side="East";
@@ -3964,7 +4532,7 @@ class Mission
 			};
 			id=106;
 		};
-		class Item27
+		class Item51
 		{
 			dataType="Group";
 			side="East";
@@ -3995,7 +4563,7 @@ class Mission
 			};
 			id=108;
 		};
-		class Item28
+		class Item52
 		{
 			dataType="Group";
 			side="East";
@@ -4026,7 +4594,7 @@ class Mission
 			};
 			id=110;
 		};
-		class Item29
+		class Item53
 		{
 			dataType="Group";
 			side="East";
@@ -4057,46 +4625,7 @@ class Mission
 			};
 			id=112;
 		};
-		class Item30
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={24,5,16};
-			};
-			name="hc_slot1";
-			isPlayable=1;
-			description="Headless Client 1";
-			id=171;
-			type="HeadlessClient_F";
-		};
-		class Item31
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={28,5,16};
-			};
-			name="hc_slot2";
-			isPlayable=1;
-			description="Headless Client 2";
-			id=172;
-			type="HeadlessClient_F";
-		};
-		class Item32
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={32,5,16};
-			};
-			name="hc_slot3";
-			isPlayable=1;
-			description="Headless Client 3";
-			id=173;
-			type="HeadlessClient_F";
-		};
-		class Item33
+		class Item54
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4113,7 +4642,7 @@ class Mission
 			id=174;
 			type="B_supplyCrate_F";
 		};
-		class Item34
+		class Item55
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4130,7 +4659,7 @@ class Mission
 			id=175;
 			type="B_CargoNet_01_ammo_F";
 		};
-		class Item35
+		class Item56
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4147,7 +4676,7 @@ class Mission
 			id=176;
 			type="B_supplyCrate_F";
 		};
-		class Item36
+		class Item57
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4164,35 +4693,7 @@ class Mission
 			id=177;
 			type="B_CargoNet_01_ammo_F";
 		};
-		class Item37
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={44,5.8924227,79};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				init="[this, [""small_box"",""west""]] call GW_Gear_Fnc_Init;";
-				description="Resupplie Small";
-			};
-			id=178;
-			type="B_supplyCrate_F";
-		};
-		class Item38
-		{
-			dataType="Marker";
-			position[]={48,5943446,64};
-			name="respawn_west";
-			text=" respawn_west";
-			type="Empty";
-			colorName="ColorWEST";
-			id=179;
-			atlOffset=5943441;
-		};
-		class Item39
+		class Item58
 		{
 			dataType="Marker";
 			position[]={144,3275832,64};
@@ -4203,7 +4704,7 @@ class Mission
 			id=180;
 			atlOffset=3275827;
 		};
-		class Item40
+		class Item59
 		{
 			dataType="Marker";
 			position[]={248,4982960,64};
@@ -4214,46 +4715,7 @@ class Mission
 			id=181;
 			atlOffset=4982955;
 		};
-		class Item41
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={47.805,8.9768047,86.971008};
-			};
-			side="Empty";
-			flags=5;
-			class Attributes
-			{
-				name="flag_west_1";
-			};
-			id=183;
-			type="Flag_Blue_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="allowDamage";
-					expression="_this allowdamage _value;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				nAttributes=1;
-			};
-		};
-		class Item42
+		class Item60
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4292,7 +4754,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item43
+		class Item61
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4331,105 +4793,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item44
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={48,5.3815289,81};
-				angles[]={0,4.6892109,0};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				init="[this, [""gearbox"",""west""]] call GW_Gear_Fnc_Init;";
-				description="Gearbox";
-			};
-			id=186;
-			type="Box_NATO_Equip_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="allowDamage";
-					expression="_this allowdamage _value;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=1;
-			};
-		};
-		class Item45
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={50,5.1799846,81};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				init="[this, [""med_box"",""west""]] call GW_Gear_Fnc_Init;";
-				description="Medical box";
-			};
-			id=187;
-			type="Box_Syndicate_WpsLaunch_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="allowDamage";
-					expression="_this allowdamage _value;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=1;
-			};
-		};
-		class Item46
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={44,5.8253026,81};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				init="[this, [""big_box"",""west""]] call GW_Gear_Fnc_Init; ";
-				description="Resupplie Big";
-			};
-			id=188;
-			type="B_CargoNet_01_ammo_F";
-		};
-		class Item47
+		class Item62
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4470,7 +4834,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item48
+		class Item63
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4510,7 +4874,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item49
+		class Item64
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4551,7 +4915,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item50
+		class Item65
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4591,117 +4955,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item51
-		{
-			dataType="Trigger";
-			position[]={50,5,150};
-			class Attributes
-			{
-				condition="!({(isPlayer _x) && ((getPosATL _x) select 2) < 5} count thislist isEqualTo 0) && isServer";
-				onActivation="null = [1] spawn GW_Fnc_spawnList;";
-				sizeC=0;
-				activationBy="ANY";
-				isServerOnly=1;
-			};
-			id=193;
-			type="EmptyDetectorAreaR50";
-		};
-		class Item52
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={80,5,16};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				init="null = [this] spawn GW_ServiceStation_fnc_Init;";
-			};
-			id=199;
-			type="Land_HelipadCivil_F";
-		};
-		class Item53
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={68,5.6349964,16};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				init="null = [this, true] spawn GW_ServiceStation_fnc_Init;";
-			};
-			id=200;
-			type="CargoNet_01_box_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
-						};
-					};
-				};
-				nAttributes=1;
-			};
-		};
-		class Item54
-		{
-			dataType="Comment";
-			class PositionInfo
-			{
-				position[]={80,5,12};
-			};
-			title="Service Station";
-			id=201;
-		};
-		class Item55
-		{
-			dataType="Comment";
-			class PositionInfo
-			{
-				position[]={68,5,12};
-			};
-			title="Mobile Service Station";
-			id=202;
-		};
-		class Item56
-		{
-			dataType="Comment";
-			class PositionInfo
-			{
-				position[]={48,5,12};
-			};
-			title="MHQ";
-			id=203;
-		};
-		class Item57
-		{
-			dataType="Comment";
-			class PositionInfo
-			{
-				position[]={28,5,12};
-			};
-			title="Headless Clients";
-			id=204;
-		};
-		class Item58
+		class Item66
 		{
 			dataType="Group";
 			side="Independent";
@@ -4755,7 +5009,7 @@ class Mission
 			};
 			id=307;
 		};
-		class Item59
+		class Item67
 		{
 			dataType="Group";
 			side="Independent";
@@ -4808,7 +5062,7 @@ class Mission
 			};
 			id=322;
 		};
-		class Item60
+		class Item68
 		{
 			dataType="Group";
 			side="Independent";
@@ -4916,7 +5170,7 @@ class Mission
 			};
 			id=510;
 		};
-		class Item61
+		class Item69
 		{
 			dataType="Group";
 			side="Independent";
@@ -5024,7 +5278,7 @@ class Mission
 			};
 			id=540;
 		};
-		class Item62
+		class Item70
 		{
 			dataType="Group";
 			side="Independent";
@@ -5133,7 +5387,7 @@ class Mission
 			};
 			id=579;
 		};
-		class Item63
+		class Item71
 		{
 			dataType="Group";
 			side="Independent";
@@ -5186,7 +5440,7 @@ class Mission
 			};
 			id=657;
 		};
-		class Item64
+		class Item72
 		{
 			dataType="Group";
 			side="Independent";
@@ -5294,7 +5548,7 @@ class Mission
 			};
 			id=720;
 		};
-		class Item65
+		class Item73
 		{
 			dataType="Group";
 			side="Independent";
@@ -5402,7 +5656,7 @@ class Mission
 			};
 			id=744;
 		};
-		class Item66
+		class Item74
 		{
 			dataType="Group";
 			side="Independent";
@@ -5511,7 +5765,7 @@ class Mission
 			};
 			id=834;
 		};
-		class Item67
+		class Item75
 		{
 			dataType="Group";
 			side="Independent";
@@ -5543,7 +5797,7 @@ class Mission
 			};
 			id=852;
 		};
-		class Item68
+		class Item76
 		{
 			dataType="Group";
 			side="Independent";
@@ -5574,7 +5828,7 @@ class Mission
 			};
 			id=868;
 		};
-		class Item69
+		class Item77
 		{
 			dataType="Group";
 			side="Independent";
@@ -5605,7 +5859,7 @@ class Mission
 			};
 			id=880;
 		};
-		class Item70
+		class Item78
 		{
 			dataType="Group";
 			side="Independent";
@@ -5636,7 +5890,7 @@ class Mission
 			};
 			id=884;
 		};
-		class Item71
+		class Item79
 		{
 			dataType="Group";
 			side="Independent";
@@ -5667,7 +5921,7 @@ class Mission
 			};
 			id=890;
 		};
-		class Item72
+		class Item80
 		{
 			dataType="Group";
 			side="Independent";
@@ -5697,84 +5951,6 @@ class Mission
 			{
 			};
 			id=892;
-		};
-		class Item73
-		{
-			dataType="Trigger";
-			position[]={53,5,15};
-			class Attributes
-			{
-				condition="false && (time > 5)";
-				onActivation="[""GW_MHQ_Enabled"", [mhq_1, true, ""west""]] call CBA_fnc_serverEvent;" \n "" \n "[""GW_MHQ_Assembled"", [mhq_1, true]] call CBA_fnc_serverEvent;";
-				sizeA=0;
-				sizeB=0;
-				isServerOnly=1;
-			};
-			id=945;
-			type="EmptyDetector";
-		};
-		class Item74
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={48,6.6262865,16};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				health=0.89999998;
-				init="[this, ""medium""] call GW_MHQ_Fnc_Handler;";
-				name="mhq_1";
-			};
-			id=182;
-			type="B_Quadbike_01_F";
-		};
-		class Item75
-		{
-			dataType="Comment";
-			class PositionInfo
-			{
-				position[]={53,5,13};
-			};
-			title="MHQ - Auto activate";
-			id=1017;
-		};
-		class Item76
-		{
-			dataType="Layer";
-			name="Camp Bravery";
-			id=1078;
-			atlOffset=-5;
-		};
-		class Item77
-		{
-			dataType="Layer";
-			name="Exterior";
-			id=1209;
-			atlOffset=-5;
-		};
-		class Item78
-		{
-			dataType="Layer";
-			name="Junk 1";
-			id=1269;
-			atlOffset=-5;
-		};
-		class Item79
-		{
-			dataType="Layer";
-			name="Military";
-			id=1328;
-			atlOffset=-5;
-		};
-		class Item80
-		{
-			dataType="Layer";
-			name="Tables and Shelves";
-			id=1389;
-			atlOffset=-5;
 		};
 	};
 };

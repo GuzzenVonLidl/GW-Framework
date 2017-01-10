@@ -10,7 +10,8 @@ GVAR(ServerDeadPermanent) = [];
 
 [QGVAR(Events), {
 	params ["_unit","_event"];
-	private _uid = getPlayerUID _unit;
+	private _uid = (getPlayerUID _unit);
+	private _respawns = 0;
 
 	switch (_event) do {
 		case "connect": {
@@ -25,7 +26,7 @@ GVAR(ServerDeadPermanent) = [];
 					};
 				};
 			};
-			private _respawns = GVAR(Count);
+			_respawns = GVAR(Count);
 			if (_uid in GVAR(ServerDead)) then {
 				_respawns = (GVAR(Count) - ({_x isEqualTo _uid} count GVAR(ServerDead)));
 			};
@@ -61,7 +62,11 @@ GVAR(ServerDeadPermanent) = [];
 				if (_respawns isEqualTo 1) then {
 					systemChat "Last life!!, when you die you will be in spectator";
 				} else {
-					systemChat format ["%1 lives remaining", _respawns];
+					if (GVAR(Mode) isEqualTo 1) then {
+						systemChat format ["%1 more lives remaining", (_respawns - 1)];
+					} else {
+						systemChat format ["%1 more lives remaining", _respawns];
+					};
 				};
 			};
 		};
@@ -69,7 +74,7 @@ GVAR(ServerDeadPermanent) = [];
 		case "respawnServer": {
 			GVAR(ServerDead) pushBack _uid;
 			if (GVAR(Mode) isEqualTo 1) then {
-				_unit setVariable [QGVAR(Count), ((_unit getVariable QGVAR(Count)) - 1)];
+				_unit setVariable [QGVAR(Count), ((_unit getVariable QGVAR(Count)) - 1), true];
 			};
 			if (GVAR(Mode) isEqualTo 2) then {
 				switch (GETSIDE(_unit)) do {
@@ -158,7 +163,7 @@ GVAR(IsSpectator) = {
 ] call FUNCMAIN(settingsInit);
 
 [
-	QGVAR(TeamRespawnsWest), "LIST",
+	QGVAR(CountTeamWest), "LIST",
 	["Team Respawns West", "Total amount of respawns allowed per side"],
 	QUOTE(ADDON), [[0,5,10,20,30,40,50,60,70,80,90,100], ["No Respawns","5","10","20","30","40","50","60","70","80","90","100"], 0], false
 ] call FUNCMAIN(settingsInit);
@@ -182,9 +187,11 @@ GVAR(IsSpectator) = {
 ] call FUNCMAIN(settingsInit);
 
 if (hasInterface) then {
-	[{
-		if !(GVAR(Mode) isEqualTo 0) then {
-			[QGVAR(Events), [player, "connect"]] call CBA_fnc_serverEvent;
-		};
-	}, [], 1] call CBA_fnc_waitAndExecute;
+	[QGVARMAIN(missionStarted), {
+		[{
+			if !(GVAR(Mode) isEqualTo 0) then {
+				[QGVAR(Events), [player, "connect"]] call CBA_fnc_serverEvent;
+			};
+		}, [], 1] call CBA_fnc_waitAndExecute;
+	}] call CBA_fnc_addEventHandler;
 };

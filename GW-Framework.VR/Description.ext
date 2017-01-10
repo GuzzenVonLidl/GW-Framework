@@ -73,9 +73,3 @@ class Extended_PostInit_EventHandlers {
 		Init = QUOTE(call compile preprocessFileLineNumbers 'core\XEH_postInit.sqf');
 	};
 };
-
-class ACE_Settings {
-	#define LOAD_ACE
-		#include "Modules\Modules.cpp"
-	#undef LOAD_ACE
-};

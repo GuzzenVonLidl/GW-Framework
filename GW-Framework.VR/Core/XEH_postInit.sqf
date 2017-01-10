@@ -101,7 +101,7 @@ if (DEVBUILD) then {
 		[{
 			cutText ["Finalizing Settings","BLACK FADED",10];
 			GVARMAIN(blockMovement) = player addeventhandler ["animChanged",{player switchMove "AmovPercMstpSnonWnonDnon_Ease";}];
-		}, []] call CBA_fnc_execNextFrame;
+		}, [], 0.1] call CBA_fnc_waitAndExecute;
 		[{
 			if !(isNil QGVARMAIN(blockMovement)) then {
 				player removeEventHandler ["animChanged", GVARMAIN(blockMovement)];

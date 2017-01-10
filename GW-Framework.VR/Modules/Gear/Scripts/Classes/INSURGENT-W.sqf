@@ -1,3 +1,4 @@
+_allowedNightStuff = false;
 
 _goggles = "G_Bandanna_blk";
 _helmet = "H_Bandanna_gry";

@@ -34,9 +34,9 @@ _pointer = "";
 _sight = "";
 _bipod = "";
 
-_rifle = ["CUP_arifle_M16A4_Base", _silencer, _pointer, _sight, _bipod];
+_rifle = ["arifle_SPAR_01_blk_F", _silencer, _pointer, _sight, _bipod];
 _rifleC = ["SMG_05_F", _silencer, _pointer, _sight, _bipod];
-_rifleGL = ["CUP_arifle_M16A4_GL", _silencer, _pointer, _sight, _bipod];
+_rifleGL = ["arifle_SPAR_01_GL_blk_F", _silencer, _pointer, _sight, _bipod];
 _rifle_mag = "30Rnd_556x45_Stanag";
 _rifle_mag_tr = "30Rnd_556x45_Stanag_Tracer_Red";
 _rifleC_mag = "30Rnd_9x21_Mag_SMG_02";

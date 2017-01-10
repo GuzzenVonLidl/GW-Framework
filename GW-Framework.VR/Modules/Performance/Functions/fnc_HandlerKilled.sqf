@@ -22,14 +22,12 @@ params ["_unit"];
 if !(GVAR(UnitEnabled) || !(local _unit)) exitWith {false};
 if ((isPlayer _unit) || (_unit isKindOf "HeadlessClient_F")) exitWith {false};
 
-{
-	_unit removeMagazine _x;
-	_unit removeItem _x;
-} forEach ((magazines _unit) + (items _unit) + (assignedItems _unit));
-
 [{
 	params ["_unit"];
-	if !(simulationEnabled _unit) then {
-		_unit enableSimulationGlobal false;
-	};
+	{
+		_unit removeItem _x;
+	} forEach (itemsWithMagazines _unit);
+	{
+		_unit unlinkItem _x;
+	} forEach (assignedItems _unit);
 }, [_unit], 5] call CBA_fnc_waitAndExecute;

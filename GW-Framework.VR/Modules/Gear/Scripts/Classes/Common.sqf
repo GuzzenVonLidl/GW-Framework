@@ -38,18 +38,18 @@ _glflareR = "UGL_FlareRed_F";
 
 _map = "ItemMap";
 _gps = "ItemGPS";
-_radio = "";	// Not used, Use Radio Plugin instead
 _compass = "ItemCompass";
 _watch = "ItemWatch";
 _nvg = "";
-if (call EFUNC(Common,isNight)) then {
+_parachute = "B_Parachute";
+if ((call EFUNC(Common,isNight)) && _allowedNightStuff) then {
 	_nvg = "NVGoggles_Opfor";
 };
 
 _demoCharge = "DemoCharge_Remote_Mag";			// Small
 _satchelCharge = "SatchelCharge_Remote_Mag";	// Big
 
-if (GVARMAIN(mod_CTAB)) then {	// Commander Tablet
+if (GVARMAIN(mod_CTAB)) then {
 	_cTab = "ItemcTab";
 	_Android = "ItemAndroid";
 	_microDAGR = "ItemMicroDAGR";
@@ -60,15 +60,15 @@ if (GVARMAIN(mod_CTAB)) then {	// Commander Tablet
 	};
 };
 
-// BI or Neky Medical
+_toolKit = "ToolKit";
 _bandage = "FirstAidKit";
 _blood = "MediKit";
 _epi = "";
 _morph = "";
-_IFAK = [[_bandage,1]];	//	Individual First Aid Kits
+_IFAK = [[_bandage,1]];					//	Individual First Aid Kits
 _FAKSmall = [[_bandage,15]];			//	Medic Kit Small
 _FAKBig = [[_bandage,10],[_blood,1]];	//	Medic Kit Big
-if (GVARMAIN(mod_ACE3_Medical)) then {	// ACE
+if (GVARMAIN(mod_ACE3_Medical)) then {	// Basic
 	_bandage = "ACE_fieldDressing";
 	_blood = "ACE_bloodIV";
 	_epi = "ACE_epinephrine";
@@ -84,7 +84,7 @@ if (GVARMAIN(mod_ACE3_Medical)) then {	// ACE
 		[_epi,5],
 		[_blood,3]
 	];
-	if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {	// ACE Advanced
+	if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {	// Advanced
 		_blood = "ACE_bloodIV";
 		_epi = "ACE_epinephrine";
 		_morph = "ACE_morphine";
@@ -127,7 +127,7 @@ _handFlareG = "";
 _handFlareR = "";
 _handFlareW = "";
 _handFlareY = "";
-if (GVARMAIN(mod_ACE3)) then {	// ACE
+if (GVARMAIN(mod_ACE3)) then {
 	_barrel = "ACE_SpareBarrel";
 	_cables = "ACE_CableTie";
 	_clacker = "ACE_M26_Clacker";

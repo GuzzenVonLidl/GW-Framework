@@ -104,7 +104,7 @@ class ace_common_checkPBOsWhitelist {
 // -------------------------------------------
 
 class ace_cookoff_enable {
-	value = 0;
+	value = 1;
 	typeName = "BOOL";
 	force = 1;
 };
