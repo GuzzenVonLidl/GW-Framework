@@ -36,7 +36,7 @@ Group: General
 
 #define MAJOR 0
 #define MINOR 2
-#define PATCHLVL 0
+#define PATCHLVL 1
 #define BUILD 100117	// We will use the DATE for the BUILD# in the format YYMMDD
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 

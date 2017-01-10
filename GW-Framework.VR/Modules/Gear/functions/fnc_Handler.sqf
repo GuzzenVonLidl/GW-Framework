@@ -118,6 +118,7 @@ if (_isMan) then {
 		_unit setUnitLoadout _loadout;
 
 		if ((isPlayer _unit) && _useFactionRadio && _roleUseRadio) then {
+			_unit setVariable [QGVAR(isPlayer),  true];
 			if (isClass ((missionConfigFile >> "GW_Modules" >> "Radios"))) then {
 				[{
 					_this call EFUNC(Radios,add);

@@ -11,7 +11,7 @@ if !(hasInterface) exitWith {false};
 	player addEventHandler ["InventoryOpened", {
 		params ["_unit","_container","_secondaryContainer"];
 		if (GVAR(BlockAIGear)) then {
-			if (((_container isKindOf "CAManBase") && !(isPlayer _container)) || ((_secondaryContainer isKindOf "CAManBase") && !(isPlayer _secondaryContainer))) then {
+			if (((_container isKindOf "CAManBase") && !(_container getVariable ["GW_Gear_isPlayer", false])) || ((_secondaryContainer isKindOf "CAManBase") && (_secondaryContainer getVariable ["GW_Gear_isPlayer", false]))) then {
 				true
 			};
 		} else {
@@ -20,4 +20,5 @@ if !(hasInterface) exitWith {false};
 	}];
 }, [], 1] call CBA_fnc_waitAndExecute;
 
-//			systemChat format ["%1, %2", [time, (_container isKindOf "CAManBase"), (alive _container), !(isPlayer _container)], ([(_secondaryContainer isEqualTo objNull), (_secondaryContainer isKindOf "CAManBase"), (alive _secondaryContainer), !(isPlayer _secondaryContainer)])];
+//	systemChat format ["%1", [time, (_container isKindOf "CAManBase"), (alive _container), (_container getVariable ["GW_Gear_isPlayer", false])]];
+//	systemChat format ["%1",[(_secondaryContainer isEqualTo objNull), (_secondaryContainer isKindOf "CAManBase"), (alive _secondaryContainer), (_secondaryContainer getVariable ["GW_Gear_isPlayer", false])]];

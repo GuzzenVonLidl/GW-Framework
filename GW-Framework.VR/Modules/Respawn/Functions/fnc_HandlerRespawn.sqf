@@ -21,7 +21,7 @@ if (!(isPlayer _unit) && !(local _unit)) exitWith {false};
 	_unit addEventHandler ["InventoryOpened", {
 		params ["_unit","_container","_secondaryContainer"];
 		if (GVAR(BlockAIGear)) then {
-			if (((_container isKindOf "CAManBase") && !(isPlayer _container)) || ((_secondaryContainer isKindOf "CAManBase") && !(isPlayer _secondaryContainer))) then {
+			if (((_container isKindOf "CAManBase") && !(_container getVariable ["GW_Gear_isPlayer", false])) || ((_secondaryContainer isKindOf "CAManBase") && (_secondaryContainer getVariable ["GW_Gear_isPlayer", false]))) then {
 				true
 			};
 		} else {
