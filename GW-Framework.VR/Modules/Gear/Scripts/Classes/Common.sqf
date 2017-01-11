@@ -137,6 +137,8 @@ if (GVARMAIN(mod_ACE3)) then {
 	_mapTools = "ACE_MapTools";
 	_rangefinder = "ACE_Vector";
 	_microDAGR = "ACE_DAGR";
+	_mortarRangecard = "ACE_RangeTable_82mm";
+	_rifleRangecard = "ACE_RangeCard";
 
 	_flashBang = "ACE_M84";
 	_handFlareG = "ACE_HandFlare_Green";

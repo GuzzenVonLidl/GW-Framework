@@ -146,22 +146,81 @@ switch (toLower(_role)) do {
 
 	case "crew": {
 		[_goggles,_helmet,_uniform,_vest] call _addEquipment;
-		[_rifleC, _rifleC_mag_tr, ""] call _addPrimary;
+		[_smg, _smg_mag_tr, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,2]] call _addToUniform;
-		[[_rifleC_mag_tr,3],[_smokegrenadeP,3],[_grenademini,1]] call _addToVest;
+		[[_smg_mag_tr,3],[_smokegrenadeP,3],[_grenademini,1]] call _addToVest;
 		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
 	};
 
 	case "p": {
 		[_goggles,_helmet,_uniform,_vest,_backpackRadio] call _addEquipment;
-		[_rifleC, _rifleC_mag_tr, ""] call _addPrimary;
+		[_smg, _smg_mag_tr, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
 		_IFAK call _addToUniform;
 		[[_smokegrenadeY,2],[_smokegrenadeP,3],[_grenademini,1]] call _addToUniform;
-		[[_rifleC_mag_tr,4]] call _addToVest;
+		[[_smg_mag_tr,4]] call _addToVest;
 		_FAKBig call _addToBackpack;
+		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+	
+	case "hunter": {
+		[_goggles,_helmet,_uniform,_vest,_backpackRadio] call _addEquipment;
+		[_rifleMXM, _rifle_MXM_mag_tr, ""] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_pistol_mag,2],[_grenademini,2],[_rifleRangecard,1]] call _addToUniform;
+		[[_rifle_MXM_mag_tr,3],[_smokegrenadeY,6],[_smokegrenadeG,6],[_smokegrenadeB,2],[_smokegrenadeP,2]] call _addToVest;
+		[[_rifle_MXM_mag_tr,2],[_smokegrenadeG,5]] call _addToBackpack;
+		if (call EFUNC(Common,isNight)) then {
+			[[_chemG,5],[_chemR,5],[_handFlareG,2],[_IRGrenade,3]] call _addToBackpack;
+		};
+		_laserDesignator call _addBino;
+		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+	
+	case "dragontl": {
+		[_goggles,_helmet,_uniform,_vest,_backpackRadio] call _addEquipment;
+		[_rifleGL, _rifle_mag_tr, _glsmokeR] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_pistol_mag,2],[_grenademini,2]] call _addToUniform;
+		[[_rifle_mag_tr,3],[_smokegrenadeY,6],[_smokegrenadeG,6],[_mortarRangecard,1]] call _addToVest;
+		[[_glsmokeR,5],[_glsmokeG,2],[_smokegrenadeG,5]] call _addToBackpack;
+		if (call EFUNC(Common,isNight)) then {
+			[[_chemG,5],[_chemR,5],[_handFlareG,2],[_IRGrenade,3],[_glflareIR,3],[_glflareW,3]] call _addToBackpack;
+		};
+		_laserDesignator call _addBino;
+		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+
+	case "dragon2": {
+		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
+		[_rifle, _rifle_mag, ""] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_pistol_mag,2],[_smokegrenadeY,4],[_grenademini,2]] call _addToUniform;
+		[[_grenade,1],[_rifle_mag,4],[_mortarRangecard,1]] call _addToVest;
+		[_map, "", "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+
+	case "dragon3": {
+		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
+		[_rifle, _rifle_mag, ""] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_pistol_mag,2],[_smokegrenadeY,4],[_grenademini,2]] call _addToUniform;
+		[[_grenade,1],[_rifle_mag,4],[_mortarRangecard,1]] call _addToVest;
+		[_map, "", "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+
+	case "jetp": {
+		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_smokegrenadeG,2]] call _addToUniform;
+		[[_smokegrenadeG,2]] call _addToVest;
 		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
 	};
 

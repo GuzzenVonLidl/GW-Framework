@@ -12,11 +12,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=577;
+		nextID=587;
 	};
 	class Camera
 	{
-		pos[]={50,50,0};
+		pos[]={46.464401,52.606071,4.7143779};
 		dir[]={0,-0.69999999,0.69999999};
 		up[]={0,0.69999999,0.69999999};
 		aside[]={0.89999998,0,0};
@@ -26,19 +26,24 @@ binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
+	"ace_gforces",
+	"ace_parachute",
 	"A3_Weapons_F_Ammoboxes",
+	"ace_cargo",
 	"A3_Ui_F",
 	"A3_Structures_F_Mil_Flags",
 	"A3_Supplies_F_Exp_Ammoboxes",
+	"ace_dragging",
 	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Structures_F_Mil_Helipads",
-	"A3_Soft_F_Quadbike_01"
+	"A3_Soft_F_Quadbike_01",
+	"ace_repair"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=7;
+		items=11;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -48,45 +53,73 @@ class AddonsMetaData
 		};
 		class Item1
 		{
+			className="ace_parachute";
+			name="ACE3 - Parachute";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item2
+		{
 			className="A3_Weapons_F";
 			name="Arma 3 Alpha - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item2
+		class Item3
+		{
+			className="ace_cargo";
+			name="ACE3 - Cargo";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item4
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item3
+		class Item5
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item4
+		class Item6
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item5
+		class Item7
+		{
+			className="ace_dragging";
+			name="ACE3 - Dragging";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item8
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item6
+		class Item9
 		{
 			className="A3_Soft_F";
 			name="Arma 3 Alpha - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
+		};
+		class Item10
+		{
+			className="ace_repair";
+			name="ACE3 - Repair";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 	};
 };
@@ -727,7 +760,7 @@ class CustomAttributes
 																"STRING"
 															};
 														};
-														value="NATO-D";
+														value="BAF-D";
 													};
 												};
 												class Item1
