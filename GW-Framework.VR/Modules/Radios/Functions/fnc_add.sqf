@@ -18,7 +18,7 @@
 params ["_unit","_role"];
 
 private _radioSmall = ["sl","sm","ftl","r","g","ag","ar","mat","amat","ammg","mmg"];
-private _radioMedium = ["pl","fac","ftl","p","crew"];
+private _radioMedium = ["pl","fac","ftl","p","crew","hunter","dragontl","dragon2","dragon3","jetp"];
 
 if (GVARMAIN(mod_TFAR)) then {
 	if ({_x call TFAR_fnc_isRadio} count (items _unit + assignedItems _unit) > 0) then {

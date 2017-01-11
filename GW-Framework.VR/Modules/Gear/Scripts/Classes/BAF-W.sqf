@@ -29,6 +29,24 @@ if (_role isEqualTo "p") then {
 	_vest = "CUP_V_BAF_Osprey_Mk2_DPM_Pilot";
 };
 
+// Detect Dragon Gunners and change backpack accordingly
+if (_role isEqualTo "dragon2") then {
+	_backpack = "B_Mortar_01_weapon_F";
+};
+
+// Detect Dragon Asst. Gunners and change backpack accordingly
+if (_role isEqualTo "dragon3") then {
+	_backpack = "B_Mortar_01_support_F";
+};
+
+// Detect Jet Pilot and change uniform/helmet/vest accordingly
+if (_role isEqualTo "jetp") then {
+	_helmet = "H_PilotHelmetFighter_B";
+	_uniform = "U_B_PilotCoveralls";
+	_vest = "V_Rangemaster_belt";
+	_backpack = "B_Parachute";
+};
+
 _silencer = "";
 _pointer = "";
 _sight = "";
@@ -56,3 +74,25 @@ _MAT_mag = "CUP_Javelin_M";
 
 _pistol = ["CUP_hgun_M9", _silencer, _pointer, "optic_MRD", _bipod];
 _pistol_mag = "CUP_15Rnd_9x19_M9";
+
+// MXM Attachments
+_silencer = "CUP_muzzle_snds_AWM";
+_pointer = "";
+_sight = "optic_LRPS";
+_bipod = "CUP_bipod_Harris_1A2_L";
+
+// MXM
+_rifleMXM = ["CUP_srifle_AWM_wdl", _silencer, _pointer, _sight, _bipod];
+_rifle_MXM_mag = "CUP_5Rnd_86x70_L115A1";
+_rifle_MXM_mag_tr = "CUP_5Rnd_86x70_L115A1";
+
+// SMG Attachments
+_silencer = "";
+_pointer = "";
+_sight = "";
+_bipod = "";
+
+// SMG
+_smg = ["CUP_smg_MP5A5", _silencer, _pointer, _sight, _bipod];
+_smg_mag = "CUP_30Rnd_9x19_MP5";
+_smg_mag_tr = "CUP_30Rnd_9x19_MP5";

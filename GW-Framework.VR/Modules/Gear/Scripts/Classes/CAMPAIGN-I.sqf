@@ -23,6 +23,24 @@ if (_role isEqualTo "p") then {
 	_vest = "";
 };
 
+// Detect Dragon Gunners and change backpack accordingly
+if (_role isEqualTo "dragon2") then {
+	_backpack = "";
+};
+
+// Detect Dragon Asst. Gunners and change backpack accordingly
+if (_role isEqualTo "dragon3") then {
+	_backpack = "";
+};
+
+// Detect Jet Pilot and change uniform/helmet/vest accordingly
+if (_role isEqualTo "jetp") then {
+	_helmet = "";
+	_uniform = "";
+	_vest = "";
+	_backpack = "";
+};
+
 // Attachments
 _silencer = "";
 _pointer = "";
@@ -61,3 +79,27 @@ _MAT_mag_HE = "";
 // Pistol
 _pistol = ["", _silencer, _pointer, _sight, _bipod];
 _pistol_mag = "";
+
+// MXM Attachments
+_silencer = "";
+_pointer = "";
+_sight = "";
+_bipod = "";
+
+// MXM
+_rifleMXM = ["", _silencer, _pointer, _sight, _bipod];
+_rifle_MXM_mag = "";
+_rifle_MXM_mag_tr = "";
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// SMG Attachments
+_silencer = "";
+_pointer = "";
+_sight = "";
+_bipod = "";
+
+// SMG
+_smg = ["", _silencer, _pointer, _sight, _bipod];
+_smg_mag = "";
+_smg_mag_tr = "";

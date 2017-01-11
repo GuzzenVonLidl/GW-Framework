@@ -29,6 +29,16 @@ if (_role isEqualTo "p") then {
 	_uniform = "CUP_U_O_RUS_EMR_1_VDV";
 };
 
+// Detect Dragon Gunners and change backpack accordingly
+if (_role isEqualTo "dragon2") then {
+	_backpack = "B_Mortar_01_weapon_F";
+};
+
+// Detect Dragon Asst. Gunners and change backpack accordingly
+if (_role isEqualTo "dragon3") then {
+	_backpack = "B_Mortar_01_support_F";
+};
+
 _silencer = "";
 _pointer = "";
 _sight = "";
@@ -58,3 +68,27 @@ _LAT_ReUsable = true;
 
 _pistol = ["CUP_hgun_PB6P9", _silencer, _pointer, _sight, _bipod];
 _pistol_mag = "CUP_8Rnd_9x18_Makarov_M";
+
+// MXM Attachments
+_silencer = "muzzle_snds_B";
+_pointer = "";
+_sight = "optic_LRPS";
+_bipod = "bipod_03_F_oli";
+
+// MXM
+_rifleMXM = ["srifle_DMR_06_olive_F", _silencer, _pointer, _sight, _bipod];
+_rifle_MXM_mag = "20Rnd_762x51_Mag";
+_rifle_MXM_mag_tr = "20Rnd_762x51_Mag";
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// SMG Attachments
+_silencer = "";
+_pointer = "";
+_sight = "";
+_bipod = "";
+
+// SMG
+_smg = ["hgun_PDW2000_F", _silencer, _pointer, _sight, _bipod];
+_smg_mag = "30Rnd_9x21_Mag";
+_smg_mag_tr = "30Rnd_9x21_Red_Mag";

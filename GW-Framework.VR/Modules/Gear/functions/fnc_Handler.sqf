@@ -28,6 +28,12 @@
 	amat	- Asst. Rifleman AT
 	mmg		- Medium Machine Gunner
 	ammg	- Asst. Medium Machine Gunner
+	
+	hunter	- AAC Ground Recon
+	dragontl- Mortar Team Leader
+	dragon2 - Mortar Gunner
+	dragon3 - Mortar Assistant
+	jetp	- Jet Pilot
 */
 #include "..\scriptComponent.hpp"
 #include "Functions.hpp"
@@ -55,7 +61,12 @@ private [
 	"_LAT","_LAT_mag","_LAT_mag_HE","_LAT_ReUsable",
 	"_MAT","_MAT_mag","_MAT_mag_HE",
 	"_pistol","_pistol_mag","_pistol_mag_tr",
-	"_useFactionRadio","_roleUseRadio"
+	"_useFactionRadio","_roleUseRadio",
+	
+	"_rifleMXM","_rifle_MXM_mag","_rifle_MXM_mag_tr",
+	"_IRGrenade", "_mortarRangecard", "_rifleRangecard",
+	"_smg","_smg_mag","_smg_mag_tr",
+	"_glflareW", "_glflareIR"
 ];
 
 params [
