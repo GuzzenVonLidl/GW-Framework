@@ -56,7 +56,18 @@ class Params {
 	#undef LOAD_PARAMS
 };
 
+class GW_Modules_Base {
+	name = "GW Modules Base";
+	Authors[] = {};
+	version = 1;
+	description = "Dummy for each module";
+	preInit = "preInit.sqf";
+	postInit = "postInit.sqf";
+	requiredModules[] = {};
+	requiredAddons[] = {};
+};
 class GW_Modules {
+
 	#define LOAD_MODULES
 		#include "Modules\Modules.cpp"
 	#undef LOAD_MODULES
@@ -72,4 +83,16 @@ class Extended_PostInit_EventHandlers {
 	class postInit {
 		Init = QUOTE(call compile preprocessFileLineNumbers 'core\XEH_postInit.sqf');
 	};
+};
+
+class ACE_Settings {
+	#define LOAD_ACE
+		#include "Modules\Modules.cpp"
+	#undef LOAD_ACE
+};
+
+class ACE_Repair {
+	#define LOAD_ACE_Repair
+		#include "Modules\Modules.cpp"
+	#undef LOAD_ACE_Repair
 };

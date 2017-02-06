@@ -1,0 +1,98 @@
+// *	DO NOT CHANCE THE ORDER/STRUCTIOR OF THE FILE
+//	https://community.bistudio.com/wiki/description.ext
+// ==============================================================================
+// *	Includes the most nessasary configs for the framework to work
+#define	isDescription
+#include "scriptComponent.hpp"
+
+briefingName = "GW@14 Framework Examples";						// Mission Name
+overviewText = "Collections of examples";
+
+class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
+	class Core {
+		DebugConsole = FALSE;	// BOOL: Toggle enable and disable external console for extenceive debugging
+		ClearConsole = 3;		// NUMBER: 0: Disabled		1: mission preview		2: 3den preview		3: mission and 3den preview
+		devBuild = FALSE;		// BOOL: TRUE: Enables more debugging messages and dev version(including removing all players)
+		ResetSettings = FALSE;	// Force reset all settings for the ingame mission settings menu
+		Version = QUOTE(VERSION);
+	};
+
+	class Naming {
+// 		currently broken		Name = "";				// Mission Name
+		Author = "GuzzenVonLidl";						// Author
+		AuthorUID[] = {"_SP_PLAYER_"};
+		Description = "Example mission for framework";	// Description in mission select
+		onLoad = "Don't get shot";						// Description on loading
+		Picture = "";									// Picture on loading
+		version = 1;									// Version of mission
+		GameMode = "Coop";								// mission will be filterd with
+	};
+};
+
+// *	DO NOT EDIT BELOW
+// Global Mission Settings
+aiKills = 0;
+allowFunctionsLog = 0;
+allowFunctionsRecompile = 1;
+disableChannels[]={{0,false,true},{1,false,true},{2,false,true},{5,false,true}};
+disabledAi = 1;
+disableRandomization[] = {"CAManBase"};	// Disable random gear for units
+enableDebugConsole = 1;
+enableTeamSwitch = 0;
+joinUnassigned = 1;
+scriptedPlayer = 1;
+showGroupIndicator = 0;
+
+corpseManagerMode = 0;
+wreckManagerMode = 0;
+
+respawn = "BASE";
+respawndelay = 30;
+respawnOnStart = 0;
+
+class Params {
+	#define LOAD_PARAMS
+		#include "Modules\Modules.cpp"
+	#undef LOAD_PARAMS
+};
+
+class GW_Modules_Base {
+	name = "GW Modules Base";
+	Authors[] = {};
+	version = 1;
+	description = "Dummy for each module";
+	preInit = "preInit.sqf";
+	postInit = "postInit.sqf";
+	requiredModules[] = {};
+	requiredAddons[] = {};
+};
+class GW_Modules {
+
+	#define LOAD_MODULES
+		#include "Modules\Modules.cpp"
+	#undef LOAD_MODULES
+};
+
+class Extended_PreInit_EventHandlers {
+	class preInit {
+		Init = QUOTE(call compile preprocessFileLineNumbers 'core\XEH_preInit.sqf');
+	};
+};
+
+class Extended_PostInit_EventHandlers {
+	class postInit {
+		Init = QUOTE(call compile preprocessFileLineNumbers 'core\XEH_postInit.sqf');
+	};
+};
+
+class ACE_Settings {
+	#define LOAD_ACE
+		#include "Modules\Modules.cpp"
+	#undef LOAD_ACE
+};
+
+class ACE_Repair {
+	#define LOAD_ACE_Repair
+		#include "Modules\Modules.cpp"
+	#undef LOAD_ACE_Repair
+};

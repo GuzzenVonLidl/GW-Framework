@@ -33,6 +33,7 @@ _bipod = "";
 _rifle = ["", _silencer, _pointer, _sight, _bipod];
 _rifleC = ["", _silencer, _pointer, _sight, _bipod];
 _rifleGL = ["", _silencer, _pointer, _sight, _bipod];
+_rifleMarksman = ["", _silencer, _pointer, _sight, _bipod];
 _rifle_mag = "";
 _rifle_mag_tr = "";
 
