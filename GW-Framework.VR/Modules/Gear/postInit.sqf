@@ -1,6 +1,10 @@
 #include "scriptComponent.hpp"
 
-["AllVehicles", "init", FUNC(Init), true, [], true] call CBA_fnc_addClassEventHandler;
+["AllVehicles", "init", {
+	[{
+		_this call FUNC(Init);
+	}, _this] call CBA_Fnc_execNextFrame;
+}, true, [], true] call CBA_fnc_addClassEventHandler;
 
 ["CAManBase", "Killed", {
 	params [["_unit", objNull, [objNull]]];
@@ -41,7 +45,7 @@
 	player addEventHandler ["InventoryOpened", {
 		params ["_unit","_container","_secondaryContainer"];
 		if (GVAR(BlockAIGear)) then {
-			if (((_container isKindOf "CAManBase") && !(_container getVariable ["GW_Gear_isPlayer", false])) || ((_secondaryContainer isKindOf "CAManBase") && (_secondaryContainer getVariable ["GW_Gear_isPlayer", false]))) then {
+			if (((_container isKindOf "CAManBase") && !(_container getVariable [QGVAR(isPlayer), false])) || ((_secondaryContainer isKindOf "CAManBase") && (_secondaryContainer getVariable [QGVAR(isPlayer), false]))) then {
 				true
 			};
 		} else {
@@ -49,6 +53,3 @@
 		};
 	}];
 }] call CBA_fnc_addEventHandler;
-
-//	systemChat format ["%1", [time, (_container isKindOf "CAManBase"), (alive _container), (_container getVariable ["GW_Gear_isPlayer", false])]];
-//	systemChat format ["%1",[(_secondaryContainer isEqualTo objNull), (_secondaryContainer isKindOf "CAManBase"), (alive _secondaryContainer), (_secondaryContainer getVariable ["GW_Gear_isPlayer", false])]];

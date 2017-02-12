@@ -13,7 +13,11 @@
 }] call CBA_fnc_addEventHandler;
 
 [QGVARMAIN(serverReady), {
-	["CAManBase", "init", FUNC(transferer), true, [], true] call CBA_fnc_addClassEventHandler;
+	["CAManBase", "init", {
+		[{
+			_this call FUNC(transferer);
+		}, _this] call CBA_Fnc_execNextFrame;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
 
 	[{
 		[] call FUNC(HandlePFH);

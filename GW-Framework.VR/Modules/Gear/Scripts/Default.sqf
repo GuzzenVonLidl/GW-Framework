@@ -232,6 +232,6 @@ switch (toLower(_role)) do {
 	};
 };
 
-if ((call EFUNC(Common,isNight)) && (isPlayer _unit)) then {
+if ((call EFUNC(Common,isNight)) && _allowedNightStuff && (isPlayer _unit)) then {
 	[[_mapFlashLight,1],[_IRStrobe,1]] call _addToUniform;
 };

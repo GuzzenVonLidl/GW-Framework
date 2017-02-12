@@ -10,6 +10,15 @@
 #include "scriptComponent.hpp"
 
 [QGVARMAIN(missionStarted), {
-	["CAManBase", "init", FUNC(Init), true, [], true] call CBA_fnc_addClassEventHandler;
-	["CAManBase", "Respawn", FUNC(HandlerRespawn), true, [], true] call CBA_fnc_addClassEventHandler;
+	["CAManBase", "init", {
+		[{
+			_this call FUNC(Init);
+		}, _this] call CBA_Fnc_execNextFrame;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
+
+	["CAManBase", "Respawn", {
+		[{
+			_this call FUNC(HandlerRespawn);
+		}, _this] call CBA_Fnc_execNextFrame;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
 }] call CBA_fnc_addEventHandler;

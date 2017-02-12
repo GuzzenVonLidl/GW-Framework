@@ -21,5 +21,9 @@
 }] call CBA_fnc_addEventHandler;
 
 [QGVARMAIN(serverReady), {
-	["AllVehicles", "init", GW_Common_fnc_addToCurators, true, [], true] call CBA_fnc_addClassEventHandler;
+	["AllVehicles", "init", {
+		[{
+			_this call GW_Common_fnc_addToCurators;
+		}, _this] call CBA_Fnc_execNextFrame;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
 }] call CBA_fnc_addEventHandler;

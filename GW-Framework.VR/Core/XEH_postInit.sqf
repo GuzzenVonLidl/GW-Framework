@@ -43,13 +43,6 @@ if (DEVBUILD) then {
 	{
 		deleteVehicle _x;
 	} forEach switchableUnits;
-
-	if !(isNil "GW_Menu_fnc_mapMonitor_Handler") then  {
-		[2] call GW_Menu_fnc_mapMonitor_Handler;
-	};
-	if !(isNil "GW_Menu_fnc_serverfps") then  {
-		[5] spawn GW_Menu_fnc_serverfps;
-	};
 } else {
 	{
 		private _unit = _x;
@@ -68,21 +61,25 @@ if (DEVBUILD) then {
 
 		if (isServer) then {
 			LOG("Loading Server Settings");
-			private ["_LogicCenter","_moduleGroup","_module"];
-			_LogicCenter = createCenter sideLogic;
-			_moduleGroup = createGroup _LogicCenter;
-			GVARMAIN(Gamelogic) = "Land_Matches_F" createVehicle [0,0,0];
-			GVARMAIN(Gamelogic) enableSimulationGlobal false;
-			GVARMAIN(Gamelogic) hideObjectGlobal true;
-			publicVariable QGVARMAIN(Gamelogic);
-			GVARMAIN(ZeuzModuleAdminLogged) = _moduleGroup createUnit["ModuleCurator_F",[0,0,0],[],0,"NONE"];
-			GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Owner", "#adminLogged", true];
-			GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Name", "AdminZeus", true];
-			GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Addons", 3, true];
-			GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Forced", 0, true];
-			GVARMAIN(ZeuzModuleAdminLogged) setVariable ["birdType", "", true];
-			GVARMAIN(ZeuzModuleAdminLogged) setVariable ["showNotification", false, true];
-			publicVariable QGVARMAIN(ZeuzModuleAdminLogged);
+			[{
+				private ["_LogicCenter","_moduleGroup"];
+				_LogicCenter = createCenter sideLogic;
+				_moduleGroup = createGroup _LogicCenter;
+
+				GVARMAIN(Gamelogic) = "Land_Matches_F" createVehicle [0,0,0];
+				GVARMAIN(Gamelogic) enableSimulationGlobal false;
+				GVARMAIN(Gamelogic) hideObjectGlobal true;
+				publicVariable QGVARMAIN(Gamelogic);
+
+				GVARMAIN(ZeuzModuleAdminLogged) = _moduleGroup createUnit["ModuleCurator_F",[0,0,0],[],0,"NONE"];
+				GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Owner", "#adminLogged", true];
+				GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Name", "AdminZeus", true];
+				GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Addons", 3, true];
+				GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Forced", 0, true];
+				GVARMAIN(ZeuzModuleAdminLogged) setVariable ["birdType", "", true];
+				GVARMAIN(ZeuzModuleAdminLogged) setVariable ["showNotification", false, true];
+				publicVariable QGVARMAIN(ZeuzModuleAdminLogged);
+			}, []] call CBA_Fnc_execNextFrame;
 
 			[QGVARMAIN(serverReady), []] call CBA_fnc_localEvent;
 		};

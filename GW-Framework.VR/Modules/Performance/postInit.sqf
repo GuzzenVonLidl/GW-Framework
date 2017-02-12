@@ -1,8 +1,16 @@
 #include "scriptComponent.hpp"
 
 if (isServer) then {
-	["CAManBase", "init", FUNC(Simulation), true, [], true] call CBA_fnc_addClassEventHandler;
-	["CAManBase", "KILLED", FUNC(HandlerKilled), true, [], true] call CBA_fnc_addClassEventHandler;
+	["CAManBase", "init", {
+		[{
+			_this call FUNC(Simulation);
+		}, _this] call CBA_Fnc_execNextFrame;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
+	["CAManBase", "KILLED", {
+		[{
+			_this call FUNC(HandlerKilled);
+		}, _this] call CBA_Fnc_execNextFrame;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
 };
 
 [QGVAR(removeGroup), {

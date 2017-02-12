@@ -110,6 +110,10 @@ if (_isMan) then {
 	#include "..\Scripts\factions.sqf"
 	#include "isNilCheck.hpp"
 
+	if ((call EFUNC(Common,isNight)) && _allowedNightStuff) then {
+		_nvg = "NVGoggles_Opfor";
+	};
+
 	switch (_loadoutFile) do {
 		default {
 			#include "..\Scripts\Default.sqf"
@@ -120,7 +124,7 @@ if (_isMan) then {
 		_unit setUnitLoadout _loadout;
 
 		if ((isPlayer _unit) && _useFactionRadio && _roleUseRadio) then {
-			_unit setVariable [QGVAR(isPlayer),  true];
+			_unit setVariable [QGVAR(isPlayer), true, true];
 			if (isClass ((missionConfigFile >> "GW_Modules" >> "Radios"))) then {
 				[{
 					_this call EFUNC(Radios,add);
@@ -136,7 +140,7 @@ if (_isMan) then {
 		["_movable", true, [true]]
 	];
 
-	_isVehicle = _unit isKindOf "AllVehicles";
+	_isVehicle = (_unit isKindOf "AllVehicles");
 	if !(_isVehicle) Then {
 		[_unit, _movable] call ACE_Dragging_fnc_setCarryable;
 		[_unit, _movable] call ACE_Dragging_fnc_setDraggable;
@@ -249,7 +253,7 @@ if (_isMan) then {
 				[_unit, _smokegrenadeG, 5] call _fnc_AddObjectsCargo;
 
 				[_unit, _bandage, 40] call _fnc_AddObjectsCargo;
-				if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {
+				if (GVARMAIN(mod_ACE3)) then {
 					[_unit, _morph, 20] call _fnc_AddObjectsCargo;
 				};
 
@@ -284,7 +288,7 @@ if (_isMan) then {
 				[_unit, _smokegrenadeG, 15] call _fnc_AddObjectsCargo;
 
 				[_unit, _bandage, 50] call _fnc_AddObjectsCargo;
-				if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {
+				if (GVARMAIN(mod_ACE3)) then {
 					[_unit, _morph, 20] call _fnc_AddObjectsCargo;
 					[_unit, _epi, 20] call _fnc_AddObjectsCargo;
 					[_unit, _blood, 10] call _fnc_AddObjectsCargo;
@@ -316,16 +320,18 @@ if (_isMan) then {
 
 			case "med_box": {
 				[_unit, _bandage, 100] call _fnc_AddObjectsCargo;
-				if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {
+				if (GVARMAIN(mod_ACE3)) then {
 					[_unit, _morph, 50] call _fnc_AddObjectsCargo;
 					[_unit, _epi, 50] call _fnc_AddObjectsCargo;
 					[_unit, _blood, 50] call _fnc_AddObjectsCargo;
-					[_unit, "ACE_elasticBandage", 100] call _fnc_AddObjectsCargo;
-					[_unit, "ACE_tourniquet", 50] call _fnc_AddObjectsCargo;
-					[_unit, "ACE_quikclot", 50] call _fnc_AddObjectsCargo;
-					[_unit, "ACE_atropine", 50] call _fnc_AddObjectsCargo;
-					[_unit, "ACE_salineIV", 50] call _fnc_AddObjectsCargo;
-					[_unit, "ACE_surgicalKit", 50] call _fnc_AddObjectsCargo;
+					if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {
+						[_unit, "ACE_elasticBandage", 100] call _fnc_AddObjectsCargo;
+						[_unit, "ACE_tourniquet", 50] call _fnc_AddObjectsCargo;
+						[_unit, "ACE_quikclot", 50] call _fnc_AddObjectsCargo;
+						[_unit, "ACE_atropine", 50] call _fnc_AddObjectsCargo;
+						[_unit, "ACE_salineIV", 50] call _fnc_AddObjectsCargo;
+						[_unit, "ACE_surgicalKit", 50] call _fnc_AddObjectsCargo;
+					};
 				};
 			};
 
@@ -364,7 +370,7 @@ if (_isMan) then {
 				[_unit, "B_Parachute", (count fullCrew [_unit,"",true])] call _fnc_AddObjectsCargo;
 				[_unit, _smokegrenadeP, 2] call _fnc_AddObjectsCargo;
 				[_unit, _bandage, 10] call _fnc_AddObjectsCargo;
-				if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {
+				if (GVARMAIN(mod_ACE3)) then {
 					[_unit, _morph, 5] call _fnc_AddObjectsCargo;
 					[_unit, _epi, 5] call _fnc_AddObjectsCargo;
 					[_unit, _blood, 5] call _fnc_AddObjectsCargo;
@@ -375,7 +381,7 @@ if (_isMan) then {
 				[_unit, "B_Parachute", (count fullCrew [_unit,"",true])] call _fnc_AddObjectsCargo;
 				[_unit, _smokegrenadeP, 2] call _fnc_AddObjectsCargo;
 				[_unit, _bandage, 10] call _fnc_AddObjectsCargo;
-				if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {
+				if (GVARMAIN(mod_ACE3)) then {
 					[_unit, _morph, 5] call _fnc_AddObjectsCargo;
 					[_unit, _epi, 5] call _fnc_AddObjectsCargo;
 					[_unit, _blood, 5] call _fnc_AddObjectsCargo;

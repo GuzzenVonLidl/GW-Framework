@@ -42,9 +42,6 @@ _compass = "ItemCompass";
 _watch = "ItemWatch";
 _nvg = "";
 _parachute = "B_Parachute";
-if ((call EFUNC(Common,isNight)) && _allowedNightStuff) then {
-	_nvg = "NVGoggles_Opfor";
-};
 
 _demoCharge = "DemoCharge_Remote_Mag";			// Small
 _satchelCharge = "SatchelCharge_Remote_Mag";	// Big

@@ -13,7 +13,7 @@
 PREP(HandlerRespawn);
 PREP(Init);
 FUNC(Get) = {
-	switch (GVAR(difficulty)) do {
+	switch (GVAR(difficulty)) do {	// 1:Easy	2:Medium	3:Hard
 		case 1: {
 			GVAR(easy)
 		};
@@ -26,11 +26,9 @@ FUNC(Get) = {
 	};
 };
 
-GVAR(difficulty) = 1;	// 1:Easy	2:Medium	3:Hard
-
 //	[aiming, general, spotting]
-GVAR(easy) = [0.20, 0.30, 0.80];
-GVAR(medium) = [0.27, 0.50, 0.80];
+GVAR(easy) = [0.20, 0.50, 0.80];
+GVAR(medium) = [0.27, 0.60, 0.80];
 GVAR(hard) = [0.35, 0.70, 1.0];
 
 [
