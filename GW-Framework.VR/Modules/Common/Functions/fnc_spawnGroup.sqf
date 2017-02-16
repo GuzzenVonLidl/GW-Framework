@@ -66,8 +66,12 @@ if ((count _vehicleArray) > 0) then {
 	{
 		_x params ["_class","_pos","_dir","_crewCount","_specials"];
 		_vehicle = createVehicle [_class, _pos, [], 0, "FLY"];
-		_vehicle setDir _dir;
-		_vehicle setVectorUp surfaceNormal (position _vehicle);
+		if (_dir isEqualType []) then {
+			_vehicle setVectorDirAndUp _dir;
+		} else {
+			_vehicle setDir _dir;
+			_vehicle setVectorUp surfaceNormal position _vehicle;
+		};
 		if (GVAR(AutoLock)) then {
 			_vehicle setVehicleLock "LOCKEDPLAYER";
 		};
@@ -111,7 +115,7 @@ if ((count _vehicleArray) > 0) then {
 						_x moveInGunner _vehicle;
 					};
 					case "turret": {
-						_x assignAsTurret _vehicle;
+						_x assignAsTurret [_vehicle, (_slots select _forEachIndex) select 2];
 						_x moveInTurret [_vehicle, (_slots select _forEachIndex) select 2];
 					};
 					case "cargo": {
