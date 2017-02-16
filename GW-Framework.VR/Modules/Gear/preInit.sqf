@@ -122,3 +122,9 @@ PREP(replaceAttachments);
 	["Blocks access to ai Inventories", "Stops players from being able to scavenge dead AI"],
 	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
 ] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(extraGear), "LIST",
+	["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"],
+	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 1], false
+] call FUNCMAIN(settingsInit);
