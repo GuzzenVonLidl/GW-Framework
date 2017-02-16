@@ -128,14 +128,7 @@ switch (toLower(_role)) do {
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,4],[_grenademini,2]] call _addToUniform;
 		[[_grenade,1],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
-		[[_LMG_mag_tr,COUNT_AG_MAGS(_LMG_mag_tr)]] call _addToBackpack;
-		if (isPlayer _unit) then {
-			if (GVAR(extraGear)) then {
-				(_FAKBig) call _addToBackpack;
-			} else {
-				(_FAKSmall) call _addToBackpack;
-			};
-		};
+		(_FAKSmall + [[_LMG_mag_tr,COUNT_AG_MAGS(_LMG_mag_tr)]]) call _addToBackpack;
 		[_map, "", "", _compass, _watch, _nvg] call _addLinkedItems;
 		_rangefinder call _addBino;
 	};

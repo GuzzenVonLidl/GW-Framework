@@ -14,6 +14,9 @@
 }, true, [], true] call CBA_fnc_addEventHandler;
 
 /*
+["AllVehicles", "init", {
+	_this call FUNC(Init);
+}] call CBA_fnc_addClassEventHandler;
 
 [QGVARMAIN(missionStarted), {
 	LOG("Event Suppression PFH");
