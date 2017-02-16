@@ -1,3 +1,17 @@
+/*
+	Author: GuzzenVonLidl
+	Returns lives remaining for correct respawn mode and side related to player
+
+	Usage:
+	[player] call GW_Respawn_Fnc_getRespawns;
+
+	Arguments:
+	0: Unit <OBJECT>
+
+	Return Value: YES <NUMBER>
+
+	Public: No
+*/
 #include "..\scriptComponent.hpp"
 
 params [

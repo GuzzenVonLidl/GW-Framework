@@ -1,17 +1,44 @@
+/*
+	Author: GuzzenVonLidl
+
+	Give player another chance to get back in to the fight
+
+	Usage:
+	["GW_Respawn_Events", [player, "secondChanceServer"]] call CBA_fnc_serverEvent;
+
+	Arguments:
+	0: Unit <OBJECT>
+	1: Event <STRING>
+
+	Return Value: NO
+
+	Public: YES
+
+	------------------------
+
+	Force enable/disable spectator mode
+
+	Usage:
+	["GW_Respawn_SpectatorToggle", [player, true]] call CBA_fnc_serverEvent;
+
+	Arguments:
+	0: Unit <OBJECT>
+	1: Activate <BOOL>
+
+	Return Value: NO
+
+	Public: YES
+*/
 #include "scriptComponent.hpp"
 
-["CAManBase", "Killed", {
-	_this call FUNC(HandlerKilled);
-}, true, [], true] call CBA_fnc_addClassEventHandler;
-
-["CAManBase", "Respawn", {
-	_this call FUNC(HandlerRespawn);
-}, true, [], true] call CBA_fnc_addClassEventHandler;
-
 if (hasInterface) then {
+	["CAManBase", "Respawn", {
+		[QGVAR(Events), [player, "respawnServer"]] call CBA_fnc_serverEvent;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
+
 	[QGVARMAIN(playerReady), {
 		if !(GVAR(Mode) isEqualTo 0) then {
-			[QGVAR(Events), [player, "connect"]] call CBA_fnc_serverEvent;
+			[QGVAR(Events), [player, "initServer"]] call CBA_fnc_serverEvent;
 		};
 	}] call CBA_fnc_addEventHandler;
 };
@@ -22,21 +49,20 @@ if (hasInterface) then {
 	private _respawns = 0;
 
 	switch (_event) do {
-		case "connect": {
-			private _connectionType = "jipBlock";
+		case "initServer": {
+			private _connectionType = "blockConnect";
 			if (GVAR(JIP) || (time < 10)) then {
-				_connectionType = "connection";
+				_connectionType = "initPlayer";
 				if !(_uid in GVAR(ServerConnections)) then {
 					GVAR(ServerConnections) pushBackUnique _uid;
-				} else {
-					if (_uid in GVAR(ServerDeadPermanent)) then {
-						_connectionType = "reslot";
-					};
 				};
 			};
 			_respawns = GVAR(Count);
 			if (_uid in GVAR(ServerDead)) then {
 				_respawns = (GVAR(Count) - ({_x isEqualTo _uid} count GVAR(ServerDead)));
+				if (_respawns <= 0) then {
+					_connectionType = "blockConnect";
+				};
 			};
 			_unit setVariable [QGVAR(isSpectating), false, true];
 			_unit setVariable [QGVAR(Count), _respawns, true];
@@ -44,7 +70,7 @@ if (hasInterface) then {
 			[QGVAR(Events), [_unit, _connectionType], _unit] call CBA_fnc_targetEvent;
 		};
 
-		case "connection": {	// New Player
+		case "initPlayer": {
 			systemChat format ["%1 connected to server", (name _unit)];
 			_respawns = ([_unit] call FUNC(getRespawns));
 			if (GVAR(Mode) isEqualTo 1) then {
@@ -55,12 +81,50 @@ if (hasInterface) then {
 			};
 		};
 
-		case "reslot": {	// Move to spectator
-			systemChat format ["%1 is trying to re-slot", (name _unit)];
+		case "blockConnect": {	//	Move to spectator
+			systemChat format ["JIP is diabled or %1 is trying to re-slot", (name _unit)];
 			[QGVAR(SpectatorToggle), [_unit, true], _unit] call CBA_fnc_targetEvent;
 		};
 
-		case "respawn": {
+		case "respawnServer": {
+			GVAR(ServerDead) pushBack _uid;
+
+			if (GVAR(Mode) isEqualTo 1) then {
+				_respawns = ([_unit] call FUNC(getRespawns));
+				DEC(_respawns);
+				_unit setVariable [QGVAR(Count), _respawns, true];
+			};
+
+			if (GVAR(Mode) isEqualTo 2) then {
+				switch (GETSIDE(_unit)) do {
+					case 0: {
+						DEC(GVAR(CountTeamEast));
+						publicVariable QGVAR(CountTeamEast);
+					};
+					case 1: {
+						DEC(GVAR(CountTeamWest));
+						publicVariable QGVAR(CountTeamWest);
+					};
+					case 2: {
+						DEC(GVAR(CountTeamIndependent));
+						publicVariable QGVAR(CountTeamIndependent);
+					};
+					case 3: {
+						DEC(GVAR(CountTeamCivilian));
+						publicVariable QGVAR(CountTeamCivilian);
+					};
+				};
+			};
+
+			if (([_unit] call FUNC(getRespawns)) >= 1) then {
+				[QGVAR(Events), [_unit, "respawnPlayer"], _unit] call CBA_fnc_targetEvent;
+			} else {
+				GVAR(ServerDeadPermanent) pushBack _uid;
+				[QGVAR(SpectatorToggle), [_unit, true], _unit] call CBA_fnc_targetEvent;
+			};
+		};
+
+		case "respawnPlayer": {
 			_respawns = ([_unit] call FUNC(getRespawns));
 
 			if (_respawns >= 1) then {
@@ -70,46 +134,49 @@ if (hasInterface) then {
 				if (_respawns isEqualTo 1) then {
 					systemChat "Last life!!, when you die you will be in spectator";
 				} else {
-					if (GVAR(Mode) isEqualTo 1) then {
-						systemChat format ["%1 more lives remaining", (_respawns - 1)];
-					} else {
-						systemChat format ["%1 more lives remaining", _respawns];
-					};
+					systemChat format ["%1 more lives remaining", _respawns];
 				};
 			};
 		};
 
-		case "respawnServer": {
-			GVAR(ServerDead) pushBack _uid;
+		case "secondChanceServer": {
+			_respawns = ([_unit] call FUNC(getRespawns));
 			if (GVAR(Mode) isEqualTo 1) then {
-				_unit setVariable [QGVAR(Count), ((_unit getVariable QGVAR(Count)) - 1), true];
+				INC(_respawns);
+				_unit setVariable [QGVAR(Count), _respawns, true];
 			};
+
 			if (GVAR(Mode) isEqualTo 2) then {
 				switch (GETSIDE(_unit)) do {
 					case 0: {
-						DEC(GVAR(CountTeamEast));
+						ADD(GVAR(CountTeamEast), 1);
+						publicVariable QGVAR(CountTeamEast);
 					};
 					case 1: {
-						DEC(GVAR(CountTeamWest));
+						ADD(GVAR(CountTeamWest), 1);
+						publicVariable QGVAR(CountTeamWest);
 					};
 					case 2: {
-						DEC(GVAR(CountTeamIndependent));
+						ADD(GVAR(CountTeamIndependent), 1);
+						publicVariable QGVAR(CountTeamIndependent);
 					};
 					case 3: {
-						DEC(GVAR(CountTeamCivilian));
+						ADD(GVAR(CountTeamCivilian), 1);
+						publicVariable QGVAR(CountTeamCivilian);
 					};
 				};
 			};
-			publicVariable QGVAR(CountTeamEast);
-			publicVariable QGVAR(CountTeamWest);
-			publicVariable QGVAR(CountTeamIndependent);
-			publicVariable QGVAR(CountTeamCivilian);
+			[QGVAR(Events), [_unit, "secondChance"], _unit] call CBA_fnc_targetEvent;
+		};
 
-			if (([_unit] call FUNC(getRespawns)) >= 1) then {
-				[QGVAR(Events), [_unit, "respawn"], _unit] call CBA_fnc_targetEvent;
-			} else {
-				GVAR(ServerDeadPermanent) pushBack _uid;
-				[QGVAR(SpectatorToggle), [_unit, true], _unit] call CBA_fnc_targetEvent;
+		case "secondChance": {
+			_respawns = ([_unit] call FUNC(getRespawns));
+			if (_respawns >= 1) then {
+				[QGVAR(SpectatorToggle), [_unit, false], _unit] call CBA_fnc_localEvent;
+				cutText ["","BLACK IN",5];
+				_unit setPosATL (_unit getVariable QGVAR(startingPos));
+				systemChat "You have been given a second chance";
+				systemChat format ["You now have %1", _respawns];
 			};
 		};
 
@@ -136,12 +203,10 @@ if (hasInterface) then {
 		cutText ["","BLACK IN",5];
 		systemChat "You are being moved to spectator";
 		_unit setPosATL (getMarkerPos "spectator");
-		(["Initialize", [_unit, [], true]] call BIS_fnc_EGSpectator);
+		(["Initialize", [player, [], true]] call BIS_fnc_EGSpectator);
+		RscSpectator_allowFreeCam = false;
+//		[true] call ace_spectator_fnc_setSpectator;
 	} else {
-		cutText ["","BLACK IN",5];
 		(["Terminate"] call BIS_fnc_EGSpectator);
-		if (([_unit] call FUNC(getRespawns)) >= 1) then {
-			_unit setPosATL (_unit getVariable QGVAR(startingPos));
-		};
 	};
 }] call CBA_fnc_addEventHandler;
