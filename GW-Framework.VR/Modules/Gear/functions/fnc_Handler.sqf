@@ -197,7 +197,7 @@ if (_isMan) then {
 					[_unit, "ACE_EarBuds", 50] call _fnc_AddObjectsCargo;
 					if (isClass (configFile >> "CfgPatches" >> "GW_StaticWeapons")) then {
 						private _staticWeaponList = ["ACE_B_SpottingScope"];
-						if (toLower(_side) isEqualTo "east") then {
+						if (toLower(_side) isEqualTo "west") then {
 							_staticWeaponList = _staticWeaponList + ["B_static_AA_F","B_Mortar_01_F","B_GMG_01_F","B_HMG_01_F","B_HMG_01_high_F","B_static_AT_F"];
 							if (GVARMAIN(mod_CUP_WEAPONS)) then {
 								_staticWeaponList = _staticWeaponList + ["CUP_B_TOW_TriPod_USMC","CUP_B_M2StaticMG_USMC","CUP_B_M2StaticMG_MiniTripod_USMC"];
