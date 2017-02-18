@@ -136,7 +136,7 @@ if (_isMan) then {
 } else {
 	_role params [
 		["_class", "", [""]],
-		["_side", "west", [""]],
+		["_realSide", "west", [""]],
 		["_movable", true, [true]]
 	];
 
@@ -153,7 +153,8 @@ if (_isMan) then {
 		};
 	};
 
-	switch (toLower(_side)) do {
+	private _side = toUpper(GVAR(Civilian));
+	switch (toLower(_realSide)) do {
 		case "west": {
 			_side = toUpper(GVAR(Blufor));
 		};
@@ -168,10 +169,6 @@ if (_isMan) then {
 
 		case "independent": {
 			_side = toUpper(GVAR(Independent));
-		};
-
-		default {
-			_side = toUpper(GVAR(Civilian));
 		};
 	};
 
@@ -197,19 +194,19 @@ if (_isMan) then {
 					[_unit, "ACE_EarBuds", 50] call _fnc_AddObjectsCargo;
 					if (isClass (configFile >> "CfgPatches" >> "GW_StaticWeapons")) then {
 						private _staticWeaponList = ["ACE_B_SpottingScope"];
-						if (toLower(_side) isEqualTo "west") then {
+						if (toLower(_realSide) isEqualTo "west") then {
 							_staticWeaponList = _staticWeaponList + ["B_static_AA_F","B_Mortar_01_F","B_GMG_01_F","B_HMG_01_F","B_HMG_01_high_F","B_static_AT_F"];
 							if (GVARMAIN(mod_CUP_WEAPONS)) then {
 								_staticWeaponList = _staticWeaponList + ["CUP_B_TOW_TriPod_USMC","CUP_B_M2StaticMG_USMC","CUP_B_M2StaticMG_MiniTripod_USMC"];
 							};
 						};
-						if (toLower(_side) isEqualTo "east") then {
+						if (toLower(_realSide) isEqualTo "east") then {
 							_staticWeaponList = ["O_static_AA_F","O_Mortar_01_F","O_GMG_01_F","O_HMG_01_F","O_HMG_01_high_F","O_static_AT_F"];
 							if (GVARMAIN(mod_CUP_WEAPONS)) then {
 								_staticWeaponList = _staticWeaponList + ["CUP_O_KORD_RU","CUP_O_KORD_high_RU","CUP_O_SPG9_ChDKZ","CUP_O_Metis_RU"];
 							};
 						};
-						if ((toLower(_side) isEqualTo "independent") || (toLower(_side) isEqualTo "indep")) then {
+						if ((toLower(_realSide) isEqualTo "independent") || (toLower(_realSide) isEqualTo "indep")) then {
 							_staticWeaponList = ["I_static_AA_F","I_Mortar_01_F","I_GMG_01_F","I_HMG_01_F","I_HMG_01_high_F","I_static_AT_F"];
 						};
 						private _action = ["GW_GetStatics","Static Weapons","",{},{true}] call ace_interact_menu_fnc_createAction;
@@ -225,7 +222,7 @@ if (_isMan) then {
 							};
 							private _condition = {
 							    params ["", "_player"];
-								((_player getVariable [QEGVAR(StaticWeapons,type), ""]) isEqualTo "")
+								!("GW_Item_StaticDummy" in (items player)) || ((_player getVariable [QEGVAR(StaticWeapons,type), ""]) isEqualTo "")
 							};
 							private _action = [_action, _name, "", _statement, _condition, {}, _x] call ace_interact_menu_fnc_createAction;
 							[_unit, 0, ["ACE_MainActions","GW_GetStatics"], _action] call ace_interact_menu_fnc_addActionToObject;
