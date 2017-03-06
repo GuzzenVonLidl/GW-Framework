@@ -65,6 +65,7 @@ if ((count _vehicleArray) > 0) then {
 	{
 		_x params ["_class","_pos","_dir","_crewCount","_specials"];
 		_vehicle = createVehicle [_class, _pos, [], 0, "FLY"];
+		_vehicle setPosATL _pos;		
 		if (_dir isEqualType []) then {
 			_vehicle setVectorDirAndUp _dir;
 		} else {
