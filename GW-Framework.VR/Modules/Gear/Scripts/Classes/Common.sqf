@@ -145,6 +145,6 @@ if (GVARMAIN(mod_ACE3)) then {
 	_handFlareY = "ACE_HandFlare_Yellow";
 
 	if (_role in ["sl","ftl"]) then {
-		_gps = _microDAGR;
+		_gps = _Android;
 	};
 };
