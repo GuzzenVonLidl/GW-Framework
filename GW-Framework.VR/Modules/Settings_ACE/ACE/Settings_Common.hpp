@@ -266,7 +266,7 @@ class ace_mk6mortar_allowComputerRangefinder {
 	force = 1;
 };
 class ace_mk6mortar_allowCompass {
-	value = 0;
+	value = 1;
 	typeName = "BOOL";
 	force = 1;
 };
