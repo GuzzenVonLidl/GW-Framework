@@ -17,10 +17,8 @@
 				_group setVariable ["TF_lr_frequency", TF_freq_west_lr];
 				ERROR("Radio frequency failed, launching backup");
 			};
-//			_unit setVariable ["TF_receivingDistanceMultiplicator", 0.7];
-//			_unit setVariable ["TF_sendingDistanceMultiplicator", 0.6];
-			_unit setVariable ["TF_receivingDistanceMultiplicator", 1];
-			_unit setVariable ["TF_sendingDistanceMultiplicator", 1];
+			_unit setVariable ["TF_receivingDistanceMultiplicator", 0.7];
+			_unit setVariable ["TF_sendingDistanceMultiplicator", 0.6];
 			_unit setVariable [QGVAR(receiving), (_unit getVariable "TF_receivingDistanceMultiplicator")];
 			_unit setVariable [QGVAR(sending), (_unit getVariable "TF_sendingDistanceMultiplicator")];
 		}, _this, 0.5] call CBA_fnc_waitAndExecute;

@@ -6,7 +6,7 @@ PREP(HandlerKilled);
 PREP(Simulation);
 
 GVAR(Simulation) = true;			//	Removes lag from spawning units
-GVAR(Delay) = 1;					//	Delay between each loop for removing objects
+GVAR(Delay) = 60;					//	Delay between each loop for removing objects
 
 [
 	QGVAR(Enabled), "LIST",
