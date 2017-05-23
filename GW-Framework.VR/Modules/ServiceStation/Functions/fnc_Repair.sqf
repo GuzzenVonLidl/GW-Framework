@@ -64,7 +64,7 @@ Switch (true) do {
 
 // Repairing
 for "_i" from 1 to (count _Parts) do {
-	if (!(_Veh in GVAR(Actions))) exitWith {[_SS,true] call FUNC(Available)};
+	if (!(_Veh in GVAR(Array))) exitWith {[_SS,true] call FUNC(Available)};
 	_Part = (_Parts select _Index);
 	_PartName = (_PartNames select _Index);
 	_PartHP = (_PartsHP select _Index);
@@ -73,9 +73,9 @@ for "_i" from 1 to (count _Parts) do {
 	Sleep INSPECTIONSPEED;
 
 	if (_PartHP >= 0.01) then {
-		While {_PartHP > 0.01 && (_Veh in GVAR(Actions))} do {
+		While {_PartHP > 0.01 && (_Veh in GVAR(Array))} do {
 			if (_Veh isKindOf "TANK" and _Index >= 4) then {_repairSpeed = REPAIRINGTRACKSPEED;};
-			if (!(_Veh in GVAR(Actions))) exitWith {[_SS,true] call FUNC(Available)};
+			if (!(_Veh in GVAR(Array))) exitWith {[_SS,true] call FUNC(Available)};
 			[(format ["Repairing %1.",_PartName]), _Veh] spawn FUNC(Hints);
 			if (_Part == "Karoserie") then {_Veh setHit [_Part, (_PartHP - _repairSpeed)];} else {_Veh setHitPointDamage [_Part, (_PartHP - _repairSpeed)];};
 			if (_Part == "Karoserie") then {_PartHP = _Veh gethit _Part} else {_PartHP = _Veh gethitpointdamage _Part};
@@ -100,7 +100,7 @@ for "_i" from 1 to (count _Parts) do {
 
 //	Fixing Wheels
 if (_Veh isKindOf "CAR") then {
-	if !(_Veh in GVAR(Actions)) exitWith {[_SS,true] call FUNC(Available)};
+	if !(_Veh in GVAR(Array)) exitWith {[_SS,true] call FUNC(Available)};
 	_Wheels = 2;
 	_Index = 1;
 	if (_veh getHit "wheel_1_3_steering" >= 0) then {_Wheels = 3};
@@ -108,14 +108,14 @@ if (_Veh isKindOf "CAR") then {
 
 	for [{_y=1},{_y<=2},{_y=_y+1}] do {
 		for [{_i=1},{_i<=(_Wheels)},{_i=_i+1}] do {
-			if !(_Veh in GVAR(Actions)) exitWith {[_SS,true] call FUNC(Available)};
+			if !(_Veh in GVAR(Array)) exitWith {[_SS,true] call FUNC(Available)};
 
 			["Inspecting Wheel.", _Veh] spawn FUNC(Hints);
 			sleep INSPECTIONSPEED;
 
 			private _State = call compile format ["_veh getHit 'wheel_%2_%1_steering'",_i,_Index];
 			if (_State > 0.1) then {
-				if !(_Veh in GVAR(Actions)) exitWith {[_SS,true] call FUNC(Available)};
+				if !(_Veh in GVAR(Array)) exitWith {[_SS,true] call FUNC(Available)};
 				["Removing damaged wheel.", _Veh] spawn FUNC(Hints);
 				Sleep REMOVEWHEELSPEED;
 				call compile format ["_veh setHit ['wheel_%2_%1_steering',1]",_i,_Index];
@@ -135,13 +135,13 @@ if (_Veh isKindOf "CAR") then {
 				};
 			};
 			sleep 2;
-			if !(_Veh in GVAR(Actions)) exitWith {[_SS,true] call FUNC(Available)};
+			if !(_Veh in GVAR(Array)) exitWith {[_SS,true] call FUNC(Available)};
 		};
 		_Index = _Index +1;
 	};
 };
 
-if (!(_Veh in GVAR(Actions))) exitWith {[_SS,true] call FUNC(Available)};
+if (!(_Veh in GVAR(Array))) exitWith {[_SS,true] call FUNC(Available)};
 ["Applying finishing Touches", _Veh] spawn FUNC(Hints);
 sleep 5;
 _Veh setdamage 0;

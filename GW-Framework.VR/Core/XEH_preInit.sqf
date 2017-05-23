@@ -38,6 +38,7 @@ enableSentences false;
 enableRadio false;
 enableTeamSwitch false;
 useAISteeringComponent true;
+enableWeaponDisassembly false;
 0 fadeRadio 0;
 //	enableSatNormalOnDetail true;		//	<--------
 

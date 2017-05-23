@@ -7,26 +7,23 @@ params [
 
 {
 	private _value = (_x select 1);
-	switch (toLower(_x select 0)) do {
-		case "damage": {
+	switch (_x select 0) do {
+		case 0: {
+			[] call (compile (format ["%1", (toString(toArray(format ["%1", [_value, "this", "_object"] call CBA_fnc_replace])))]));
+		};
+		case 1: {
 			_object allowDamage _value;
 		};
-		case "simulation": {
+		case 2: {
 			_object enableSimulationGlobal _value;
 		};
-		case "lock": {
+		case 3: {
 			_object lock _value;
 		};
-		case "init": {
-			[] call (compile (format ["%1", (toString(toArray(format ["%1", [_value, "this", "_object"] call CBA_fnc_replace])))]));
+		case 4: {
+			_object enableDynamicSimulation _value;
+		};
+		case 5: {
 		};
 	};
 } forEach _specials;
-
-/*
-		case "addToDyn": {
-			_object enableDynamicSimulation _value;
-		};
-		case "dynamic": {
-		};
-*/

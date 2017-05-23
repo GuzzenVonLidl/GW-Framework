@@ -1,4 +1,3 @@
-#define DEBUG_MODE_FULL
 #include "..\scriptComponent.hpp"
 
 [{

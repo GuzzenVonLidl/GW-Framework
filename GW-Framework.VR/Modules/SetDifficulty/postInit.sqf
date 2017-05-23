@@ -13,12 +13,14 @@
 	["CAManBase", "init", {
 		[{
 			_this call FUNC(Init);
-		}, _this] call CBA_Fnc_execNextFrame;
+		}, _this, 0.5] call CBA_fnc_waitAndExecute;
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
+}] call CBA_fnc_addEventHandler;
 
+[QGVARMAIN(playerReady), {
 	["CAManBase", "Respawn", {
 		[{
 			_this call FUNC(HandlerRespawn);
-		}, _this] call CBA_Fnc_execNextFrame;
+		}, _this, 0.5] call CBA_fnc_waitAndExecute;
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 }] call CBA_fnc_addEventHandler;

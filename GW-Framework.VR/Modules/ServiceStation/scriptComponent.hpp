@@ -15,4 +15,4 @@
 #define REMOVEWHEELSPEED 5			// Time in seconds it takes to remove a damaged wheel.
 #define MOUNTWHEELSPEED 5			// Time in seconds it takes to mount a new wheel.
 
-#define REARMSLEEP 5				// Time in seconds it takes to rearm vehicles (save planes).
+#define REARMSLEEP 0.02				// Percent of maximum ammo rearmed per second for vehicles.

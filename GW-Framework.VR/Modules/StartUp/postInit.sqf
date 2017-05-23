@@ -54,7 +54,7 @@
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 
 	if !(GVAR(DistanceLimit) isEqualTo -1) then {
-		[{(player distance (getMarkerPos format ["respawn_%1", GETSIDESTRING(player)]) > GVAR(DistanceLimit))},{
+		[{(player distance (getMarkerPos (format ["respawn_%1", GETSIDESTRING(player)])) > GVAR(DistanceLimit))},{
 			[QGVAR(setSafetyMode), false] call CBA_fnc_localEvent;
 		}, []] call CBA_fnc_waitUntilAndExecute;
 	};

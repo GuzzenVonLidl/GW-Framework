@@ -14,6 +14,8 @@ PREP(setGroupColor);
 PREP(setGroupid);
 PREP(simpleRoster);
 PREP(spawnGroup);
+PREP(spawnGroup_Veh);
+PREP(spawnGroup_WP);
 PREP(spawnObjects);
 
 [
@@ -24,31 +26,22 @@ PREP(spawnObjects);
 		[
 			"west",
 			"east",
-			"independent"
+			"independent",
+			"civilian"
 		],
 		[
 			"West",
 			"East",
-			"Independent"
+			"Independent",
+			"Civilian"
 		],
 		0
 	],
-	false
+	true
 ] call FUNCMAIN(settingsInit);
 
 [
 	QGVAR(AutoLock), "LIST",
 	["Auto Lock Vehicles", "Note: Only effects vehicles with units in and spawned though the framework"],
-	QUOTE(ADDON), [[true,false], ["Enabled","Disabled"], 1], false
+	QUOTE(ADDON), [[true,false], ["Enabled","Disabled"], 1], true
 ] call FUNCMAIN(settingsInit);
-
-/*
-//["AllVehicles", "init", GW_Common_fnc_addToCurators, true, [], true] call CBA_fnc_addClassEventHandler;
-//	["AllVehicles", "init", GW_Common_fnc_addToCurators] call CBA_fnc_addClassEventHandler;
-
-if (isServer) then {
-	["AllVehicles", "init", {
-		_this call GW_Common_fnc_addToCurators;
-	}, true, [], true] call CBA_fnc_addClassEventHandler;
-};
-*/

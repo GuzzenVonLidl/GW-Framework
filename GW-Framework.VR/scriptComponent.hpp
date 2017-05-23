@@ -1,10 +1,5 @@
 
-#define QUOTE(var1) #var1
-#define DOUBLES(var1,var2) ##var1##_##var2
-#define DOUBLESCOMMA(var1,var2) ##var1##,##var2
-#define TRIPLES(var1,var2,var3) ##var1##_##var2##_##var3
 #define PREFIX GW
-#define ADDON DOUBLES(PREFIX,COMPONENT)
 
 #ifndef isDescription	// Will crash on server otherwise
 	#include "\x\cba\addons\main\script_macros_mission.hpp"
@@ -14,10 +9,6 @@
 Group: General
 ------------------------------------------- */
 // Custom
-
-#define REMOTEONLYSERVER(A) remoteExecCall [A, 2]
-#define MAPLOADED getClientStateNumber >= 9 || !isMultiplayer
-#define MISSIONLOADED getClientStateNumber >= 10 || !isMultiplayer
 
 #define	DEVBUILD (["GW_FRAMEWORK", "Core", "devBuild"] call BIS_fnc_getCfgData) isEqualTo -2
 #define	DEVCONSOLEENABLED (["GW_FRAMEWORK", "Core", "DebugConsole"] call BIS_fnc_getCfgData) isEqualTo -2
@@ -35,9 +26,9 @@ Group: General
 #define PUBLIC 2
 
 #define MAJOR 0
-#define MINOR 4
-#define PATCHLVL 1
-#define BUILD 160217	// We will use the DATE for the BUILD# in the format YYMMDD
+#define MINOR 5
+#define PATCHLVL 0
+#define BUILD 230517	// We will use the DATE for the BUILD# in the format YYMMDD
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 
 #define COMPONENTPATH(var1) CUSTOM_FOLDER\fnc_##var1.sqf

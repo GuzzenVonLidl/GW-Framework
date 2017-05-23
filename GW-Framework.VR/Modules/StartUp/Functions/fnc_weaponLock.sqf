@@ -43,21 +43,13 @@ if (_this) then {
 };
 
 /*
-{
-	if ((_x distance w1b2) < 50) then {
-		if (isNull (objectParent player)) then {
-			player playActionNow (getText (configfile >> "CfgWeapons" >> (currentWeapon player) >> "reloadAction"));
-		};
-	};
-} forEach allPlayers;
-
-{
-	player removePrimaryWeaponItem _x;
-} forEach (primaryWeaponMagazine player);
-{
-	player removeSecondaryWeaponItem _x;
-} forEach (secondaryWeaponMagazine player);
-{
-	player removeHandgunItem _x;
-} forEach (handgunMagazine player);
+	{
+		player removePrimaryWeaponItem _x;
+	} forEach (primaryWeaponMagazine player);
+	{
+		player removeSecondaryWeaponItem _x;
+	} forEach (secondaryWeaponMagazine player);
+	{
+		player removeHandgunItem _x;
+	} forEach (handgunMagazine player);
 */

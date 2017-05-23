@@ -19,6 +19,12 @@
 		}, _this] call CBA_Fnc_execNextFrame;
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 
+	["CAManBase", "Local", {
+		[{
+			_this call FUNC(transferer);
+		}, _this] call CBA_Fnc_execNextFrame;
+	}, true, [], true] call CBA_fnc_addClassEventHandler;
+
 	[{
 		[] call FUNC(HandlePFH);
 	}, 15, []] call CBA_fnc_addPerFrameHandler;

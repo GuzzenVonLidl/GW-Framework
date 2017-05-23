@@ -11,7 +11,6 @@
 	#include "StartUp\Module.hpp"
 
 //	Extra Modules
-//	#include "Effects\Module.hpp" // Experimental functions
+//	#include "Effects\Module.hpp"
 //	#include "Respawn\Module.hpp"
-//	#include "SimpleSuppression\Module.hpp"		// WIP-(Simple-Suppression) - Dont use
 //	#include "VCOMAI\Module.hpp"

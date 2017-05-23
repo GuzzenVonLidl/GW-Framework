@@ -40,6 +40,7 @@ for "_i" from 1 to _number do {
 		_unitClass = (selectRandom _unitList);
 	};
 	_unit = _group createUnit [_unitClass, [0,0,0], [], 10, "NONE"];
+	_unit setVariable [QGVAR(isSpawned), true];
 	if !(isNil "_unitsCreted") then {
 		_unitsCreted pushBack _unit;
 	};

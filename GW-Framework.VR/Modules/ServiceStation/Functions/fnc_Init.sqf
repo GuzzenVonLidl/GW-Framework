@@ -33,6 +33,7 @@ if (isServer) then { // To avoid having all players loop the scanners
 		["_Find", ["LANDVEHICLE","AIR"], [[]]]
 	];
 
+	private _Radius = 8;
 	private _FullService = False;
 	GVAR(Stations) PushBack _SS;
 	[] Spawn {sleep 5; PublicVariable QGVAR(Stations)};
@@ -57,18 +58,24 @@ if (isServer) then { // To avoid having all players loop the scanners
 	};
 
 	// Scanner
-	[_SS,_Find] Spawn {
-		params ["_SS","_Find"];
+	[_SS,_Radius,_Find] Spawn {
+		params ["_SS","_Radius","_Find"];
 
 		While {_SS in GVAR(Stations)} do {
-			if (( {(_x distance _SS) < (RADIUS*2) && (_x isKindOf "AllVehicles")} count Vehicles) > 0) then {
+			if !(( {(_x distance _SS) < (RADIUS*2) && (_x isKindOf "AllVehicles")} count Vehicles) isEqualTo 0) then {
+                _Vehicles = NearestObjects [(getPos _SS), _Find, 50];
 				{
-					if (!(_x in GVAR(Actions)) && (Alive _x)) then {
-						GVAR(Actions) pushBack _x;
-						PublicVariable QGVAR(Actions);
-						[[[_x,_SS,RADIUS],{_This Spawn FUNC(Actions)}], "BIS_FNC_SPAWN", True] call BIS_FNC_MP;
+					if (!(_x in GVAR(Array)) && (Alive _x)) then {
+						GVAR(Array) pushBack _x;
+						PublicVariable QGVAR(Array);
+                        if !(_x getVariable ["NEKY_ServiceStation_HasActions",false]) then {
+                            [[_x,_SS],{_This Spawn FUNC(Actions)}] remoteExec ["BIS_FNC_SPAWN",0,true];
+                            _x setVariable ["NEKY_ServiceStation_HasActions",true,true];
+                        };
+                        _x setVariable ["NEKY_ServiceStation_InStation",true,true];
+                        [_x,_SS,_Radius] Spawn FUNC(ExitLoop);
 					};
-				} forEach (NearestObjects [(getPos _SS), _Find, RADIUS]);
+				} forEach _Vehicles;
 			};
 			Sleep 4;
 		};

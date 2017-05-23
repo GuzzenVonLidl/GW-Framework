@@ -15,32 +15,20 @@
 #include "..\scriptComponent.hpp"
 
 {
-	private ["_object","_timer","_distance"];
-	_object = _x;
-
-	if (isNil {_object getVariable QGVAR(ObjectRemovalTimer)}) then {
-		if (_object isKindOf "AllVehicles") then {
-			if (_object isKindOf "CAManBase") then {
-				_timer = 10;	// Man
-			} else {
-				_timer = 20;	// Vehicle
-			};
-		} else {
-			_timer = 5;			// Other(Ruins, WeaponDrops, etc)
-		};
-		_object setVariable [QGVAR(ObjectRemovalTimer), _timer];
+	private _type = 1;
+	if (_x isKindOf "CAManBase") then {
+		_type = 0;
 	};
+	[_type, _x] call FUNC(HandlerCleanUpCounter);
+} forEach allDead;
 
-	private _getTime = (_object getVariable QGVAR(ObjectRemovalTimer));
-	if (_getTime isEqualTo 0) then {
-		TRACE_1("Deleting", _object);
-		deleteVehicle _object;
-	} else {
-		TRACE_1("Removal of Object in", _getTime);
-		_object setVariable [QGVAR(ObjectRemovalTimer), _getTime - 1];
-	};
+{
+	[2, _x] call FUNC(HandlerCleanUpCounter);
+} forEach ((allMissionObjects "WeaponHolder") + (allMissionObjects "GroundWeaponHoder") + (allMissionObjects "WeaponHolderSimulated"));
 
-} count (allDead + (allMissionObjects "WeaponHolder") + (allMissionObjects "GroundWeaponHoder") + (allMissionObjects "WeaponHolderSimulated") + (allMissionObjects "Ruins"));
+{
+	[3, _x] call FUNC(HandlerCleanUpCounter);
+} forEach (allMissionObjects "Ruins");
 
 {
 	if (count (units _x) isEqualTo 0) then {

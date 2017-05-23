@@ -109,6 +109,14 @@ class ace_cookoff_enable {
 	force = 1;
 };
 
+/*
+class ace_cookoff_enableAmmobox {
+    value = 1;
+    typeName = "BOOL";
+	force = 1;
+};
+*/
+
 // -------------------------------------------
 
 class ace_explosives_punishNonSpecialists {
@@ -143,7 +151,12 @@ class ace_frag_enabled {
 	force = 1;
 };
 class ace_frag_maxTrack {
-	value = 100;
+	value = 50;
+	typeName = "SCALAR";
+	force = 1;
+};
+class ace_frag_maxTrackPerFrame {
+	value = 50;
 	typeName = "SCALAR";
 	force = 1;
 };
@@ -266,7 +279,7 @@ class ace_mk6mortar_allowComputerRangefinder {
 	force = 1;
 };
 class ace_mk6mortar_allowCompass {
-	value = 0;
+	value = 1;
 	typeName = "BOOL";
 	force = 1;
 };

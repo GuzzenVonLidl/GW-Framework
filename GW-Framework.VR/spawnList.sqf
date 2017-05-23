@@ -11,16 +11,19 @@
 */
 #include "scriptComponent.hpp"
 #define	COMPONENT spawnList
+
 params [
 	"_case"
 ];
 
 switch (_case) do {
+
 	case 1: {
-//		_group = [[[98,154,0],0],[[100,158,0],0]] call GW_Common_fnc_spawnStatic;
 	};
+
 	case 2: {
 	};
+
 	case 3: {
 	};
 

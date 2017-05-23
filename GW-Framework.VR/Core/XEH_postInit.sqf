@@ -16,7 +16,7 @@ if (hasInterface) then {
 	LOG("Loading Player Variables");
 	player addRating 100000;
 	player disableConversation true;
-//	player enableWeaponDisassembly false;	// 1.67
+	player enableWeaponDisassembly false;	// 1.67
 //	disableRemoteSensors true;
 	enableEnvironment true;
 	player setVariable ["BIS_noCoreConversations", true, true];
@@ -86,10 +86,13 @@ if (DEVBUILD) then {
 
 		if (hasInterface) then {
 			if ((getPlayerUID player) in (["GW_FRAMEWORK", "Naming", "AuthorUID"] call BIS_fnc_getCfgData)) then {
-				[QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent;
+				[QGVARMAIN(AddToAdminList), player] call CBA_fnc_serverEvent;
+				GW_isAdmin = true;
 			};
-			cutText ["Finalizing Settings","BLACK FADED",10];
-			GVARMAIN(blockMovement) = player addeventhandler ["animChanged",{player switchMove "AmovPercMstpSnonWnonDnon_Ease";}];
+			if !(DEVBUILD) then {
+				cutText ["Finalizing Settings","BLACK FADED",10];
+				GVARMAIN(blockMovement) = player addeventhandler ["animChanged",{player switchMove "AmovPercMstpSnonWnonDnon_Ease";}];
+			};
 		};
 
 		if (hasInterface || CBA_isHeadlessClient) then {
@@ -97,14 +100,16 @@ if (DEVBUILD) then {
 				[QGVARMAIN(playerReady), []] call CBA_fnc_localEvent;
 
 				if (hasInterface) then {
-					if !(isNil QGVARMAIN(blockMovement)) then {
-						player removeEventHandler ["animChanged", GVARMAIN(blockMovement)];
-					} else {
-						systemChat "ERROR: Failed to load, rejoin mission";
+					if !(DEVBUILD) then {
+						if !(isNil QGVARMAIN(blockMovement)) then {
+							player removeEventHandler ["animChanged", GVARMAIN(blockMovement)];
+						} else {
+							systemChat "ERROR: Failed to load, rejoin mission";
+						};
+						player playMoveNow "AmovPercMstpSnonWnonDnon_EaseOut";
+						player playMoveNow "AmovPknlMstpSlowWrflDnon";
+						cutText ["","BLACK IN",10];
 					};
-					player playMoveNow "AmovPercMstpSnonWnonDnon_EaseOut";
-					player playMoveNow "AmovPknlMstpSlowWrflDnon";
-					cutText ["","BLACK IN",10];
 				};
 			}, [], 4.5] call CBA_fnc_waitAndExecute;
 		};
@@ -114,20 +119,22 @@ if (DEVBUILD) then {
 [{(getClientStateNumber >= 9) || !isMultiplayer}, {
 	LOG("Event mapLoaded");
 	[QGVARMAIN(mapLoaded), []] call CBA_fnc_localEvent;
-	if (hasInterface) then {
-		private _framework = "==============================================
-				<br/>
-				<br/>	Framework by: GuzzenVonLidl
-				<br/>	Version: "+GVARMAIN(Version)+"
-				<br/>
-				<br/>	==============================================
-				<br/>
-				<br/>	Guerrillas of Liberation
-				<br/>	Teamspeak: teamspeak.gol-clan.co.uk
-				<br/>	Website: http://www.gol-clan.co.uk/
-				<br/>	==============================================";
-		player createDiaryRecord ["Log", ["Framework",_framework]];
-	};
+	[{
+		if (hasInterface) then {
+			private _framework = "==============================================
+					<br/>
+					<br/>	Framework by: GuzzenVonLidl
+					<br/>	Version: "+GVARMAIN(Version)+"
+					<br/>
+					<br/>	==============================================
+					<br/>
+					<br/>	Guerrillas of Liberation
+					<br/>	Teamspeak: teamspeak.gol-clan.co.uk
+					<br/>	Website: http://www.gol-clan.co.uk/
+					<br/>	==============================================";
+			player createDiaryRecord ["Log", ["Framework",_framework]];
+		};
+	}, []] call CBA_Fnc_execNextFrame;
 }, []] call CBA_fnc_waitUntilAndExecute;
 
 [{(getClientStateNumber >= 10) || !isMultiplayer}, {

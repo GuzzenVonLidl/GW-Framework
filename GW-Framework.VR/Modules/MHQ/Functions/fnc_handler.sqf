@@ -23,7 +23,7 @@ if (!isServer) exitWith {false};
 
 	[QGVAR(Enabled), [_mhq, false]] call CBA_fnc_LocalEvent;
 	_jipID = [QGVAR(Actions), [_mhq], format ["GW_MHQ_JIP_%1", _mhq]] call CBA_fnc_globalEventJIP;
-	_mhq setVariable [QGVAR(Info), [(typeOf _mhq), (getPosATL _mhq), floor(getdir _mhq), (vehicleVarName _mhq), _type, _jipID]];	// Store for respawn
+	_mhq setVariable [QGVAR(Info), [(typeOf _mhq), (getPosATL _mhq), floor(getdir _mhq), (vehicleVarName _mhq), _type, _jipID], true];	// Store for respawn
 	_mhq setVariable [QGVAR(Fuel), (fuel _mhq)];
 	_mhq setVariable [QGVAR(Side), toLower(_side), true];
 

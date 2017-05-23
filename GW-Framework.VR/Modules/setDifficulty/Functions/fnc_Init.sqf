@@ -7,9 +7,8 @@ params [
 if (isPlayer _unit) then {
 	_unit setUnitTrait ["camouflageCoef", [GVAR(playerDetection), 0.1] call BIS_fnc_roundNum];
 } else {
-	if !(GVAR(difficulty) isEqualTo 0) then {
-		if ((isPlayer _unit) || !(local _unit) || ((side _unit) isEqualTo sideLogic)) exitWith {false};
-
+	if (isServer && !(GVAR(difficulty) isEqualTo 0)) then {
+		_unit setskill 1;
 		{
 			_unit setskill [_x ,(call FUNC(get) select 0)];
 		} forEach ["aimingAccuracy","aimingShake","aimingSpeed"];

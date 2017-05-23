@@ -27,26 +27,26 @@ FUNC(Get) = {
 };
 
 //	[aiming, general, spotting]
-GVAR(easy) = [0.20, 0.50, 0.80];
-GVAR(medium) = [0.27, 0.60, 0.80];
-GVAR(hard) = [0.35, 0.70, 1.0];
+GVAR(easy) 	 = [0.20, 0.50, 0.80];
+GVAR(medium) = [0.30, 0.60, 0.80];
+GVAR(hard) 	 = [0.35, 0.70, 1.00];
 
 [
 	QGVAR(difficulty), "LIST",
 	["Difficulty", "Sets the difficulty of newly spawned units"],
-	QUOTE(ADDON), [[0,1,2,3], ["Disable","Easy","Medium","Hard"], 2], false
+	QUOTE(ADDON), [[0,1,2,3], ["Disable","Easy","Medium","Hard"], 2], true
 ] call FUNCMAIN(settingsInit);
 
 [
 	QGVAR(playerDetection), "SLIDER",
 	["Detect player skill", "How easily a player gets detected, lower value harder to detect"],
-	QUOTE(ADDON), [0.5, 2, 1.0, 1], false
+	QUOTE(ADDON), [0.5, 2, 1.0, 1], true
 ] call FUNCMAIN(settingsInit);
 
 if (isClass ((missionConfigFile >> "GW_Modules" >> "VCOMAI"))) then {
 	[
 		QEGVAR(VCOMAI,Enabled), "LIST",
 		["Enable advanced AI", "Might cause a slowdown in larger scales"],
-		QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], false
+		QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], true
 	] call FUNCMAIN(settingsInit);
 };

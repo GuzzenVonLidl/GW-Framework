@@ -33,17 +33,17 @@ private ["_unitList","_side","_leader"];
 switch (toUpper(_faction)) do {
 	case "WEST": {
 		_leader = "B_Soldier_TL_F";
-		_unitList = ["B_engineer_F"];
+		_unitList = ["B_Soldier_F","B_Soldier_GL_F","B_medic_F","B_soldier_AR_F"];
 	};
 
 	case "EAST": {
 		_leader = "O_Soldier_TL_F";
-		_unitList = ["O_engineer_F"];
+		_unitList = ["O_Soldier_F","O_Soldier_GL_F","O_medic_F","O_soldier_AR_F"];
 	};
 
 	case "INDEPENDENT": {
 		_leader = "I_Soldier_TL_F";
-		_unitList = ["I_engineer_F"];
+		_unitList = ["I_Soldier_F","I_Soldier_GL_F","I_medic_F","I_soldier_AR_F"];
 	};
 
 	case "CIVILIAN": {

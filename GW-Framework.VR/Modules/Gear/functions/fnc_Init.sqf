@@ -19,90 +19,38 @@
 
 params [
 	["_unit", objNull, [objNull]],
-	["_role", "autoDetect", ["",[]]]
+	["_role", "", ["",[]]]
 ];
+
+private _mainScope = true;
 
 if ((_unit isKindOf "HeadlessClient_F") || !(local _unit)) exitWith {false};
 if (_unit getVariable [QGVAR(blackList), false]) exitWith {false};
-if !((_unit isKindOf "ReammoBox_F") || (isPlayer _unit)) then {
-	if !GVAR(Auto_Assign) exitWith {false};
-};
-
-private _mainScope = true;
-private _vehicle = (vehicle _unit);
 
 if (_unit isKindOf "CAManBase") then {
-	if (isNil {((group _unit) getVariable QGVAR(Loadout_Type))}) then {
-		if ((leader (group _unit) isEqualTo _unit) && !(isPlayer _unit)) then {
-			(group _unit) setVariable [QGVAR(Loadout_Type), (selectRandom [true, false]), true];
-		} else {
-			(group _unit) setVariable [QGVAR(Loadout_Type), false, true];
+	if (GVAR(Auto_Assign) isEqualTo 0) then {	// Disable AI Gear
+		if !(isPlayer _unit) then {
+			_mainScope = false;
+		};
+	};
+	if ((time > 5) && (GVAR(Auto_Assign) isEqualTo 2)) then {	// GW Spawned units only
+		if !((_unit getVariable [QEGVAR(Common,isSpawned), false]) || (isPlayer _unit)) then {
+			_mainScope = false;
 		};
 	};
 
-	if ((_unit getVariable [QGVAR(Loadout), _role]) isEqualTo "") then {	// Disable
-		_mainScope = false;
-	} else {
-		if !(isNil {(_unit getVariable QGVAR(Loadout))}) then {		// Specific role assigned
-			_role = (_unit getVariable [QGVAR(Loadout), _role]);
-		} else {
-			_mainScope = false;
-			[{	// Auto detect
-				params ["_unit"];
-				private _role = "r";
-				private _groupType = ((group _unit) getVariable [QGVAR(Loadout_Type), false]);
-				private _displayName = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
+	if (isNil {(_unit getVariable QGVAR(Loadout))}) then {
+		_role = "r";
+		private _groupType = ((group _unit) getVariable [QGVAR(Loadout_Type), false]);
+		private _displayName = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
 
-				if ((isPlayer _unit) || (!GVAR(randomZeusGear) && !(([format ["%1", typeOf _unit], 2] call BIS_fnc_trimString) isEqualTo "engineer_F"))) then {
-					switch (true) do {
-						case (_displayName isEqualTo "Squad Leader"): {
-							_role = "sl";
-						};
-						case (_displayName isEqualTo "Team Leader"): {
-							_role = "ftl";
-						};
-						case (_displayName isEqualTo "Rifleman"): {
-							if (_groupType) then {
-								_role = "mat";
-							};
-						};
-						case (_displayName isEqualTo "Grenadier"): {
-							if (_groupType) then {
-								_role = "amat";
-							} else {
-								_role = "g";
-							};
-						};
-						case (_displayName in ["Asst. Autorifleman","Combat Life Saver","Medic","Corpsman"]): {
-							if (_groupType) then {
-								_role = "ammg";
-							} else {
-								_role = "ag";
-							};
-						};
-						case (_displayName in ["Autorifleman","Machinegunner"]): {
-							if (_groupType) then {
-								_role = "mmg";
-							} else {
-								_role = "ar";
-							};
-						};
-						case (_displayName isEqualTo "Crewman"): {
-							_role = "crew";
-						};
-						case (_displayName in ["Helicopter Pilot","Pilot"]): {
-							_role = "p";
-						};
-						default {
-							_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
-						};
-					};
-				} else {
-					_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
-				};
-				[_unit, _role] call FUNC(Handler);
-			}, [_unit], 0.1] call CBA_fnc_waitAndExecute;
+		if ((isPlayer _unit) || !(GVAR(randomGear))) then {
+			_role = [_unit] call FUNC(getLoadoutClass);
+		} else {
+			_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
 		};
+	} else {	// Disable
+		_role = (_unit getVariable [QGVAR(Loadout), "r"]);	// Specific role assigned
 	};
 } else {
 	if (_unit isKindOf "Car") then {

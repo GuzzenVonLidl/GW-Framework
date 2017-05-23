@@ -1,28 +1,12 @@
 
-/*
-	private _setupBabel = false;
-	private _setupPerSideRadios = true;
-	[_setupBabel, _setupPerSideRadios] call acre_api_fnc_setupMission;
-	[false] call acre_api_fnc_setInterference;
-	[true] call acre_api_fnc_setFullDuplex;
-	[true] call acre_api_fnc_ignoreAntennaDirection;
-
-		[_x, "default", 1, "label", "1-1 NET"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 2, "label", "1-2 NET"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 3, "label", "1-3 NET"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 4, "label", "CONVOY NET"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 5, "label", "PLATOON NET"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 6, "label", "FAC NET"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 7, "label", "AAC NET"] call acre_api_fnc_setPresetChannelField;
-*/
-
 [QGVARMAIN(mapLoaded), {
 	_interference = false;	// Sets whether transmissions will interfere with eachother. This, by default, causes signal loss when multiple people are transmitting on the same frequency.
-	_fullDuplex = false;	// Sets the duplex of radio transmissions. If set to true, it means that you will receive transmissions even while talking and multiple people can speak at the same time.
+	_fullDuplex = true;	// Sets the duplex of radio transmissions. If set to true, it means that you will receive transmissions even while talking and multiple people can speak at the same time.
 	_ignoreAntennaDirection = true;
-	_signalLoss = 0.8;	// Indiciates how much terrian loss should be modelled. Values: 0 no loss, 1 full terrian loss, default: 1
+	_signalLoss = 0;	// Indiciates how much terrian loss should be modelled. Values: 0 no loss, 1 full terrian loss, default: 1
 	_revealToAI = true;		// False - AI not hear players, true - AI hear players.
 
+//	[false, true] call acre_api_fnc_setupMission;
 	["acre_sys_core_interference", _interference, true, "server"] call CBA_settings_fnc_set;
 	["acre_sys_core_fullDuplex", _fullDuplex, true, "server"] call CBA_settings_fnc_set;
 	["acre_sys_core_ignoreAntennaDirection", _ignoreAntennaDirection, true, "server"] call CBA_settings_fnc_set;
@@ -33,12 +17,9 @@
 [{
 
 	{
-		[_x, "default", 1, "label", "NET-1-1"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 2, "label", "NET-1-2"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 3, "label", "NET-1-3"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 4, "label", "NET-CONVOY"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 5, "label", "NET-PLATOON"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 6, "label", "NET-FAC"] call acre_api_fnc_setPresetChannelField;
-		[_x, "default", 7, "label", "NET-AAC"] call acre_api_fnc_setPresetChannelField;
+		[_x, "default", 1, "label", "NET-PLATOON"] call acre_api_fnc_setPresetChannelField;
+		[_x, "default", 2, "label", "NET-FAC"] call acre_api_fnc_setPresetChannelField;
+		[_x, "default", 3, "label", "NET-AAC"] call acre_api_fnc_setPresetChannelField;
+
 	} forEach ["ACRE_PRC148","ACRE_PRC152","ACRE_PRC117F"];	// No ACRE_PRC343
 }, [], 1] call CBA_fnc_waitAndExecute;

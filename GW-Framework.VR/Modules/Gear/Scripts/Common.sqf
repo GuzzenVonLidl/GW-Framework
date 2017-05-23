@@ -11,9 +11,6 @@ _smokegrenadeO = "SmokeShellOrange";
 _smokegrenadeP = "SmokeShellPurple";
 _smokegrenadeR = "SmokeShellRed";
 _smokegrenadeY = "SmokeShellYellow";
-if (_isMan && !(isPlayer _unit)) then {
-	_smokegrenadeY = _smokegrenadeW;
-};
 
 _chemB = "Chemlight_blue";
 _chemG =  "Chemlight_green";
@@ -52,8 +49,11 @@ if (GVARMAIN(mod_CTAB)) then {
 	_microDAGR = "ItemMicroDAGR";
 	_HelmetCam = "ItemcTabHCam";
 
-	if (_role in ["pl","fac","crew","p"]) then {
-		_gps = _cTab;
+	if (isPlayer _unit) then {
+		_gps = _Android;
+		if (_role in ["pl","fac","crew","p"]) then {
+			_gps = _cTab;
+		};
 	};
 };
 
@@ -144,7 +144,9 @@ if (GVARMAIN(mod_ACE3)) then {
 	_handFlareW = "ACE_HandFlare_White";
 	_handFlareY = "ACE_HandFlare_Yellow";
 
-	if (_role in ["sl","ftl"]) then {
-		_gps = _microDAGR;
+//	_gps = _microDAGR;
+
+	if ((isPlayer _unit) && (_role in ["sl","ftl"])) then {
+		[[_gps,1]] call _addToUniform;
 	};
 };

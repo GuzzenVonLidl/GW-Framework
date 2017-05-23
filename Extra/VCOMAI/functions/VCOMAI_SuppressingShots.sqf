@@ -52,7 +52,7 @@ if (VCOMAI_CurrentlySuppressing < VCOMAI_CurrentlySuppressingLimit) then
 					_x setSuppression 1;
 					if (VCOMAI_Suppression) then
 					{
-						if (isPlayer _x) then {remoteExec ["VCOMAI_PSup",_x];}
+						if ((isPlayer _x) && VCOMAI_SuppressionNoPlayers) then {remoteExec ["VCOMAI_PSup",_x];}
 						else
 						{
 							_x setCustomAimCoef VCOMAI_SuppressionVar;

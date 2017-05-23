@@ -34,7 +34,8 @@
 
 	_mhq setVariable [QGVAR(Assembled), _toggle, true];
 	if (_mhq getVariable [QGVAR(Assembled), false]) then {
-		[_mhq, (_mhq getVariable QGVAR(Info)) select 4] call FUNC(getDeployType);
+		[_mhq] call FUNC(prefabCreate);
+//		[_mhq, (_mhq getVariable QGVAR(Info)) select 4] call FUNC(getDeployType);
 	} else {	// Remove objects
 		{
 			deleteVehicle _x;

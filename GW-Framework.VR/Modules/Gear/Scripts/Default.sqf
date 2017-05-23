@@ -88,22 +88,12 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
 		[_map, "", "", _compass, _watch, _nvg] call _addLinkedItems;
-		if (isPlayer _unit) then {
-			["","","","",_backpack] call _addEquipment;
-			[_LAT, _LAT_mag, ""] call _addLaunchers;
-			[[_cables,1],[_defusalKit,1],[_clacker,1],[_demoCharge,2],[_satchelCharge,1]] call _addToBackpack;
-			[_map, "", "", _compass, _watch, _nvg] call _addLinkedItems;
-			if (_LAT_ReUsable) then {
-				[[_LAT_mag,1]] call _addToBackpack;
-			};
-		} else {
-			if ((random 1) >= 0.7) then {
-				[_LAT, _LAT_mag, ""] call _addLaunchers;
-				if (_LAT_ReUsable) then {
-					["","","","",_backpack] call _addEquipment;
-					[[_LAT_mag,2]] call _addToBackpack;
-				};
-			};
+		["","","","",_backpack] call _addEquipment;
+		[_LAT, _LAT_mag, ""] call _addLaunchers;
+		[[_cables,1],[_defusalKit,1],[_clacker,1],[_demoCharge,2],[_satchelCharge,1]] call _addToBackpack;
+		[_map, "", "", _compass, _watch, _nvg] call _addLinkedItems;
+		if (_LAT_ReUsable) then {
+			[[_LAT_mag,1]] call _addToBackpack;
 		};
 	};
 
@@ -129,12 +119,10 @@ switch (toLower(_role)) do {
 		[[_pistol_mag,2],[_smokegrenadeY,4],[_grenademini,2]] call _addToUniform;
 		[[_grenade,1],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
 		[[_LMG_mag_tr,COUNT_AG_MAGS(_LMG_mag_tr)]] call _addToBackpack;
-		if (isPlayer _unit) then {
-			if (GVAR(extraGear)) then {
-				(_FAKBig) call _addToBackpack;
-			} else {
-				(_FAKSmall) call _addToBackpack;
-			};
+		if (GVAR(extraGear)) then {
+			(_FAKBig) call _addToBackpack;
+		} else {
+			(_FAKSmall) call _addToBackpack;
 		};
 		[_map, "", "", _compass, _watch, _nvg] call _addLinkedItems;
 		_rangefinder call _addBino;
@@ -239,6 +227,6 @@ switch (toLower(_role)) do {
 	};
 };
 
-if ((call EFUNC(Common,isNight)) && _allowedNightStuff && (isPlayer _unit)) then {
+if ((call EFUNC(Common,isNight)) && _allowedNightStuff) then {
 	[[_mapFlashLight,1],[_IRStrobe,1]] call _addToUniform;
 };

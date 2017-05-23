@@ -9,7 +9,7 @@ if !(_FullService) then {
 
 if ((fuel _veh) < 0.98) then {
 	while {(fuel _veh) < 0.98} do {
-		if !(_Veh in GVAR(Actions)) exitWith {[_SS,true] call FUNC(Available)};
+		if !(_Veh in GVAR(Array)) exitWith {[_SS,true] call FUNC(Available)};
 		["Refueling.", _Veh] spawn FUNC(Hints);
 		_veh setfuel ((fuel _veh) + REFUELING);
 		sleep 1;

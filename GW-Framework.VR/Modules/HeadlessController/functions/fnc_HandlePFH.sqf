@@ -6,7 +6,6 @@ if (!((count GVAR(ToTransfer)) isEqualTo 0) || GVAR(forceRebalance)) then {
 
 	if (GVAR(forceRebalance)) then {
 		GVAR(forceRebalance) = false;
-//		GW_HeadlessController_forceRebalance = true;
 		GVAR(ToTransfer) = (GVAR(ToTransfer) + GVAR(Transfered));
 		GVAR(Transfered) = [];
 //		LOG_ADMIN("Forcing a rebalance on all groups");
@@ -39,6 +38,11 @@ if (!((count GVAR(ToTransfer)) isEqualTo 0) || GVAR(forceRebalance)) then {
 
 			_group setGroupOwner (owner _headless);
 			_group setVariable [QGVAR(currentOwner), _headless, true];
+			{
+				if (_x getVariable [QEGVAR(Common,disableAI_Path), false]) then {
+					[QEGVAR(Common,disableAICommand), _x, _headless] call CBA_fnc_targetEvent;
+				};
+			} forEach (units _group);
 
 			_groupsTransfered pushBack _group;
 			LOG(FORMAT_2("%2 moved to %1", _headless, _group));

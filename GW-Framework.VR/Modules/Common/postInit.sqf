@@ -27,3 +27,10 @@
 		}, _this] call CBA_Fnc_execNextFrame;
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 }] call CBA_fnc_addEventHandler;
+
+[QGVAR(disableAICommand), {
+	params ["_unit"];
+	_unit setVariable [QGVAR(disableAI_Path), true, true];
+	_unit disableAI "PATH";
+	doStop _unit;
+}] call CBA_fnc_addEventHandler;

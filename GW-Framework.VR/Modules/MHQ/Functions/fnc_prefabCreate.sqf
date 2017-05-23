@@ -16,22 +16,26 @@
 #include "..\scriptComponent.hpp"
 if (!isServer) exitWith {false};
 
-params ["_mhq","_objects"];
-private ["_objectsCreated","_pos","_veh"];
-_objectsCreated = [];
-_pos = "Land_Compass_F" createVehicle [0,0,0];
-_pos setDir (getdir _mhq);
-_pos setPosATL (getPos _mhq);
+params ["_mhq"];
+
+private _objects = [(_mhq getVariable QGVAR(Info)) select 4] call FUNC(getDeployType);
+private _objectsCreated = [];
+private _can = "Land_Compass_F" createVehicle [0,0,0];
+_can setDir (getdir _mhq);
+_can setPosATL (getPos _mhq);
+
 {
-	_veh = (_x select 0) createVehicle [0,0,0];
-	_veh setDir ((_x select 1) + (getdir _pos));
-	_veh setPos (_pos modelToWorld (_x select 2));
+	_x params ["_type","_dir","_pos","_inventory"];
+	_veh = _type createVehicle [0,0,0];
+	_veh setDir (_dir + (getdir _mhq));
+	_veh setVehiclePosition [(_can modelToWorld _pos), [], 0, "CAN_COLLIDE"];
 	_veh setVectorUp surfaceNormal position _veh;
+	_veh enableSimulationGlobal false;
 	_veh allowDamage false;
 	if (count _x isEqualTo 4) then {
-		[_veh, (_x select 3)] call EFUNC(Gear,Init);
+		[_veh, _inventory] call EFUNC(Gear,Init);
 	};
 	_objectsCreated pushBack _veh;
 } forEach _objects;
 _mhq setVariable [QGVAR(objectsCreated), _objectsCreated, true];
-deleteVehicle _pos;
+deleteVehicle _can;

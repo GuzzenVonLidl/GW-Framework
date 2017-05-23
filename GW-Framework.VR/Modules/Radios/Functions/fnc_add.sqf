@@ -67,10 +67,9 @@ if (GVARMAIN(mod_TFAR)) then {
 			private _groupNet = 0;
 			private _1stNet = 1;
 			private _2ndNet = 2;
-			private _convoyNet = 4;
-			private _platoonNet = 5;
-			private _facNet = 6;
-			private _aacNet = 7;
+			private _platoonNet = 1;
+			private _facNet = 2;
+			private _aacNet = 3;
 
 			if (_role in _group343List) then {
 				if (TrimID isEqualTo "1") then {

@@ -14,28 +14,17 @@
 */
 #include "..\scriptComponent.hpp"
 
-private _mhq = objNull;
-private _allObjects = [];
+if (isNull player) exitWith { ["No player unit found!","Warning!"] call BIS_fnc_3DENShowMessage; };
+
 private _CopyObjects = [];
-_allObjects = [];
 
 {
-	if (_x isKindOf "AllVehicles") then {
-		if !(_x isKindOf "CAManBase") then {
-			_mhq = _x;
-		};
-	} else {
-		_allObjects pushBack _x;
+	if !(_x isKindOf "CAManBase") then {
+		_pos = player worldToModel (position _x);
+		_CopyObjects pushBack [(typeOf _x), round(getDir _x), _pos];
 	};
-} forEach (get3DENSelected "object");
+} forEach get3DENSelected "object";
 
-private _copyFrom = create3DENEntity ["Object","Land_Compass_F", [(getPosATL _mhq) select 0,(getPosATL _mhq) select 1,0]];
+systemChat format ["%1 Objects Copied", (count _CopyObjects)];
 
-{
-	if (!(_x isKindOf "AllVehicles") || !(_x isKindOf "CAManBase")) then {
-		_CopyObjects pushBack [(typeOf _x), round(getDir _x), (_copyFrom worldToModel (getPosATL _x))];
-	};
-} forEach _allObjects;
-
-delete3DENEntities [_copyFrom];
-copyToClipboard (format ["[_mhq,%1] call %2;", str(_CopyObjects), QFUNC(prefabCreate)]);
+copyToClipboard (("_return = ") + str(_CopyObjects) + (";"));

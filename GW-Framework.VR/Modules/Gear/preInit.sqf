@@ -14,6 +14,7 @@ GVAR(StaminaCoef) = 0.5;
 
 PREP(actions);
 PREP(getAttachments);
+PREP(getLoadoutClass);
 PREP(Handler);
 PREP(Init);
 PREP(replaceAttachments);
@@ -47,7 +48,7 @@ PREP(replaceAttachments);
 		],
 		0
 	],
-	false
+	true
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -78,7 +79,7 @@ PREP(replaceAttachments);
 		0
 	]
 	,
-	false
+	true
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -102,29 +103,53 @@ PREP(replaceAttachments);
 		],
 		0
 	],
-	false
+	true
 ] call FUNCMAIN(settingsInit);
 
 [
 	QGVAR(Auto_Assign), "LIST",
 	["Auto assign gear", "automaticly gives gear to spawned units"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
+	QUOTE(ADDON),
+	[
+		[0,1,2],
+		["Disabled","All Units","Only Spawned"],
+		1
+	],
+	true
 ] call FUNCMAIN(settingsInit);
 
 [
-	QGVAR(randomZeusGear), "LIST",
-	["Random Role for spawned Units", "Should spawned units get random gear"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
+	QGVAR(randomGear), "LIST",
+	["Random Role", "Should units get random gear"],
+	QUOTE(ADDON),
+	[
+		[true,false],
+		["enabled","disabled"],
+		1
+	],
+	true
 ] call FUNCMAIN(settingsInit);
 
 [
 	QGVAR(BlockAIGear), "LIST",
 	["Blocks access to ai Inventories", "Stops players from being able to scavenge dead AI"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], false
+	QUOTE(ADDON),
+	[
+		[true,false],
+		["enabled","disabled"],
+		0
+	],
+	true
 ] call FUNCMAIN(settingsInit);
 
 [
 	QGVAR(extraGear), "LIST",
 	["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 1], false
+	QUOTE(ADDON),
+	[
+		[true,false],
+		["enabled","disabled"],
+		1
+	],
+	true
 ] call FUNCMAIN(settingsInit);

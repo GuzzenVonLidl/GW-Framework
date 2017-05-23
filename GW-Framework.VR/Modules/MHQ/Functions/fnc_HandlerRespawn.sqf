@@ -22,7 +22,11 @@ if (([format ["%1", _unit], 1] call BIS_fnc_trimString) in BLACKLIST) exitWith {
 
 {
 	if ((_x getVariable QGVAR(Side)) isEqualTo toLower(GETSIDESTRING(_unit))) exitWith {
-		_unit setPosATL (_x getRelPos [(sizeOF(typeOf _x)/2) + 1, 180]);
+		(boundingBoxReal _x) params ["_p1","_p2"];
+		_maxLength = abs ((_p2 select 1) - (_p1 select 1));
+		_pos = (_x getRelPos [_maxLength + 2, 180]);
+		_pos set [2, (getPos _vehicle) select 2];
+		_unit setPosATL _pos;
 		_unit setDir (getDir _x) + 180;
 	};
 } count GVAR(AssembledArray);

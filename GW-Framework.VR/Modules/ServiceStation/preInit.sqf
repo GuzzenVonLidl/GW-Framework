@@ -1,6 +1,7 @@
 #include "scriptComponent.hpp"
 
 PREP(Actions);
+PREP(ExitLoop);
 PREP(FullService);
 PREP(Init);
 PREP(InitMobile);
@@ -23,8 +24,8 @@ FUNC(Hints) = {
 	if (((Player distance _veh) <= 15) or (driver _veh isEqualTo player)) then {
 		Hint _text;
 	};
-	if !(driver _veh isEqualTo ObjNull) then {
-		[[_veh], {
+	if !((driver _veh) isEqualTo ObjNull) then {
+		[[_text], {
 			params ["_text"];
 			hint _text;
 		}] remoteExec ["BIS_FNC_SPAWN",_veh];
