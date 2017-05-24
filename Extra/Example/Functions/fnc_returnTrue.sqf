@@ -1,0 +1,4 @@
+
+#include "..\scriptComponent.hpp"
+
+true

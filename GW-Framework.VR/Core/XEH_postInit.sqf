@@ -132,7 +132,7 @@ if (DEVBUILD) then {
 					<br/>	Teamspeak: teamspeak.gol-clan.co.uk
 					<br/>	Website: http://www.gol-clan.co.uk/
 					<br/>	==============================================";
-			player createDiaryRecord ["Log", ["Framework",_framework]];
+			player createDiaryRecord ["framework_diary", ["Framework",_framework]];
 		};
 	}, []] call CBA_Fnc_execNextFrame;
 }, []] call CBA_fnc_waitUntilAndExecute;
