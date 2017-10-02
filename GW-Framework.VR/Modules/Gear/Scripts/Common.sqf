@@ -30,6 +30,8 @@ _glsmokeY = "1Rnd_SmokeYellow_Grenade_shell";
 _glflareG = "UGL_FlareGreen_F";
 _glflareR = "UGL_FlareRed_F";
 
+_mineDetector = [["MineDetector",1]];
+
 // ===========================
 // Item
 

@@ -5,18 +5,18 @@ class EditorData
 	angleGridStep=0.08726646;
 	scaleGridStep=10;
 	autoGroupingDist=10;
-	toggles=613;
+	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=1733;
+		nextID=1859;
 	};
 	class LayerIndexProvider
 	{
-		nextID=822;
+		nextID=827;
 	};
 	class Camera
 	{
-		pos[]={52.160839,20,21.984581};
+		pos[]={163.20461,127.77856,-161.86151};
 		dir[]={0.0063416194,-0.45874378,0.88857621};
 		up[]={0.0032739795,0.88855213,0.45875525};
 		aside[]={0.99999529,-1.7571438e-008,-0.0071371724};
@@ -26,19 +26,24 @@ binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
+	"ace_explosives",
 	"A3_Weapons_F_Ammoboxes",
+	"ace_cargo",
 	"A3_Ui_F",
 	"A3_Structures_F_Mil_Flags",
 	"A3_Supplies_F_Exp_Ammoboxes",
+	"ace_dragging",
 	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Structures_F_Mil_Helipads",
-	"A3_Soft_F_Quadbike_01"
+	"Desert",
+	"A3_Soft_F_Quadbike_01",
+	"ace_repair"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=7;
+		items=12;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -48,47 +53,84 @@ class AddonsMetaData
 		};
 		class Item1
 		{
+			className="ace_explosives";
+			name="ACE3 - Explosives";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item2
+		{
 			className="A3_Weapons_F";
 			name="Arma 3 Alpha - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item2
+		class Item3
+		{
+			className="ace_cargo";
+			name="ACE3 - Cargo";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item4
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item3
+		class Item5
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item4
+		class Item6
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item5
+		class Item7
+		{
+			className="ace_dragging";
+			name="ACE3 - Dragging";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item8
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item6
+		class Item9
+		{
+			className="Desert";
+			name="Desert";
+		};
+		class Item10
 		{
 			className="A3_Soft_F";
 			name="Arma 3 Alpha - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
+		class Item11
+		{
+			className="ace_repair";
+			name="ACE3 - Repair";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
 	};
+};
+class DynamicSimulation
+{
+	enable=0;
 };
 randomSeed=5200744;
 class ScenarioData
@@ -111,6 +153,30 @@ class ScenarioData
 class CustomAttributes
 {
 	class Category0
+	{
+		name="GW_MissionPreferences";
+		class Attribute0
+		{
+			property="GW_isConfigured";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"BOOL"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		nAttributes=1;
+	};
+	class Category1
 	{
 		name="Scenario";
 		class Attribute0
@@ -183,8 +249,31 @@ class Mission
 						isPlayer=1;
 						isPlayable=1;
 					};
-					id=1;
-					type="B_Soldier_SL_F";
+					id=1733;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -194,7 +283,7 @@ class Mission
 						position[]={48,5.0014391,72.050003};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -203,8 +292,31 @@ class Mission
 						description="1-Actual FAC";
 						isPlayable=1;
 					};
-					id=2;
-					type="B_Soldier_F";
+					id=1734;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -259,8 +371,31 @@ class Mission
 						description="Squad Leader@1-1 ";
 						isPlayable=1;
 					};
-					id=4;
-					type="B_Soldier_SL_F";
+					id=1735;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -270,7 +405,7 @@ class Mission
 						position[]={36,5.0014391,65.050003};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -279,8 +414,31 @@ class Mission
 						description="Squad Medic@1-1 ";
 						isPlayable=1;
 					};
-					id=5;
-					type="B_Soldier_F";
+					id=1736;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -326,7 +484,7 @@ class Mission
 						position[]={34,5.0014391,59.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -334,8 +492,31 @@ class Mission
 						description="1-1 Alpha Fire Team Leader";
 						isPlayable=1;
 					};
-					id=7;
-					type="B_Soldier_TL_F";
+					id=1739;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -353,8 +534,31 @@ class Mission
 						description="1-1 Alpha Rifleman";
 						isPlayable=1;
 					};
-					id=8;
-					type="B_Soldier_F";
+					id=1740;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -364,7 +568,7 @@ class Mission
 						position[]={38,5.0014391,59.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -372,8 +576,31 @@ class Mission
 						description="1-1 Alpha Grenadier";
 						isPlayable=1;
 					};
-					id=9;
-					type="B_Soldier_GL_F";
+					id=1741;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -383,15 +610,38 @@ class Mission
 						position[]={40,5.0014391,59.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="w1a4";
 						description="1-1 Alpha Asst. Gunner";
 						isPlayable=1;
 					};
-					id=10;
-					type="B_medic_F";
+					id=1742;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -410,8 +660,31 @@ class Mission
 						description="1-1 Alpha Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=11;
-					type="B_soldier_AR_F";
+					id=1743;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -457,7 +730,7 @@ class Mission
 						position[]={34,5.0014391,53.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -465,8 +738,31 @@ class Mission
 						description="1-1 Bravo Fire Team Leader";
 						isPlayable=1;
 					};
-					id=13;
-					type="B_Soldier_TL_F";
+					id=1749;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -484,8 +780,31 @@ class Mission
 						description="1-1 Bravo Rifleman";
 						isPlayable=1;
 					};
-					id=14;
-					type="B_Soldier_F";
+					id=1750;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -495,7 +814,7 @@ class Mission
 						position[]={38,5.0014391,53.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -503,8 +822,31 @@ class Mission
 						description="1-1 Bravo Grenadier";
 						isPlayable=1;
 					};
-					id=15;
-					type="B_Soldier_GL_F";
+					id=1751;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -514,15 +856,38 @@ class Mission
 						position[]={40,5.0014391,53.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="w1b4";
 						description="1-1 Bravo Asst. Gunner";
 						isPlayable=1;
 					};
-					id=16;
-					type="B_medic_F";
+					id=1752;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -541,8 +906,31 @@ class Mission
 						description="1-1 Bravo Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=17;
-					type="B_soldier_AR_F";
+					id=1753;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -588,7 +976,7 @@ class Mission
 						position[]={34,5.0014391,47.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -596,8 +984,31 @@ class Mission
 						description="1-1 Charlie Fire Team Leader";
 						isPlayable=1;
 					};
-					id=19;
-					type="B_Soldier_TL_F";
+					id=1759;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -607,7 +1018,7 @@ class Mission
 						position[]={36,5.0014391,47.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -615,8 +1026,31 @@ class Mission
 						description="1-1 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
-					id=20;
-					type="B_Soldier_F";
+					id=1760;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -626,7 +1060,7 @@ class Mission
 						position[]={38,5.0014391,47.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -634,8 +1068,31 @@ class Mission
 						description="1-1 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
-					id=21;
-					type="B_Soldier_GL_F";
+					id=1761;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -645,15 +1102,38 @@ class Mission
 						position[]={40,5.0014391,47.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="w1c4";
 						description="1-1 Charlie Asst. MMG";
 						isPlayable=1;
 					};
-					id=22;
-					type="B_medic_F";
+					id=1762;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -663,7 +1143,7 @@ class Mission
 						position[]={42,5.0014391,47.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -672,8 +1152,31 @@ class Mission
 						description="1-1 Charlie MMG";
 						isPlayable=1;
 					};
-					id=23;
-					type="B_soldier_AR_F";
+					id=1763;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -729,8 +1232,31 @@ class Mission
 						description="1-2 Squad Leader";
 						isPlayable=1;
 					};
-					id=25;
-					type="B_Soldier_SL_F";
+					id=1737;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -740,7 +1266,7 @@ class Mission
 						position[]={56,5.0014391,65.050003};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -749,8 +1275,31 @@ class Mission
 						description="1-2 Squad Medic";
 						isPlayable=1;
 					};
-					id=26;
-					type="B_Soldier_F";
+					id=1738;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -796,7 +1345,7 @@ class Mission
 						position[]={54,5.0014391,59.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -804,8 +1353,31 @@ class Mission
 						description="1-2 Alpha Fire Team Leader";
 						isPlayable=1;
 					};
-					id=28;
-					type="B_Soldier_TL_F";
+					id=1744;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -823,8 +1395,31 @@ class Mission
 						description="1-2 Alpha Rifleman";
 						isPlayable=1;
 					};
-					id=29;
-					type="B_Soldier_F";
+					id=1745;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -834,7 +1429,7 @@ class Mission
 						position[]={58,5.0014391,59.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -842,8 +1437,31 @@ class Mission
 						description="1-2 Alpha Grenadier";
 						isPlayable=1;
 					};
-					id=30;
-					type="B_Soldier_GL_F";
+					id=1746;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -853,15 +1471,38 @@ class Mission
 						position[]={60,5.0014391,59.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="w2a4";
 						description="1-2 Alpha Asst. Gunner";
 						isPlayable=1;
 					};
-					id=31;
-					type="B_medic_F";
+					id=1747;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -880,8 +1521,31 @@ class Mission
 						description="1-2 Alpha Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=32;
-					type="B_soldier_AR_F";
+					id=1748;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -927,7 +1591,7 @@ class Mission
 						position[]={54,5.0014391,53.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -935,8 +1599,31 @@ class Mission
 						description="1-2 Bravo Fire Team Leader";
 						isPlayable=1;
 					};
-					id=34;
-					type="B_Soldier_TL_F";
+					id=1754;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -954,8 +1641,31 @@ class Mission
 						description="1-2 Bravo Rifleman";
 						isPlayable=1;
 					};
-					id=35;
-					type="B_Soldier_F";
+					id=1755;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -965,7 +1675,7 @@ class Mission
 						position[]={58,5.0014391,53.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -973,8 +1683,31 @@ class Mission
 						description="1-2 Bravo Grenadier";
 						isPlayable=1;
 					};
-					id=36;
-					type="B_Soldier_GL_F";
+					id=1756;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -984,15 +1717,38 @@ class Mission
 						position[]={60,5.0014391,53.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="w2b4";
 						description="1-2 Bravo Asst. Gunner";
 						isPlayable=1;
 					};
-					id=37;
-					type="B_medic_F";
+					id=1757;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -1011,8 +1767,31 @@ class Mission
 						description="1-2 Bravo Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=38;
-					type="B_soldier_AR_F";
+					id=1758;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1058,7 +1837,7 @@ class Mission
 						position[]={54,5.0014391,47.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -1066,8 +1845,31 @@ class Mission
 						description="1-2 Charlie Fire Team Leader";
 						isPlayable=1;
 					};
-					id=40;
-					type="B_Soldier_TL_F";
+					id=1764;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -1085,8 +1887,31 @@ class Mission
 						description="1-2 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
-					id=41;
-					type="B_Soldier_F";
+					id=1765;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -1096,7 +1921,7 @@ class Mission
 						position[]={58,5.0014391,47.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -1104,8 +1929,31 @@ class Mission
 						description="1-2 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
-					id=42;
-					type="B_Soldier_GL_F";
+					id=1766;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -1115,15 +1963,38 @@ class Mission
 						position[]={60,5.0014391,47.049999};
 					};
 					side="West";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="w2c4";
 						description="1-2 Charlie Asst. MMG";
 						isPlayable=1;
 					};
-					id=43;
-					type="B_medic_F";
+					id=1767;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -1142,8 +2013,31 @@ class Mission
 						description="1-2 Charlie MMG";
 						isPlayable=1;
 					};
-					id=44;
-					type="B_soldier_AR_F";
+					id=1768;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1190,7 +2084,7 @@ class Mission
 						position[]={43,5.0014391,42.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="SERGEANT";
@@ -1198,8 +2092,31 @@ class Mission
 						description="Echo 1";
 						isPlayable=1;
 					};
-					id=46;
-					type="B_Pilot_F";
+					id=1769;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1245,15 +2162,38 @@ class Mission
 						position[]={45,5.0014391,42.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="wecho2";
 						description="Echo 2";
 						isPlayable=1;
 					};
-					id=48;
-					type="B_Pilot_F";
+					id=1770;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1299,15 +2239,38 @@ class Mission
 						position[]={47,5.0014391,42.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="wecho3";
 						description="Echo 3";
 						isPlayable=1;
 					};
-					id=50;
-					type="B_Pilot_F";
+					id=1771;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1353,15 +2316,38 @@ class Mission
 						position[]={49,5.0014391,42.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="wecho4";
 						description="Echo 4";
 						isPlayable=1;
 					};
-					id=52;
-					type="B_Pilot_F";
+					id=1772;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1407,15 +2393,38 @@ class Mission
 						position[]={51,5.0014391,42.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="wecho5";
 						description="Echo 5";
 						isPlayable=1;
 					};
-					id=54;
-					type="B_Pilot_F";
+					id=1773;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1461,15 +2470,38 @@ class Mission
 						position[]={53,5.0014391,42.049999};
 					};
 					side="West";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="wecho6";
 						description="Echo 6";
 						isPlayable=1;
 					};
-					id=56;
-					type="B_Pilot_F";
+					id=1774;
+					type="B_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1917,8 +2949,31 @@ class Mission
 						description="1-Actual Platoon Leader";
 						isPlayable=1;
 					};
-					id=58;
-					type="O_Soldier_SL_F";
+					id=1775;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -1928,7 +2983,7 @@ class Mission
 						position[]={148,5.0014391,72.050003};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -1937,8 +2992,31 @@ class Mission
 						description="1-Actual FAC";
 						isPlayable=1;
 					};
-					id=59;
-					type="O_Soldier_F";
+					id=1776;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -1970,8 +3048,31 @@ class Mission
 						description="1-1 Squad Leader";
 						isPlayable=1;
 					};
-					id=61;
-					type="O_Soldier_SL_F";
+					id=1777;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -1981,7 +3082,7 @@ class Mission
 						position[]={136,5.0014391,65.050003};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -1990,8 +3091,31 @@ class Mission
 						description="1-1 Squad Medic";
 						isPlayable=1;
 					};
-					id=62;
-					type="O_Soldier_F";
+					id=1778;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2014,7 +3138,7 @@ class Mission
 						position[]={134,5.0014391,59.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -2022,8 +3146,31 @@ class Mission
 						description="1-1 Alpha Fire Team Leader";
 						isPlayable=1;
 					};
-					id=64;
-					type="O_Soldier_TL_F";
+					id=1781;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -2033,7 +3180,7 @@ class Mission
 						position[]={136,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2041,8 +3188,31 @@ class Mission
 						description="1-1 Alpha Rifleman";
 						isPlayable=1;
 					};
-					id=65;
-					type="O_Soldier_F";
+					id=1782;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -2052,7 +3222,7 @@ class Mission
 						position[]={138,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2060,8 +3230,31 @@ class Mission
 						description="1-1 Alpha Grenadier";
 						isPlayable=1;
 					};
-					id=66;
-					type="O_Soldier_GL_F";
+					id=1783;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -2071,15 +3264,38 @@ class Mission
 						position[]={140,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="e1a4";
 						description="1-1 Alpha Asst. Gunner";
 						isPlayable=1;
 					};
-					id=67;
-					type="O_medic_F";
+					id=1784;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -2089,7 +3305,7 @@ class Mission
 						position[]={142,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -2098,8 +3314,31 @@ class Mission
 						description="1-1 Alpha Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=68;
-					type="O_Soldier_AR_F";
+					id=1785;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2123,7 +3362,7 @@ class Mission
 						position[]={134,5.0014391,53.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="SERGEANT";
@@ -2131,8 +3370,31 @@ class Mission
 						description="1-1 Bravo Fire Team Leader";
 						isPlayable=1;
 					};
-					id=70;
-					type="O_Soldier_TL_F";
+					id=1791;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -2142,7 +3404,7 @@ class Mission
 						position[]={136,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2150,8 +3412,31 @@ class Mission
 						description="1-1 Bravo Rifleman";
 						isPlayable=1;
 					};
-					id=71;
-					type="O_Soldier_F";
+					id=1792;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -2161,7 +3446,7 @@ class Mission
 						position[]={138,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2169,8 +3454,31 @@ class Mission
 						description="1-1 Bravo Grenadier";
 						isPlayable=1;
 					};
-					id=72;
-					type="O_Soldier_GL_F";
+					id=1793;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -2180,15 +3488,38 @@ class Mission
 						position[]={140,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="e1b4";
 						description="1-1 Bravo Asst. Gunner";
 						isPlayable=1;
 					};
-					id=73;
-					type="O_medic_F";
+					id=1794;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -2198,7 +3529,7 @@ class Mission
 						position[]={142,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -2207,8 +3538,31 @@ class Mission
 						description="1-1 Bravo Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=74;
-					type="O_Soldier_AR_F";
+					id=1795;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2231,7 +3585,7 @@ class Mission
 						position[]={134,5.0014391,47.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -2239,8 +3593,31 @@ class Mission
 						description="1-1 Charlie Fire Team Leader";
 						isPlayable=1;
 					};
-					id=76;
-					type="O_Soldier_TL_F";
+					id=1801;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -2250,7 +3627,7 @@ class Mission
 						position[]={136,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2258,8 +3635,31 @@ class Mission
 						description="1-1 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
-					id=77;
-					type="O_Soldier_F";
+					id=1802;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -2269,7 +3669,7 @@ class Mission
 						position[]={138,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2277,8 +3677,31 @@ class Mission
 						description="1-1 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
-					id=78;
-					type="O_Soldier_GL_F";
+					id=1803;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -2288,15 +3711,38 @@ class Mission
 						position[]={140,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="e1c4";
 						description="1-1 Charlie Asst. MMG";
 						isPlayable=1;
 					};
-					id=79;
-					type="O_medic_F";
+					id=1804;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -2306,7 +3752,7 @@ class Mission
 						position[]={142,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -2315,8 +3761,31 @@ class Mission
 						description="1-1 Charlie MMG";
 						isPlayable=1;
 					};
-					id=80;
-					type="O_Soldier_AR_F";
+					id=1805;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2349,8 +3818,31 @@ class Mission
 						description="1-2 Squad Leader";
 						isPlayable=1;
 					};
-					id=82;
-					type="O_Soldier_SL_F";
+					id=1779;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -2360,7 +3852,7 @@ class Mission
 						position[]={156,5.0014391,65.050003};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2369,8 +3861,31 @@ class Mission
 						description="1-2 Squad Medic";
 						isPlayable=1;
 					};
-					id=83;
-					type="O_Soldier_F";
+					id=1780;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2393,7 +3908,7 @@ class Mission
 						position[]={154,5.0014391,59.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -2401,8 +3916,31 @@ class Mission
 						description="1-2 Alpha Fire Team Leader";
 						isPlayable=1;
 					};
-					id=85;
-					type="O_Soldier_TL_F";
+					id=1786;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -2412,7 +3950,7 @@ class Mission
 						position[]={156,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2420,8 +3958,31 @@ class Mission
 						description="1-2 Alpha Rifleman";
 						isPlayable=1;
 					};
-					id=86;
-					type="O_Soldier_F";
+					id=1787;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -2431,7 +3992,7 @@ class Mission
 						position[]={158,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2439,8 +4000,31 @@ class Mission
 						description="1-2 Alpha Grenadier";
 						isPlayable=1;
 					};
-					id=87;
-					type="O_Soldier_GL_F";
+					id=1788;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -2450,15 +4034,38 @@ class Mission
 						position[]={160,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="e2a4";
 						description="1-2 Alpha Asst. Gunner";
 						isPlayable=1;
 					};
-					id=88;
-					type="O_medic_F";
+					id=1789;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -2468,7 +4075,7 @@ class Mission
 						position[]={162,5.0014391,59.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -2477,8 +4084,31 @@ class Mission
 						description="1-2 Alpha Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=89;
-					type="O_Soldier_AR_F";
+					id=1790;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2501,7 +4131,7 @@ class Mission
 						position[]={154,5.0014391,53.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -2509,8 +4139,31 @@ class Mission
 						description="1-2 Bravo Fire Team Leader";
 						isPlayable=1;
 					};
-					id=91;
-					type="O_Soldier_TL_F";
+					id=1796;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -2520,7 +4173,7 @@ class Mission
 						position[]={156,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2528,8 +4181,31 @@ class Mission
 						description="1-2 Bravo Rifleman";
 						isPlayable=1;
 					};
-					id=92;
-					type="O_Soldier_F";
+					id=1797;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -2539,7 +4215,7 @@ class Mission
 						position[]={158,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2547,8 +4223,31 @@ class Mission
 						description="1-2 Bravo Grenadier";
 						isPlayable=1;
 					};
-					id=93;
-					type="O_Soldier_GL_F";
+					id=1798;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -2558,15 +4257,38 @@ class Mission
 						position[]={160,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="e2b4";
 						description="1-2 Bravo Asst. Gunner";
 						isPlayable=1;
 					};
-					id=94;
-					type="O_medic_F";
+					id=1799;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -2576,7 +4298,7 @@ class Mission
 						position[]={162,5.0014391,53.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -2585,8 +4307,31 @@ class Mission
 						description="1-2 Bravo Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=95;
-					type="O_Soldier_AR_F";
+					id=1800;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2609,7 +4354,7 @@ class Mission
 						position[]={154,5.0014391,47.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -2617,8 +4362,31 @@ class Mission
 						description="1-2 Charlie Fire Team Leader";
 						isPlayable=1;
 					};
-					id=97;
-					type="O_Soldier_TL_F";
+					id=1806;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -2628,7 +4396,7 @@ class Mission
 						position[]={156,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2636,8 +4404,31 @@ class Mission
 						description="1-2 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
-					id=98;
-					type="O_Soldier_F";
+					id=1807;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -2647,7 +4438,7 @@ class Mission
 						position[]={158,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -2655,8 +4446,31 @@ class Mission
 						description="1-2 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
-					id=99;
-					type="O_Soldier_GL_F";
+					id=1808;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -2666,15 +4480,38 @@ class Mission
 						position[]={160,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="e2c4";
 						description="1-2 Charlie Asst. MMG";
 						isPlayable=1;
 					};
-					id=100;
-					type="O_medic_F";
+					id=1809;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -2684,7 +4521,7 @@ class Mission
 						position[]={162,5.0014391,47.049999};
 					};
 					side="East";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -2693,8 +4530,31 @@ class Mission
 						description="1-2 Charlie MMG";
 						isPlayable=1;
 					};
-					id=101;
-					type="O_Soldier_AR_F";
+					id=1810;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2718,7 +4578,7 @@ class Mission
 						position[]={143,5.0014391,42.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="SERGEANT";
@@ -2726,8 +4586,31 @@ class Mission
 						description="Echo 1";
 						isPlayable=1;
 					};
-					id=103;
-					type="O_Pilot_F";
+					id=1811;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2750,15 +4633,38 @@ class Mission
 						position[]={145,5.0014391,42.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="eecho2";
 						description="Echo 2";
 						isPlayable=1;
 					};
-					id=105;
-					type="O_Pilot_F";
+					id=1812;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2781,15 +4687,38 @@ class Mission
 						position[]={147,5.0014391,42.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="eecho3";
 						description="Echo 3";
 						isPlayable=1;
 					};
-					id=107;
-					type="O_Pilot_F";
+					id=1813;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2812,15 +4741,38 @@ class Mission
 						position[]={149,5.0014391,42.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="eecho4";
 						description="Echo 4";
 						isPlayable=1;
 					};
-					id=109;
-					type="O_Pilot_F";
+					id=1814;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2843,15 +4795,38 @@ class Mission
 						position[]={151,5.0014391,42.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="eecho5";
 						description="Echo 5";
 						isPlayable=1;
 					};
-					id=111;
-					type="O_Pilot_F";
+					id=1815;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -2874,15 +4849,38 @@ class Mission
 						position[]={153,5.0014391,42.049999};
 					};
 					side="East";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="eecho6";
 						description="Echo 6";
 						isPlayable=1;
 					};
-					id=113;
-					type="O_Pilot_F";
+					id=1816;
+					type="O_soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3245,8 +5243,31 @@ class Mission
 						description="1-Actual Platoon Leader";
 						isPlayable=1;
 					};
-					id=308;
-					type="I_Soldier_SL_F";
+					id=1817;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -3256,7 +5277,7 @@ class Mission
 						position[]={248,5.0014391,71.050003};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3265,8 +5286,31 @@ class Mission
 						description="1-Actual FAC";
 						isPlayable=1;
 					};
-					id=309;
-					type="I_soldier_F";
+					id=1818;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3298,8 +5342,31 @@ class Mission
 						description="1-1 Squad Leader";
 						isPlayable=1;
 					};
-					id=323;
-					type="I_Soldier_SL_F";
+					id=1819;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -3309,7 +5376,7 @@ class Mission
 						position[]={238,5.0014391,64.050003};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3318,8 +5385,31 @@ class Mission
 						description="1-1 Squad Medic";
 						isPlayable=1;
 					};
-					id=324;
-					type="I_soldier_F";
+					id=1820;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3339,10 +5429,10 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={236.00002,5.0014391,58.049995};
+						position[]={236,5.0014391,58.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -3350,15 +5440,38 @@ class Mission
 						description="1-1 Alpha Fire Team Leader";
 						isPlayable=1;
 					};
-					id=511;
-					type="I_Soldier_TL_F";
+					id=1823;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={238.00002,5.0014391,58.049995};
+						position[]={238,5.0014391,58.049999};
 					};
 					side="Independent";
 					flags=4;
@@ -3369,18 +5482,41 @@ class Mission
 						description="1-1 Alpha Rifleman";
 						isPlayable=1;
 					};
-					id=512;
-					type="I_soldier_F";
+					id=1824;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={240.00002,5.0014391,58.049995};
+						position[]={240,5.0014391,58.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3388,33 +5524,79 @@ class Mission
 						description="1-1 Alpha Grenadier";
 						isPlayable=1;
 					};
-					id=513;
-					type="I_Soldier_GL_F";
+					id=1825;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={242.00002,5.0014391,58.049995};
+						position[]={242,5.0014391,58.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="i1a4";
 						description="1-1 Alpha Asst. Gunner";
 						isPlayable=1;
 					};
-					id=514;
-					type="I_medic_F";
+					id=1826;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={244.00002,5.0014391,58.049995};
+						position[]={244,5.0014391,58.049999};
 					};
 					side="Independent";
 					flags=4;
@@ -3426,8 +5608,31 @@ class Mission
 						description="1-1 Alpha Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=515;
-					type="I_Soldier_AR_F";
+					id=1827;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3450,7 +5655,7 @@ class Mission
 						position[]={236,5.0014391,52.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -3458,8 +5663,31 @@ class Mission
 						description="1-1 Bravo Fire Team Leader";
 						isPlayable=1;
 					};
-					id=541;
-					type="I_Soldier_TL_F";
+					id=1833;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -3477,8 +5705,31 @@ class Mission
 						description="1-1 Bravo Rifleman";
 						isPlayable=1;
 					};
-					id=542;
-					type="I_soldier_F";
+					id=1834;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -3488,7 +5739,7 @@ class Mission
 						position[]={240,5.0014391,52.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3496,8 +5747,31 @@ class Mission
 						description="1-1 Bravo Grenadier";
 						isPlayable=1;
 					};
-					id=543;
-					type="I_Soldier_GL_F";
+					id=1835;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -3507,15 +5781,38 @@ class Mission
 						position[]={242,5.0014391,52.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="i1b4";
 						description="1-1 Bravo Asst. Gunner";
 						isPlayable=1;
 					};
-					id=544;
-					type="I_medic_F";
+					id=1836;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -3534,8 +5831,31 @@ class Mission
 						description="1-1 Bravo Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=545;
-					type="I_Soldier_AR_F";
+					id=1837;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3555,10 +5875,10 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={236.00005,5.0014391,46.049999};
+						position[]={236,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -3566,8 +5886,31 @@ class Mission
 						description="1-1 Charlie Fire Team Leader";
 						isPlayable=1;
 					};
-					id=580;
-					type="I_Soldier_TL_F";
+					id=1843;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -3577,7 +5920,7 @@ class Mission
 						position[]={238,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3585,8 +5928,31 @@ class Mission
 						description="1-1 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
-					id=581;
-					type="I_soldier_F";
+					id=1844;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -3596,7 +5962,7 @@ class Mission
 						position[]={240,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3604,8 +5970,31 @@ class Mission
 						description="1-1 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
-					id=582;
-					type="I_Soldier_GL_F";
+					id=1845;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -3615,15 +6004,38 @@ class Mission
 						position[]={242,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="i1c4";
 						description="1-1 Charlie Asst. MMG";
 						isPlayable=1;
 					};
-					id=583;
-					type="I_medic_F";
+					id=1846;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -3633,7 +6045,7 @@ class Mission
 						position[]={244,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.44999999;
@@ -3642,8 +6054,31 @@ class Mission
 						description="1-1 Charlie MMG";
 						isPlayable=1;
 					};
-					id=584;
-					type="I_Soldier_AR_F";
+					id=1847;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3676,8 +6111,31 @@ class Mission
 						description="1-2 Squad Leader";
 						isPlayable=1;
 					};
-					id=658;
-					type="I_Soldier_SL_F";
+					id=1821;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -3687,7 +6145,7 @@ class Mission
 						position[]={258,5.0014391,64.050003};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3696,8 +6154,31 @@ class Mission
 						description="1-2 Squad Medic";
 						isPlayable=1;
 					};
-					id=659;
-					type="I_soldier_F";
+					id=1822;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3717,10 +6198,10 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={256,5.0014391,58.049988};
+						position[]={256,5.0014391,58.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -3728,15 +6209,38 @@ class Mission
 						description="1-2 Alpha Fire Team Leader";
 						isPlayable=1;
 					};
-					id=721;
-					type="I_Soldier_TL_F";
+					id=1828;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={258,5.0014391,58.049988};
+						position[]={258,5.0014391,58.049999};
 					};
 					side="Independent";
 					flags=4;
@@ -3747,18 +6251,41 @@ class Mission
 						description="1-2 Alpha Rifleman";
 						isPlayable=1;
 					};
-					id=722;
-					type="I_soldier_F";
+					id=1829;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={260,5.0014391,58.049988};
+						position[]={260,5.0014391,58.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3766,33 +6293,79 @@ class Mission
 						description="1-2 Alpha Grenadier";
 						isPlayable=1;
 					};
-					id=723;
-					type="I_Soldier_GL_F";
+					id=1830;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={262,5.0014391,58.049988};
+						position[]={262,5.0014391,58.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="i2a4";
 						description="1-2 Alpha Asst. Gunner";
 						isPlayable=1;
 					};
-					id=724;
-					type="I_medic_F";
+					id=1831;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={264,5.0014391,58.049988};
+						position[]={264,5.0014391,58.049999};
 					};
 					side="Independent";
 					flags=4;
@@ -3804,8 +6377,31 @@ class Mission
 						description="1-2 Alpha Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=725;
-					type="I_Soldier_AR_F";
+					id=1832;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3828,7 +6424,7 @@ class Mission
 						position[]={256,5.0014391,52.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -3836,8 +6432,31 @@ class Mission
 						description="1-2 Bravo Fire Team Leader";
 						isPlayable=1;
 					};
-					id=745;
-					type="I_Soldier_TL_F";
+					id=1838;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -3855,8 +6474,31 @@ class Mission
 						description="1-2 Bravo Rifleman";
 						isPlayable=1;
 					};
-					id=746;
-					type="I_soldier_F";
+					id=1839;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -3866,7 +6508,7 @@ class Mission
 						position[]={260,5.0014391,52.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3874,8 +6516,31 @@ class Mission
 						description="1-2 Bravo Grenadier";
 						isPlayable=1;
 					};
-					id=747;
-					type="I_Soldier_GL_F";
+					id=1840;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -3885,15 +6550,38 @@ class Mission
 						position[]={262,5.0014391,52.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="o2b4";
 						description="1-2 Bravo Asst. Gunner";
 						isPlayable=1;
 					};
-					id=748;
-					type="I_medic_F";
+					id=1841;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -3912,8 +6600,31 @@ class Mission
 						description="1-2 Bravo Automatic Rifleman";
 						isPlayable=1;
 					};
-					id=749;
-					type="I_Soldier_AR_F";
+					id=1842;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -3936,7 +6647,7 @@ class Mission
 						position[]={256,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="CORPORAL";
@@ -3944,8 +6655,31 @@ class Mission
 						description="1-2 Bravo Fire Team Leader";
 						isPlayable=1;
 					};
-					id=835;
-					type="I_Soldier_TL_F";
+					id=1848;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -3963,8 +6697,31 @@ class Mission
 						description="1-2 Charlie Rifleman (MAT)";
 						isPlayable=1;
 					};
-					id=836;
-					type="I_soldier_F";
+					id=1849;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -3974,7 +6731,7 @@ class Mission
 						position[]={260,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						skill=0.40000001;
@@ -3982,8 +6739,31 @@ class Mission
 						description="1-2 Charlie Grenadier (AMAT)";
 						isPlayable=1;
 					};
-					id=837;
-					type="I_Soldier_GL_F";
+					id=1850;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -3993,15 +6773,38 @@ class Mission
 						position[]={262,5.0014391,46.049999};
 					};
 					side="Independent";
-					flags=5;
+					flags=4;
 					class Attributes
 					{
 						name="i2c4";
 						description="1-2 Charlie Asst. MMG";
 						isPlayable=1;
 					};
-					id=838;
-					type="I_medic_F";
+					id=1851;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -4020,8 +6823,31 @@ class Mission
 						description="1-2 Charlie MMG";
 						isPlayable=1;
 					};
-					id=839;
-					type="I_Soldier_AR_F";
+					id=1852;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -4042,10 +6868,10 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={245.00005,5.0014391,41.049999};
+						position[]={245,5.0014391,41.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						rank="SERGEANT";
@@ -4053,8 +6879,31 @@ class Mission
 						description="Echo 1";
 						isPlayable=1;
 					};
-					id=853;
-					type="I_pilot_F";
+					id=1853;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -4077,15 +6926,38 @@ class Mission
 						position[]={247,5.0014391,41.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="iecho2";
 						description="Echo 2";
 						isPlayable=1;
 					};
-					id=869;
-					type="I_pilot_F";
+					id=1854;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -4108,15 +6980,38 @@ class Mission
 						position[]={249,5.0014391,41.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="iecho3";
 						description="Echo 3";
 						isPlayable=1;
 					};
-					id=881;
-					type="I_pilot_F";
+					id=1855;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -4139,15 +7034,38 @@ class Mission
 						position[]={251,5.0014391,41.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="iecho4";
 						description="Echo 4";
 						isPlayable=1;
 					};
-					id=885;
-					type="I_pilot_F";
+					id=1856;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -4170,15 +7088,38 @@ class Mission
 						position[]={253,5.0014391,41.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="iecho5";
 						description="Echo 5";
 						isPlayable=1;
 					};
-					id=891;
-					type="I_pilot_F";
+					id=1857;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
@@ -4201,15 +7142,38 @@ class Mission
 						position[]={255,5.0014391,41.049999};
 					};
 					side="Independent";
-					flags=7;
+					flags=6;
 					class Attributes
 					{
 						name="iecho6";
 						description="Echo 6";
 						isPlayable=1;
 					};
-					id=893;
-					type="I_pilot_F";
+					id=1858;
+					type="I_Soldier_exp_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isEngineer";
+							expression="if (_value != -1) then {_this setVariable ['ace_isEngineer',_value, true];}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes

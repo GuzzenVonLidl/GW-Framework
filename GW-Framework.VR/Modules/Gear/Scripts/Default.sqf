@@ -84,6 +84,7 @@ switch (toLower(_role)) do {
 		[_goggles,_helmet,_uniform,_vest] call _addEquipment;
 		[_rifle, _rifle_mag, ""] call _addPrimary;
 		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_mineDetector call _addToUniform;
 		_IFAK call _addToUniform;
 		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
 		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
