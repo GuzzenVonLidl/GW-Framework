@@ -19,8 +19,8 @@ params [["_unit", objNull, [objNull]]];
 _unit addAction ["<t color='#ffff00'>Attachment Menu</t>", {["player", [], -100, ["_this call GW_Gear_Fnc_replaceAttachments","main"]] call cba_fnc_fleximenu_openMenuByDef},bullShit,7];
 
 _unit addAction ["Remove Night gear", {
-	player unassignItem "NVGoggles";
-	player removeItem "NVGoggles";
+	player unassignItem "NVGoggles_OPFOR";
+	player removeItem "NVGoggles_OPFOR";
 	player removeItem "ACE_IR_Strobe_Item";
 	player removeItem "ACE_Flashlight_XL50";
 }];
