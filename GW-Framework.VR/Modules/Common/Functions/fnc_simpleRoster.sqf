@@ -13,7 +13,7 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 if (!hasInterface || !isMultiplayer) exitWith {false};
 

@@ -1,18 +1,17 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
-PREP(addToCurators);
 PREP(buildingPop);
 PREP(createGroup);
+PREP(empty);
 PREP(createUnits);
-PREP(findAverage);
 PREP(getGroupType);
-PREP(GetPosASL);
-PREP(GetPosATL);
-PREP(isNight);
 PREP(setAttributes);
+PREP(setAttributes3DEN);
 PREP(setGroupColor);
 PREP(setGroupid);
 PREP(simpleRoster);
+PREP(spawn3DEN);
+PREP(spawn3DENObjects);
 PREP(spawnGroup);
 PREP(spawnGroup_Veh);
 PREP(spawnGroup_WP);
@@ -44,4 +43,28 @@ PREP(spawnObjects);
 	QGVAR(AutoLock), "LIST",
 	["Auto Lock Vehicles", "Note: Only effects vehicles with units in and spawned though the framework"],
 	QUOTE(ADDON), [[true,false], ["Enabled","Disabled"], 1], true
+] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(BlockAIGear), "LIST",
+	["Blocks access to ai Inventories", "Stops players from being able to scavenge dead AI"],
+	QUOTE(ADDON),
+	[
+		[true,false],
+		["enabled","disabled"],
+		0
+	],
+	true
+] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(autoDelete), "LIST",
+	["Auto Delete Forgotten Units", "Automaticly deletes units and objects located at [0,0,0] after 10 seconds if not moved"],
+	QUOTE(ADDON),
+	[
+		[true,false],
+		["enabled","disabled"],
+		0
+	],
+	true
 ] call FUNCMAIN(settingsInit);

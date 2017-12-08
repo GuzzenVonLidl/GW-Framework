@@ -1,4 +1,12 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
+
+PREP(actions);
+PREP(getAttachments);
+PREP(getLoadoutClass);
+PREP(Handler);
+PREP(Init);
+PREP(replaceAttachments);
+PREP(test);
 
 GVAR(Enabled_101) = true;
 GVAR(Enabled_201) = true;
@@ -12,16 +20,9 @@ GVAR(Index302) = 0;
 GVAR(Stamina) = true;
 GVAR(StaminaCoef) = 0.5;
 
-PREP(actions);
-PREP(getAttachments);
-PREP(getLoadoutClass);
-PREP(Handler);
-PREP(Init);
-PREP(replaceAttachments);
-
 [
 	QGVAR(Blufor), "LIST",
-	["Loadout Blufor", "Loadout for blufor units"],
+	["Loadout Blufor", "Loadout for Blufor units"],
 	QUOTE(ADDON),
 	[
 		[
@@ -33,7 +34,7 @@ PREP(replaceAttachments);
 			"USMC-W",
 			"INSURGENT-D",
 			"INSURGENT-W",
-			"CAMPAIGN-W"
+			"CUSTOM-W"
 		],
 		[
 			"NATO-Desert",
@@ -44,7 +45,7 @@ PREP(replaceAttachments);
 			"USMC-Woodland",
 			"INSURGENT-Desert",
 			"INSURGENT-Woodland",
-			"Campaign-"
+			"CUSTOM-West"
 		],
 		0
 	],
@@ -53,7 +54,7 @@ PREP(replaceAttachments);
 
 [
 	QGVAR(Opfor),
-	"LIST", ["Loadout Opfor", "Loadout for opfor units"],
+	"LIST", ["Loadout Opfor", "Loadout for Opfor units"],
 	QUOTE(ADDON),
 	[
 		[
@@ -64,7 +65,7 @@ PREP(replaceAttachments);
 			"TAKIARMY-D",
 			"INSURGENT-D",
 			"INSURGENT-W",
-			"CAMPAIGN-E"
+			"CUSTOM-E"
 		],
 		[
 			"CSAT-Hex",
@@ -74,7 +75,7 @@ PREP(replaceAttachments);
 			"Takistani Army-Desert",
 			"INSURGENT-Desert",
 			"INSURGENT-Woodland",
-			"Campaign-"
+			"CUSTOM-East"
 		],
 		0
 	]
@@ -84,7 +85,7 @@ PREP(replaceAttachments);
 
 [
 	QGVAR(Independent),
-	"LIST", ["Loadout Independent", "Loadout for independent units"],
+	"LIST", ["Loadout Independent", "Loadout for Independent units"],
 	QUOTE(ADDON),
 	[
 		[
@@ -92,14 +93,34 @@ PREP(replaceAttachments);
 			"PMC",
 			"INSURGENT-D",
 			"INSURGENT-W",
-			"CAMPAIGN-I"
+			"CUSTOM-I"
 		],
 		[
 			"AAF-Woodland",
 			"PMC",
 			"INSURGENT-Desert",
 			"INSURGENT-Woodland",
-			"Campaign-"
+			"CUSTOM-Independent"
+		],
+		0
+	],
+	true
+] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(Civilian),
+	"LIST", ["Loadout Civilian", "Loadout for Civilian units"],
+	QUOTE(ADDON),
+	[
+		[
+			"CIVI-ALTIS",
+			"CIVI-CHERNARUS",
+			"CIVI-TAKISTAN"
+		],
+		[
+			"ALTIS",
+			"CHERNARUS",
+			"TAKISTAN"
 		],
 		0
 	],
@@ -111,8 +132,8 @@ PREP(replaceAttachments);
 	["Auto assign gear", "automaticly gives gear to spawned units"],
 	QUOTE(ADDON),
 	[
-		[0,1,2],
-		["Disabled","All Units","Only Spawned"],
+		[0,1,2,3],
+		["Disabled","All Units","Only SpawnList","Ignore Editor Placed"],
 		1
 	],
 	true
@@ -121,18 +142,6 @@ PREP(replaceAttachments);
 [
 	QGVAR(randomGear), "LIST",
 	["Random Role", "Should units get random gear"],
-	QUOTE(ADDON),
-	[
-		[true,false],
-		["enabled","disabled"],
-		1
-	],
-	true
-] call FUNCMAIN(settingsInit);
-
-[
-	QGVAR(BlockAIGear), "LIST",
-	["Blocks access to ai Inventories", "Stops players from being able to scavenge dead AI"],
 	QUOTE(ADDON),
 	[
 		[true,false],
@@ -150,6 +159,18 @@ PREP(replaceAttachments);
 		[true,false],
 		["enabled","disabled"],
 		1
+	],
+	true
+] call FUNCMAIN(settingsInit);
+
+[
+	QGVAR(autoRemoveCargo), "LIST",
+	["Removes cargo for vehicles", "Automaticly removes cargo"],
+	QUOTE(ADDON),
+	[
+		[true,false],
+		["enabled","disabled"],
+		0
 	],
 	true
 ] call FUNCMAIN(settingsInit);

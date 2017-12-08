@@ -1,35 +1,12 @@
-#include "scriptComponent.hpp"
-
-if (DEVCONSOLEENABLED) then {
-	switch ((["GW_FRAMEWORK", "Core", "ClearConsole"] call BIS_fnc_getCfgData)) do {	// Clean page
-		case 1: {
-			if !(is3DEN) then {
-				DEVCONSOLE("C");
-			};
-		};
-		case 2: {
-			if (is3DEN) then {
-				DEVCONSOLE("C");
-			};
-		};
-		case 3: {
-			DEVCONSOLE("C");
-		};
-	};
-	if (isMultiplayer && !isDedicated) then {
-		DEVCONSOLE("X");
-	};
-};
+#include "script_Component.hpp"
 
 LOG("Prepping all main functions");
-PREPMAIN(init3DEN);
+PREPMAIN(changeSetting);
 PREPMAIN(Log);
 PREPMAIN(LogAdmin);
 PREPMAIN(remoteCommand);
 PREPMAIN(settingsInit);
 PREPMAINFOLDER(spawnList);
-
-GW_fnc_Dummy = {};
 
 LOG("Prepping all main variables");
 enableSaving [false, false];
@@ -42,24 +19,6 @@ enableWeaponDisassembly false;
 0 fadeRadio 0;
 //	enableSatNormalOnDetail true;		//	<--------
 
-if !(isClass (configFile >> "CfgPatches" >> "GW_Main")) then {
-	GVARMAIN(isAdmin) = false;
-	GVARMAIN(isActiveAdmin) = false;
-	GVARMAIN(activeAdmins) = [];
-	GVARMAIN(adminList) = ["_SP_PLAYER_", GUZZENVONLIDL, R4IDER, BARON, RAPTOR, FILTHY];
-
-	[QGVARMAIN(AddAdmin), {
-		params ["_admin"];
-		GVARMAIN(activeAdmins) pushBackUnique _admin;
-	}] call CBA_fnc_addEventHandler;
-
-	[QGVARMAIN(RemoveAdmin), {
-		params ["_admin"];
-		if (_admin in GVARMAIN(activeAdmins)) then {
-			GVARMAIN(activeAdmins) deleteAt (GVARMAIN(activeAdmins) find _admin);
-		};
-	}] call CBA_fnc_addEventHandler;
-};
 GVARMAIN(settings3denArray) = [];
 GVARMAIN(Version) = (["GW_FRAMEWORK", "Core", "Version"] call BIS_fnc_getCfgData);
 
@@ -80,6 +39,16 @@ GVARMAIN(mod_CBA) 			= isClass (configFile >> "CfgPatches" >> "CBA_Main");
 GVARMAIN(mod_CTAB) 			= isClass (configFile >> "CfgPatches" >> "cTab");
 GVARMAIN(mod_RHS)	 		= isClass (configFile >> "CfgPatches" >> "RHS_Main");
 GVARMAIN(mod_TFAR) 			= isClass (configFile >> "CfgPatches" >> "Task_Force_Radio");
+GVARMAIN(mod_TFAR_CORE) 	= isClass (configFile >> "CfgPatches" >> "TFAR_Core");
+
+if (is3DEN) then {
+	if !(GVARMAIN(mod_GW)) exitWith {
+		["ADDON is not loaded, Exiting Framework","WARNING"] spawn BIS_fnc_3DENShowMessage;
+	};
+	if (GVARMAIN(mod_GW) && ((getNumber (configFile >> "CfgPatches" >> "GW_Main" >> "version")) < 0.6)) exitWith {
+		["ADDON And Framework versions are not compatible!   Exiting Framework","WARNING"] spawn BIS_fnc_3DENShowMessage;
+	};
+};
 
 LOG("Prepping modules");
 #define CORE_Modules (missionConfigFile >> "GW_Modules")
@@ -147,22 +116,5 @@ for "_i" from 0 to ((count CORE_Modules) - 1) step 1 do {
 } forEach _Modules;
 
 LOG(FORMAT_1("Modules Loaded: %1", (count GVARMAIN(logModules))));
-
-if (is3DEN) then {
-	if (isClass (configFile >> "CfgPatches" >> "GW_3den")) then {
-		["init"] call FUNCMAIN(init3DEN);
-	} else {
-		add3DENEventHandler ["OnMissionSave",{
-			removeAll3DENEventHandlers "OnMissionSave";
-			["init"] call FUNCMAIN(init3DEN);
-			LOG("XEH_preInit reloaded");
-		}];
-	};
-
-	if (!(("Multiplayer" get3DENMissionAttribute "MinPlayers") isEqualTo 1) || ((["GW_FRAMEWORK", "Core", "ResetSettings"] call BIS_fnc_getCfgData) isEqualTo -2)) then {
-		["reconfigure"] call FUNCMAIN(init3DEN);
-		LOG("3den settings reconfigure");
-	};
-};
 
 LOG("preInit finished");

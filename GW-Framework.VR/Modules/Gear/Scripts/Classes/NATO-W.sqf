@@ -1,3 +1,4 @@
+_useMineDetector = true;
 
 _goggles = "";
 _helmet = "H_HelmetB_tna_F";

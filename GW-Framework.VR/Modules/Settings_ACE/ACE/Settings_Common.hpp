@@ -125,7 +125,7 @@ class ace_explosives_punishNonSpecialists {
 	force = 1;
 };
 class ace_explosives_explodeOnDefuse {
-	value = 0;
+	value = 1;
 	typeName = "BOOL";
 	force = 1;
 };
@@ -370,7 +370,7 @@ class ace_viewdistance_limitViewDistance {
 // -------------------------------------------
 
 class ace_weather_enableServerController {
-	value = 0;
+	value = 1;
 	typeName = "BOOL";
 	force = 1;
 };
@@ -380,12 +380,12 @@ class ace_weather_useACEWeather {
 	force = 1;
 };
 class ace_weather_syncRain {
-	value = 1;
+	value = 0;
 	typeName = "BOOL";
 	force = 1;
 };
 class ace_weather_syncWind {
-	value = 1;
+	value = 0;
 	typeName = "BOOL";
 	force = 1;
 };

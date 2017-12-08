@@ -12,8 +12,10 @@
 	Return Value: <ARRAY>
 
 	Public: No
+
+	NOTE: Both blacklist and whitelist is case sensetive, only lowercase!
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 #define	GETOPTIC(VAR_1)	(((_Optics select 0) >> VAR_1) call BIS_fnc_getCfgData)
 
 params [["_weapon", "", [""]]];
@@ -21,11 +23,12 @@ private _muzzle = [];
 private _optic = [];
 private _pointer = [];
 private _bipod = [];
-private _blackList = [];	// Classnames to blacklist
+private _blackList = ["rhsusf_acc_g33_t1","rhsusf_acc_g33_t1_flip","rhsusf_acc_g33_xps3","rhsusf_acc_g33_xps3_flip","rhsusf_acc_g33_xps3_tan","rhsusf_acc_g33_xps3_tan_flip"];	// Classnames to blacklist
 private _whiteList = [];	// Classnames to whitelist
 
 {
-	private _temp = _x;
+	toLower(_x) params ["_temp"];
+
 	if !(_temp in _blackList) then {
 		switch (getNumber (configFile >> "CfgWeapons" >> _temp >> "itemInfo" >> "type")) do {
 			case 101: {

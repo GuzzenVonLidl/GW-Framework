@@ -28,6 +28,9 @@ switch (toLower(_role)) do {
 
 	case "r": {
 		[_goggles,_helmet,_uniform,_vest] call _addEquipment;
+		if (_allowedNightStuff) then {
+			_rifle set [2, "GW_X3000"];
+		};
 		[_rifle, _rifle_mag_tr, ""] call _addPrimary;
 		_IFAK call _addToUniform;
 		[[_smokegrenadeW,2],[_grenademini,2]] call _addToUniform;

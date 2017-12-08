@@ -13,7 +13,7 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	"_group",
@@ -25,7 +25,7 @@ private _vehicleList = [];
 {
 	_x params ["_class","_pos","_dir","_crewCount",["_specials", []]];
 
-	_vehicle = createVehicle [_class, _pos, [], 0, "NONE"];
+	_vehicle = createVehicle [_class, _pos, [], 0, "CAN_COLLIDE"];
 	_vehicle setDir _dir;
 	_vehicle setPosATL _pos;
 	_vehicle setVectorUp surfaceNormal (position _vehicle);
@@ -36,7 +36,8 @@ private _vehicleList = [];
 	if (_waypointArray) then {
 		_vehicle setFuel 0;
 	};
-	_vehicle allowCrewInImmobile (selectRandom [true, false]);
+	_vehicle allowCrewInImmobile true;
+	_vehicle setVariable [QEGVAR(gear,side), GVAR(Faction)];
 
 	[_vehicle, _specials] call FUNC(setAttributes);
 	_vehicleList pushBack [_vehicle, _crewCount];
@@ -44,23 +45,23 @@ private _vehicleList = [];
 } forEach _vehicleArray;
 TRACE_1("List", _vehicleList);
 
-if !((count _vehicleList) isEqualTo 0) then {
+if !(_vehicleList isEqualTo []) then {
 	{
-		private ["_vehicle","_slots","_groupNew"];
+		private ["_groupNew"];
 		_x params ["_vehicle","_slots"];
-		_vehicle = (_x select 0);
-		_slots = (_x select 1);
 		_group addVehicle _vehicle;
 		TRACE_1("Vehicle added to group", _vehicle);
 
-		if (_slots isEqualTo 0) then {
-			_groupNew = [GVAR(Faction),{(_slots in ["driver","commander","gunner","turret"])} count (fullCrew [_vehicle,"",true]), _group] call FUNC(createGroup);
-		} else {
-			_groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
+		if (_slots isEqualTo []) then {
+			{
+				_slots pushBack [(_x select 1), (_x select 2), (_x select 3)];
+			} forEach ((fullCrew [_vehicle,"",true]) select {((_x select 1) in ["commander","gunner","turret"])});
 		};
+		_groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
 
 		[{
 			params ["_vehicle","_slots","_groupNew"];
+
 			{
 				switch toLower((_slots select _forEachIndex) select 0) do {
 					case "driver": {

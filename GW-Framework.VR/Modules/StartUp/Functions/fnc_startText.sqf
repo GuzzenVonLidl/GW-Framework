@@ -19,7 +19,7 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 #define	ADDLINE _unparsedText = _unparsedText
 #define	DELAY 5
 

@@ -1,26 +1,31 @@
-#include "..\scriptComponent.hpp"
+/*
+	Author: GuzzenVonLidl
+	Sets the difficulty read from mission configs
+
+	Usage:
+	[this, 2] call GW_SetDifficulty_fnc_setSkill;
+
+	Arguments:
+	0: Unit <OBJECT>
+	1: BehaviorTree <NUMBER>	(OPTIONAL)
+
+	Return Value: NO
+
+	Public: No
+*/
+#include "script_Component.hpp"
 
 params [
 	["_unit", objNull, [objNull]]
 ];
 
-if (isPlayer _unit) then {
-	_unit setUnitTrait ["camouflageCoef", [GVAR(playerDetection), 0.1] call BIS_fnc_roundNum];
-} else {
-	if (isServer && !(GVAR(difficulty) isEqualTo 0)) then {
-		_unit setskill 1;
-		{
-			_unit setskill [_x ,(call FUNC(get) select 0)];
-		} forEach ["aimingAccuracy","aimingShake","aimingSpeed"];
+if (_unit getVariable [QGVAR(blackList), false]) exitWith {false};
 
-		{
-			_unit setskill [_x ,(call FUNC(get) select 1)];
-		} forEach ["general","commanding","endurance","courage","reloadSpeed"];
-
-		{
-			_unit setskill [_x ,(call FUNC(get) select 2)];
-		} forEach ["spotTime","spotDistance"];
-
-		TRACE_3("Init", _unit, (_unit skill "aimingAccuracy"), (_unit skill "general"));
-	};
+if (isPlayer _unit) exitWith {
+	_this call FUNC(setDetectionCoef);
+	false
 };
+
+[_unit] call FUNC(setSkill);
+
+true

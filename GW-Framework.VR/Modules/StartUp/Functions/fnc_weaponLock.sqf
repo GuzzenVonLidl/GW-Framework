@@ -12,7 +12,7 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 #define CURRENT_WEAPONS player, currentWeapon player, currentMuzzle player
 
 if (_this) then {

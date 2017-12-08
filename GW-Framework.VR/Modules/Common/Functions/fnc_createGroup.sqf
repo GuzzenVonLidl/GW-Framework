@@ -16,7 +16,7 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 private ["_unitClass","_unit","_array","_unitsCreted"];
 params [
@@ -39,7 +39,8 @@ for "_i" from 1 to _number do {
 	} else {
 		_unitClass = (selectRandom _unitList);
 	};
-	_unit = _group createUnit [_unitClass, [0,0,0], [], 10, "NONE"];
+	_unit = _group createUnit [_unitClass, [0,0,0], [], 10, "CAN_COLLIDE"];
+	_unit setRank "PRIVATE";
 	_unit setVariable [QGVAR(isSpawned), true];
 	if !(isNil "_unitsCreted") then {
 		_unitsCreted pushBack _unit;

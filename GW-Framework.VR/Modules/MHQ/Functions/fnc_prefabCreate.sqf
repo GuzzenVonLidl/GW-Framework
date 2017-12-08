@@ -13,20 +13,21 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 if (!isServer) exitWith {false};
 
 params ["_mhq"];
 
 private _objects = [(_mhq getVariable QGVAR(Info)) select 4] call FUNC(getDeployType);
 private _objectsCreated = [];
-private _can = "Land_Compass_F" createVehicle [0,0,0];
+private _can = createVehicle ["Land_Compass_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+
 _can setDir (getdir _mhq);
 _can setPosATL (getPos _mhq);
 
 {
 	_x params ["_type","_dir","_pos","_inventory"];
-	_veh = _type createVehicle [0,0,0];
+	_veh = createVehicle [_type, [0,0,0], [], 0, "CAN_COLLIDE"];
 	_veh setDir (_dir + (getdir _mhq));
 	_veh setVehiclePosition [(_can modelToWorld _pos), [], 0, "CAN_COLLIDE"];
 	_veh setVectorUp surfaceNormal position _veh;

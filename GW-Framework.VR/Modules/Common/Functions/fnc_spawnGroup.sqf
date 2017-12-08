@@ -13,13 +13,19 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	"_unitArray",
 	["_vehicleArray", []],
 	["_waypointArray", nil]
 ];
+
+if (is3DEN) exitWith {
+	_this call FUNC(spawn3DEN);
+	false
+};
+
 private _group = [GVAR(Faction), (count _unitArray)] call FUNC(createGroup);
 
 if !((count _unitArray) isEqualTo 0) then {
@@ -35,11 +41,26 @@ if !((count _unitArray) isEqualTo 0) then {
 			} else {
 				_unit setUnitPos _unitPos;
 			};
+		} else {
+			_unit disableAI "MINEDETECTION";
 		};
+/*
+			_unit enableAI "PATH";
+			_unit enableAI "MOVE";
+			_unit enableAI "ANIM";
+			_unit enableAI "TEAMSWITCH";
+*/
+
 		_unit setFormDir _dir;
 		_unit setDir _dir;
 		_unit setPosATL _pos;
+
 		[_unit, _specials] call FUNC(setAttributes);
+		[{
+			params ["_unit","_dir"];
+			_unit setFormDir _dir;
+			_unit setDir _dir;
+		}, [_unit, _dir], (1 + _forEachIndex)] call CBA_fnc_waitAndExecute;
 	} forEach (units _group);
 };
 

@@ -18,7 +18,7 @@
 	Public: Yes
 
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 params ["_strNumbers", "_strText", "_machine"];
 
 //	_strNumbers pushBack ((format ["REMOTE: %1 - ", _machine]) + _strText);
@@ -27,6 +27,6 @@ if !(player diarySubjectExists QGVAR(adminLogging)) then {
 	player createDiarySubject [QGVAR(adminLogging),"Admin Logging"];
 };
 player createDiaryRecord [QGVAR(adminLogging), [format ["REMOTE: %1 - %2", _machine, str(time)], _strText]];
-if (DEVCONSOLEENABLED) then {
+if (GVARMAIN(canUseDevConsole)) then {
 	DEVCONSOLE(str(_strNumbers) + _strText);
 };

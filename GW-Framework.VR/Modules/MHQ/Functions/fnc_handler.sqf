@@ -15,7 +15,7 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 if (!isServer) exitWith {false};
 
 [{

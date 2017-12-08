@@ -13,7 +13,7 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 private ["_return"];
 params ["_mhq"];

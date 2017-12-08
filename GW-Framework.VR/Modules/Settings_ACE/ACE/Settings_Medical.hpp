@@ -84,7 +84,7 @@ class ace_medical_preventInstaDeath {
 	typeName = "BOOL";
 	force = 1;
 };
-class ace_medical_allowDeadBodyMovement {
+class ace_medical_allowDeadBodyMovement {	// Remove ?
 	value = 0;
 	typeName = "BOOL";
 	force = 1;
@@ -102,12 +102,12 @@ class ace_medical_medicSetting_basicEpi {
 	typeName = "SCALAR";
 	force = 1;
 };
-class ace_medical_medicSetting_PAK {
+class ace_medical_useLocation_basicEpi {
 	value = 0;
 	typeName = "SCALAR";
 	force = 1;
 };
-class ace_medical_medicSetting_SurgicalKit {
+class ace_medical_medicSetting_PAK {
 	value = 0;
 	typeName = "SCALAR";
 	force = 1;
@@ -117,12 +117,7 @@ class ace_medical_consumeItem_PAK {
 	typeName = "SCALAR";
 	force = 1;
 };
-class ace_medical_consumeItem_SurgicalKit {
-	value = 0;
-	typeName = "SCALAR";
-	force = 1;
-};
-class ace_medical_useLocation_basicEpi {
+class ace_medical_useCondition_PAK {
 	value = 0;
 	typeName = "SCALAR";
 	force = 1;
@@ -132,17 +127,22 @@ class ace_medical_useLocation_PAK {
 	typeName = "SCALAR";
 	force = 1;
 };
-class ace_medical_useLocation_SurgicalKit {
+class ace_medical_medicSetting_SurgicalKit {
 	value = 0;
 	typeName = "SCALAR";
 	force = 1;
 };
-class ace_medical_useCondition_PAK {
+class ace_medical_consumeItem_SurgicalKit {
 	value = 0;
 	typeName = "SCALAR";
 	force = 1;
 };
 class ace_medical_useCondition_SurgicalKit {
+	value = 0;
+	typeName = "SCALAR";
+	force = 1;
+};
+class ace_medical_useLocation_SurgicalKit {
 	value = 0;
 	typeName = "SCALAR";
 	force = 1;
@@ -184,7 +184,7 @@ class ace_medical_enableRevive {
 	force = 1;
 };
 class ace_medical_maxReviveTime {
-	value = 120;
+	value = 300;
 	typeName = "SCALAR";
 	force = 1;
 };
@@ -201,7 +201,7 @@ class ace_medical_ai_enabledFor {
 };
 
 class ace_medical_blood_enabledfor {
-	value = 1;
+	value = 2;
 	typeName = "SCALAR";
 	force = 1;
 };

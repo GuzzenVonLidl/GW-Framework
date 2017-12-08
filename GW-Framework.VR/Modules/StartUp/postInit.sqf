@@ -1,4 +1,4 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
 [QGVAR(setSafetyMode), {
 	GVAR(Enabled) = _this;

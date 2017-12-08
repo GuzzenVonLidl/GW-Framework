@@ -12,7 +12,7 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 if (isNull player) exitWith { ["No player unit found!","Warning!"] call BIS_fnc_3DENShowMessage; };
 

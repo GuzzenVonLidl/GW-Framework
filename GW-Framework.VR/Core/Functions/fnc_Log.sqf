@@ -19,7 +19,7 @@
 	Public: Yes
 
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 private ["_log_write", "_logType", "_logMsg", "_strArr", "_strNumbers", "_strText", "_logColor"];
 params ["_line", ["_component", ""], "_msg", "_type", ["_global", false]];
 _strNumbers = [diag_frameNo, diag_tickTime, time, _line];
@@ -70,7 +70,7 @@ if (_global && isMultiplayer) then {
 	};
 };
 
-if (DEVCONSOLEENABLED) then {
+if (GVARMAIN(canUseDevConsole)) then {
 	DEVCONSOLE(str(_strNumbers) + _strText + _logColor);
 };
 diag_log (_strText);

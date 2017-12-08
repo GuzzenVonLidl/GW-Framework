@@ -15,7 +15,7 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 ERROR("Deprecated function used: GW_Common_Fnc_BuildingPop");
 
@@ -44,6 +44,5 @@ private _group = [GVAR(Faction), _unitCount] call FUNC(createGroup);
 	_x setPosATL _pos;
 	_x setUnitPosWeak "UP";
 	_x disableAI "PATH";
-	diag_log _pos;
 } forEach (units _group);
 _group

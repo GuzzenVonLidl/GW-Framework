@@ -3,7 +3,7 @@
 	Selects a new faction to spawn
 
 	Usage:
-	["NATO"] call GW_Common_Fnc_getGroup;
+	["West"] call GW_Common_Fnc_getGroupType;
 
 	Parameters:
 	#0:	STRING - Name of the faction to select
@@ -25,46 +25,13 @@
 
 	Public: NO
 // ================================================================ */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params ["_faction"];
-private ["_unitList","_side","_leader"];
 
-switch (toUpper(_faction)) do {
-	case "WEST": {
-		_leader = "B_Soldier_TL_F";
-		_unitList = ["B_Soldier_F","B_Soldier_GL_F","B_medic_F","B_soldier_AR_F"];
-	};
-
-	case "EAST": {
-		_leader = "O_Soldier_TL_F";
-		_unitList = ["O_Soldier_F","O_Soldier_GL_F","O_medic_F","O_soldier_AR_F"];
-	};
-
-	case "INDEPENDENT": {
-		_leader = "I_Soldier_TL_F";
-		_unitList = ["I_Soldier_F","I_Soldier_GL_F","I_medic_F","I_soldier_AR_F"];
-	};
-
-	case "CIVILIAN": {
-		_leader = "C_man_1";
-		_unitList = ["C_Man_casual_4_F","C_Man_casual_5_F","C_Man_casual_6_F"];
-	};
-};
-
-switch ((configfile >> "CfgVehicles" >> _leader >> "side") call BIS_fnc_getCfgData) do {
-	case 0: {
-		_side = east;
-	};
-	case 1: {
-		_side = west;
-	};
-	case 2: {
-		_side = resistance;
-	};
-	case 3: {
-		_side = civilian;
-	};
-};
+private _configs = (missionConfigFile >> "GW_FRAMEWORK" >> "SpawnUnits" >> toUpper(_faction));
+private _side = ([east,west,resistance,civilian] select (getNumber(_configs >> "Side")));
+private _leader = getText(_configs >> "Leader");
+private _unitList = getArray(_configs >> "Units");
 
 [_side, _leader, _unitList]

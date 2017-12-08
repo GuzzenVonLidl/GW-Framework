@@ -15,7 +15,7 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	"_unit"
@@ -32,6 +32,7 @@ switch (true) do {
 		_role = "ftl";
 	};
 	case (_displayName isEqualTo "Rifleman"): {
+		_role = "r";
 		if (_groupType) then {
 			_role = "mat";
 		};

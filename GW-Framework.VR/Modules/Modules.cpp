@@ -3,7 +3,7 @@
 	#include "Gear\Module.hpp"
 	#include "HeadlessController\Module.hpp"
 	#include "MHQ\Module.hpp"
-	#include "Performance\Module.hpp"
+	#include "MiscSettings\Module.hpp"
 	#include "Radios\Module.hpp"
 	#include "ServiceStation\Module.hpp"
 	#include "SetDifficulty\Module.hpp"

@@ -25,7 +25,7 @@
 FUNCMAIN(settingsInit);
 
 ---------------------------------------------------------------------------- */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	["_settingName", "", [""]],

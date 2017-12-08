@@ -1,4 +1,4 @@
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 #define	OPENMENU(Var1) Format ["['player', [], -100, ['_this call GW_Gear_Fnc_replaceAttachments', 'main']] call cba_fnc_fleximenu_openMenuByDef;", Var1]
 #define	FIRSTPAGE(Var1,Var2) compile ((Format ["%1 = 0;", Var1]) + (OPENMENU(Var2)))

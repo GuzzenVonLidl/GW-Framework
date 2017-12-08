@@ -13,7 +13,7 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 #define	BLACKLIST ["echo1","echo2","echo3","echo4","echo4","echo5","echo6"]
 
 params [["_unit", objNull, [objNull]]];
@@ -25,7 +25,7 @@ if (([format ["%1", _unit], 1] call BIS_fnc_trimString) in BLACKLIST) exitWith {
 		(boundingBoxReal _x) params ["_p1","_p2"];
 		_maxLength = abs ((_p2 select 1) - (_p1 select 1));
 		_pos = (_x getRelPos [_maxLength + 2, 180]);
-		_pos set [2, (getPos _vehicle) select 2];
+		_pos set [2, ((getPos _x) select 2)];
 		_unit setPosATL _pos;
 		_unit setDir (getDir _x) + 180;
 	};

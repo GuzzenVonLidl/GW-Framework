@@ -1,32 +1,43 @@
 
 _goggles = "";
-_helmet = "CUP_H_USMC_HelmetWDL";
-_uniform = "CUP_U_B_USMC_MARPAT_WDL_TwoKneepads";
-_vest = "CUP_V_B_MTV_TL";
-_backpack = "CUP_B_USMC_AssaultPack";
+_helmet = "";
+_uniform = "";
+_vest = "";
+_backpack = "";
+
+_goggles = "rhs_googles_clear";
+_helmet = selectRandom ["rhsusf_lwh_helmet_marpatwd_ess","rhsusf_lwh_helmet_marpatwd"];
+_uniform = "rhs_uniform_FROG01_wd";
+//_vest = "rhsusf_spc_rifleman";
+_vest = "rhsusf_spc_light";
+_backpack = "rhsusf_falconii_coy_gr";
 if (GVARMAIN(mod_TFAR)) then {
 	_backpackRadio = "tf_mr3000_multicam";
+};
+
+if (_role in ["ftl","sl"]) then {
+	_vest = "rhsusf_spc_teamleader";
 };
 
 if (_role in ["r","rat","mat","amat"]) then {
 	_vest = "CUP_V_B_MTV_Pouches";
 };
 if (_role in ["ag","ammg"]) then {
-	_vest = "CUP_V_B_MTV_LegPouch";
-	_backpack = "CUP_B_USMC_MOLLE";
+	_vest = "rhsusf_spc_corpsman";
+	_backpack = "rhsusf_assault_eagleaiii_coy_medic";
 };
 if (_role in ["ar","mmg"]) then {
-	_vest = "CUP_V_B_MTV_MG";
+	_vest = "rhsusf_spc_mg";
+	_backpack = "rhsusf_assault_eagleaiii_coy_mg";
 };
+
 if (_role isEqualTo "crew") then {
-	_helmet = "CUP_H_USMC_Crew_Helmet";
-	_uniform = "CUP_U_B_USMC_MARPAT_WDL_Sleeves";
-	_vest = "CUP_V_B_MTV";
+	_helmet = "rhsusf_cvc_green_helmet";
+	_vest = "rhsusf_spc_crewman";
 };
 if (_role isEqualTo "p") then {
-	_helmet = "CUP_H_USMC_Helmet_Pilot";
-	_uniform = "CUP_U_B_USMC_PilotOverall";
-	_vest = "CUP_V_B_PilotVest";
+	_helmet = "rhsusf_hgu56p";
+	_vest = "rhsusf_spc_crewman";
 };
 
 _silencer = "";

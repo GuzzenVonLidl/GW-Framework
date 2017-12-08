@@ -13,7 +13,7 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	"_group",
@@ -22,7 +22,7 @@ params [
 
 {
 	_x params [["_position",[0,0,0]], ["_attributes",[]]];
-	private _waypoint = _group addWaypoint [_position, 5];
+	private _waypoint = _group addWaypoint [_position, 0];
 
 	{
 		_x params ["_type","_setting"];

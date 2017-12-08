@@ -9,14 +9,14 @@ switch (_side) do {
 	case "BAF-W": {
 		#include "Classes\BAF-W.sqf"
 	};
-	case "CAMPAIGN-E": {
-		#include "Classes\CAMPAIGN-E.sqf"
+	case "CIVI-ALTIS": {
+		#include "Classes\CIVI-ALTIS.sqf"
 	};
-	case "CAMPAIGN-I": {
-		#include "Classes\CAMPAIGN-I.sqf"
+	case "CIVI-CHERNARUS": {
+		#include "Classes\CIVI-CHERNARUS.sqf"
 	};
-	case "CAMPAIGN-W": {
-		#include "Classes\CAMPAIGN-W.sqf"
+	case "CIVI-TAKISTAN": {
+		#include "Classes\CIVI-TAKISTAN.sqf"
 	};
 	case "CSAT-H": {
 		#include "Classes\CSAT-H.sqf"
@@ -26,6 +26,15 @@ switch (_side) do {
 	};
 	case "CSAT-U": {
 		#include "Classes\CSAT-U.sqf"
+	};
+	case "CUSTOM-E": {
+		#include "Classes\CUSTOM-E.sqf"
+	};
+	case "CUSTOM-I": {
+		#include "Classes\CUSTOM-I.sqf"
+	};
+	case "CUSTOM-W": {
+		#include "Classes\CUSTOM-W.sqf"
 	};
 	case "INSURGENT-D": {
 		#include "Classes\INSURGENT-D.sqf"

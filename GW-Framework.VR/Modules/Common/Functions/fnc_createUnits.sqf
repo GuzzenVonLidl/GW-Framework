@@ -16,7 +16,7 @@
 	Public: NO
 
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	["_number", 1, [0]],

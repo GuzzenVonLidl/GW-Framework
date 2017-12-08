@@ -8,39 +8,40 @@
 	Veteran > 0.65 and <= 0.85
 	Expert > 0.85
 */
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
-PREP(HandlerRespawn);
-PREP(Init);
-FUNC(Get) = {
-	switch (GVAR(difficulty)) do {	// 1:Easy	2:Medium	3:Hard
-		case 1: {
-			GVAR(easy)
-		};
-		case 2: {
-			GVAR(medium)
-		};
-		case 3: {
-			GVAR(hard)
-		};
-	};
+PREP(init);
+//PREP(setActiveSkillTree);
+PREP(setDetectionCoef);
+PREP(setSkill);
+
+GVAR(detectionCoef) = 1.0;
+GVAR(unitTrainingBackup) = "";
+
+#define	BEHAVIOURS	(missionConfigFile >> "GW_FRAMEWORK" >> "Behaviour")
+private _index = [];
+private _names = [];
+for "_i" from 0 to ((count BEHAVIOURS) - 1) step 1 do {
+	_index pushBack _i;
+	_names pushBack (configName (BEHAVIOURS select _i));
 };
 
-//	[aiming, general, spotting]
-GVAR(easy) 	 = [0.20, 0.50, 0.80];
-GVAR(medium) = [0.30, 0.60, 0.80];
-GVAR(hard) 	 = [0.35, 0.70, 1.00];
-
 [
-	QGVAR(difficulty), "LIST",
-	["Difficulty", "Sets the difficulty of newly spawned units"],
-	QUOTE(ADDON), [[0,1,2,3], ["Disable","Easy","Medium","Hard"], 2], true
+	QGVAR(unitTraining), "LIST",
+	["set Unit Training", "Sets the difficulty of newly spawned units"],
+	QUOTE(ADDON), [_index, _names, 2], true
 ] call FUNCMAIN(settingsInit);
 
 [
-	QGVAR(playerDetection), "SLIDER",
-	["Detect player skill", "How easily a player gets detected, lower value harder to detect"],
-	QUOTE(ADDON), [0.5, 2, 1.0, 1], true
+	QGVAR(randomSkill), "LIST",
+	["Use Random Skill", "Makes each unit have slightly diffrent skill levels within a defined %"],
+	QUOTE(ADDON),
+	[
+		[true,false],
+		["enabled","disabled"],
+		1
+	],
+	true
 ] call FUNCMAIN(settingsInit);
 
 if (isClass ((missionConfigFile >> "GW_Modules" >> "VCOMAI"))) then {

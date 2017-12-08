@@ -13,7 +13,7 @@
 
 	Public: YES
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 #define	TrimString [format ["%1", _unit], 3] call BIS_fnc_trimString
 #define	TrimString1st [format ["%1", _unit], 1] call BIS_fnc_trimString
 

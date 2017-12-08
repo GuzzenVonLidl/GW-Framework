@@ -11,7 +11,7 @@
 
 	Public: NO
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 private _groupCount = [];
 {
