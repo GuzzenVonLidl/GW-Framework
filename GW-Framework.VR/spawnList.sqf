@@ -9,7 +9,7 @@
 	Returning Value:
 		None
 */
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 #define	COMPONENT spawnList
 
 params [
