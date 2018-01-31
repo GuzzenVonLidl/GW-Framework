@@ -15,6 +15,7 @@ PREP(startAlarm);
 PREP(stopAlarm);
 PREP(toggleLights);
 
+GVAR(AdvLightningSleep) = 60;
 GVAR(AdvLightningActive) = false;
 
 GVAR(Alarm) = false;
