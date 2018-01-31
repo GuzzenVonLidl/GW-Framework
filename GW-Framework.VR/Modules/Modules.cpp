@@ -12,5 +12,9 @@
 
 //	Extra Modules
 //	#include "Effects\Module.hpp"
+//	#include "Example\Module.hpp"
+//	#include "HeadlessController_Legacy\Module.hpp"
+//	#include "Loadout\Module.hpp"
 //	#include "Respawn\Module.hpp"
+//	#include "SetDifficulty_Legacy\Module.hpp"
 //	#include "VCOMAI\Module.hpp"

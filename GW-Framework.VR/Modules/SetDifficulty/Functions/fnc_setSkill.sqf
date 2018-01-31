@@ -60,3 +60,6 @@ if ((side _unit) isEqualTo "CIV") then {
 	};
 	TRACE_3("Init", _unit, (_unit skill "aimingAccuracy"), (_unit skill "general"));
 };
+
+_unit setUnitPosWeak "UP";
+_unit disableAI "MINEDETECTION";

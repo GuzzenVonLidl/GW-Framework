@@ -6,16 +6,19 @@ PREP(empty);
 PREP(createUnits);
 PREP(getGroupType);
 PREP(setAttributes);
-PREP(setAttributes3DEN);
 PREP(setGroupColor);
 PREP(setGroupid);
 PREP(simpleRoster);
-PREP(spawn3DEN);
-PREP(spawn3DENObjects);
 PREP(spawnGroup);
 PREP(spawnGroup_Veh);
 PREP(spawnGroup_WP);
 PREP(spawnObjects);
+
+if (is3DEN) then {
+	PREP(setAttributes3DEN);
+	PREP(spawn3DEN);
+	PREP(spawn3DENObjects);
+};
 
 [
 	QGVAR(Faction), "LIST",
@@ -36,35 +39,9 @@ PREP(spawnObjects);
 		],
 		0
 	],
-	true
+	1
 ] call FUNCMAIN(settingsInit);
 
-[
-	QGVAR(AutoLock), "LIST",
-	["Auto Lock Vehicles", "Note: Only effects vehicles with units in and spawned though the framework"],
-	QUOTE(ADDON), [[true,false], ["Enabled","Disabled"], 1], true
-] call FUNCMAIN(settingsInit);
-
-[
-	QGVAR(BlockAIGear), "LIST",
-	["Blocks access to ai Inventories", "Stops players from being able to scavenge dead AI"],
-	QUOTE(ADDON),
-	[
-		[true,false],
-		["enabled","disabled"],
-		0
-	],
-	true
-] call FUNCMAIN(settingsInit);
-
-[
-	QGVAR(autoDelete), "LIST",
-	["Auto Delete Forgotten Units", "Automaticly deletes units and objects located at [0,0,0] after 10 seconds if not moved"],
-	QUOTE(ADDON),
-	[
-		[true,false],
-		["enabled","disabled"],
-		0
-	],
-	true
-] call FUNCMAIN(settingsInit);
+[QGVAR(AutoLock), "CHECKBOX", ["Auto Lock Vehicles", "Note: Only effects vehicles with units in and spawned though the framework"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(BlockAIGear), "CHECKBOX", ["Blocks access to ai Inventories", "Stops players from being able to scavenge dead AI"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(autoDelete), "CHECKBOX", ["Auto Delete Forgotten Units", "Automaticly deletes units and objects located at [0,0,0] after 10 seconds if not moved"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);

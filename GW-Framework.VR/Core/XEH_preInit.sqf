@@ -22,25 +22,7 @@ enableWeaponDisassembly false;
 GVARMAIN(settings3denArray) = [];
 GVARMAIN(Version) = (["GW_FRAMEWORK", "Core", "Version"] call BIS_fnc_getCfgData);
 
-// Get addon/mod/dlc availability from the A3 config file and store them in easy to use variables
-GVARMAIN(DLC_Bundle) 	= isClass (configFile >> "CfgMods" >> "DLCBundle");
-GVARMAIN(DLC_MarksMan) 	= isClass (configFile >> "CfgMods" >> "Mark");
-GVARMAIN(DLC_Heli) 		= isClass (configFile >> "CfgMods" >> "Heli");
-
-GVARMAIN(mod_ACE3) 			= isClass (configFile >> "CfgPatches" >> "ACE_Common");
-GVARMAIN(mod_ACE3_Medical)	= isClass (configFile >> "CfgPatches" >> "ACE_Medical");
-GVARMAIN(mod_ACRE) 			= isClass (configFile >> "CfgPatches" >> "ACRE_Main");
-GVARMAIN(mod_AIA)	 		= isClass (configFile >> "CfgPatches" >> "AiA_Core");
-GVARMAIN(mod_GW)			= isClass (configFile >> "CfgPatches" >> "GW_Main");
-GVARMAIN(mod_CUP_TERRAINS)	= isClass (configFile >> "CfgPatches" >> "CUP_BaseConfig_F");
-GVARMAIN(mod_CUP_WEAPONS)	= isClass (configFile >> "CfgPatches" >> "CUP_BaseConfig_F");
-GVARMAIN(mod_CUP_VEHICLES)	= isClass (configFile >> "CfgPatches" >> "CUP_BaseConfig_F");
-GVARMAIN(mod_CBA) 			= isClass (configFile >> "CfgPatches" >> "CBA_Main");
-GVARMAIN(mod_CTAB) 			= isClass (configFile >> "CfgPatches" >> "cTab");
-GVARMAIN(mod_RHS)	 		= isClass (configFile >> "CfgPatches" >> "RHS_Main");
-GVARMAIN(mod_TFAR) 			= isClass (configFile >> "CfgPatches" >> "Task_Force_Radio");
-GVARMAIN(mod_TFAR_CORE) 	= isClass (configFile >> "CfgPatches" >> "TFAR_Core");
-
+//if (false) then {
 if (is3DEN) then {
 	if !(GVARMAIN(mod_GW)) exitWith {
 		["ADDON is not loaded, Exiting Framework","WARNING"] spawn BIS_fnc_3DENShowMessage;
@@ -51,7 +33,7 @@ if (is3DEN) then {
 };
 
 LOG("Prepping modules");
-#define CORE_Modules (missionConfigFile >> "GW_Modules")
+#define CORE_Modules (missionConfigFile >> "gw_Modules")
 private ["_Modules","_postLoad"];
 _Modules = [];
 GVARMAIN(logModules) = [];
@@ -63,7 +45,7 @@ for "_i" from 0 to ((count CORE_Modules) - 1) step 1 do {
 
 {
 	private ["_config","_Name","_Authors","_Version","_preInit","_postInit","_Description","_requiredModules"];
-	_config = (missionConfigFile >> "GW_Modules" >> configName(_x));
+	_config = (missionConfigFile >> "gw_Modules" >> configName(_x));
 	_Name = getText( _config >> "name");
 	_Authors = getArray( _config >> "authors");
 	_Version = getNumber( _config >> "version");
@@ -90,7 +72,7 @@ for "_i" from 0 to ((count CORE_Modules) - 1) step 1 do {
 	} forEach _requiredAddon;
 
 	if !(_preInit isEqualTo "") then {
-		[] call compile preprocessFileLineNumbers ("Modules\" + configName(_x) +"\" + _preInit);
+		[] call compile preprocessFileLineNumbers ("Modules\" + configName(_x) + "\" + _preInit);
 	};
 
 	if !(_postInit isEqualTo "") then {
@@ -116,5 +98,14 @@ for "_i" from 0 to ((count CORE_Modules) - 1) step 1 do {
 } forEach _Modules;
 
 LOG(FORMAT_1("Modules Loaded: %1", (count GVARMAIN(logModules))));
+
+if (is3DEN && !(GVARMAIN(settings3denArray) isEqualTo [])) then {
+	{
+		TRACE_1("CBA Settings", _x);
+		[_x, (_x call CBA_settings_fnc_get), 1, "mission", false] call CBA_settings_fnc_set;
+	} forEach GVARMAIN(settings3denArray);
+
+	LOG("Making Framework settings global");
+};
 
 LOG("preInit finished");

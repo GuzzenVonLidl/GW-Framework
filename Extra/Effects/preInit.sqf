@@ -1,28 +1,35 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
 //PREP(addUnitToArty);
+
+PREP(addAlarmLocation);
 PREP(addFlag);
 PREP(addObjectAction);
+PREP(agentHandler);
 PREP(artyAmbient);
-PREP(createInit);
-PREP(destroyLights);
-PREP(getfullMoonDates);
-PREP(LightningEffect);
+//PREP(artyShelling);
+//PREP(artySite);
+PREP(createAgent);
+PREP(getAlarm);
+PREP(startAlarm);
+PREP(stopAlarm);
+PREP(toggleLights);
 
-GVAR(LightningSleep) = 0;
 GVAR(AdvLightningActive) = false;
 
-[
-	QGVAR(AdvLightning), "LIST",
-	["Advanced Lightning", "Creates deadly lightnings that effects the environment"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true,
-	{ [QGVAR(lightning), []] call CBA_fnc_serverEvent; }
-] call FUNCMAIN(settingsInit);
+GVAR(Alarm) = false;
+GVAR(AlarmLocations) = [];
+
+GVAR(ambientLife) = false;
+GVAR(AllAgents) = [];
+
+[QGVAR(disableRedOffroads), "CHECKBOX", ["Disable Red Offroads", "Make Armed Offroad vehicles have camoflage instead of red color"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(AdvLightning), "CHECKBOX", ["Advanced Lightning", "Creates deadly lightnings that effects the environment"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
 
 [
 	QGVAR(ppEffects), "LIST",
 	["Postprocess effect", "Changes the look on the environment"],
-	QUOTE(ADDON), [["Default","BlackAndWhite","Warm","Cold","Brown"], ["Default","BlackAndWhite","Warm","Cold","Brown"], 0], true,
+	QUOTE(ADDON), [["Default","BlackAndWhite","EastWind","Mediterranean","RealIsBrown"], ["Default","BlackAndWhite","Warm","Cold","Brown"], 0], CBA_SERVEROVERWRITE,
 	{
 		[{
 		 	params ["_ppEffectsValue"];
@@ -30,10 +37,4 @@ GVAR(AdvLightningActive) = false;
 			LOG(FORMAT_1("PostProcess Effect set to %1", _ppEffectsValue));
 		}, _this, 1] call CBA_fnc_waitAndExecute;
 	}
-] call FUNCMAIN(settingsInit);
-
-[
-	QGVAR(snowEnabled), "LIST",
-	["Enable Snow Effects", "WARNING! Highly unstable"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 1], true
 ] call FUNCMAIN(settingsInit);

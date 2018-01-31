@@ -44,12 +44,6 @@ if !((count _unitArray) isEqualTo 0) then {
 		} else {
 			_unit disableAI "MINEDETECTION";
 		};
-/*
-			_unit enableAI "PATH";
-			_unit enableAI "MOVE";
-			_unit enableAI "ANIM";
-			_unit enableAI "TEAMSWITCH";
-*/
 
 		_unit setFormDir _dir;
 		_unit setDir _dir;

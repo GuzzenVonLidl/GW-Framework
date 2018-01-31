@@ -1,14 +1,13 @@
 /*
 	Author: GuzzenVonLidl
-	Gives the unit the radios from his role in Gear handlern
 
 	Usage:
 	[this, 500, 1] spawn GW_Radios_fnc_Jammer;
 
 	Arguments:
 	0: Object <OBJECT>
-	1: Jammer Distance <NUMBER>
-	2: Jamming Interference <NUMBER>
+	1: Jammer Max Distance <NUMBER>
+	2: Jamming Interference Full Effect <NUMBER>
 
 	Return Value: NO
 
@@ -18,29 +17,32 @@
 
 params ["_object","_distance","_interference"];
 
+if !(hasInterface) exitWith {false};
 if !(canSuspend) exitWith {
 	_this spawn FUNC(Jammer);
 };
 
-private _radius = (_distance / 2);
-_object setVariable [QGVAR(Distance), _distance];
-_object setVariable [QGVAR(interference), _interference];
+//private _radius = (_distance / 2);
+private _unit = player;
 
-//_getDistance = _object getVariable [QGVAR(Distance), 1];
-//_getStrength = _object getVariable [QGVAR(strength), 1];
 while {alive _object} do {
-	{
-		_currentDistance = (_x distance _object);
-		_lerpDistance = (_currentDistance/_radius);
-		_radioLoss = [0, 1, _lerpDistance, 1] call BIS_fnc_lerp;
-		_radioLossReceiving = [0, (_x getVariable QGVAR(receiving)), _lerpDistance, 1] call BIS_fnc_lerp;
-		_radioLossSending = [0, (_x getVariable QGVAR(sending)), _lerpDistance, 1] call BIS_fnc_lerp;
+	if (_unit inArea [(getPos _object), _distance, _distance, 0, false, _distance]) then {
+		_currentDistance = (_unit distance _object);
+		_lerpDistance = (_currentDistance/_distance);
+		_radioLossReceiving = [0, (_unit getVariable QGVAR(receiving)), _lerpDistance, 1] call BIS_fnc_lerp;
+		_radioLossSending = [0, (_unit getVariable QGVAR(sending)), _lerpDistance, 1] call BIS_fnc_lerp;
 		if (_currentDistance < _interference) then {
-			[QGVAR(setRadioLoss), [_x, 0, 0], _x] call CBA_fnc_targetEvent;
+			[QGVAR(setRadioLoss), [_unit, 0, 0]] call CBA_fnc_localEvent;
 		} else {
-			[QGVAR(setRadioLoss), [_x, _radioLossReceiving, _radioLossSending], _x] call CBA_fnc_targetEvent;
+			if (_currentDistance > _distance) then {	// Reset if teleported
+				[QGVAR(setRadioLoss), [_unit, (_unit getVariable QGVAR(receiving)), (_unit getVariable QGVAR(sending))]] call CBA_fnc_localEvent;
+			} else {
+				[QGVAR(setRadioLoss), [_unit, _radioLossReceiving, _radioLossSending]] call CBA_fnc_localEvent;
+			};
 		};
-	} forEach (allPlayers inAreaArray [(getPos _object), _radius, _radius, 0, false, _radius]);
-
+	};
 	sleep 1;
 };
+
+// Reset on destroyed
+[QGVAR(setRadioLoss), [_unit, (_unit getVariable QGVAR(receiving)), (_unit getVariable QGVAR(sending))]] call CBA_fnc_localEvent;

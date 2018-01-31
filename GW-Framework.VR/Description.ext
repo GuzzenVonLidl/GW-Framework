@@ -14,9 +14,9 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 	};
 
 	class Naming {
-		#define GAME_MODE "CO"									// GameMode
-		#define PLAYER_COUNT "0"								// Player Count
-		#define BRIEFING_NAME ""								// Mission Name
+		#define GAME_MODE "GW"									// GameMode
+		#define PLAYER_COUNT "1"								// Player Count
+		#define BRIEFING_NAME "FRAMEWORK"						// Mission Name
 		#define LOBBY_DESCRIPTION ""							// Description in mission select
 		#define ON_LOAD_TEXT ""									// Description on loading
 		#define MISSION_VERSION 1								// Version of mission
@@ -48,7 +48,7 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 aiKills = 0;
 allowFunctionsLog = 0;
 allowFunctionsRecompile = 0;
-briefingName = __EVAL(GAME_MODE + PLAYER_COUNT + " " + BRIEFING_NAME);
+briefingName = __EVAL(GAME_MODE + "@" + PLAYER_COUNT + " " + BRIEFING_NAME);
 disableChannels[]={{0,true,true},{1,false,true},{2,false,true},{5,false,true}};
 disabledAi = 1;
 //disableRandomization[] = {"CAManBase"};	// Disable random gear for units

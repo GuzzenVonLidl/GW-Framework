@@ -63,6 +63,13 @@ if (hasInterface) then {
 LOG(FORMAT_1("Modules Settings: %1", (count GVARMAIN(postLoad))));
 GVARMAIN(postLoad) = nil;
 
+["CBA_settingsInitialized", {
+	[] spawn {
+		uisleep 0.1;
+		["CBA_settingsInitializedDelayed", []] call CBA_fnc_localEvent;
+	};
+}] call CBA_fnc_addEventHandler;
+
 [{(getClientStateNumber >= 9) || !isMultiplayer}, {
 	LOG("Event mapLoaded");
 	[QGVARMAIN(mapLoaded), []] call CBA_fnc_localEvent;
@@ -104,7 +111,7 @@ GVARMAIN(postLoad) = nil;
 				[QGVARMAIN(AddAdmin), player] call CBA_fnc_localEvent;
 			};
 
-			if ((!CBA_isHeadlessClient && isMultiplayer) && !(call EFUNC(Common,isDevBuild))) then {
+			if (isMultiplayer && !(call EFUNC(Common,isDevBuild))) then {
 				cutText ["Finalizing Settings","BLACK FADED",10];
 				GVARMAIN(blockMovement) = player addeventhandler ["animChanged",{player switchMove "AmovPercMstpSnonWnonDnon_Ease";}];
 
@@ -113,6 +120,7 @@ GVARMAIN(postLoad) = nil;
 						player removeEventHandler ["animChanged", GVARMAIN(blockMovement)];
 					} else {
 						systemChat "ERROR: Failed to load, rejoin mission";
+//						"end1" call BIS_fnc_endMission;
 					};
 					player playMoveNow "AmovPercMstpSnonWnonDnon_EaseOut";
 					player playMoveNow "AmovPknlMstpSlowWrflDnon";

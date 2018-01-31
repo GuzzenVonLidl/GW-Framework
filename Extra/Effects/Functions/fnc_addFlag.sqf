@@ -17,7 +17,7 @@
 	Public: No
 
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params ["_vehicle","_flagTexture","_pos"];
 
@@ -32,7 +32,8 @@ if (GVARMAIN(mod_RHS)) then {
 //	_flagType = "rhs_Flag_chdkz";
 };
 
-private _flag = _flagType createVehicle _pos; // create a flag at position _pos
+private _flag = createVehicle [_flagType, [0,0,0], [], 0, "CAN_COLLIDE"]; // create a flag at position _pos
+_flag setPosATL _pos;
 _flag setFlagTexture _flagTexture; // set the flag texture as image in mission folder "img" folder
 _flag attachTo [_vehicle, _pos]; // attach the flag to a position that makes sense
 _vehicle setVariable [QGVAR(currentFlag), _flag, true];

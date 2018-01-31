@@ -1,29 +1,29 @@
 version=53;
 class EditorData
 {
-	moveGridStep=4;
-	angleGridStep=0.08726646;
+	moveGridStep=1;
+	angleGridStep=1.5707964;
 	scaleGridStep=10;
 	autoGroupingDist=10;
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=505;
+		nextID=610;
 	};
 	class MarkerIDProvider
 	{
-		nextID=1;
+		nextID=2;
 	};
 	class LayerIndexProvider
 	{
-		nextID=378;
+		nextID=2271;
 	};
 	class Camera
 	{
-		pos[]={-18.200899,42.968063,6.7355289};
-		dir[]={0.65368682,-0.50679713,0.56222469};
-		up[]={0.38429523,0.86199892,0.33053222};
-		aside[]={0.65212643,1.0267831e-007,-0.75821674};
+		pos[]={60.93071,14.262699,-24.779797};
+		dir[]={-0.0041553928,-0.64778072,0.761922};
+		up[]={-0.0035332933,0.76177472,0.64783061};
+		aside[]={1.0000645,-7.9145957e-007,0.0054526455};
 	};
 };
 binarizationWanted=0;
@@ -35,7 +35,7 @@ addons[]=
 	"A3_Weapons_F_Ammoboxes",
 	"A3_Structures_F_Mil_Flags",
 	"A3_Ui_F",
-	"A3_Soft_F_Quadbike_01",
+	"A3_Soft_F_Kart_Kart_01",
 	"A3_Structures_F_Mil_Helipads"
 };
 class AddonsMetaData
@@ -87,8 +87,8 @@ class AddonsMetaData
 		};
 		class Item6
 		{
-			className="A3_Soft_F";
-			name="Arma 3 Alpha - Unarmored Land Vehicles";
+			className="A3_Soft_F_Kart";
+			name="Arma 3 Karts - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -101,7 +101,8 @@ class DynamicSimulation
 randomSeed=15706391;
 class ScenarioData
 {
-	author="GuzzenVonLidl(swe)";
+	author="GuzzenVonLidl";
+	loadScreen="\x\gw\addons\ui\data\official_eden.jpg";
 	respawnDialog=0;
 	disabledAI=1;
 	respawn=3;
@@ -109,6 +110,7 @@ class ScenarioData
 	enableTeamSwitch=0;
 	class Header
 	{
+		gameType="CO";
 		minPlayers=1;
 		maxPlayers=129;
 	};
@@ -187,7 +189,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
 										class data
@@ -199,7 +201,7 @@ class CustomAttributes
 													"STRING"
 												};
 											};
-											value="gw_setdifficulty_unittraining";
+											value="gw_common_faction";
 										};
 									};
 									class Item1
@@ -213,7 +215,35 @@ class CustomAttributes
 													"STRING"
 												};
 											};
-											value="gw_setdifficulty_randomskill";
+											value="gw_common_blockaigear";
+										};
+									};
+									class Item2
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_setdifficulty_unittraining";
+										};
+									};
+									class Item3
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"STRING"
+												};
+											};
+											value="gw_respawn_mode";
 										};
 									};
 								};
@@ -232,7 +262,7 @@ class CustomAttributes
 								};
 								class value
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
 										class data
@@ -255,10 +285,10 @@ class CustomAttributes
 														{
 															type[]=
 															{
-																"SCALAR"
+																"STRING"
 															};
 														};
-														value=2;
+														value="west";
 													};
 												};
 												class Item1
@@ -272,7 +302,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=1;
+														value=0;
 													};
 												};
 											};
@@ -323,6 +353,96 @@ class CustomAttributes
 											};
 										};
 									};
+									class Item2
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=2;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=1;
+													};
+												};
+											};
+										};
+									};
+									class Item3
+									{
+										class data
+										{
+											class type
+											{
+												type[]=
+												{
+													"ARRAY"
+												};
+											};
+											class value
+											{
+												items=2;
+												class Item0
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=0;
+													};
+												};
+												class Item1
+												{
+													class data
+													{
+														class type
+														{
+															type[]=
+															{
+																"SCALAR"
+															};
+														};
+														value=0;
+													};
+												};
+											};
+										};
+									};
 								};
 							};
 						};
@@ -368,11 +488,11 @@ class Mission
 	};
 	class Entities
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			dataType="Layer";
-			name="Players";
+			name="Framework Playable";
 			class Entities
 			{
 				items=4;
@@ -4439,26 +4559,8 @@ class Mission
 							name="MHQ";
 							class Entities
 							{
-								items=4;
+								items=2;
 								class Item0
-								{
-									dataType="Object";
-									class PositionInfo
-									{
-										position[]={48,6.6262865,16};
-									};
-									side="Empty";
-									flags=4;
-									class Attributes
-									{
-										health=0.89999998;
-										init="[this, ""medium""] call GW_MHQ_Fnc_Handler;";
-										name="mhq_1";
-									};
-									id=274;
-									type="B_Quadbike_01_F";
-								};
-								class Item1
 								{
 									dataType="Comment";
 									class PositionInfo
@@ -4468,30 +4570,23 @@ class Mission
 									title="MHQ";
 									id=271;
 								};
-								class Item2
+								class Item1
 								{
-									dataType="Comment";
+									dataType="Object";
 									class PositionInfo
 									{
-										position[]={53,5,13};
+										position[]={48,6.0527129,16};
 									};
-									title="MHQ - Auto activate";
-									id=275;
-								};
-								class Item3
-								{
-									dataType="Trigger";
-									position[]={53,5,15};
+									side="Empty";
+									flags=4;
 									class Attributes
 									{
-										condition="false && (time > 5)";
-										onActivation="[""GW_MHQ_Enabled"", [mhq_1, true, ""west""]] call CBA_fnc_serverEvent;" \n "" \n "[""GW_MHQ_Assembled"", [mhq_1, true]] call CBA_fnc_serverEvent;";
-										sizeA=0;
-										sizeB=0;
-										isServerOnly=1;
+										health=0.89999998;
+										init="[this, ""medium""] call GW_MHQ_Fnc_Handler;";
+										name="mhq_1";
 									};
-									id=273;
-									type="EmptyDetector";
+									id=505;
+									type="C_Kart_01_F";
 								};
 							};
 							id=411;
@@ -4617,7 +4712,7 @@ class Mission
 					position[]={250,5,150};
 					class Attributes
 					{
-						text="Spawn Trigger 4";
+						text="Spawn Trigger 3";
 						condition="call{!({(isNull (objectParent _x))} count thislist isEqualTo 0) && isServer}";
 						onActivation="call{null = [3] spawn GW_Fnc_spawnList;}";
 						sizeC=0;
@@ -4645,6 +4740,14 @@ class Mission
 				};
 			};
 			id=434;
+		};
+		class Item2
+		{
+			dataType="Marker";
+			position[]={89.166695,5,15.647746};
+			name="spectator";
+			type="Empty";
+			id=609;
 		};
 	};
 };

@@ -190,6 +190,16 @@ class ace_hearing_enableCombatDeafness {
 	typeName = "BOOL";
 	force = 1;
 };
+class ace_hearing_enabledForZeusUnits {
+	value = 0;
+	typeName = "BOOL";
+	force = 1;
+};
+class ace_hearing_autoAddEarplugsToUnits {
+	value = 0;
+	typeName = "BOOL";
+	force = 1;
+};
 
 // -------------------------------------------
 
@@ -292,10 +302,17 @@ class ace_mk6mortar_useAmmoHandling {
 // -------------------------------------------
 
 class ace_nametags_playerNamesViewDistance {
-	value = 100;
-	typeName = "BOOL";
+	value = 50;
+	typeName = "SCALAR";
 	force = 1;
 };
+
+class ace_nightvision_effectScaling {
+	value = 0.8;
+	typeName = "SCALAR";
+	force = 1;
+};
+
 
 // -------------------------------------------
 

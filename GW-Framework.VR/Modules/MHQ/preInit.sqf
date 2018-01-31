@@ -8,3 +8,5 @@ PREP(prefabCopy);
 PREP(prefabCreate);
 
 GVAR(AssembledArray) = [];
+
+

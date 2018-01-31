@@ -1,4 +1,4 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
 //Compile all scripts that might be used
 PREP(AIHit);
@@ -67,6 +67,7 @@ PREP_SUB(RecentEnemyDetected);
 PREP_SUB(SetCombatStance);
 PREP_SUB(VehicleHandleDanger);
 
+
 //Global actions compiles
 VCOMAI_3DText = compile "[_this select 0,_this select 1,_this select 2,_this select 3] call VCOMAI_DebugText;";
 VCOMAI_playActionNowEverywhere = compileFinal "(_this select 0) playActionNow (_this select 1);";
@@ -113,3 +114,9 @@ VCOMAI_SuppressionNoPlayers = true;		//	Disables Suppression effect for players,
 VCOMAI_SuppressionVar = 5;				//	How much should suppression impact both AI and player aiming? Default is 5. Normal ArmA is 1.
 VCOMAI_Unit_AIWarnDistance = 750;		//	Distance AI will respond to call of help from each other
 VCOMAI_USESMOKE = true;					//	Should AI use smoke grenades? Besides default A3 behavior?
+
+[
+	QEGVAR(VCOMAI,Enabled), "LIST",
+	["Enable advanced AI", "Might cause a slowdown in larger scales"],
+	QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], CBA_SERVEROVERWRITE
+] call FUNCMAIN(settingsInit);

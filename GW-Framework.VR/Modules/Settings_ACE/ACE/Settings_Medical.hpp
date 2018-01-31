@@ -60,7 +60,7 @@ class ace_medical_enableScreams {
 	force = 1;
 };
 class ace_medical_playerDamageThreshold {
-	value = 1.5;
+	value = 1.0;
 	typeName = "SCALAR";
 	force = 1;
 };

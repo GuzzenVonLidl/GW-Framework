@@ -3,7 +3,7 @@
 	Counts current groups local to a headless client
 
 	Usage:
-	[] call GW_HeadlessController_Fnc_countBalance
+	[] call GW_HeadlessController_fnc_countBalance
 
 	Arguments: NO
 

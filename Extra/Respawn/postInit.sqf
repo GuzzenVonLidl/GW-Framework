@@ -1,18 +1,14 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
-if (hasInterface) then {
-	["CAManBase", "Respawn", {
-		if !(GVAR(Mode) isEqualTo 0) then {
+[QGVARMAIN(playerReady), {
+	if !(GVAR(Mode) isEqualTo 0) then {	// Dont activate if disabled
+		["CAManBase", "Respawn", {
 			[QGVAR(respawnServer), [player]] call CBA_fnc_serverEvent;
-		};
-	}, true, [], true] call CBA_fnc_addClassEventHandler;
+		}, true, [], true] call CBA_fnc_addClassEventHandler;
 
-	[QGVARMAIN(playerReady), {
-		if !(GVAR(Mode) isEqualTo 0) then {
-			[QGVAR(initServer), [player]] call CBA_fnc_serverEvent;
-		};
-	}] call CBA_fnc_addEventHandler;
-};
+		[QGVAR(initServer), [player]] call CBA_fnc_serverEvent;
+	};
+}] call CBA_fnc_addEventHandler;
 
 [QGVAR(initServer), {
 	params ["_unit","_JIP"];

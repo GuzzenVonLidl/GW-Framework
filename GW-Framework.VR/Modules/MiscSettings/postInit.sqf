@@ -17,6 +17,16 @@ if (isClass(configFile >> "CfgPatches" >> "GW_menu")) then {
 	EGVAR(menu,ParadropStaticHeight) = 125;		// Set Height of Static ParaDrop
 };
 
+/*
+	[
+		"Custom Actions",
+		"","","",
+		[QUOTE(call FUNC(customMenu_Example)),"exampleMenu", 1],
+		-1,true,
+		true
+	] call FUNC(addToFlexiMenu);
+*/
+
 if (isClass(configFile >> "CfgPatches" >> "GW_StaticWeapons")) then {
 //	EGVAR(StaticWeapons,BlackList) pushBackUnique "CUP_WV_CIWS_staticweapon_base";
 };
@@ -31,4 +41,5 @@ if (isClass(configFile >> "CfgPatches" >> "STUI_Core")) then {
 if (GVARMAIN(mod_RHS)) then {
 	RHS_HEAT_ENABLED = false;
 	RHS_SPALL_ENABLED = false;
+	RHS_ENGINE_STARTUP_OFF = 1;	// turn off RHS engine startup script
 };

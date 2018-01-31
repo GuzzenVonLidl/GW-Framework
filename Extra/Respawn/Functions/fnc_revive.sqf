@@ -14,24 +14,24 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	["_unit", objNull, [objNull,""]]
 ];
 
-if (_unit isEqualTo "all") then {
-	{
-		[QGVAR(secondChanceServer), [_x]] call CBA_fnc_serverEvent;
-	} forEach allPlayers;
+if (_unit isEqualType objNull) then {
+	[QGVAR(secondChanceServer), [_unit]] call CBA_fnc_serverEvent;
 } else {
-	if (_unit isEqualTo "allDead") then {
+	if (toLower(_unit) isEqualTo "alldead") then {
 		{
 			if (_x getVariable [QGVAR(isSpectating), false]) then {
 				[QGVAR(secondChanceServer), [_x]] call CBA_fnc_serverEvent;
 			};
 		} forEach allPlayers;
 	} else {
-		[QGVAR(secondChanceServer), [_unit]] call CBA_fnc_serverEvent;
+		{
+			[QGVAR(secondChanceServer), [_x]] call CBA_fnc_serverEvent;
+		} forEach allPlayers;
 	};
 };

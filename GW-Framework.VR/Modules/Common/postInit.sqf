@@ -2,7 +2,7 @@
 
 [QGVARMAIN(serverReady), {
 	if (GVAR(autoDelete)) then {
-		["AllVehicles", "init", {
+		["CAManBase", "init", {
 				[{
 					params [
 						"_unit"
@@ -63,7 +63,7 @@
 //	_unit disableAI 'CHECKVISIBLE';			// Raycasting takes up a lot of CPU time, this will sharply reduce.
 	_unit disableAI 'COVER';				// should disable some expensive cover calculations
 //	_unit disableAI 'FSM';					// Will make the AI very dumb, and reduce some calculations. they may not shoot.
-	_unit setSkill ['spotDistance',0.1];	// Reduce the distance at which AI can see enemy, reducing their calculations.
+	_unit setSkill ['spotDistance',0.5];	// Reduce the distance at which AI can see enemy, reducing their calculations.
 	_unit setBehaviour 'AWARE';				// Get the unit out of combat mode so some of the above can take effect.
 
 	doStop _unit;
@@ -73,12 +73,12 @@
 }] call CBA_fnc_addEventHandler;
 
 /*
-	AIAiming - shows vectors (lines) of AI aiming at known target
-	AIBrain - general informations about AI brain, combat mode and fsm state
-	AIDynamicError - shows value of dynamically calculated AI aiming error
-	AISkill - shows value of skill, plus global coefficients, as set by difficulty mode
-	AISuppression - shows value of suppression
-	AIDriving - Shows various information about AI driving and path in real time.
+AIAiming - shows vectors (lines) of AI aiming at known target
+AIBrain - general informations about AI brain, combat mode and fsm state
+AIDynamicError - shows value of dynamically calculated AI aiming error
+AISkill - shows value of skill, plus global coefficients, as set by difficulty mode
+AISuppression - shows value of suppression
+AIDriving - Shows various information about AI driving and path in real time.
 
 "AIAiming" diag_enable true;
 "AIBrain" diag_enable true;
