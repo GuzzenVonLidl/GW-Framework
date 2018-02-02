@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2320;
+		nextID=2345;
 	};
 	class Camera
 	{
-		pos[]={60.93071,14.262699,-24.779797};
+		pos[]={61.2672,17.788357,-30.537464};
 		dir[]={-0.0041553928,-0.64778072,0.761922};
 		up[]={-0.0035332933,0.76177472,0.64783061};
 		aside[]={1.0000645,-7.9145957e-007,0.0054526455};
@@ -30,17 +30,11 @@ binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
-	"GOL_RUSGEO_WAR_UNITS",
-	"ace_gforces",
-	"ace_parachute",
 	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Supplies_F_Exp_Ammoboxes",
-	"ace_dragging",
 	"A3_Weapons_F_Ammoboxes",
-	"ace_cargo",
 	"A3_Structures_F_Mil_Flags",
 	"A3_Ui_F",
-	"Desert",
 	"A3_Soft_F_Kart_Kart_01",
 	"A3_Structures_F_Mil_Helipads",
 	"A3_Soft_F_Gamma_Hatchback_01",
@@ -51,7 +45,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=15;
+		items=10;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -61,92 +55,61 @@ class AddonsMetaData
 		};
 		class Item1
 		{
-			className="GOL_RUSGEO_WAR_UNITS";
-			name="GOL_RUSGEO_WAR_UNITS";
-		};
-		class Item2
-		{
-			className="ace_parachute";
-			name="ACE3 - Parachute";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item3
-		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item4
+		class Item2
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item5
-		{
-			className="ace_dragging";
-			name="ACE3 - Dragging";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item6
+		class Item3
 		{
 			className="A3_Weapons_F";
 			name="Arma 3 Alpha - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item7
-		{
-			className="ace_cargo";
-			name="ACE3 - Cargo";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item8
+		class Item4
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item9
+		class Item5
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item10
-		{
-			className="Desert";
-			name="Desert";
-		};
-		class Item11
+		class Item6
 		{
 			className="A3_Soft_F_Kart";
 			name="Arma 3 Karts - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item12
+		class Item7
 		{
 			className="A3_Soft_F_Gamma";
 			name="Arma 3 - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item13
+		class Item8
 		{
 			className="A3_Static_F";
 			name="Arma 3 Alpha - Turrets";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item14
+		class Item9
 		{
 			className="A3_Misc_F";
 			name="Arma 3 - 3D Aids and Helpers";
@@ -178,355 +141,6 @@ class ScenarioData
 };
 class CustomAttributes
 {
-	class Category0
-	{
-		name="GW_MissionPreferences";
-		class Attribute0
-		{
-			property="GW_isConfigured";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"BOOL"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		nAttributes=1;
-	};
-	class Category1
-	{
-		name="Scenario";
-		class Attribute0
-		{
-			property="cba_settings_hash";
-			expression="false";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"ARRAY"
-						};
-					};
-					class value
-					{
-						items=4;
-						class Item0
-						{
-							class data
-							{
-								class type
-								{
-									type[]=
-									{
-										"STRING"
-									};
-								};
-								value="#CBA_HASH#";
-							};
-						};
-						class Item1
-						{
-							class data
-							{
-								class type
-								{
-									type[]=
-									{
-										"ARRAY"
-									};
-								};
-								class value
-								{
-									items=4;
-									class Item0
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"STRING"
-												};
-											};
-											value="gw_common_faction";
-										};
-									};
-									class Item1
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"STRING"
-												};
-											};
-											value="gw_common_blockaigear";
-										};
-									};
-									class Item2
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"STRING"
-												};
-											};
-											value="gw_setdifficulty_unittraining";
-										};
-									};
-									class Item3
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"STRING"
-												};
-											};
-											value="gw_respawn_mode";
-										};
-									};
-								};
-							};
-						};
-						class Item2
-						{
-							class data
-							{
-								class type
-								{
-									type[]=
-									{
-										"ARRAY"
-									};
-								};
-								class value
-								{
-									items=4;
-									class Item0
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"ARRAY"
-												};
-											};
-											class value
-											{
-												items=2;
-												class Item0
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"STRING"
-															};
-														};
-														value="west";
-													};
-												};
-												class Item1
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"SCALAR"
-															};
-														};
-														value=0;
-													};
-												};
-											};
-										};
-									};
-									class Item1
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"ARRAY"
-												};
-											};
-											class value
-											{
-												items=2;
-												class Item0
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"BOOL"
-															};
-														};
-														value=1;
-													};
-												};
-												class Item1
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"SCALAR"
-															};
-														};
-														value=1;
-													};
-												};
-											};
-										};
-									};
-									class Item2
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"ARRAY"
-												};
-											};
-											class value
-											{
-												items=2;
-												class Item0
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"SCALAR"
-															};
-														};
-														value=2;
-													};
-												};
-												class Item1
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"SCALAR"
-															};
-														};
-														value=1;
-													};
-												};
-											};
-										};
-									};
-									class Item3
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"ARRAY"
-												};
-											};
-											class value
-											{
-												items=2;
-												class Item0
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"SCALAR"
-															};
-														};
-														value=0;
-													};
-												};
-												class Item1
-												{
-													class data
-													{
-														class type
-														{
-															type[]=
-															{
-																"SCALAR"
-															};
-														};
-														value=0;
-													};
-												};
-											};
-										};
-									};
-								};
-							};
-						};
-						class Item3
-						{
-							class data
-							{
-								nil=1;
-								class type
-								{
-									type[]=
-									{
-										"ANY"
-									};
-								};
-							};
-						};
-					};
-				};
-			};
-		};
-		nAttributes=1;
-	};
 };
 class Mission
 {
@@ -598,67 +212,6 @@ class Mission
 											};
 											id=202;
 											type="B_Soldier_SL_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_DisableHC";
-													expression="(group _this) setVariable ['GW_HeadlessController_BlackList', _value, true];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"BOOL"
-																};
-															};
-															value=0;
-														};
-													};
-												};
-												class Attribute1
-												{
-													property="GW_DisableGearInit";
-													expression="_this setVariable ['GW_Gear_BlackList', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"BOOL"
-																};
-															};
-															value=0;
-														};
-													};
-												};
-												class Attribute2
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="pl";
-														};
-													};
-												};
-												nAttributes=3;
-											};
 										};
 										class Item1
 										{
@@ -678,29 +231,6 @@ class Mission
 											};
 											id=203;
 											type="B_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="fac";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -763,29 +293,6 @@ class Mission
 											};
 											id=206;
 											type="B_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="sm";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -945,29 +452,6 @@ class Mission
 											};
 											id=215;
 											type="B_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 										class Item2
 										{
@@ -1076,29 +560,6 @@ class Mission
 											};
 											id=221;
 											type="B_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 										class Item2
 										{
@@ -1219,29 +680,6 @@ class Mission
 											};
 											id=227;
 											type="B_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="sm";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -2013,29 +1451,6 @@ class Mission
 											};
 											id=281;
 											type="O_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="sm";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -2424,29 +1839,6 @@ class Mission
 											};
 											id=302;
 											type="O_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="sm";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -3188,29 +2580,6 @@ class Mission
 											};
 											id=277;
 											type="O_Soldier_SL_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="pl";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 										class Item1
 										{
@@ -3230,29 +2599,6 @@ class Mission
 											};
 											id=278;
 											type="O_Soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="fac";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -3327,29 +2673,6 @@ class Mission
 											};
 											id=369;
 											type="I_soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="sm";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -3935,29 +3258,6 @@ class Mission
 											};
 											id=345;
 											type="I_soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="fac";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
@@ -4020,29 +3320,6 @@ class Mission
 											};
 											id=348;
 											type="I_soldier_F";
-											class CustomAttributes
-											{
-												class Attribute0
-												{
-													property="GW_LoadoutSelector";
-													expression="_this setVariable ['GW_Gear_Loadout', _value];";
-													class Value
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="sm";
-														};
-													};
-												};
-												nAttributes=1;
-											};
 										};
 									};
 									class Attributes
