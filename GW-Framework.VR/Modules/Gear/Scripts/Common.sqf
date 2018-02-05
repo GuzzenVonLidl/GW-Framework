@@ -51,7 +51,7 @@ if (GVARMAIN(mod_CTAB)) then {
 
 	if (_isPlayer) then {
 		_gps = _Android;
-		if (_role in ["pl","fac","crew","p"]) then {
+		if (_role in ["pl","fac","crew","p","pj","dragon","marksman"]) then {
 			_gps = _cTab;
 		};
 	};
@@ -77,23 +77,24 @@ if (GVARMAIN(mod_ACE3_Medical)) then {	//	ACE
 		_morph = "ACE_morphine";
 		_IFAK = [["ACE_elasticBandage",5],["ACE_tourniquet",1]];
 		_FAKSmall = [
-			[_bandage, 10],
-			["ACE_elasticBandage", 20],
+			[_bandage, 25],
+			["ACE_elasticBandage", 5],
+			["ACE_packingBandage", 5],
 			["ACE_tourniquet", 3],
 			[_morph, 6],
 			[_epi, 6],
 			["ACE_salineIV", 4]
 		];
 		_FAKBig = [
-			[_bandage, 15],
-			["ACE_elasticBandage", 30],
-			["ACE_quikclot", 10],
+			[_bandage, 30],
+			["ACE_elasticBandage", 15],
+			["ACE_packingBandage", 10],
 			["ACE_tourniquet", 4],
 			[_epi, 6],
 			[_morph, 6],
-			["ACE_atropine", 5],
+			["ACE_adenosine", 5],
 			["ACE_salineIV", 5],
-			["ACE_personalAidKit", 1],
+			["ACE_personalAidKit", 5],
 			[_blood, 3]
 		];
 	} else {
@@ -138,6 +139,7 @@ if (GVARMAIN(mod_ACE3)) then {
 	_rangefinder = "ACE_Vector";
 	_microDAGR = "ACE_DAGR";
 	_rangecard = "ACE_RangeCard";
+	_mortarRangeCard = "ACE_RangeTable_82mm";
 
 	_flashBang = "ACE_M84";
 	_handFlareG = "ACE_HandFlare_Green";

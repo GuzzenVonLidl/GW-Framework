@@ -287,6 +287,83 @@ switch (toLower(_role)) do {
 		};
 
 	};
+	
+	case "pj": {
+		[_goggles,_helmet,_uniform,_vest,_backpackRadio] call _addEquipment;
+		[_rifle, _rifle_mag_tr, ""] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_pistol_mag,2],[_grenademini,2]] call _addToUniform;
+		[[_rifle_mag_tr,3],[_smokegrenadeY,6],[_smokegrenadeG,6],[_smokegrenadeB,2],[_smokegrenadeP,2]] call _addToVest;
+		[[_smokegrenadeG,5]] call _addToBackpack;
+		_FAKBig call _addToBackpack;
+		if (call EFUNC(Common,isNight)) then {
+			[[_chemG,5],[_chemR,5],[_handFlareG,2],[_IRStrobe,3]] call _addToBackpack;
+		};
+		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+	
+	case "diver": {
+		[_goggles,_helmet,_uniform,_vest] call _addEquipment;
+		[_rifle, _rifle_mag, ""] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_pistol_mag,2],[_smokegrenadeY,3]] call _addToUniform;
+		[[_grenademini,2],[_grenade,2],[_rifle_mag,4],[_rifle_mag_tr,4]] call _addToVest;
+		["","","","",_backpack] call _addEquipment;
+		//[_LAT, _LAT_mag, ""] call _addLaunchers;
+		[[_cables,1],[_defusalKit,1],[_clacker,1],[_demoCharge,2],[_satchelCharge,1]] call _addToBackpack;
+		[_map, _gps, "", _compass, _watch, ""] call _addLinkedItems;
+		if ((call EFUNC(Common,isNight)) && _allowedNightStuff) then {
+			["", "", "", "", "", _nvg] call _addLinkedItems;
+			[[_mapFlashLight,1]] call _addToUniform;
+		};
+		if (_useMineDetector) then {
+			[["MineDetector",1]] call _addToBackpack;
+		};
+		/*if (_LAT_ReUsable) then {
+			[[_LAT_mag,1]] call _addToBackpack;
+		};*/
+	};
+	
+	case "uav": {
+		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
+		[_rifle, _rifle_mag, ""] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		//[[_mortarRangeCard,1]] call _addToUniform;
+		[[_pistol_mag,2],[_grenademini,2]] call _addToUniform;
+		[[_rifle_mag,4],[_smokegrenadeY,6],[_smokegrenadeG,6],[_smokegrenadeB,2],[_smokegrenadeP,2]] call _addToVest;
+		[[_smokegrenadeG,5],[_rifle_mag_tr,3]] call _addToBackpack;
+		if (call EFUNC(Common,isNight)) then {
+			[[_chemG,5],[_chemR,5],[_handFlareG,2],[_IRStrobe,3]] call _addToBackpack;
+		};
+		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+	
+	case "jetp": {
+		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_pistol_mag,2],[_smokegrenadeY,2]] call _addToUniform;
+		[[_smokegrenadeP,3],[_grenademini,1]] call _addToVest;
+		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
+	
+	case "dragon": {
+		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
+		[_rifle, _rifle_mag, ""] call _addPrimary;
+		[_pistol, _pistol_mag, ""] call _addHandGun;
+		_IFAK call _addToUniform;
+		[[_mortarRangeCard,1]] call _addToUniform;
+		[[_pistol_mag,2],[_grenademini,2]] call _addToUniform;
+		[[_rifle_mag,4],[_smokegrenadeY,6],[_smokegrenadeG,6],[_smokegrenadeB,2],[_smokegrenadeP,2]] call _addToVest;
+		[[_smokegrenadeG,5],[_rifle_mag_tr,3]] call _addToBackpack;
+		if (call EFUNC(Common,isNight)) then {
+			[[_chemG,5],[_chemR,5],[_handFlareG,2],[_IRStrobe,3]] call _addToBackpack;
+		};
+		[_map, _gps, "", _compass, _watch, _nvg] call _addLinkedItems;
+	};
 
 	default {
 		ERROR(FORMAT_2("ERROR: Unit: %1 Role does not exist: %2", _unit, _role));
