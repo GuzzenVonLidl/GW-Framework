@@ -11,9 +11,7 @@
 		};
 	};
 
-	[{
-		_this call FUNC(Init);
-	}, _this, 0.1] call CBA_fnc_waitAndExecute;
+	_this call FUNC(Init);
 }, true, [], true] call CBA_fnc_addClassEventHandler;
 
 [QGVAR(setPlayerStamina), {

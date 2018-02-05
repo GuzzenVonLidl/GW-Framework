@@ -6,7 +6,6 @@ PREP(getLoadoutClass);
 PREP(Handler);
 PREP(Init);
 PREP(replaceAttachments);
-PREP(test);
 
 GVAR(Enabled_101) = true;
 GVAR(Enabled_201) = true;
@@ -48,8 +47,7 @@ GVAR(StaminaCoef) = 0.5;
 			"CUSTOM-West"
 		],
 		0
-	],
-	true
+	], CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -79,8 +77,7 @@ GVAR(StaminaCoef) = 0.5;
 		],
 		0
 	]
-	,
-	true
+	, CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -103,8 +100,7 @@ GVAR(StaminaCoef) = 0.5;
 			"CUSTOM-Independent"
 		],
 		0
-	],
-	true
+	],CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -123,8 +119,7 @@ GVAR(StaminaCoef) = 0.5;
 			"TAKISTAN"
 		],
 		0
-	],
-	true
+	], CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
 
 [
@@ -135,42 +130,9 @@ GVAR(StaminaCoef) = 0.5;
 		[0,1,2,3],
 		["Disabled","All Units","Only SpawnList","Ignore Editor Placed"],
 		1
-	],
-	true
+	], CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
 
-[
-	QGVAR(randomGear), "LIST",
-	["Random Role", "Should units get random gear"],
-	QUOTE(ADDON),
-	[
-		[true,false],
-		["enabled","disabled"],
-		0
-	],
-	true
-] call FUNCMAIN(settingsInit);
-
-[
-	QGVAR(extraGear), "LIST",
-	["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"],
-	QUOTE(ADDON),
-	[
-		[true,false],
-		["enabled","disabled"],
-		1
-	],
-	true
-] call FUNCMAIN(settingsInit);
-
-[
-	QGVAR(autoRemoveCargo), "LIST",
-	["Removes cargo for vehicles", "Automaticly removes cargo"],
-	QUOTE(ADDON),
-	[
-		[true,false],
-		["enabled","disabled"],
-		0
-	],
-	true
-] call FUNCMAIN(settingsInit);
+[QGVAR(randomGear), "CHECKBOX", ["Random Role", "Should units get random gear"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(extraGear), "CHECKBOX", ["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(autoRemoveCargo), "CHECKBOX", ["Removes cargo for vehicles", "Automaticly removes cargo"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);

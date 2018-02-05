@@ -435,3 +435,5 @@ if (_isMan) then {
 		};
 	};
 };
+
+true

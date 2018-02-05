@@ -8,33 +8,47 @@
 	[(group player), true] call FUNC(BlackList);
 	[{
 		[QGVAR(addHC), player] call CBA_fnc_serverEvent;
-		[QGVAR(adjustViewDistance), [], GVAR(headlessList)] call CBA_fnc_targetEvent;
-		[QGVAR(adjustViewDistance), []] call CBA_fnc_serverEvent;
+		[QGVAR(adjustViewDistance), []] call CBA_fnc_localEvent;
 	}, [], 5] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;
 
 [QGVARMAIN(serverReady), {
+	[QGVAR(adjustViewDistance), []] call CBA_fnc_localEvent;
+
 	["CAManBase", "init", {
 		[{
-			_this call FUNC(addToList);
-		}, _this] call CBA_Fnc_execNextFrame;
+			params ["_unit"];
+			private _group = (_unit call CBA_fnc_getGroup);
+
+			if ((_group getVariable [QGVAR(BlackList), false]) || !(({isPlayer _x} count (units _group)) isEqualTo 0)) exitWith {
+				LOG(FORMAT_1("Group: %1 is blacklisted", _group));
+				false
+			};
+
+			GVAR(ToTransfer) pushBackUnique _group;
+		}, [], 5] call CBA_fnc_waitAndExecute;
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 
 	["CAManBase", "Local", {
-		[{
-			if (_this getVariable [QEGVAR(Common,disableAI_Path), false]) then {
-				[QEGVAR(Common,disableAICommand), _this] call CBA_fnc_localEvent;
-			};
-		}, _this] call CBA_Fnc_execNextFrame;
+		params ["_unit", "_isLocal"];
+		if (_unit getVariable [QEGVAR(Common,disableAI_Path), false]) then {
+			[QEGVAR(Common,disableAICommand), _unit] call CBA_fnc_localEvent;
+		};
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 
-	[{
-		[{
-			if (!((count GVAR(headlessList)) isEqualTo 0) && !((count GVAR(ToTransfer)) isEqualTo 0)) then {
+	[{	// Add delay before first event
+		GVAR(PFH) = [{
+			if !((count GVAR(ToTransfer)) isEqualTo 0) then {
 				[] call FUNC(HandlePFH);
 			};
+			if (call EFUNC(Common,isDevBuild)) then {
+				publicVariable QGVAR(headlessList);
+				publicVariable QGVAR(Transfered);
+				publicVariable QGVAR(ToTransfer);
+				publicVariable QGVAR(groupsTransfered);
+			};
 		}, 30, []] call CBA_fnc_addPerFrameHandler;
-	}, [], 15] call CBA_fnc_waitAndExecute;	// Add delay before first event
+	}, [], 15] call CBA_fnc_waitAndExecute;
 
 	addMissionEventHandler ["HandleDisconnect", {
 		params ["_unit","_id","_uid","_name"];
@@ -45,7 +59,7 @@
 		LOG_ADMIN(FORMAT_1("Headless Client: %1 Disconnected", _unit));
 		LOG_ADMIN(FORMAT_1("There are %1 Headless left in the mission", count GVAR(headlessList)));
 		if !((count GVAR(headlessList)) isEqualTo 0) then {
-			GVAR(forceRebalance) = true;
+			[QGVAR(updateBalance), true] call CBA_fnc_serverEvent;
 		} else {
 			GVAR(Transfered) = [];
 			{
@@ -65,7 +79,7 @@
 
 	if (didJIPOwner _headless) then {
 		if !((count GVAR(headlessList)) isEqualTo 0) then {
-			GVAR(forceRebalance) = true;
+			[QGVAR(updateBalance), true] call CBA_fnc_serverEvent;
 		};
 	};
 }] call CBA_fnc_addEventHandler;
@@ -88,5 +102,22 @@
 			setObjectViewDistance [1500,0];
 			setTerrainGrid 25;
 		};
+	};
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(updateBalance), {
+	params ["_rebalance"];
+	if (_rebalance) then {
+		GVAR(ToTransfer) = (GVAR(ToTransfer) + GVAR(Transfered));
+		GVAR(Transfered) = [];
+		LOG_ADMIN("Forcing a rebalance on all groups");
+		{
+			_x setVariable [QGVAR(currentUnits), 0, true];
+		} forEach GVAR(headlessList);
+	} else {
+		{
+			(_x select 1) setVariable [QGVAR(currentUnits), (_x select 0), true];
+			TRACE_2("Headless Stats", (_x select 0), (_x select 1));
+		} forEach (call FUNC(countBalance));
 	};
 }] call CBA_fnc_addEventHandler;

@@ -10,44 +10,36 @@
 */
 #include "script_Component.hpp"
 
+if (isClass(missionConfigFile >> "GW_Modules" >> "SetDifficulty_Legacy")) exitWith {
+	["SetDifficulty detected a module duplicate, either disable the this module or its legacy","WARNING: SetDifficulty Duplicate"] spawn BIS_fnc_3DENShowMessage;
+	false
+};
+
 PREP(init);
-//PREP(setActiveSkillTree);
 PREP(setDetectionCoef);
 PREP(setSkill);
 
 GVAR(detectionCoef) = 1.0;
-GVAR(unitTrainingBackup) = "";
+GVAR(unitTrainingBackup) = GVAR(unitTraining);
 
 #define	BEHAVIOURS	(missionConfigFile >> "GW_FRAMEWORK" >> "Behaviour")
-private _index = [];
-private _names = [];
+
+GVAR(index) = [];
+GVAR(names) = [];
 for "_i" from 0 to ((count BEHAVIOURS) - 1) step 1 do {
-	_index pushBack _i;
-	_names pushBack (configName (BEHAVIOURS select _i));
+	GVAR(index) pushBack _i;
+	GVAR(names) pushBack (configName (BEHAVIOURS select _i));
 };
 
 [
 	QGVAR(unitTraining), "LIST",
 	["set Unit Training", "Sets the difficulty of newly spawned units"],
-	QUOTE(ADDON), [_index, _names, 2], true
+	QUOTE(ADDON), [GVAR(index), GVAR(names), 3],
+	CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
 
-[
-	QGVAR(randomSkill), "LIST",
-	["Use Random Skill", "Makes each unit have slightly diffrent skill levels within a defined %"],
-	QUOTE(ADDON),
-	[
-		[true,false],
-		["enabled","disabled"],
-		1
-	],
-	true
-] call FUNCMAIN(settingsInit);
+[QGVAR(randomSkill), "CHECKBOX", ["Use Skill Variation", "Makes each unit have slightly diffrent skill levels within a defined %"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
 
-if (isClass ((missionConfigFile >> "GW_Modules" >> "VCOMAI"))) then {
-	[
-		QEGVAR(VCOMAI,Enabled), "LIST",
-		["Enable advanced AI", "Might cause a slowdown in larger scales"],
-		QUOTE(ADDON), [[true, false], ["Enable","Disable"], 1], true
-	] call FUNCMAIN(settingsInit);
+if (GVARMAIN(mod_ACE3)) then {
+	[QGVAR(damageResistance), "CHECKBOX", ["Damage Resistance in Vehicles", "Players recive less direct damage when in a light vehicle example: prowler, reverts back to normal on exit"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
 };

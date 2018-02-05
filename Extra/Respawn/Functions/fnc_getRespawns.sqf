@@ -12,7 +12,7 @@
 
 	Public: No
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params [
 	["_unit", objNull, [objNull]]

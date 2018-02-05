@@ -35,7 +35,7 @@
 	Public: No
 
 */
-#include "..\scriptComponent.hpp"
+#include "script_Component.hpp"
 
 params ["_pos",["_radius",500],"_ammo"];
 private _location = _pos getpos [floor(random _radius), floor(random 360)];
@@ -46,43 +46,46 @@ private _Heavy = "Sh_155mm_AMOS";
 private _Smoke = "Smoke_82mm_AMOS_White";
 private _Flare = "F_40mm_White";
 
+private _ammoType = _Light;
 private _altitude = 1000;
 private _velocity = -300;
 private _enableSound = true;
 
 switch toLower(_ammo) do {
 	case "medium": {
-		_ammo = _Medium;
+		_ammoType = _Medium;
 	};
 	case "heavy": {
-		_ammo = _Heavy;
+		_ammoType = _Heavy;
 	};
 	case "smoke": {
-		_ammo = _Smoke;
+		_ammoType = _Smoke;
 		_velocity = -280;
 	};
 	case "flare": {
-		_ammo = _Flare;
+		_ammoType = _Flare;
 		_altitude = 140;
 		_velocity = -10;
 		_enableSound = false;
 	};
-	default {
-		_ammo = _Light;
-	};
 };
 
 _location set [2, _altitude];
-_projectile = createvehicle [_ammo, [0,0,0], [], 0, "none"];
+_projectile = createvehicle [_ammoType, [0,0,0], [], 0, "CAN_COLLIDE"];
 _projectile setpos _location;
 _projectile setvelocity [0, 0, _velocity];
 
 if (_enableSound) then {
 	_location set [2, 150];
+	playSound3D ["A3\Sounds_F\weapons\mortar\mortar1.wss", _x, false, ATLToASL(_location), 1, 1, 100];	// Untested
+};
+
+/*
 	_heliPad = createVehicle ["Land_HelipadEmpty_F", _location, [], 10, "CAN_COLLIDE"];
-//	_heliPad say3D "mortar1";
-	_heliPad say3D ["mortar1", 50];
+//	_heliPad say3D ["mortar1", 50];
+//	playSound3D ["A3\Sounds_F\weapons\mortar\mortar1.wss", _x, false, ([_heliPad] call EFUNC(Common,getPosASL)), 1, 1, 100];	// Untested
 	[{
 		deleteVehicle (_this select 0);
 	}, [_heliPad], 2] call CBA_fnc_waitAndExecute;
-};
+*/
+

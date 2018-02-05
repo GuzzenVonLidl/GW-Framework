@@ -1,4 +1,4 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
 ["CAManBase", "init", {
 	if (GVAR(Enabled)) then {

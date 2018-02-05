@@ -20,7 +20,6 @@
 private ["_group"];
 params ["_unit",["_toggle", true]];
 _group = _unit call CBA_fnc_getGroup;
-//_group = (group _unit);
 
 _group setVariable [QGVAR(BlackList), _toggle, true];
 

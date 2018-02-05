@@ -29,6 +29,9 @@ private _vehicleList = [];
 	_vehicle setDir _dir;
 	_vehicle setPosATL _pos;
 	_vehicle setVectorUp surfaceNormal (position _vehicle);
+	_pos set [2, (_pos select 2) + 0.3];
+	_vehicle setPosATL _pos;
+	_group addVehicle _vehicle;
 
 	if (GVAR(AutoLock)) then {
 		_vehicle setVehicleLock "LOCKEDPLAYER";
@@ -47,9 +50,7 @@ TRACE_1("List", _vehicleList);
 
 if !(_vehicleList isEqualTo []) then {
 	{
-		private ["_groupNew"];
 		_x params ["_vehicle","_slots"];
-		_group addVehicle _vehicle;
 		TRACE_1("Vehicle added to group", _vehicle);
 
 		if (_slots isEqualTo []) then {
@@ -57,7 +58,7 @@ if !(_vehicleList isEqualTo []) then {
 				_slots pushBack [(_x select 1), (_x select 2), (_x select 3)];
 			} forEach ((fullCrew [_vehicle,"",true]) select {((_x select 1) in ["commander","gunner","turret"])});
 		};
-		_groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
+		private _groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
 
 		[{
 			params ["_vehicle","_slots","_groupNew"];

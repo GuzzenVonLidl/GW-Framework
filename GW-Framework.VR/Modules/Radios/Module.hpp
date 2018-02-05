@@ -6,7 +6,6 @@
 		Authors[] = {"GuzzenVonLidl"};
 		version = 2;
 		description = "Configures radio for players, Supports ACRE2 and TFAR";
-		postInit = "";
 		requiredModules[] = {"Gear"};
 	};
 #endif

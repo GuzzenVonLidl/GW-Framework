@@ -33,7 +33,7 @@ params [
 	["_title", [], ["", []]],
 	["_category", "", [""]],
 	["_valueInfo", []],
-	["_isGlobal", false, [false,""]],
+	["_isGlobal", false, [false,"",0]],
 	["_script", {}, [{}]],
 	["_addSetting", "", [""]]
 ];

@@ -65,7 +65,7 @@ _morph = "";
 _IFAK = [[_bandage,1]];					//	Individual First Aid Kits
 _FAKSmall = [[_bandage,15]];			//	Medic Kit Small
 _FAKBig = [[_bandage,10],[_blood,1]];	//	Medic Kit Big
-if (GVARMAIN(mod_ACE3_Medical)) then {	// ACE
+if (GVARMAIN(mod_ACE3_Medical)) then {	//	ACE
 	_bandage = "ACE_fieldDressing";
 	_blood = "ACE_bloodIV";
 	_epi = "ACE_epinephrine";

@@ -18,6 +18,15 @@ params [["_unit", objNull, [objNull]]];
 
 _unit addAction ["<t color='#ffff00'>Attachment Menu</t>", {["player", [], -100, ["_this call GW_Gear_Fnc_replaceAttachments","main"]] call cba_fnc_fleximenu_openMenuByDef},bullShit,7];
 
+_unit addAction ["Remove Night gear", {
+	player unassignItem "NVGoggles_OPFOR";
+	player removeItem "NVGoggles_OPFOR";
+	if (GVARMAIN(mod_ACE3)) then {
+		player removeItem "ACE_IR_Strobe_Item";
+		player removeItem "ACE_Flashlight_XL50";
+	};
+}];
+
 _unit addAction ["Platoon > Actual","[player,'pl'] call GW_Gear_Fnc_Handler;",bullShit,5];
 _unit addAction ["Platoon > Forward Air Controller","[player,'fac'] call GW_Gear_Fnc_Handler;",bullShit,5];
 _unit addAction ["<t color='#00ff00'>Squad > Squad Leader</t>","[player,'sl'] call GW_Gear_Fnc_Handler;",bullShit,5];
