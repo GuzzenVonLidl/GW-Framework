@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2317;
+		nextID=2340;
 	};
 	class Camera
 	{
@@ -30,17 +30,11 @@ binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
-	"GOL_RUSGEO_WAR_UNITS",
-	"ace_gforces",
-	"ace_parachute",
 	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Supplies_F_Exp_Ammoboxes",
-	"ace_dragging",
 	"A3_Weapons_F_Ammoboxes",
-	"ace_cargo",
 	"A3_Structures_F_Mil_Flags",
 	"A3_Ui_F",
-	"Desert",
 	"A3_Soft_F_Kart_Kart_01",
 	"A3_Structures_F_Mil_Helipads"
 };
@@ -48,7 +42,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=12;
+		items=7;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -58,71 +52,40 @@ class AddonsMetaData
 		};
 		class Item1
 		{
-			className="GOL_RUSGEO_WAR_UNITS";
-			name="GOL_RUSGEO_WAR_UNITS";
-		};
-		class Item2
-		{
-			className="ace_parachute";
-			name="ACE3 - Parachute";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item3
-		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item4
+		class Item2
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item5
-		{
-			className="ace_dragging";
-			name="ACE3 - Dragging";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item6
+		class Item3
 		{
 			className="A3_Weapons_F";
 			name="Arma 3 Alpha - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item7
-		{
-			className="ace_cargo";
-			name="ACE3 - Cargo";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item8
+		class Item4
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item9
+		class Item5
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item10
-		{
-			className="Desert";
-			name="Desert";
-		};
-		class Item11
+		class Item6
 		{
 			className="A3_Soft_F_Kart";
 			name="Arma 3 Karts - Unarmored Land Vehicles";
