@@ -21,6 +21,18 @@ if (_role isEqualTo "p") then {
 	_uniform = "U_B_HeliPilotCoveralls";
 	_vest = "V_TacVest_blk";
 };
+if (_role isEqualTo "uav") then {
+	_backpack = "I_UAV_01_backpack_F";
+	_gps = "I_UAVTerminal";
+
+};
+if (_role isEqualTo "jetp") then {
+	_goggles = "G_Aviator";
+	_helmet = "H_PilotHelmetFighter_B";
+	_uniform = "U_B_PilotCoveralls";
+	_vest = "V_Rangemaster_belt";
+	_backpack = "B_Parachute";
+};
 
 _silencer = "";
 _pointer = "";
@@ -62,3 +74,14 @@ _bipod = "bipod_01_F_blk";
 _rifleMarksman = ["srifle_DMR_03_F", _silencer, _pointer, _sight, _bipod];
 _rifleMarksman_mag = "20Rnd_762x51_Mag";
 _rifleMarksman_mag_tr = "20Rnd_762x51_Mag";
+
+if (_role isEqualTo "diver") then {
+	_backpack = "B_ViperHarness_blk_F";
+	_goggles = "G_B_Diving";
+	_helmet = "";
+	_vest = "V_RebreatherB";
+	_uniform = "U_B_Wetsuit";
+	_rifle = ["arifle_SDAR_F", "", "", "", ""];
+	_rifle_mag = "20Rnd_556x45_UW_mag";
+	_rifle_mag_tr = "ACE_30Rnd_556x45_Stanag_Mk318_mag";
+};

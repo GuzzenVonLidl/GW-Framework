@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=675;
+		nextID=610;
 	};
 	class MarkerIDProvider
 	{
@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2345;
+		nextID=2317;
 	};
 	class Camera
 	{
-		pos[]={61.2672,17.788357,-30.537464};
+		pos[]={60.93071,14.262699,-24.779797};
 		dir[]={-0.0041553928,-0.64778072,0.761922};
 		up[]={-0.0035332933,0.76177472,0.64783061};
 		aside[]={1.0000645,-7.9145957e-007,0.0054526455};
@@ -30,22 +30,25 @@ binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
+	"GOL_RUSGEO_WAR_UNITS",
+	"ace_gforces",
+	"ace_parachute",
 	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Supplies_F_Exp_Ammoboxes",
+	"ace_dragging",
 	"A3_Weapons_F_Ammoboxes",
+	"ace_cargo",
 	"A3_Structures_F_Mil_Flags",
 	"A3_Ui_F",
+	"Desert",
 	"A3_Soft_F_Kart_Kart_01",
-	"A3_Structures_F_Mil_Helipads",
-	"A3_Soft_F_Gamma_Hatchback_01",
-	"A3_Static_F_Mortar_01",
-	"A3_Misc_F_Helpers"
+	"A3_Structures_F_Mil_Helipads"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=10;
+		items=12;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -55,64 +58,74 @@ class AddonsMetaData
 		};
 		class Item1
 		{
+			className="GOL_RUSGEO_WAR_UNITS";
+			name="GOL_RUSGEO_WAR_UNITS";
+		};
+		class Item2
+		{
+			className="ace_parachute";
+			name="ACE3 - Parachute";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item3
+		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item2
+		class Item4
 		{
 			className="A3_Supplies_F_Exp";
 			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item3
+		class Item5
+		{
+			className="ace_dragging";
+			name="ACE3 - Dragging";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item6
 		{
 			className="A3_Weapons_F";
 			name="Arma 3 Alpha - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item4
+		class Item7
+		{
+			className="ace_cargo";
+			name="ACE3 - Cargo";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item8
 		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item5
+		class Item9
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item6
+		class Item10
+		{
+			className="Desert";
+			name="Desert";
+		};
+		class Item11
 		{
 			className="A3_Soft_F_Kart";
 			name="Arma 3 Karts - Unarmored Land Vehicles";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item7
-		{
-			className="A3_Soft_F_Gamma";
-			name="Arma 3 - Unarmored Land Vehicles";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item8
-		{
-			className="A3_Static_F";
-			name="Arma 3 Alpha - Turrets";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item9
-		{
-			className="A3_Misc_F";
-			name="Arma 3 - 3D Aids and Helpers";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -139,9 +152,6 @@ class ScenarioData
 		maxPlayers=129;
 	};
 };
-class CustomAttributes
-{
-};
 class Mission
 {
 	class Intel
@@ -163,7 +173,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=5;
+		items=3;
 		class Item0
 		{
 			dataType="Layer";
@@ -1333,6 +1343,29 @@ class Mission
 									};
 									id=261;
 									type="B_supplyCrate_F";
+									class CustomAttributes
+									{
+										class Attribute0
+										{
+											property="ammoBox";
+											expression="[_this,_value] call bis_fnc_initAmmoBox;";
+											class Value
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="[[[[""launch_NLAW_F"",""arifle_MX_F"",""arifle_MX_SW_F""],[1,2,1]],[[""30Rnd_65x39_caseless_mag"",""16Rnd_9x21_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""20Rnd_762x51_Mag"",""100Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""3Rnd_HE_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""Chemlight_green"",""NLAW_F"",""Laserbatteries"",""HandGrenade"",""MiniGrenade"",""SmokeShell"",""SmokeShellGreen"",""UGL_FlareWhite_F"",""UGL_FlareGreen_F""],[24,6,6,6,6,3,1,2,2,6,3,2,6,6,2,2,2,2]],[[""Laserdesignator"",""FirstAidKit"",""acc_flashlight"",""bipod_01_F_blk""],[1,10,2,1]],[[""B_Kitbag_mcamo""],[2]]],false]";
+												};
+											};
+										};
+										nAttributes=1;
+									};
 								};
 								class Item4
 								{
@@ -4086,1002 +4119,6 @@ class Mission
 			name="spectator";
 			type="Empty";
 			id=609;
-		};
-		class Item3
-		{
-			dataType="Layer";
-			name="Neko-Arrow Script Package";
-			class Entities
-			{
-				items=17;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={710.48895,6.4501238,69.057343};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-						init="call{Null = [This, ""large"", nil, nil, [false,false,true], 1, [false]] execVM ""Scripts\NEKY_CarBomb\NEKY_CarBomb.sqf"";}";
-					};
-					id=626;
-					type="C_Hatchback_01_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ammoBox";
-							expression="[_this,_value] call bis_fnc_initAmmoBox;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[[[[""FirstAidKit""],[4]],[[],[]],[[],[]],[[],[]]],false]";
-								};
-							};
-						};
-						nAttributes=1;
-					};
-				};
-				class Item1
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={656.65234,5,270.58411};
-					};
-					title="Neko Script Package";
-					description="These triggers are used to initialise Nekos scripts. They can be copied and adjusted to suite your needs. Consult the wiki for a walkthrough";
-					id=610;
-				};
-				class Item2
-				{
-					dataType="Trigger";
-					position[]={626.64258,5,191.29904};
-					class Attributes
-					{
-						condition="call{!({(isPlayer _x) && ((getPosATL _x) select 2) < 5} count thislist isEqualTo 0) && isServer}";
-						onActivation="call{[[],{ " \n "if (Player getVariable [""NEKY_Respawn_Spectating"",false]) then " \n "{ " \n "[1] execVM ""Scripts\NEKY_Respawn\NEKY_AddLives.sqf""; " \n "}; " \n "}] remoteExec [""BIS_FNC_SPAWN"",0];}";
-						activationBy="ANY";
-						isServerOnly=1;
-					};
-					id=611;
-					type="EmptyDetector";
-				};
-				class Item3
-				{
-					dataType="Trigger";
-					position[]={479.42792,5,194.6362};
-					angle=0.57627285;
-					class Attributes
-					{
-						condition="call{this}";
-						onActivation="call{[0, true] execVM ""Scripts\NEKY_Respawn\NEKY_RespawnInit.sqf"";}";
-						timeout[]={30,30,30};
-						activationBy="ANY";
-					};
-					id=612;
-					type="EmptyDetectorAreaR50";
-				};
-				class Item4
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={551.86395,5,190.98221};
-					};
-					title="Limited Respawn";
-					description="These triggers configure the limited respawn system";
-					id=613;
-				};
-				class Item5
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={483.20496,5,176.35022};
-					};
-					title="Limited Respawn Init";
-					description="This trigger should be fired at mission launch to initialise the limited respawn system";
-					id=614;
-				};
-				class Item6
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={630.06091,5,168.81522};
-					};
-					title="Add Lives Trigger";
-					description="This trigger will add a ""life"" to all those currently in spectator, making them respawn";
-					id=615;
-				};
-				class Item7
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={551.68292,5,79.732208};
-					};
-					title="Mortars";
-					description="This configures the automated mortar system. Place the trigger to start the mortar barrage at the relevant time. You can copy and paste as many times as is needed. Consult the wiki if you need to adjust the mortar settings";
-					id=616;
-				};
-				class Item8
-				{
-					dataType="Trigger";
-					position[]={554.1275,5,40.877502};
-					class Attributes
-					{
-						condition="call{this}";
-						onActivation="call{null = [Mortar1, west, ""Barrage"", ""Medium"", [""auto"", 30],100,500] execVM ""Scripts\NEKY_Mortars\NEKY_Mortars.sqf"";}";
-						activationBy="ANYPLAYER";
-						isServerOnly=1;
-					};
-					id=617;
-					type="EmptyDetectorAreaR50";
-				};
-				class Item9
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={575.18152,5.7216258,40.95615};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-						name="Mortar1";
-					};
-					id=618;
-					type="B_Mortar_01_F";
-				};
-				class Item10
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={709.11774,5.3732605,170.07648};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-						init="call{null = [this, ""large"", ""IEDLandSmall_F"", [5, 10]] execVM ""Scripts\NEKY_Mines\NEKY_Mines.sqf"";}";
-					};
-					id=619;
-					type="Sign_Arrow_F";
-				};
-				class Item11
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={709.30176,5,190.20248};
-					};
-					title="Mines";
-					description="Each object is initialised as an IED or mine. Copy and paste as required. Consult the wiki if you need to adjust the bomb";
-					id=620;
-				};
-				class Item12
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={709.82172,5,102.11847};
-					};
-					title="Car Bomb";
-					description="Each object is initialised as a car bomb. Copy and paste as required. Consult the wiki if you need to adjust the bomb";
-					id=621;
-				};
-				class Item13
-				{
-					dataType="Trigger";
-					position[]={791.08466,5,188.95062};
-					class Attributes
-					{
-						condition="call{this}";
-						onActivation="call{Null = [West,[12314,43569,0],[15521,05352,0],[59532,43290,0],True,""clusterbomb"",30,true,1] execVM ""Scripts\NEKY_BombingRun\NEKY_BombingRun.sqf"" }";
-						activationBy="ANYPLAYER";
-						isServerOnly=1;
-					};
-					id=622;
-					type="EmptyDetectorAreaR50";
-				};
-				class Item14
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={790.58026,5,208.91998};
-					};
-					title="Bombing Run";
-					description="This will trigger a bombing run. Consult the wiki to adjust the settings as needed. Can be copied, pasted and adjusted multiple times if needed";
-					id=623;
-				};
-				class Item15
-				{
-					dataType="Trigger";
-					position[]={791.24664,5,37.235626};
-					class Attributes
-					{
-						condition="call{this}";
-						onActivation="call{null = [east, ""O_Heli_Light_02_unarmed_F"", False, ""unload"", ""AirDropSpawn"", ""AirDropTarget"", ""AirDropEgress"", [2,1], [""wp1"",""wp2""]] execVM ""Scripts\NEKY_AirDrop\NEKY_AirDrop.sqf"";}";
-						activationBy="ANYPLAYER";
-						isServerOnly=1;
-					};
-					id=624;
-					type="EmptyDetectorAreaR50";
-				};
-				class Item16
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={790.10712,5,69.83197};
-					};
-					title="Air Drop";
-					description="Initialises an enemy air mobile reinforcement unit. Can be copied, pasted and adjusted as required. Consult the wiki to adjust the settings as required";
-					id=625;
-				};
-			};
-			id=627;
-		};
-		class Item4
-		{
-			dataType="Layer";
-			name="AAC Asset Spawner";
-			class Entities
-			{
-				items=46;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={277.05078,5,423.31857};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Giant";
-					};
-					id=634;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item1
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={91.986343,5,425.54156};
-						angles[]={0,6.2811437,0};
-					};
-					title="Giant Notes";
-					description="Giant is a medium to heavy lift transport helicopter capable of lifting the entire platoon in one go. It also doubles up as the main cargo chopper, capable of lifting all crates and even some vehicles.";
-					id=635;
-				};
-				class Item2
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={132.29375,5.559,424.17169};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnGiant;}";
-						name="InitialiseGiant";
-					};
-					id=636;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.55900002;
-				};
-				class Item3
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={276.94525,5,401.20016};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Angel";
-					};
-					id=637;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item4
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={91.880783,5,403.4231};
-						angles[]={0,6.2811437,0};
-					};
-					title="Angel Notes";
-					description="Angel is a light attack helicopter that specialises in scouting and recon. Usually too weak to stand toe to toe on the front line, Angel relies on speed and agility rather than strength.";
-					id=638;
-				};
-				class Item5
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={132.18874,5.3860002,402.05267};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnAngel;}";
-						name="InitialiseAngel";
-					};
-					id=639;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.38600016;
-				};
-				class Item6
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.69014,6.0440001,445.16458};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnRaven;}";
-						name="InitialiseRaven_1";
-					};
-					id=655;
-					type="Land_HelipadEmpty_F";
-					atlOffset=1.0440001;
-				};
-				class Item7
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.63213,5.559,423.18558};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnGiant;}";
-						name="InitialiseGiant_1";
-					};
-					id=656;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.55900002;
-				};
-				class Item8
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.52711,5.3860002,401.06659};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnAngel;}";
-						name="InitialiseAngel_1";
-					};
-					id=657;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.38600016;
-				};
-				class Item9
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={151.092,5.7216258,488.72253};
-					};
-					side="Empty";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=673;
-					type="B_Mortar_01_F";
-				};
-				class Item10
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.46712,5.237,379.32257};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnZeus;}";
-						name="InitialiseZeus_1";
-					};
-					id=658;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.23699999;
-				};
-				class Item11
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.84914,5.0799999,358.87259};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnPhantom;}";
-						name="InitialisePhantom_1";
-					};
-					id=659;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.079999924;
-				};
-				class Item12
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.81111,5,336.57257};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnBanshee;}";
-						name="InitialiseBanshee_1";
-					};
-					id=660;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item13
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={276.88574,5.0123634,379.45529};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Zeus";
-					};
-					id=640;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.012363434;
-				};
-				class Item14
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={91.821274,5,381.67825};
-						angles[]={0,6.2811437,0};
-					};
-					title="Zeus Notes";
-					description="Zeus is a heavy helicopter gunship that specialises in Close Air Support and tank killing. While capable of recon, Zeus is usually bigger and heavier than Angel and so cannot rely on stealth or speed to gather intel. Instead it relies on punching it's way through defences to gain the intel it needs.";
-					id=641;
-				};
-				class Item15
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={132.12874,5.237,380.30865};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnZeus;}";
-						name="InitialiseZeus";
-					};
-					id=642;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.23699999;
-				};
-				class Item16
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.28212,5.5360003,301.04758};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnCondor;}";
-						name="InitialiseCondor_1";
-					};
-					id=661;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.53600025;
-				};
-				class Item17
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={184.74812,6.4159999,262.37259};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""OPFOR""] call GW_AAC_Setup_fnc_spawnAnvil;}";
-						name="InitialiseAnvil_1";
-					};
-					id=662;
-					type="Land_HelipadEmpty_F";
-					atlOffset=1.4159999;
-				};
-				class Item18
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.4724,6.0440001,446.0347};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnRaven;}";
-						name="InitialiseRaven_2";
-					};
-					id=663;
-					type="Land_HelipadEmpty_F";
-					atlOffset=1.0440001;
-				};
-				class Item19
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.41438,5.559,424.05566};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnGiant;}";
-						name="InitialiseGiant_2";
-					};
-					id=664;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.55900002;
-				};
-				class Item20
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={277.26813,5,359.0054};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Phantom";
-					};
-					id=643;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item21
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={92.203629,5,361.22839};
-						angles[]={0,6.2811437,0};
-					};
-					title="Phantom Notes";
-					description="Phantom is a ground strike fighter that specialises in Close Air Support. Capable of carrying a wide array of weapons and providing recon, Phantom is the best CAS platform available but is limited in it's use due to the need for an airstrip.";
-					id=644;
-				};
-				class Item22
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={132.51073,5.0799999,359.85867};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnPhantom;}";
-						name="InitialisePhantom";
-					};
-					id=645;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.079999924;
-				};
-				class Item23
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.30937,5.3860002,401.93668};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnAngel;}";
-						name="InitialiseAngel_2";
-					};
-					id=665;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.38600016;
-				};
-				class Item24
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.24937,5.237,380.19266};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnZeus;}";
-						name="InitialiseZeus_2";
-					};
-					id=666;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.23699999;
-				};
-				class Item25
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.63139,5.0799999,359.74268};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnPhantom;}";
-						name="InitialisePhantom_2";
-					};
-					id=667;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.079999924;
-				};
-				class Item26
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.5934,5,337.44266};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnBanshee;}";
-						name="InitialiseBanshee_2";
-					};
-					id=668;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item27
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.06438,5.5360003,301.91766};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnCondor;}";
-						name="InitialiseCondor_2";
-					};
-					id=669;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.53600025;
-				};
-				class Item28
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={277.22974,5,336.70615};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Banshee";
-					};
-					id=646;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item29
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={92.165207,5.2082825,338.92914};
-						angles[]={0,6.2811437,0};
-					};
-					title="Banshee Notes";
-					description="Banshee is an Air Superiority Fighter that specialises in killing threats to aircraft. While capable of delivering CAS, Banshees main roles are dogfighting, interception, escorts and hunting air defences. ";
-					id=647;
-					atlOffset=0.20828247;
-				};
-				class Item30
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={132.47273,5,337.55865};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnBanshee;}";
-						name="InitialiseBanshee";
-					};
-					id=648;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item31
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={231.53038,6.4159999,263.24268};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""INDEP""] call GW_AAC_Setup_fnc_spawnAnvil;}";
-						name="InitialiseAnvil_2";
-					};
-					id=670;
-					type="Land_HelipadEmpty_F";
-					atlOffset=1.4159999;
-				};
-				class Item32
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={184.35326,5,463.35834};
-						angles[]={0,6.2811437,0};
-					};
-					title="OPFOR Initialisers";
-					description="These Objects Initialise the given callsign. Delete the ones you do not want to use. You must change the side to spawn for in the init code. The choices are BLUFOR, OPFOR or INDEP. Consult the wiki for a tutorial.";
-					id=671;
-				};
-				class Item33
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={231.9384,5,463.3017};
-						angles[]={0,6.2811437,0};
-					};
-					title="INDEP Initialisers";
-					description="These Objects Initialise the given callsign. Delete the ones you do not want to use. You must change the side to spawn for in the init code. The choices are BLUFOR, OPFOR or INDEP. Consult the wiki for a tutorial.";
-					id=672;
-				};
-				class Item34
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={276.70068,5.4610386,301.18134};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Condor";
-					};
-					id=649;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.46103859;
-				};
-				class Item35
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={91.635818,5.8537006,303.40497};
-						angles[]={0,6.2811437,0};
-					};
-					title="Condor Notes";
-					description="Condor is a fixed wing transport craft usually used for parachute insertions. Capable of mass airlift including some vehicles this is the biggest transport asset available. While some are VTOL and capable of operating in the field, most will require a full size dedicated airstrip.";
-					id=650;
-					atlOffset=0.85370064;
-				};
-				class Item36
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={131.94374,5.5360003,302.03366};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnCondor;}";
-						name="InitialiseCondor";
-					};
-					id=651;
-					type="Land_HelipadEmpty_F";
-					atlOffset=0.53600025;
-				};
-				class Item37
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={277.16626,5,262.50583};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Anvil";
-					};
-					id=654;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item38
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={184.2614,5,488.57697};
-						angles[]={0,6.2811437,0};
-					};
-					title="AAC Spawn Tools";
-					description="Automatic spawning of AAC Equipment according to chosen faction";
-					id=628;
-				};
-				class Item39
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={133.59975,6.23,463.61993};
-						angles[]={0,6.2811437,0};
-					};
-					title="BLUFOR Initialisers";
-					description="These Objects Initialise the given callsign. Delete the ones you do not want to use. You must change the side to spawn for in the init code. The choices are BLUFOR, OPFOR or INDEP. Consult the wiki for a tutorial.";
-					id=629;
-					atlOffset=1.23;
-				};
-				class Item40
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={92.101761,6.0080585,264.72882};
-						angles[]={0,6.2811437,0};
-					};
-					title="Anvil Notes";
-					description="Anvil is the AAC tank asset and is designed to deliver heavy fire support and AT capability in those missions where aircraft are not featured. While Anvil is tough it is hopeless against OPFOR AT weapons and will require close cooperation with the infantry to succeed.";
-					id=652;
-					atlOffset=1.0080585;
-				};
-				class Item41
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={132.40974,6.4159999,263.35867};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnAnvil;}";
-						name="InitialiseAnvil";
-					};
-					id=653;
-					type="Land_HelipadEmpty_F";
-					atlOffset=1.4159999;
-				};
-				class Item42
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={277.44861,5,463.66473};
-						angles[]={0,6.2811437,0};
-					};
-					title="Placement Objects";
-					description="These Objects mark where the choppers will spawn.  Copy and paste to place additional choppers. Rotate to the direction you want the chopper to face (Z Rotation Axis).";
-					id=630;
-				};
-				class Item43
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={277.10956,5,445.29825};
-						angles[]={0,6.2811437,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						name="Raven";
-					};
-					id=631;
-					type="Land_HelipadEmpty_F";
-				};
-				class Item44
-				{
-					dataType="Comment";
-					class PositionInfo
-					{
-						position[]={92.044449,5,447.52103};
-						angles[]={0,6.2811437,0};
-					};
-					title="Raven Notes";
-					description="Raven is a light to medium lift transport helicopter that also doubles up as the medical chopper";
-					id=632;
-				};
-				class Item45
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={132.35173,6.0440001,446.15067};
-						angles[]={0,6.2811432,0};
-					};
-					side="Empty";
-					class Attributes
-					{
-						init="call{[""BLUFOR""] call GW_AAC_Setup_fnc_spawnRaven;}";
-						name="InitialiseRaven";
-					};
-					id=633;
-					type="Land_HelipadEmpty_F";
-					atlOffset=1.0440001;
-				};
-			};
-			id=674;
-			atlOffset=0.59270954;
 		};
 	};
 };

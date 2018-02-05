@@ -9,9 +9,9 @@
 	#include "SetDifficulty\Module.hpp"
 	#include "Settings_ACE\Module.hpp"
 	#include "StartUp\Module.hpp"
-	#include "AAC_Setup\Module.hpp"
 
 //	Extra Modules
 //	#include "Effects\Module.hpp"
 //	#include "Respawn\Module.hpp"
 //	#include "VCOMAI\Module.hpp"
+//	#include "AAC_Setup\Module.hpp"
