@@ -140,6 +140,7 @@ Switch (_Type) do
 				{
 					_Box = _This select 0;
 					_BoxCode = _This select 1;
+					[_Box, ["big_box","west"]] call GW_Gear_Fnc_Init; 
 					sleep 2;
 					if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
 				};
@@ -205,6 +206,7 @@ Switch (_Type) do
 					if (Alive _Heli) then
 					{
 						_Box = CreateVehicle [_BoxClass, _Position, [], 0, "CAN_COLLIDE"];
+						[_Box, ["big_box","west"]] call GW_Gear_Fnc_Init; 
 						if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
 					};
 					"Pilot: Supplies Unloaded." remoteExec ["systemChat"];
@@ -217,7 +219,7 @@ Switch (_Type) do
 					_Pilot setCombatMode "BLUE";
 					_Pilot disableAI "FSM";
 					_Pilot MoveTo (_STD Select 2);
-					"Pilot: RTB." remoteExec ["systemChat"];
+
 				};
 			} else {
 				deleteVehicle _Helipad;
