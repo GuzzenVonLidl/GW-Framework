@@ -40,8 +40,12 @@ if !(canSuspend) exitWith {
 	_this spawn FUNC(startAlarm);
 };
 
+if (GVAR(AlarmRunning)) exitWith {};
+
 GVAR(Alarm) = true;
 ([_alarmType] call FUNC(getAlarm)) params ["_soundFile","_soundVolume","_soundPitch","_soundLength"];
+
+GVAR(AlarmRunning) = true;
 
 while {GVAR(Alarm)} do {
 	{
