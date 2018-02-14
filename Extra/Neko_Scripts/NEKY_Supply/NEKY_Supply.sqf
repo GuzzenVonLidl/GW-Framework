@@ -140,15 +140,8 @@ Switch (_Type) do
 				{
 					_Box = _This select 0;
 					_BoxCode = _This select 1;
-					if ((side player) == west) then {
-					[_Box, ["big_box","west"]] call GW_Gear_Fnc_Init;
-					};
-					if ((side player) == east) then {
-					[_Box, ["big_box","east"]] call GW_Gear_Fnc_Init;
-					};
-					if ((side player) == independent) then {
-					[_Box, ["big_box","independent"]] call GW_Gear_Fnc_Init;
-					};
+					_Side = WFSideText; 
+					[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
 					sleep 2;
 					if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
 				};
@@ -214,15 +207,8 @@ Switch (_Type) do
 					if (Alive _Heli) then
 					{
 						_Box = CreateVehicle [_BoxClass, _Position, [], 0, "CAN_COLLIDE"];
-						if ((side player) == west) then {
-						[_Box, ["big_box","west"]] call GW_Gear_Fnc_Init;
-						};
-						if ((side player) == east) then {
-						[_Box, ["big_box","east"]] call GW_Gear_Fnc_Init;
-						};
-						if ((side player) == independent) then {
-						[_Box, ["big_box","independent"]] call GW_Gear_Fnc_Init;
-						};
+					_Side = WFSideText; 
+					[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
 						if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
 					};
 					"Pilot: Supplies Unloaded." remoteExec ["systemChat"];
