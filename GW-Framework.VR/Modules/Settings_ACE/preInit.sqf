@@ -17,7 +17,7 @@ if (!GVARMAIN(mod_ACE3)) exitWith {false};
 		],
 		0
 	], CBA_SERVEROVERWRITE, {
-		[QGVAR(setMedical), GVAR(medical_level)] call CBA_fnc_localEvent;
+		[{[QGVAR(setMedical), GVAR(medical_level)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
 	}
 ] call FUNCMAIN(settingsInit);
 
@@ -38,46 +38,46 @@ if (!GVARMAIN(mod_ACE3)) exitWith {false};
 		],
 		0
 	], CBA_SERVEROVERWRITE, {
-		[QGVAR(setRevive), GVAR(revive)] call CBA_fnc_localEvent;
+		[{[QGVAR(setRevive), GVAR(revive)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
 	}
 ] call FUNCMAIN(settingsInit);
 
 [QGVAR(setMedical), {
 	params ["_type"];
 	if (_type isEqualTo 1) then {
-		["ACE_Medical_level", 1, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_medicSetting", 1, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_enableOverdosing", true, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_bleedingCoefficient", 5, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_painCoefficient", 3, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_playerDamageThreshold", 1.5, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_AIDamageThreshold", 1, 1, "server"] call CBA_settings_fnc_set;
+		["ACE_Medical_level", 1] call GW_Fnc_changeSetting;
+		["ACE_Medical_medicSetting", 1] call GW_Fnc_changeSetting;
+		["ACE_Medical_enableOverdosing", true] call GW_Fnc_changeSetting;
+		["ACE_Medical_bleedingCoefficient", 5] call GW_Fnc_changeSetting;
+		["ACE_Medical_painCoefficient", 3] call GW_Fnc_changeSetting;
+		["ACE_Medical_playerDamageThreshold", 1.5] call GW_Fnc_changeSetting;
+		["ACE_Medical_AIDamageThreshold", 1] call GW_Fnc_changeSetting;
 	//	ACE_Medical_allowDeadBodyMovement = false;		// Does nothing
 	} else {
-		["ACE_Medical_level", 2, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_medicSetting", 2, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_enableOverdosing", true, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_bleedingCoefficient", 0.5, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_painCoefficient", 2, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_playerDamageThreshold", 1.5, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_AIDamageThreshold", 1, 1, "server"] call CBA_settings_fnc_set;
-		["ACE_Medical_enableUnconsciousnessAI", 0, 1, "server"] call CBA_settings_fnc_set;
+		["ACE_Medical_level", 2] call GW_Fnc_changeSetting;
+		["ACE_Medical_medicSetting", 2] call GW_Fnc_changeSetting;
+		["ACE_Medical_enableOverdosing", true] call GW_Fnc_changeSetting;
+		["ACE_Medical_bleedingCoefficient", 0.5] call GW_Fnc_changeSetting;
+		["ACE_Medical_painCoefficient", 2] call GW_Fnc_changeSetting;
+		["ACE_Medical_playerDamageThreshold", 1.5] call GW_Fnc_changeSetting;
+		["ACE_Medical_AIDamageThreshold", 1] call GW_Fnc_changeSetting;
+		["ACE_Medical_enableUnconsciousnessAI", 0] call GW_Fnc_changeSetting;
 	};
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(setRevive), {
 	switch (GVAR(revive)) do {
 		case 1: {
-			["ace_medical_enableRevive", 1, 1, "server"] call CBA_settings_fnc_set;
-			["ace_medical_amountOfReviveLives", -1, 1, "server"] call CBA_settings_fnc_set;
+			["ace_medical_enableRevive", 1] call GW_Fnc_changeSetting;
+			["ace_medical_amountOfReviveLives", -1] call GW_Fnc_changeSetting;
 		};
 		case 2: {
-			["ace_medical_enableRevive", 1, 1, "server"] call CBA_settings_fnc_set;
-			["ace_medical_amountOfReviveLives", 1, 1, "server"] call CBA_settings_fnc_set;
+			["ace_medical_enableRevive", 1] call GW_Fnc_changeSetting;
+			["ace_medical_amountOfReviveLives", 1] call GW_Fnc_changeSetting;
 		};
 		default {
-			["ace_medical_enableRevive", 0, 1, "server"] call CBA_settings_fnc_set;
-			["ace_medical_amountOfReviveLives", -1, 1, "server"] call CBA_settings_fnc_set;
+			["ace_medical_enableRevive", 0] call GW_Fnc_changeSetting;
+			["ace_medical_amountOfReviveLives", -1] call GW_Fnc_changeSetting;
 		};
 	};
 }] call CBA_fnc_addEventHandler;
