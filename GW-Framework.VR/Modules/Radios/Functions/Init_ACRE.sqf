@@ -19,7 +19,6 @@
 			[_x, "default", 1, "label", "NET-PLATOON"] call acre_api_fnc_setPresetChannelField;
 			[_x, "default", 2, "label", "NET-FAC"] call acre_api_fnc_setPresetChannelField;
 			[_x, "default", 3, "label", "NET-AAC"] call acre_api_fnc_setPresetChannelField;
-
 		} forEach ["ACRE_PRC148","ACRE_PRC152","ACRE_PRC117F"];	// No ACRE_PRC343
 	}, [], 1] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;
