@@ -17,8 +17,9 @@
 #define	TrimString [format ["%1", _unit], 3] call BIS_fnc_trimString
 #define	TrimString1st [format ["%1", _unit], 1] call BIS_fnc_trimString
 
-private ["_color"];
 params ["_unit"];
+
+private _color = "";
 
 switch (True) do {
 	case ((TrimString) in ["1"]): {
@@ -30,19 +31,20 @@ switch (True) do {
 	case ((TrimString) in ["4","5"]): {
 		_color = "Blue";
 	};
-	case ((TrimString1st) in ["fac","echo2","echo3","echo4","echo5","echo6"]): {
-		_color = "Blue";
+	case ((TrimString1st) in ["fac","sm"]): {
+		_color = "Yellow";
 	};
 	default {
-		if ((TrimString1st) in ["pl","sl","echo1"]) then {
+		if ((TrimString1st) in ["pl","sl"]) then {
 			_color = "Green";
 		} else {
-			_color = "White";
 		};
 	};
 };
 
-if !((_unit getVariable [QGVAR(GroupColor), "White"]) isEqualTo _color) then {
-	_unit setVariable [QGVAR(GroupColor), _color];
-	_unit assignTeam _color;
+if !(_color isEqualTo "") then {
+	if !((_unit getVariable [QGVAR(GroupColor), "White"]) isEqualTo _color) then {
+		_unit setVariable [QGVAR(GroupColor), _color, true];
+		_unit assignTeam _color;
+	};
 };
