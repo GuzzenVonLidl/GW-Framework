@@ -54,10 +54,10 @@ if (_unit isKindOf "CAManBase") then {
 		private _groupType = ((group _unit) getVariable [QGVAR(Loadout_Type), false]);
 		private _displayName = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
 
+		_role = selectRandom ["r","mat","amat","g","ag","ar"];	// Random role
+
 		if (_isPlayable || !(GVAR(randomGear)) || !_isSpawned) then {
 			_role = [_unit] call FUNC(getLoadoutClass);
-		} else {
-			_role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
 		};
 	};
 

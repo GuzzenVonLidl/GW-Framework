@@ -21,8 +21,8 @@ params [
 	"_unit"
 ];
 
+private _role = "r";
 private _displayName = getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
-private _role = selectRandom ["r","mat","amat","g","ag","ar","mmg","ammg"];	// Random role
 
 switch (true) do {
 	case (_displayName isEqualTo "Squad Leader"): {
