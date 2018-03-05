@@ -24,9 +24,9 @@ Group: General
 #define PUBLIC 2
 
 #define MAJOR 0
-#define MINOR 6
-#define PATCHLVL 1
-#define BUILD 250118	// We will use the DATE for the BUILD# in the format DDMMYY
+#define MINOR 7
+#define PATCHLVL 0
+#define BUILD 050318	// We will use the DATE for the BUILD# in the format DDMMYY
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 
 #define COMPONENTPATH(var1) CUSTOM_FOLDER\fnc_##var1.sqf
@@ -49,7 +49,7 @@ Group: General
 	'\x\gw\addons\ui\data\official_zeus.jpg' \
 ])
 
-#define	GETSIDE(var1) (configfile >> "CfgVehicles" >> (typeOf var1) >> "side") call BIS_fnc_getCfgData
+#define	GETSIDE(var1) getNumber(configfile >> "CfgVehicles" >> (typeOf var1) >> "side")
 #define	GETSIDESTRING(var1) \
 	switch (GETSIDE(var1)) do { \
 		case 0: { \
