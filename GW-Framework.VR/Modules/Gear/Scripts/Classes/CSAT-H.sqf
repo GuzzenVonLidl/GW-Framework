@@ -71,14 +71,3 @@ _bipod = "bipod_02_F_hex";
 _rifleMarksman = ["srifle_DMR_05_hex_F", _silencer, _pointer, _sight, _bipod];
 _rifleMarksman_mag = "10Rnd_93x64_DMR_05_Mag";
 _rifleMarksman_mag_tr = "10Rnd_93x64_DMR_05_Mag";
-
-if (_role isEqualTo "diver") then {
-	_backpack = "B_ViperHarness_blk_F";
-	_goggles = "G_B_Diving";
-	_helmet = "";
-	_vest = "V_RebreatherB";
-	_uniform = "U_B_Wetsuit";
-	_rifle = ["arifle_SDAR_F", "", "", "", ""];
-	_rifle_mag = "20Rnd_556x45_UW_mag";
-	_rifle_mag_tr = "ACE_30Rnd_556x45_Stanag_Mk318_mag";
-};

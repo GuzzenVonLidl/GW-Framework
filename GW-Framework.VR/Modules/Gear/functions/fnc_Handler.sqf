@@ -50,6 +50,7 @@ private [
 	"_rifleC","_rifleC_mag","_rifleC_mag_tr",
 	"_rifleGL","_rifleGL_mag","_rifleGL_mag_tr",
 	"_rifleMarksman","_rifleMarksman_mag","_rifleMarksman_mag_tr",
+	"_rifle_Diver","_rifle_Diver_mag","_rifle_Diver_mag_tr",
 	"_LMG","_LMG_mag","_LMG_mag_tr",
 	"_MMG","_MMG_mag","_MMG_mag_tr",
 	"_LAT","_LAT_mag","_LAT_mag_HE","_LAT_ReUsable",
@@ -121,10 +122,6 @@ if (_isMan) then {
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
 		["", "", "", "", "", ""] call _addLinkedItems;
 	} else {
-		if ((call EFUNC(Common,isNight)) && _allowedNightStuff) then {
-			_nvg = "NVGoggles_Opfor";
-		};
-
 		if !(_isPlayer || (_unit in switchableUnits)) then {
 			_loadoutFile = "Default_AI";
 			_unit enableGunLights "forceOn";
