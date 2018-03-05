@@ -4,7 +4,7 @@
 	Can also remove alarm locations so we can implement new locations at a later stage
 
 	Usage:
-	[0, 200] call GW_Effects_Fnc_stopAlarm;
+	[true] call GW_Effects_Fnc_stopAlarm;
 
 	Arguments:
 	0: Clear Alarm Locations <BOOL>
@@ -18,6 +18,7 @@
 params ["_clearLocations"];
 
 GVAR(Alarm) = false;
+GVAR(AlarmRunning) = false;
 
 if (_clearLocations) then {
 	GVAR(AlarmLocations) = [];

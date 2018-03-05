@@ -20,6 +20,7 @@ GVAR(AdvLightningActive) = false;
 
 GVAR(Alarm) = false;
 GVAR(AlarmLocations) = [];
+GVAR(AlarmRunning) = false;
 
 GVAR(ambientLife) = false;
 GVAR(AllAgents) = [];
