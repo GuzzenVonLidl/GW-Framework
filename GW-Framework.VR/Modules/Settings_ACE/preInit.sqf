@@ -17,7 +17,9 @@ if (!GVARMAIN(mod_ACE3)) exitWith {false};
 		],
 		0
 	], CBA_SERVEROVERWRITE, {
-		[{[QGVAR(setMedical), GVAR(medical_level)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
+		if (time > 1) then {
+			[{[QGVAR(setMedical), GVAR(medical_level)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
+		};
 	}
 ] call FUNCMAIN(settingsInit);
 
@@ -38,7 +40,9 @@ if (!GVARMAIN(mod_ACE3)) exitWith {false};
 		],
 		0
 	], CBA_SERVEROVERWRITE, {
-		[{[QGVAR(setRevive), GVAR(revive)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
+		if (time > 1) then {
+			[{[QGVAR(setRevive), GVAR(revive)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
+		};
 	}
 ] call FUNCMAIN(settingsInit);
 

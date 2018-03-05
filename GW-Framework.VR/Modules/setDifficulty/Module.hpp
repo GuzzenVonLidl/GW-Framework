@@ -38,7 +38,7 @@
 			spotDistance[]	 = {0.70, 0.80, 0.90};
 			spotTime[]		 = {0.70, 0.80, 0.90};
 			Fleeing[]		 = {0.10, 0.10, 0.20};
-			playerCamoCoef[] = {0.70, 0.80, 1.00};
+			playerCamoCoef[] = {1.00, 1.00, 1.20};
 		};
 
 		class Military {
