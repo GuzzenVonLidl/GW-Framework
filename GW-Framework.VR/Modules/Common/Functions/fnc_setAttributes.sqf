@@ -15,7 +15,13 @@ params [
 			_object allowDamage _value;
 		};
 		case 2: {
-			_object enableSimulationGlobal _value;
+			if (_object isKindOf "CAManBase") then {
+				[_object] spawn {
+					(_this select 0) enableSimulationGlobal (_this select 1);
+				};
+			} else {
+				_object enableSimulationGlobal _value;
+			};
 		};
 		case 3: {
 			_object lock _value;

@@ -45,6 +45,7 @@ for "_i" from 1 to _number do {
 	if !(isNil "_unitsCreted") then {
 		_unitsCreted pushBack _unit;
 	};
+	_unit enableSimulationGlobal false;
 	TRACE_1("Created", _unit);
 };
 
