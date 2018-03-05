@@ -20,8 +20,8 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 		#define LOBBY_DESCRIPTION ""							// Description in mission select
 		#define ON_LOAD_TEXT ""									// Description on loading
 		#define MISSION_VERSION 1								// Version of mission
-//		#define SELECT_PICTURE ""								// Path to loading screen
-		#define SELECT_PICTURE RANDOM_PICTURES					// Random loading screen
+		#define SELECT_PICTURE ""								// Path to loading screen
+//		#define SELECT_PICTURE RANDOM_PICTURES					// Random loading screen
 
 		Author = "GuzzenVonLidl";					// Author
 		AuthorUID[] = {"_SP_PLAYER_"};			// UIDs with admin access
@@ -41,6 +41,10 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 	#define LOAD_SpawnUnits
 		#include "Modules\Modules.cpp"
 	#undef LOAD_SpawnUnits
+
+	#define LOAD_Loadout
+		#include "Modules\Modules.cpp"
+	#undef LOAD_Loadout
 };
 
 // *	DO NOT EDIT BELOW
