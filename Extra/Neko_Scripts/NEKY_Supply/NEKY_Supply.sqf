@@ -136,15 +136,14 @@ Switch (_Type) do
 				// Create box and Chute and make it fall
 				_Box = CreateVehicle [_BoxClass, [0,0,0], [], 0, "NONE"];
 				_Box disableCollisionWith _Heli;
-				[_Box,_BoxCode] spawn 
-				{
-					_Box = _This select 0;
-					_BoxCode = _This select 1;
-					_Side = WFSideText; 
-					[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
-					sleep 2;
-					if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
-				};
+				[_Box,_BoxCode,_Pilot] spawn {
+				_Box = _This select 0;
+				_BoxCode = _This select 1;
+				_Pilot = _This select 2;
+
+				_Side = WFSideText _Pilot;
+				[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
+			};
 				_Box HideObjectGlobal True;
 				_Chute = CreateVehicle [_ChuteClass, [0,0,0], [], 0, "NONE"];
 				_Chute AllowDamage False;
@@ -207,9 +206,14 @@ Switch (_Type) do
 					if (Alive _Heli) then
 					{
 						_Box = CreateVehicle [_BoxClass, _Position, [], 0, "CAN_COLLIDE"];
-					_Side = WFSideText; 
-					[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
-						if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
+						[_Box,_BoxCode,_Pilot] spawn {
+						_Box = _This select 0;
+						_BoxCode = _This select 1;
+						_Pilot = _This select 2;
+
+						_Side = WFSideText _Pilot;
+						[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
+						//if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
 					};
 					"Pilot: Supplies Unloaded." remoteExec ["systemChat"];
 					
