@@ -213,7 +213,7 @@ Switch (_Type) do
 
 						_Side = WFSideText _Pilot;
 						[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
-						//if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
+						}
 					};
 					"Pilot: Supplies Unloaded." remoteExec ["systemChat"];
 					
