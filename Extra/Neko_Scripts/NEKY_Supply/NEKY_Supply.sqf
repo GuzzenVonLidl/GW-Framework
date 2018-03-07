@@ -213,7 +213,7 @@ Switch (_Type) do
 
 						_Side = WFSideText _Pilot;
 						[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
-						}
+						};
 					};
 					"Pilot: Supplies Unloaded." remoteExec ["systemChat"];
 					
