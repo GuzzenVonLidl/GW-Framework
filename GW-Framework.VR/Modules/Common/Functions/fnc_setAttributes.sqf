@@ -16,7 +16,7 @@ params [
 		};
 		case 2: {
 			if (_object isKindOf "CAManBase") then {
-				[_object] spawn {
+				[_object,_value] spawn {
 					(_this select 0) enableSimulationGlobal (_this select 1);
 				};
 			} else {
