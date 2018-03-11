@@ -21,7 +21,7 @@
 //	 
 //	To set it up by using Radio calls (clicking 0 and 0 again while in-game) see NEKY_SupplyInit.sqf for more info.
 //	
-//	Made By NeKo-ArroW with help from GuzzenVonLidl and edited to work with ace by Luke
+//	Made By NeKo-ArroW with help from GuzzenVonLidl with tweeks from Luke for ace
 
 if (hasInterface && !isServer) exitWith {false};		// Ensures only server or HC runs this script
 	
@@ -136,14 +136,13 @@ Switch (_Type) do
 				// Create box and Chute and make it fall
 				_Box = CreateVehicle [_BoxClass, [0,0,0], [], 0, "NONE"];
 				_Box disableCollisionWith _Heli;
-				[_Box,_BoxCode,_Pilot] spawn {
-				_Box = _This select 0;
-				_BoxCode = _This select 1;
-				_Pilot = _This select 2;
-
-				_Side = WFSideText _Pilot;
-				[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
-			};
+				[_Box,_BoxCode] spawn 
+				{
+					_Box = _This select 0;
+					_BoxCode = _This select 1;
+					sleep 2;
+					if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
+				};
 				_Box HideObjectGlobal True;
 				_Chute = CreateVehicle [_ChuteClass, [0,0,0], [], 0, "NONE"];
 				_Chute AllowDamage False;
@@ -206,17 +205,9 @@ Switch (_Type) do
 					if (Alive _Heli) then
 					{
 						_Box = CreateVehicle [_BoxClass, _Position, [], 0, "CAN_COLLIDE"];
-						[_Box,_BoxCode,_Pilot] spawn {
-						_Box = _This select 0;
-						_BoxCode = _This select 1;
-						_Pilot = _This select 2;
-
-						_Side = WFSideText _Pilot;
-						[_Box, ["Big_Box",_Side]] call GW_Gear_Fnc_Init;
-						};
+						if (TypeName _BoxCode == "STRING") Then {if (_BoxCode != "") then {[_Box] execVM _BoxCode};} else {[_Box] call _BoxCode};
 					};
 					"Pilot: Supplies Unloaded." remoteExec ["systemChat"];
-					
 					DeleteVehicle _Pilot;
 					_Pilot = CreateAgent [_PilotClass, [0,0,0], [], 0, "NONE"];		// Ghetto fix for agent getting stuck on "_Heli Land 'LAND'".
 					_Pilot MoveInDriver _Heli;
@@ -225,7 +216,6 @@ Switch (_Type) do
 					_Pilot setCombatMode "BLUE";
 					_Pilot disableAI "FSM";
 					_Pilot MoveTo (_STD Select 2);
-
 				};
 			} else {
 				deleteVehicle _Helipad;
