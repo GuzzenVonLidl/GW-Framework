@@ -11,7 +11,7 @@ Neky-Supply Installation
 # Important
 In the editor in arma 3, you will need to navigate to the markers tab and place down two "empty" markers or any marker you want "empty" wont show up in your mission, name one "spawn" and the other "despawn" this is where the helli will spawn and despawn.
 
-Only Actuall and Squad leaders can use this and it only works on a MP enviroment so test your mission on lan. You can edit the templates found in the folder to change what equipment is dropped.
+Only Actuall and Squad leaders can use this and it only works on a MP enviroment so test your mission on lan. You dont need to edit anthing like a templates like in the old versions to change what equipment is dropped, it is now done automatically.
 Script was made by Neko and adapted to Ace by Luke.
 
 Planned changes :-
