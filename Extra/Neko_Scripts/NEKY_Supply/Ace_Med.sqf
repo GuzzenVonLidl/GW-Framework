@@ -14,7 +14,7 @@ if (hasInterface) then {
 				Case EAST: {_BoxCode = {[_Box, ["med_box","east"]] call GW_Gear_Fnc_Init}};
 				Case INDEPENDENT: {_BoxCode = {[_Box, ["med_box","indep"]] call GW_Gear_Fnc_Init}};
 			};
-			[(_This select 0),"","drop", ["spawn",_pos,"despawn"],_BoxCode,false] execVM "Scripts\NEKY_supply\NEKY_SupplyMapClick.sqf";
+			[(_This select 0),"","drop", ["spawn",_pos,"despawn"],_BoxCode,true] execVM "Scripts\NEKY_supply\NEKY_SupplyMapClick.sqf";
 		};
 	};
 
@@ -30,7 +30,7 @@ if (hasInterface) then {
 				Case EAST: {_BoxCode = {[_Box, ["med_box","east"]] call GW_Gear_Fnc_Init}};
 				Case INDEPENDENT: {_BoxCode = {[_Box, ["med_box","indep"]] call GW_Gear_Fnc_Init}};
 			};
-			[(_This select 0),"","unload", ["spawn",_pos,"despawn"],_BoxCode,false] execVM "Scripts\NEKY_supply\NEKY_SupplyMapClick.sqf";
+			[(_This select 0),"","unload", ["spawn",_pos,"despawn"],_BoxCode,true] execVM "Scripts\NEKY_supply\NEKY_SupplyMapClick.sqf"; //true false = heli damage setting
 		};
 	};
 	// NEKY EDIT END
@@ -43,4 +43,4 @@ if (hasInterface) then {
     [typeOf player, 1, ["ACE_SelfActions","ACE_Equipment","Medical Resupply"], _drop] call ace_interact_menu_fnc_addActionToClass;
     [typeOf player, 1, ["ACE_SelfActions","ACE_Equipment","Medical Resupply"], _unload] call ace_interact_menu_fnc_addActionToClass;
 };
-//_condition = {leader (group player) isEqualTo (leader player)}; <for sp testing
+//_condition = {leader (group player) isEqualTo (leader player)}; for sp testing
