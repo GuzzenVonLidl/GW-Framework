@@ -77,9 +77,13 @@ if ((count _vehicleArray) > 0) then {
 	private _vehicleList = [];
 
 	{
-		_x params ["_class","_pos","_dir","_crewCount",["_specials", []]];
-
-		_vehicle = createVehicle [_class, _pos, [], 0, "CAN_COLLIDE"];
+		_x params ["_class","_pos","_dir","_crewList",["_specials", []]];
+		private _collision = "CAN_COLLIDE";
+		if (_pos select 2 > 20) then {
+			_collision = "FLY";
+			_vehicle engineOn true;
+		};
+		_vehicle = createVehicle [_class, _pos, [], 0, _collision];
 		_vehicle setDir _dir;
 		_vehicle setPosATL _pos;
 		_vehicle setVectorUp surfaceNormal (position _vehicle);
@@ -90,61 +94,57 @@ if ((count _vehicleArray) > 0) then {
 		if (GVAR(AutoLock)) then {
 			_vehicle setVehicleLock "LOCKEDPLAYER";
 		};
-		if (_waypointArray) then {
+
+		if (isNil "_waypointArray") then {
 			_vehicle setFuel 0;
+			_vehicle allowCrewInImmobile true;
 		};
-//		_vehicle allowCrewInImmobile true;
+
 		_vehicle setVariable [QEGVAR(gear,side), GVAR(Faction)];
 
 		[_vehicle, _specials] call FUNC(setAttributes);
-		_vehicleList pushBack [_vehicle, _crewCount];
+		_vehicleList pushBack [_vehicle, _crewList];
 		TRACE_1("Created", _vehicle);
-		sleep 3;
-	} forEach _vehicleArray;
-	sleep 1;
-	TRACE_1("List", _vehicleList);
 
-	if !(_vehicleList isEqualTo []) then {
+		if (_crewList isEqualTo []) then {
+			{
+				_crewList pushBack [(_x select 1), (_x select 2), (_x select 3)];
+			} forEach ((fullCrew [_vehicle,"",true]) select {((_x select 1) in ["commander","gunner","turret"])});
+		};
+
+		private _groupNew = ([GVAR(Faction), (count _crewList), _group] call FUNC(createGroup));
+
 		{
-			_x params ["_vehicle","_slots"];
+			_slots = _x;
 			TRACE_1("Vehicle added to group", _vehicle);
 
-			if (_slots isEqualTo []) then {
-				{
-					_slots pushBack [(_x select 1), (_x select 2), (_x select 3)];
-				} forEach ((fullCrew [_vehicle,"",true]) select {((_x select 1) in ["commander","gunner","turret"])});
-			};
-			private _groupNew = ([GVAR(Faction), (count _slots), _group] call FUNC(createGroup));
-
-			[_vehicle, _slots, _groupNew] spawn {
-				params ["_vehicle","_slots","_groupNew"];
-
-				{
-					switch toLower((_slots select _forEachIndex) select 0) do {
-						case "driver": {
-							_x moveInDriver _vehicle;
-						};
-						case "commander": {
-							_x moveInCommander _vehicle;
-						};
-						case "gunner": {
-							_x moveInGunner _vehicle;
-						};
-						case "turret": {
-							_x moveInTurret [_vehicle, (_slots select _forEachIndex) select 2];
-						};
-						case "cargo": {
-							_x moveInCargo [_vehicle, (_slots select _forEachIndex) select 1];
-						};
+			{
+				switch (toLower(_slots select 0)) do {
+					case "driver": {
+						_x moveInDriver _vehicle;
 					};
-					_unit enableSimulationGlobal true;
-					TRACE_2("Unit Moved to", _vehicle, (_slots select _forEachIndex));
-				} forEach (_groupNew select 1);
-			};
+					case "commander": {
+						_x moveInCommander _vehicle;
+					};
+					case "gunner": {
+						_x moveInGunner _vehicle;
+					};
+					case "turret": {
+						_x moveInTurret [_vehicle, (_slots select 2)];
+					};
+					case "cargo": {
+						_x moveInCargo [_vehicle, (_slots select 1)];
+					};
+				};
+				_x enableSimulationGlobal true;
+				TRACE_2("Unit Moved to", _vehicle, _slots);
+			} forEach (_groupNew select 1);
+
 			TRACE_1("Units added to vehicle", _groupNew);
 			sleep 1;
-		} forEach _vehicleList;
-	};
+		} forEach _crewList;
+		sleep 3;
+	} forEach _vehicleArray;
 	sleep 1;
 };
 
