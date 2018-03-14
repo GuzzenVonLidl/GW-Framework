@@ -81,7 +81,6 @@ if ((count _vehicleArray) > 0) then {
 		private _collision = "CAN_COLLIDE";
 		if (_pos select 2 > 20) then {
 			_collision = "FLY";
-			_vehicle engineOn true;
 		};
 		_vehicle = createVehicle [_class, _pos, [], 0, _collision];
 		_vehicle setDir _dir;
@@ -98,6 +97,8 @@ if ((count _vehicleArray) > 0) then {
 		if (isNil "_waypointArray") then {
 			_vehicle setFuel 0;
 			_vehicle allowCrewInImmobile true;
+		} else {
+			_vehicle engineOn true;
 		};
 
 		_vehicle setVariable [QEGVAR(gear,side), GVAR(Faction)];
