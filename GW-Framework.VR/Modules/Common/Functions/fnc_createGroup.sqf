@@ -49,6 +49,8 @@ for "_i" from 1 to _number do {
 	TRACE_1("Created", _unit);
 };
 
+_group setVariable [QEGVAR(Performance,autoDelete), false];
+
 if !(isNil "_unitsCreted") then {
 	[_group, _unitsCreted]
 } else {
