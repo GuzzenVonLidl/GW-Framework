@@ -20,14 +20,14 @@ enableWeaponDisassembly false;
 //	enableSatNormalOnDetail true;		//	<--------
 
 GVARMAIN(settings3denArray) = [];
-GVARMAIN(Version) = (["GW_FRAMEWORK", "Core", "Version"] call BIS_fnc_getCfgData);
+GVARMAIN(Version) = (getText(missionConfigFile >> "GW_FRAMEWORK" >> "Core" >> "Version"));
 
 //if (false) then {
 if (is3DEN) then {
 	if !(GVARMAIN(mod_GW)) exitWith {
 		["ADDON is not loaded, Exiting Framework","WARNING"] spawn BIS_fnc_3DENShowMessage;
 	};
-	if (GVARMAIN(mod_GW) && ((getNumber (configFile >> "CfgPatches" >> "GW_Main" >> "version")) < 0.6)) exitWith {
+	if (GVARMAIN(mod_GW) && ((getNumber (configFile >> "CfgPatches" >> "GW_Main" >> "version")) < 0.7)) exitWith {
 		["ADDON And Framework versions are not compatible!   Exiting Framework","WARNING"] spawn BIS_fnc_3DENShowMessage;
 	};
 };
