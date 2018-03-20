@@ -25,9 +25,9 @@ private _nearStreetLights = nearestObjects [_pos, _allLamps, _radius];
 private _damage = [0.97,0] select _enable;
 
 {
-	params ["_lamp"];
+	_x params ["_lamp"];
 	{
-		_lamp setHit [gettext (_x >> "hitpoint"),_damage];
+		_lamp setHit [getText (_x >> "hitpoint"),_damage];
 	} foreach configProperties [configfile >> "CfgVehicles" >> (typeof _lamp) >> "Reflectors","isclass _x"];
 } forEach _nearStreetLights;
 
