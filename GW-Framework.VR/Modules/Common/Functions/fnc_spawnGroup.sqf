@@ -21,14 +21,18 @@ if (is3DEN) exitWith {
 };
 
 params [
-	"_unitArray",
+	["_unitArray", []],
 	["_vehicleArray", []],
-	["_waypointArray", nil],
-	["_skipQueue", false]
+	["_waypointArray", []],
+	["_skipQueue", false],
+	["_skipDelays", false]
 ];
 
-private _group = [GVAR(Faction), 0] call FUNC(createGroup);
+([GVAR(Faction)] call FUNC(getGroupType)) params ["_side", "_leader","_unitList"];
 
-[_unitArray,_vehicleArray,_waypointArray,_skipQueue,_group] spawn FUNC(spawnHandler);
+_group = CreateGroup _side;
+_group setVariable [QEGVAR(Performance,autoDelete), false];
+
+[_unitArray,_vehicleArray,_waypointArray,_skipQueue,_skipDelays,_group] spawn FUNC(spawnHandler);
 
 _group

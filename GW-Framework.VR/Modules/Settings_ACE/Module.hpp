@@ -4,7 +4,7 @@
 	class COMPONENT: GW_Modules_Base {
 		name = COMPONENT;
 		Authors[] = {"GuzzenVonLidl"};
-		version = 3.12.0;
+		version = 3.7.0;
 		description = "Configures all ACE settings";
 		postInit = "";
 

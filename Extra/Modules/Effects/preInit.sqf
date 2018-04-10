@@ -30,7 +30,7 @@ GVAR(ambientLife) = false;
 GVAR(AllAgents) = [];
 
 [QGVAR(disableRedOffroads), "CHECKBOX", ["Disable Red Offroads", "Make Armed Offroad vehicles have camoflage instead of red color"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
-[QGVAR(AdvLightning), "CHECKBOX", ["Advanced Lightning", "Creates deadly lightnings that effects the environment"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(AdvLightning), "CHECKBOX", ["Advanced Lightning", "Creates deadly lightnings that effects the environment"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
 
 [
 	QGVAR(ppEffects), "LIST",

@@ -20,10 +20,11 @@ if !(canSuspend) exitWith {
 };
 
 params [
-	"_unitArray",
+	["_unitArray", []],
 	["_vehicleArray", []],
-	["_waypointArray", nil],
+	["_waypointArray", []],
 	["_skipQueue", false],
+	["_skipDelays", false],
 	["_group", grpNull]
 ];
 
@@ -36,18 +37,35 @@ if (GVAR(autoQueue) && !_skipQueue) then {
 	GVAR(spawnActive) = true;
 };
 
+([GVAR(Faction)] call FUNC(getGroupType)) params ["_side", "_leader","_unitList"];
+
 if (_group isEqualTo grpNull) then {
-	_group = [GVAR(Faction), 0] call FUNC(createGroup);
+	_group = CreateGroup _side;
+	_group setVariable [QEGVAR(Performance,autoDelete), false];
 };
 
 if !((count _unitArray) isEqualTo 0) then {
-	private _groupNew = ([GVAR(Faction), (count _unitArray), _group] call FUNC(createGroup));
-
+	private _unitClass = _leader;
 	{
-		(_unitArray select _forEachIndex) params ["_pos","_dir",["_unitPos", [], [[],""]],["_specials", []]];
-		private _unit = _x;
-		if ((isNil "_waypointArray") || _waypointArray isEqualTo []) then {
+		_x params ["_pos","_dir",["_unitPos", [], [[],""]],["_specials", []]];
+		if !(_forEachIndex isEqualTo 0) then {
+			_unitClass = (selectRandom _unitList);
+		};
+		_unit = _group createUnit [_unitClass, [0,0,0], [], 10, "CAN_COLLIDE"];
+		_unit enableSimulationGlobal false;
+		_unit setRank "PRIVATE";
+		_unit setPosATL _pos;
+		_unit setVariable [QGVAR(isSpawned), true];
+		_unit disableAI "MINEDETECTION";
+		TRACE_1("Created", _unit);
+
+		if (_unitPos isEqualType "") then {
 			[QGVAR(disableAICommand), _unit] call CBA_fnc_localEvent;
+
+			_unit setFormDir _dir;
+			_unit setDir _dir;
+			sleep 0.1;
+			_unit setDir _dir;
 
 			if (_unitPos isEqualTo "Auto") then {
 				_unit setUnitPos (selectRandom ["Up","Middle"]);
@@ -55,22 +73,16 @@ if !((count _unitArray) isEqualTo 0) then {
 				_unit setUnitPos _unitPos;
 			};
 			doStop _unit;
-		} else {
-			_unit disableAI "MINEDETECTION";
 		};
 
-		_unit setFormDir _dir;
-		_unit setDir _dir;
-		sleep 0.1;
-		_unit setDir _dir;
 		_unit setPosATL _pos;
+		[_unit, ([_unitPos, _specials] select (_unitPos isEqualType ""))] call FUNC(setAttributes);
 
-		[_unit, _specials] call FUNC(setAttributes);
-
-		sleep 0.9;
+		if !(_skipDelays) then {
+			sleep 0.9;
+		};
 		_unit enableSimulationGlobal true;
-	} forEach (_groupNew select 1);
-	sleep 1;
+	} forEach _unitArray;
 };
 
 if ((count _vehicleArray) > 0) then {
@@ -94,7 +106,7 @@ if ((count _vehicleArray) > 0) then {
 			_vehicle setVehicleLock "LOCKEDPLAYER";
 		};
 
-		if ((isNil "_waypointArray") || _waypointArray isEqualTo []) then {
+		if (_waypointArray isEqualTo []) then {
 			_vehicle setFuel 0;
 			_vehicle allowCrewInImmobile true;
 		};
@@ -116,43 +128,55 @@ if ((count _vehicleArray) > 0) then {
 			} forEach ((fullCrew [_vehicle,"",true]) select {((_x select 1) in ["commander","gunner","turret"])});
 		};
 
-		private _groupNew = ([GVAR(Faction), (count _crewList), _group] call FUNC(createGroup));
+		_unitClass = _leader;
 
 		{
-			switch (toLower((_crewList select _forEachIndex) select 0)) do {
+			if !(count (units _group) isEqualTo 0) then {
+				_unitClass = (selectRandom _unitList);
+			};
+
+			_unit = _group createUnit [_unitClass, [0,0,0], [], 10, "CAN_COLLIDE"];
+			_unit enableSimulationGlobal false;
+			_unit setRank "PRIVATE";
+			_unit setVariable [QGVAR(isSpawned), true];
+			TRACE_1("Created", _unit);
+			switch (toLower(_x select 0)) do {
 				case "driver": {
-					_x moveInDriver _vehicle;
+					_unit moveInDriver _vehicle;
 				};
 				case "commander": {
-					_x moveInCommander _vehicle;
+					_unit moveInCommander _vehicle;
 				};
 				case "gunner": {
-					_x moveInGunner _vehicle;
+					_unit moveInGunner _vehicle;
 				};
 				case "turret": {
-					_x moveInTurret [_vehicle, ((_crewList select _forEachIndex) select 2)];
+					_unit moveInTurret [_vehicle, (_x select 2)];
 				};
 				case "cargo": {
-					_x moveInCargo [_vehicle, ((_crewList select _forEachIndex) select 1)];
+					_unit moveInCargo [_vehicle, (_x select 1)];
 				};
 			};
-			_x enableSimulationGlobal true;
-			TRACE_2("Unit Moved to", _vehicle, (_crewList select _forEachIndex));
-			systemChat str _x;
-			sleep 1.5;
-		} forEach (_groupNew select 1);
+			_unit enableSimulationGlobal true;
+			TRACE_2("Unit Moved to", _vehicle, _x);
+			if !(_skipDelays) then {
+				sleep 1;
+			};
+		} forEach _crewList;
 		TRACE_1("Units added to vehicle", _groupNew);
-		sleep 5;
+		if (((count _vehicleArray) > 1) && !_skipDelays) then {
+			sleep 5;
+		};
 		TRACE_1("Created Finished", _vehicle);
 	} forEach _vehicleArray;
-	sleep 1;
 };
 
-if (!(isNil "_waypointArray") || _waypointArray isEqualTo []) then {
+if !(_waypointArray isEqualTo []) then {
 
 	{
 		_x params [["_position",[0,0,0]], ["_attributes",[]]];
 		private _waypoint = _group addWaypoint [_position, 0];
+		_waypoint setWaypointCompletionRadius 10;	// Sets default
 
 		{
 			_x params ["_type","_setting"];
@@ -187,8 +211,6 @@ if (!(isNil "_waypointArray") || _waypointArray isEqualTo []) then {
 	} forEach _waypointArray;
 	TRACE_2("Waypoints added to ", _group, (waypoints _group));
 };
-
-sleep 1;
 
 if (GVAR(autoQueue) && !_skipQueue) then {
 	GVAR(spawnActive) = false;

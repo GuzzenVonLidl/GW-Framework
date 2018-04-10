@@ -16,16 +16,16 @@
 
 	if (GVAR(AdvLightning)) then {
 		LOG("Activating Advanced Lightning");
-
-		if (isNil QGVAR(LightningPFH)) then {
+		if (isNil QGVAR(moduleGroup)) then {
 			GVAR(moduleGroup) = (createGroup sideLogic);
-			GVAR(LightningPFH) = [{
-				if (time >= GVAR(AdvLightningSleep)) then {
+		};
+		[] spawn {
+			while {GVAR(AdvLightning)} do {
+				GVAR(AdvLightningSleep) = (3 + (random 150));	// Next Lightning
+				if (rain > 0.4) then {
 					private _radius = (random [10, 500, 1000]);
 					private _dir = (random 360);
 					private _players = [];
-
-					GVAR(AdvLightningSleep) = (time + 3) + (random 150);	// Next Lightning
 
 					{
 						if (isNull (objectParent player)) then {
@@ -37,11 +37,10 @@
 					_logic = GVAR(moduleGroup) createUnit ["Logic",[0,0,0],[],0,"CAN_COLLIDE"];
 					_logic setPosATL (_player getPos [_radius,_dir]);
 					[_logic,nil,true] spawn BIS_fnc_moduleLightning;
+
 				};
-			}, 1, []] call CBA_fnc_addPerFrameHandler;
-		} else {
-			[GVAR(LightningPFH)] call CBA_fnc_removePerFrameHandler;
-			GVAR(LightningPFH) = nil;
+				sleep GVAR(AdvLightningSleep);
+			};
 		};
 	};
 }] call CBA_fnc_addEventHandler;

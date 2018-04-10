@@ -1,11 +1,10 @@
 #include "script_Component.hpp"
 
 PREP(buildingPop);
-PREP(createGroup);
 PREP(empty);
-PREP(createUnits);
 PREP(getGroupType);
 PREP(setAttributes);
+PREP(setGroupAction);
 PREP(setGroupColor);
 PREP(setGroupid);
 PREP(simpleRoster);
