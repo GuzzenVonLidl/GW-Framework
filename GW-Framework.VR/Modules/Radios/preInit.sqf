@@ -1,14 +1,12 @@
 #include "script_Component.hpp"
 
 PREP(add);
-//PREP(getJammer);
-PREP(groupInit);
 PREP(jammer);
 
 if (GVARMAIN(mod_ACRE)) then {
-	#include "Functions\ACRE_Init.sqf"
+	#include "Functions\Init_ACRE.sqf"
 };
 
 if (GVARMAIN(mod_TFAR)) then {
-	#include "Functions\TFAR_Init.sqf"
+	#include "Functions\Init_TFAR.sqf"
 };

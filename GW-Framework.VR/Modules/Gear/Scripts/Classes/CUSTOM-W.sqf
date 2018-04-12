@@ -74,14 +74,3 @@ _MAT_mag_HE = "";
 // Pistol
 _pistol = ["", _silencer, _pointer, _sight, _bipod];
 _pistol_mag = "";
-
-if (_role isEqualTo "diver") then {
-	_backpack = "B_ViperHarness_blk_F";
-	_goggles = "G_B_Diving";
-	_helmet = "";
-	_vest = "V_RebreatherB";
-	_uniform = "U_B_Wetsuit";
-	_rifle = ["arifle_SDAR_F", "", "", "", ""];
-	_rifle_mag = "20Rnd_556x45_UW_mag";
-	_rifle_mag_tr = "ACE_30Rnd_556x45_Stanag_Mk318_mag";
-};

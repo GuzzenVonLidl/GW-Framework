@@ -4,7 +4,7 @@
 	class COMPONENT: GW_Modules_Base {
 		name = COMPONENT;
 		Authors[] = {"GuzzenVonLidl"};
-		version = 1.6;
+		version = 1.8;
 		description = "Common Function used through out the framework";
 	};
 #endif

@@ -10,7 +10,7 @@ class ace_advanced_fatigue_enableStaminaBar {
 	force = 1;
 };
 class ace_advanced_fatigue_performanceFactor {
-	value = 1.5;
+	value = 1;
 	typeName = "SCALAR";
 	force = 1;
 };
@@ -25,7 +25,7 @@ class ace_advanced_fatigue_loadFactor {
 	force = 1;
 };
 class ace_advanced_fatigue_terrainGradientFactor {
-	value = 0;
+	value = 0.5;
 	typeName = "SCALAR";
 	force = 1;
 };
@@ -301,6 +301,12 @@ class ace_mk6mortar_useAmmoHandling {
 
 // -------------------------------------------
 
+class ace_nametags_showPlayerNames {
+	value = 1;
+	typeName = "SCALAR";
+	force = 0;
+};
+
 class ace_nametags_playerNamesViewDistance {
 	value = 50;
 	typeName = "SCALAR";
@@ -308,6 +314,18 @@ class ace_nametags_playerNamesViewDistance {
 };
 
 class ace_nightvision_effectScaling {
+	value = 0.7;
+	typeName = "SCALAR";
+	force = 1;
+};
+
+class ace_nightvision_fogScaling {
+	value = 0.0;
+	typeName = "SCALAR";
+	force = 1;
+};
+
+class ace_nightvision_aimDownSightsBlur {
 	value = 0.8;
 	typeName = "SCALAR";
 	force = 1;

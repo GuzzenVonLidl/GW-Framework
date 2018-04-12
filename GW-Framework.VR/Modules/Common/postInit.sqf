@@ -29,16 +29,15 @@
 }] call CBA_fnc_addEventHandler;
 
 [QGVARMAIN(playerReady), {
-	if (hasInterface) then {
-		[player] call FUNC(setGroupColor);
-		if (leader (group player) isEqualTo player) then {
-			[player] call FUNC(setGroupID);
-		};
-		if (didJip) then {
-			[QGVAR(update), []] call CBA_fnc_globalEvent;
-		};
+	[player] call FUNC(setGroupColor);
+	if (leader (group player) isEqualTo player) then {
+		[player] call FUNC(setGroupID);
+	};
+	if (didJip) then {
+		[QGVAR(update), []] call CBA_fnc_globalEvent;
 	};
 
+	player setVariable [QGVAR(isPlayer), true, true];
 	player addEventHandler ["InventoryOpened", {
 		params ["_unit","_container","_secondaryContainer"];
 		if (GVAR(BlockAIGear)) then {
@@ -58,7 +57,7 @@
 	_unit disableAI "MINEDETECTION";
 //	_unit disableAI "TEAMSWITCH";
 
-	_unit disableAI 'SUPPRESSION';
+//	_unit disableAI 'SUPPRESSION';
 //	_unit disableAI 'AUTOCOMBAT';			// AI run another FSM when in combat, this may reduce the calculations
 //	_unit disableAI 'CHECKVISIBLE';			// Raycasting takes up a lot of CPU time, this will sharply reduce.
 	_unit disableAI 'COVER';				// should disable some expensive cover calculations
@@ -67,8 +66,6 @@
 	_unit setBehaviour 'AWARE';				// Get the unit out of combat mode so some of the above can take effect.
 
 	doStop _unit;
-	"AwareFormationSoft" enableAIFeature false;
-	"CombatFormationSoft" enableAIFeature false;
 	(group _unit) enableAttack false;
 }] call CBA_fnc_addEventHandler;
 

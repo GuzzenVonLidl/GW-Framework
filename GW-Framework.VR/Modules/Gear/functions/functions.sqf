@@ -54,6 +54,7 @@ _addToBackPack = {
 	};
 };
 _addBino = {_loadout set [8, [_this,"","","",[],[],""]]};
+_addNVG = {(_loadout select 9) set [5, _this]};
 _addLinkedItems = {_loadout set [9, _this]};
 
 _fnc_AddObjectsCargo = {

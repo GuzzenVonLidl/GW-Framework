@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=1.5707964;
 	scaleGridStep=10;
 	autoGroupingDist=10;
-	toggles=513;
+	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=610;
+		nextID=790;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2271;
+		nextID=3490;
 	};
 	class Camera
 	{
-		pos[]={60.93071,14.262699,-24.779797};
-		dir[]={-0.0041553928,-0.64778072,0.761922};
-		up[]={-0.0035332933,0.76177472,0.64783061};
-		aside[]={1.0000645,-7.9145957e-007,0.0054526455};
+		pos[]={48.291798,24.904587,-32.285683};
+		dir[]={0.010357105,-0.33498162,0.94228983};
+		up[]={0.0036820604,0.94216138,0.33511299};
+		aside[]={1.0000325,-7.0191209e-007,-0.010989871};
 	};
 };
 binarizationWanted=0;
@@ -115,6 +115,114 @@ class ScenarioData
 		maxPlayers=129;
 	};
 };
+class CustomAttributes
+{
+	class Category0
+	{
+		name="GW_MissionPreferences";
+		class Attribute0
+		{
+			property="GW_isConfigured";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"BOOL"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		nAttributes=1;
+	};
+	class Category1
+	{
+		name="Scenario";
+		class Attribute0
+		{
+			property="cba_settings_hash";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"ARRAY"
+						};
+					};
+					class value
+					{
+						items=4;
+						class Item0
+						{
+							class data
+							{
+								class type
+								{
+									type[]=
+									{
+										"STRING"
+									};
+								};
+								value="#CBA_HASH#";
+							};
+						};
+						class Item1
+						{
+							class data
+							{
+								class type
+								{
+									type[]=
+									{
+										"ARRAY"
+									};
+								};
+							};
+						};
+						class Item2
+						{
+							class data
+							{
+								class type
+								{
+									type[]=
+									{
+										"ARRAY"
+									};
+								};
+							};
+						};
+						class Item3
+						{
+							class data
+							{
+								nil=1;
+								class type
+								{
+									type[]=
+									{
+										"ANY"
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+		nAttributes=1;
+	};
+};
 class Mission
 {
 	class Intel
@@ -185,6 +293,29 @@ class Mission
 											};
 											id=202;
 											type="B_Soldier_SL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="pl";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item1
 										{
@@ -204,6 +335,29 @@ class Mission
 											};
 											id=203;
 											type="B_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="fac";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -266,6 +420,29 @@ class Mission
 											};
 											id=206;
 											type="B_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="sm";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -425,6 +602,29 @@ class Mission
 											};
 											id=215;
 											type="B_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item2
 										{
@@ -533,6 +733,29 @@ class Mission
 											};
 											id=221;
 											type="B_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item2
 										{
@@ -594,7 +817,6 @@ class Mission
 									};
 									class Attributes
 									{
-										init="this setVariable [""GW_Gear_Loadout_Type"", true, true];";
 									};
 									id=219;
 								};
@@ -653,6 +875,29 @@ class Mission
 											};
 											id=227;
 											type="B_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="sm";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -901,6 +1146,29 @@ class Mission
 											};
 											id=241;
 											type="B_Soldier_TL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item1
 										{
@@ -920,6 +1188,29 @@ class Mission
 											};
 											id=242;
 											type="B_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item2
 										{
@@ -939,6 +1230,29 @@ class Mission
 											};
 											id=243;
 											type="B_Soldier_GL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item3
 										{
@@ -957,6 +1271,29 @@ class Mission
 											};
 											id=244;
 											type="B_medic_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item4
 										{
@@ -977,11 +1314,33 @@ class Mission
 											};
 											id=245;
 											type="B_soldier_AR_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
 									{
-										init="this setVariable [""GW_Gear_Loadout_Type"", true, true];";
 									};
 									id=240;
 								};
@@ -1306,29 +1665,6 @@ class Mission
 									};
 									id=261;
 									type="B_supplyCrate_F";
-									class CustomAttributes
-									{
-										class Attribute0
-										{
-											property="ammoBox";
-											expression="[_this,_value] call bis_fnc_initAmmoBox;";
-											class Value
-											{
-												class data
-												{
-													class type
-													{
-														type[]=
-														{
-															"STRING"
-														};
-													};
-													value="[[[[""launch_NLAW_F"",""arifle_MX_F"",""arifle_MX_SW_F""],[1,2,1]],[[""30Rnd_65x39_caseless_mag"",""16Rnd_9x21_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""20Rnd_762x51_Mag"",""100Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""3Rnd_HE_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""Chemlight_green"",""NLAW_F"",""Laserbatteries"",""HandGrenade"",""MiniGrenade"",""SmokeShell"",""SmokeShellGreen"",""UGL_FlareWhite_F"",""UGL_FlareGreen_F""],[24,6,6,6,6,3,1,2,2,6,3,2,6,6,2,2,2,2]],[[""Laserdesignator"",""FirstAidKit"",""acc_flashlight"",""bipod_01_F_blk""],[1,10,2,1]],[[""B_Kitbag_mcamo""],[2]]],false]";
-												};
-											};
-										};
-										nAttributes=1;
-									};
 								};
 								class Item4
 								{
@@ -1447,6 +1783,29 @@ class Mission
 											};
 											id=281;
 											type="O_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="sm";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -1696,6 +2055,29 @@ class Mission
 											};
 											id=295;
 											type="O_Soldier_TL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item1
 										{
@@ -1715,6 +2097,29 @@ class Mission
 											};
 											id=296;
 											type="O_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item2
 										{
@@ -1734,6 +2139,29 @@ class Mission
 											};
 											id=297;
 											type="O_Soldier_GL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item3
 										{
@@ -1752,6 +2180,29 @@ class Mission
 											};
 											id=298;
 											type="O_medic_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item4
 										{
@@ -1772,11 +2223,33 @@ class Mission
 											};
 											id=299;
 											type="O_Soldier_AR_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
 									{
-										init="this setVariable [""GW_Gear_Loadout_Type"", true, true];";
 									};
 									id=294;
 								};
@@ -1835,6 +2308,29 @@ class Mission
 											};
 											id=302;
 											type="O_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="sm";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -2083,6 +2579,29 @@ class Mission
 											};
 											id=316;
 											type="O_Soldier_TL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item1
 										{
@@ -2102,6 +2621,29 @@ class Mission
 											};
 											id=317;
 											type="O_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item2
 										{
@@ -2121,6 +2663,29 @@ class Mission
 											};
 											id=318;
 											type="O_Soldier_GL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item3
 										{
@@ -2139,6 +2704,29 @@ class Mission
 											};
 											id=319;
 											type="O_medic_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item4
 										{
@@ -2159,11 +2747,33 @@ class Mission
 											};
 											id=320;
 											type="O_Soldier_AR_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
 									{
-										init="this setVariable [""GW_Gear_Loadout_Type"", true, true];";
 									};
 									id=315;
 								};
@@ -2576,6 +3186,29 @@ class Mission
 											};
 											id=277;
 											type="O_Soldier_SL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="pl";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item1
 										{
@@ -2595,6 +3228,29 @@ class Mission
 											};
 											id=278;
 											type="O_Soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="fac";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -2669,6 +3325,29 @@ class Mission
 											};
 											id=369;
 											type="I_soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="sm";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -2917,6 +3596,29 @@ class Mission
 											};
 											id=383;
 											type="I_Soldier_TL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item1
 										{
@@ -2936,6 +3638,29 @@ class Mission
 											};
 											id=384;
 											type="I_soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item2
 										{
@@ -2955,6 +3680,29 @@ class Mission
 											};
 											id=385;
 											type="I_Soldier_GL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item3
 										{
@@ -2973,6 +3721,29 @@ class Mission
 											};
 											id=386;
 											type="I_medic_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item4
 										{
@@ -2993,11 +3764,33 @@ class Mission
 											};
 											id=387;
 											type="I_Soldier_AR_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
 									{
-										init="this setVariable [""GW_Gear_Loadout_Type"", true, true];";
 									};
 									id=382;
 								};
@@ -3254,6 +4047,29 @@ class Mission
 											};
 											id=345;
 											type="I_soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="fac";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -3316,6 +4132,29 @@ class Mission
 											};
 											id=348;
 											type="I_soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="sm";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
@@ -3564,6 +4403,29 @@ class Mission
 											};
 											id=362;
 											type="I_Soldier_TL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item1
 										{
@@ -3583,6 +4445,29 @@ class Mission
 											};
 											id=363;
 											type="I_soldier_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item2
 										{
@@ -3602,6 +4487,29 @@ class Mission
 											};
 											id=364;
 											type="I_Soldier_GL_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item3
 										{
@@ -3620,6 +4528,29 @@ class Mission
 											};
 											id=365;
 											type="I_medic_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 										class Item4
 										{
@@ -3640,11 +4571,33 @@ class Mission
 											};
 											id=366;
 											type="I_Soldier_AR_F";
+											class CustomAttributes
+											{
+												class Attribute0
+												{
+													property="GW_LoadoutSelector";
+													expression="_this setVariable ['GW_Gear_Loadout', _value];";
+													class Value
+													{
+														class data
+														{
+															class type
+															{
+																type[]=
+																{
+																	"STRING"
+																};
+															};
+															value="";
+														};
+													};
+												};
+												nAttributes=1;
+											};
 										};
 									};
 									class Attributes
 									{
-										init="this setVariable [""GW_Gear_Loadout_Type"", true, true];";
 									};
 									id=361;
 								};
@@ -3919,8 +4872,31 @@ class Mission
 										init="[this, ""medium""] call GW_MHQ_Fnc_Handler;";
 										name="mhq_1";
 									};
-									id=505;
+									id=619;
 									type="C_Kart_01_F";
+									class CustomAttributes
+									{
+										class Attribute0
+										{
+											property="ammoBox";
+											expression="[_this,_value] call bis_fnc_initAmmoBox;";
+											class Value
+											{
+												class data
+												{
+													class type
+													{
+														type[]=
+														{
+															"STRING"
+														};
+													};
+													value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
+												};
+											};
+										};
+										nAttributes=1;
+									};
 								};
 							};
 							id=411;
@@ -4030,11 +5006,11 @@ class Mission
 					position[]={150,5,150};
 					class Attributes
 					{
-						text="Spawn Trigger 2";
+						text="Spawn Trigger";
 						condition="call{!({(isNull (objectParent _x))} count thislist isEqualTo 0) && isServer}";
 						onActivation="call{null = [2] spawn GW_Fnc_spawnList;}";
 						sizeC=0;
-						activationBy="ANY";
+						activationBy="ANYPLAYER";
 						isServerOnly=1;
 					};
 					id=400;
@@ -4046,11 +5022,11 @@ class Mission
 					position[]={250,5,150};
 					class Attributes
 					{
-						text="Spawn Trigger 3";
+						text="Spawn Trigger";
 						condition="call{!({(isNull (objectParent _x))} count thislist isEqualTo 0) && isServer}";
 						onActivation="call{null = [3] spawn GW_Fnc_spawnList;}";
 						sizeC=0;
-						activationBy="ANY";
+						activationBy="ANYPLAYER";
 						isServerOnly=1;
 					};
 					id=401;
@@ -4062,7 +5038,7 @@ class Mission
 					position[]={50,5,150};
 					class Attributes
 					{
-						text="Spawn Trigger 1";
+						text="Spawn Trigger";
 						condition="call{!({(isNull (objectParent _x))} count thislist isEqualTo 0) && isServer}";
 						onActivation="null = [1] spawn GW_Fnc_spawnList;";
 						sizeC=0;
