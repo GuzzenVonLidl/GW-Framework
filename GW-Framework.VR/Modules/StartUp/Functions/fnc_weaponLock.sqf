@@ -25,6 +25,7 @@ if (_this) then {
 			[CURRENT_WEAPONS] call ACE_SafeMode_fnc_lockSafety;
 		};
 	};
+	systemChat "Weapon Lock: Enabled";
 } else {
 	player setCaptive false;
 	player allowDamage true;
@@ -40,6 +41,7 @@ if (_this) then {
 			player playActionNow (getText (configfile >> "CfgWeapons" >> (currentWeapon player) >> "reloadAction"));
 		};
 	}, [], (random 5)] call CBA_fnc_waitAndExecute;
+	systemChat "Weapon Lock: Disabled";
 };
 
 /*

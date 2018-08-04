@@ -314,7 +314,7 @@ class ace_nametags_playerNamesViewDistance {
 };
 
 class ace_nightvision_effectScaling {
-	value = 0.7;
+	value = 0.5;
 	typeName = "SCALAR";
 	force = 1;
 };
