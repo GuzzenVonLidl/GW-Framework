@@ -1,7 +1,10 @@
 #include "script_Component.hpp"
 
 PREP(add);
-PREP(jammer);
+PREP(addJammer);
+PREP(interference);
+
+GVAR(allJamers) = [];
 
 if (GVARMAIN(mod_ACRE)) then {
 	#include "Functions\Init_ACRE.sqf"

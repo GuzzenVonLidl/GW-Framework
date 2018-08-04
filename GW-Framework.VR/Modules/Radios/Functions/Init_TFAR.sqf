@@ -70,4 +70,4 @@ TF_defaultGuerRiflemanRadio = TF_defaultWestRiflemanRadio;
 //	NOTE: Experamental values
 TF_terrain_interception_coefficient = 10.0;	 // 7.0
 TF_max_voice_volume = 60;
-TF_speakerDistance = 10;
+TF_speakerDistance = 20;
