@@ -1,4 +1,4 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
 // Global function name will be GW_Example_Fnc_returnTrue
 // With Macros it will be FUNC(returnTrue)

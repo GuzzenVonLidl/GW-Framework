@@ -1,4 +1,4 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
 [] spawn {
 	sleep 5;

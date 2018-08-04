@@ -45,15 +45,3 @@ GVAR(IsSpectator) = {
 	["Join in progress", ""],
 	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
-
-if (is3DEN) then {
-	if !(isNil QGVAR(3denEH)) then {
-		remove3DENEventHandler ["OnMessage", GVAR(3denEH)];
-		GVAR(3denEH) = nil;
-	};
-	GVAR(3denEH) = add3DENEventHandler ["OnMessage",{
-		if (!("spectator" in (all3DENEntities select 5))) then {
-			["Warning Spectator marker is missing, Create a new marker and name it 'spectator', place it on land and out of AO",'I understand'] call BIS_fnc_3DENShowMessage;
-		};
-	}];
-};

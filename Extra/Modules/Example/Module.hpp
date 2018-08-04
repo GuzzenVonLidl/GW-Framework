@@ -1,4 +1,4 @@
-#include "scriptComponent.hpp"
+#include "script_Component.hpp"
 
 #ifdef LOAD_MODULES
 	class COMPONENT {
