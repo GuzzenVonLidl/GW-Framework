@@ -37,7 +37,7 @@ _map = "ItemMap";
 _gps = "ItemGPS";
 _compass = "ItemCompass";
 _watch = "ItemWatch";
-_nvg = "NVGoggles_Opfor";
+_nvg = "";
 _parachute = "B_Parachute";
 
 _demoCharge = "DemoCharge_Remote_Mag";			// Small
@@ -125,6 +125,7 @@ _rangefinder = "Binocular";
 _laserDesignator = "Laserdesignator";
 _battery = "Laserbatteries";
 _rangecard = "";
+_mortarRangeCard = "";
 
 _flashBang = "";
 _handFlareG = "";

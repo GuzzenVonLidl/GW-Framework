@@ -128,11 +128,11 @@ GVAR(StaminaCoef) = 0.5;
 	QUOTE(ADDON),
 	[
 		[0,1,2,3],
-		["Disabled","All Units","Only SpawnList","Ignore Editor Placed"],
+		["Disabled","All Units","Only Copied Units","Ignore Editor Placed"],
 		1
 	], CBA_SERVEROVERWRITE
 ] call FUNCMAIN(settingsInit);
 
 [QGVAR(randomGear), "CHECKBOX", ["Random Role", "Should units get random gear"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
-[QGVAR(extraGear), "CHECKBOX", ["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(extraGear), "CHECKBOX", ["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
 [QGVAR(autoRemoveCargo), "CHECKBOX", ["Removes cargo for vehicles", "Automaticly removes cargo"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);

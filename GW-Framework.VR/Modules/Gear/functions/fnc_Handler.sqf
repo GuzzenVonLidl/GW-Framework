@@ -83,9 +83,10 @@ if (_isMan) then {
 	_useMineDetector = false;
 	_isCivilian = (getNumber(configfile >> "CfgVehicles" >> (typeOf _unit) >> "side") isEqualTo 3);
 	_isPlayer = (isPlayer _unit);
-	_unit setVariable [QGVAR(Loadout), _role];
+	_unit setVariable [QGVAR(Loadout), _role, _isPlayer];
 	_unit setVariable ["BIS_enableRandomization", false];
 	if (_isPlayer) then {
+		_unit setVariable [QEGVAR(Common,isPlayer), true, true];
 		_unit setUnitTrait ["engineer", true];
 		_unit setUnitTrait ["explosiveSpecialist", true];
 		if (GVARMAIN(mod_ACE3)) then {
@@ -122,6 +123,10 @@ if (_isMan) then {
 		[_goggles,_helmet,_uniform,_vest,_backpack] call _addEquipment;
 		["", "", "", "", "", ""] call _addLinkedItems;
 	} else {
+		if ((call EFUNC(Common,isNight)) && _allowedNightStuff) then {
+			_nvg = "NVGoggles_Opfor";
+		};
+
 		if !(_isPlayer || (_unit in switchableUnits)) then {
 			_loadoutFile = "Default_AI";
 			_unit enableGunLights "forceOn";
@@ -152,7 +157,7 @@ if (_isMan) then {
 } else {
 	_role params [
 		["_class", "", [""]],
-		["_realSide", (_unit getVariable [QGVAR(side), EGVAR(Common,Faction)]), [""]],
+		["_realSide", (_unit getVariable [QGVAR(side), (EGVAR(Common,Faction))]), [""]],
 		["_movable", true, [true]]
 	];
 
@@ -313,8 +318,6 @@ if (_isMan) then {
 				[_unit, _bandage, 50] call _fnc_AddObjectsCargo;
 				if (GVARMAIN(mod_ACE3)) then {
 					[_unit, _morph, 20] call _fnc_AddObjectsCargo;
-					[_unit, _epi, 20] call _fnc_AddObjectsCargo;
-					[_unit, _blood, 10] call _fnc_AddObjectsCargo;
 					if ((EGVAR(Settings_ACE,medical_level) isEqualTo 2) || (ace_medical_level isEqualTo 2)) then {
 						[_unit, "ACE_elasticBandage", 100] call _fnc_AddObjectsCargo;
 						[_unit, "ACE_tourniquet", 50] call _fnc_AddObjectsCargo;
