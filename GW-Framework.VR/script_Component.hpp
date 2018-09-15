@@ -26,7 +26,7 @@ Group: General
 #define MAJOR 0
 #define MINOR 7
 #define PATCHLVL 0
-#define BUILD 100418	// We will use the DATE for the BUILD# in the format DDMMYY
+#define BUILD 150918	// We will use the DATE for the BUILD# in the format DDMMYY
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 
 #define COMPONENTPATH(var1) CUSTOM_FOLDER\fnc_##var1.sqf
@@ -49,26 +49,12 @@ Group: General
 	'\x\gw\addons\ui\data\official_zeus.jpg' \
 ])
 
-#define	GETSIDE(var1) getNumber(configfile >> "CfgVehicles" >> (typeOf var1) >> "side")
-#define	GETSIDESTRING(var1) \
-	switch (GETSIDE(var1)) do { \
-		case 0: { \
-			"East" \
-		}; \
-		case 1: { \
-			"West" \
-		}; \
-		case 2: { \
-			"Independent" \
-		}; \
-		case 3: { \
-			"Civilian" \
-		}; \
-	}
-
 #define CBA_CANOVERWRITE 0
 #define CBA_SERVEROVERWRITE 1
 #define CBA_BLOCKOVERWRITE 2
+
+#define CBA_NEEDRESTART true
+#define CBA_EDITABLE false
 
 /* -------------------------------------------
 Group: Debugging
