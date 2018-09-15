@@ -21,7 +21,7 @@ if (!GVARMAIN(mod_ACE3)) exitWith {false};
 			[{[QGVAR(setMedical), GVAR(medical_level)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
 		};
 	}
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
 [
 	QGVAR(revive), "LIST",
@@ -44,7 +44,7 @@ if (!GVARMAIN(mod_ACE3)) exitWith {false};
 			[{[QGVAR(setRevive), GVAR(revive)] call CBA_fnc_localEvent;}, [], 0.1] call CBA_fnc_waitAndExecute;
 		};
 	}
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
 [QGVAR(setMedical), {
 	params ["_type"];
