@@ -1,8 +1,8 @@
 #include "script_Component.hpp"
 
 [QGVARMAIN(serverReady), {
-	["Offroad_01_armed_base_F", "init", {
-		if (GVAR(disableRedOffroads)) then {
+	if (GVAR(disableRedOffroads)) then {
+		["Offroad_01_armed_base_F", "init", {
 			[{
 				params [
 					"_car"
@@ -11,8 +11,8 @@
 				private _texture = (format ["\A3\Soft_F_Bootcamp\Offroad_01\Data\offroad_01_ext_IG_%1_CO.paa", _random]);
 				_car setObjectTextureGlobal [0, _texture];
 			}, _this, 5] call CBA_fnc_waitAndExecute;
-		};
-	}, true, [], true] call CBA_fnc_addClassEventHandler;
+		}, true, [], true] call CBA_fnc_addClassEventHandler;
+	};
 
 	if (GVAR(AdvLightning)) then {
 		LOG("Activating Advanced Lightning");
@@ -43,6 +43,29 @@
 			};
 		};
 	};
+
+	addMissionEventHandler ["BuildingChanged", {
+		params ["_previousObject", "_newObject", "_isRuin"];
+		if (_isRuin) then {
+			private _pos = (getPos _previousObject);
+			private _radius = (sizeOf (typeOf _previousObject));
+			private _objectsInBuilding = (nearestObjects [_pos, ["NonStrategic","Strategic","Thing"], _radius]);
+
+			_objectsInBuilding deleteAt (_objectsInBuilding find _newObject);
+
+			{
+				if (!isPlayer _x) then {
+					_x setDamage [1, false];
+				};
+			} forEach (_pos nearEntities ["Man", _radius]);
+
+			{
+				if ((isDamageAllowed _x) && !(isObjectHidden _x) && ((vehicleVarName _x) isEqualTo "") && ((actionIDs _x) isEqualTo [])) then {
+					deleteVehicle _x;
+				};
+			} forEach _objectsInBuilding;
+		};
+	}];
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(say3D), {
@@ -51,7 +74,7 @@
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(objectAction), {		// Default custom Event on complete for function GW_Effects_Fnc_addObjectAction
-//	systemChat str _this;
+	systemChat str _this;
 }] call CBA_fnc_addEventHandler;
 
 ["GW_stopAlarm", {

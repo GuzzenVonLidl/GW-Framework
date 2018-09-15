@@ -29,8 +29,8 @@ GVAR(AlarmLocations) = [];
 GVAR(ambientLife) = false;
 GVAR(AllAgents) = [];
 
-[QGVAR(disableRedOffroads), "CHECKBOX", ["Disable Red Offroads", "Make Armed Offroad vehicles have camoflage instead of red color"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
-[QGVAR(AdvLightning), "CHECKBOX", ["Advanced Lightning", "Creates deadly lightnings that effects the environment"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(AdvLightning), "CHECKBOX", ["Advanced Lightning", "Creates deadly lightnings that effects the environment"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
+[QGVAR(disableRedOffroads), "CHECKBOX", ["Disable Red Offroads", "Make Armed Offroad vehicles have camoflage instead of red color"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE, {}, CBA_NEEDRESTART] call CBA_settings_fnc_init;
 
 [
 	QGVAR(ppEffects), "LIST",
@@ -43,4 +43,4 @@ GVAR(AllAgents) = [];
 			LOG(FORMAT_1("PostProcess Effect set to %1", _ppEffectsValue));
 		}, _this, 1] call CBA_fnc_waitAndExecute;
 	}
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
