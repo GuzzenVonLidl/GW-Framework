@@ -17,11 +17,10 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 		#define GAME_MODE "GW"									// GameMode
 		#define PLAYER_COUNT "1"								// Player Count
 		#define BRIEFING_NAME "Framework"						// Mission Name
-		#define LOBBY_DESCRIPTION ""							// Description in mission select
+		#define LOBBY_DESCRIPTION "Eaxmple Setup"				// Description in mission select
 		#define ON_LOAD_TEXT ""									// Description on loading
 		#define MISSION_VERSION 1								// Version of mission
-//		#define SELECT_PICTURE ""								// Path to loading screen
-		#define SELECT_PICTURE RANDOM_PICTURES					// Random loading screen
+		#define SELECT_PICTURE "\x\gw\addons\3den\data\Logo_GOL_1.paa"						// Path to loading screen
 
 		Author = "GuzzenVonLidl";				// Author
 		AuthorUID[] = {"_SP_PLAYER_"};			// UIDs with admin access
@@ -48,16 +47,17 @@ class GW_FRAMEWORK {	// NOTE: SENSETIVE, UPPERCASE ONLY FOR BOOL
 };
 
 // *	DO NOT EDIT BELOW
+
 // Global Mission Settings
 aiKills = 0;
 allowFunctionsLog = 0;
 allowFunctionsRecompile = 0;
-briefingName = __EVAL(GAME_MODE + "@" + PLAYER_COUNT + " " + BRIEFING_NAME);
 disableChannels[]={{0,true,true},{1,false,true},{2,false,true},{5,false,true}};
 disabledAi = 1;
 //disableRandomization[] = {"CAManBase"};	// Disable random gear for units
 //disableRandomization[] = {"AllVehicles"};	// Disable for vehicles and units
 enableDebugConsole = 1;
+//	enableTargetDebug = 1;
 joinUnassigned = 1;
 scriptedPlayer = 1;
 
@@ -67,6 +67,12 @@ wreckManagerMode = 0;
 respawn = "BASE";
 respawndelay = 30;
 respawnOnStart = 0;
+
+briefingName = __EVAL(GAME_MODE + "@" + PLAYER_COUNT + " " + BRIEFING_NAME);
+overviewText = "overviewText";
+loadScreen = SELECT_PICTURE;
+onLoadName = BRIEFING_NAME;
+onLoadMission = LOBBY_DESCRIPTION;
 
 class Params {
 	#define LOAD_PARAMS
@@ -101,10 +107,4 @@ class Extended_PostInit_EventHandlers {
 	class postInit {
 		Init = QUOTE(call compile preprocessFileLineNumbers 'core\XEH_postInit.sqf');
 	};
-};
-
-class ACE_Settings {
-	#define LOAD_ACE
-		#include "Modules\Modules.cpp"
-	#undef LOAD_ACE
 };

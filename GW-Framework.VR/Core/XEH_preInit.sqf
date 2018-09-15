@@ -18,7 +18,6 @@ useAISteeringComponent true;
 0 fadeRadio 0;
 //	enableSatNormalOnDetail true;		//	<--------
 
-GVARMAIN(settings3denArray) = [];
 GVARMAIN(Version) = (getText(missionConfigFile >> "GW_FRAMEWORK" >> "Core" >> "Version"));
 
 //if (false) then {
@@ -53,6 +52,7 @@ for "_i" from 0 to ((count CORE_Modules) - 1) step 1 do {
 	_Description = getText( _config >> "description");
 	_requiredModules = getArray( _config >> "requiredModules");
 	_requiredAddon = getArray( _config >> "requiredAddon");
+	_hasSetting = getNumber( _config >> "hasSettings");
 
 	{
 		if !(isClass ((missionConfigFile >> "GW_Modules" >> _x))) then {
@@ -92,19 +92,18 @@ for "_i" from 0 to ((count CORE_Modules) - 1) step 1 do {
 		_Authors = _str;
 	};
 
+	if (is3DEN && (_hasSetting isEqualTo 1)) then {
+		private _missionConfig = preprocessFile ("Modules\" + configName(_x) + "\cba_settings.sqf");
+		{
+			_x params ["_setting", "_value", "_priority"];
+			CBA_settings_missionConfig setVariable [_setting, [_value, _priority]];
+		} forEach ([_missionConfig, false] call CBA_settings_fnc_parse);
+	};
+
 	GVARMAIN(logModules) pushback [_Name, _Authors, _Version, _Description];
 	TRACE_3("Module Loaded", _Name, _Authors, _Version);
 } forEach _Modules;
 
 LOG(FORMAT_1("Modules Loaded: %1", (count GVARMAIN(logModules))));
-
-if (is3DEN && !(GVARMAIN(settings3denArray) isEqualTo [])) then {
-	{
-		TRACE_1("CBA Settings", _x);
-		[_x, (_x call CBA_settings_fnc_get), 1, "mission", false] call CBA_settings_fnc_set;
-	} forEach GVARMAIN(settings3denArray);
-
-	LOG("Making Framework settings global");
-};
 
 LOG("preInit finished");
