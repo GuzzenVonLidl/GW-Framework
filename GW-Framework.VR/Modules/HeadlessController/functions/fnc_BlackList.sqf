@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Adds or removes a unit or group HC transfer blacklist
@@ -15,7 +16,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 private ["_group"];
 params ["_unit",["_toggle", true]];

@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Counts current groups local to a headless client
@@ -11,12 +12,11 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 private _groupCount = [];
 {
 	_x params ["_headless"];
 	_groupCount pushBack [({(groupOwner _x) isEqualTo (owner _headless)} count allGroups), _headless];
-} forEach GVAR(headlessList);
+} forEach (call FUNC(getList));
 _groupCount sort true;
 _groupCount
