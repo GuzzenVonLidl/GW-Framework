@@ -83,7 +83,7 @@
 	};
 
 	if (GVAR(Mode) isEqualTo 2) then {
-		switch (GETSIDE(_unit)) do {
+		switch ([_unit] call EFUNC(Common,getSide)) do {
 			case 0: {
 				DEC(GVAR(CountTeamEast));
 				publicVariable QGVAR(CountTeamEast);
@@ -146,7 +146,7 @@
 	};
 
 	if (GVAR(Mode) isEqualTo 2) then {
-		switch (GETSIDE(_unit)) do {
+		switch ([_unit] call EFUNC(Common,getSide)) do {
 			case 0: {
 				ADD(GVAR(CountTeamEast), 1);
 				publicVariable QGVAR(CountTeamEast);
@@ -175,7 +175,7 @@
 	if (_unit getVariable [QGVAR(isSpectating), false]) then {
 		[QGVAR(SpectatorToggle), [_unit, false]] call CBA_fnc_localEvent;
 		cutText ["","BLACK IN",5];
-		_unit setPosATL (_unit getVariable [QGVAR(startingPos), (getMarkerPos format (["respawn_%1", GETSIDESTRING(_unit)]))]);
+		_unit setPosATL (_unit getVariable [QGVAR(startingPos), (getMarkerPos format (["respawn_%1", str([_unit] call EFUNC(Common,getSide))]))]);
 		systemChat "You have been given a second chance";
 	} else {
 		systemChat format ["You have been given one more respawn, total respawns: %1", (_respawns - 1)];

@@ -24,7 +24,7 @@ if (GVAR(Mode) isEqualTo 1) then {
 };
 
 if (GVAR(Mode) isEqualTo 2) then {
-	switch (GETSIDE(_unit)) do {
+	switch ([_unit] call EFUNC(Common,getSide)) do {
 		case 0: {
 			_respawns = GVAR(CountTeamEast);
 		};
