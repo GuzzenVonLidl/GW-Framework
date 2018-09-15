@@ -54,6 +54,7 @@ if !((count _unitArray) isEqualTo 0) then {
 		_unit = _group createUnit [_unitClass, [0,0,0], [], 10, "CAN_COLLIDE"];
 		_unit enableSimulationGlobal false;
 		_unit setRank "PRIVATE";
+		_unit setSpeaker "NoVoice";
 		_unit setPosATL _pos;
 		_unit setVariable [QGVAR(isSpawned), true];
 		_unit disableAI "MINEDETECTION";
@@ -107,7 +108,6 @@ if ((count _vehicleArray) > 0) then {
 		};
 
 		if (_waypointArray isEqualTo []) then {
-			_vehicle setFuel 0;
 			_vehicle allowCrewInImmobile true;
 		};
 
@@ -138,6 +138,7 @@ if ((count _vehicleArray) > 0) then {
 			_unit = _group createUnit [_unitClass, [0,0,0], [], 10, "CAN_COLLIDE"];
 			_unit enableSimulationGlobal false;
 			_unit setRank "PRIVATE";
+			_unit setSpeaker "NoVoice";
 			_unit setVariable [QGVAR(isSpawned), true];
 			TRACE_1("Created", _unit);
 			switch (toLower(_x select 0)) do {

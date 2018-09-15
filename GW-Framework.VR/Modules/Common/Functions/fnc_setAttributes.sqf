@@ -41,8 +41,27 @@ params [
 		case 8: {	// Pylons
 			_getPylons = (call EFUNC(Common,getPylonsAvailable));
 			{
-				_object setPylonLoadOut [_getPylons select _forEachIndex, _x];
-			} forEach _value;
+				if !((_value select _forEachIndex) isEqualTo "") then {
+					_var = ((_value select _forEachIndex) splitString "[]");
+					if ((count _var) isEqualTo 2) then {
+						_var params ["_pylon","_turret"];
+						if (_pylon isEqualTo "") then {	// Remove weapon
+						} else {
+							_object setPylonLoadOut [_x, _pylon, false, Call (Compile Format ["[%1]", _turret])];
+						};
+					} else {
+						if (_var isEqualTo "") then {	// Remove weapon
+						} else {
+							_object setPylonLoadOut [_x, (_var select 0), false];
+						};
+					};
+				};
+			} forEach _getPylons;
+			{
+				if ((_object ammo _x) isEqualTo 0) then {
+					_object removeWeaponGlobal _x;
+				};
+			} forEach (weapons _object);
 		};
 		case 9: {
 			_object setVehicleReportRemoteTargets _value;
