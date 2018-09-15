@@ -2,5 +2,6 @@
 
 PREP(addToFlexiMenu);
 PREP(customMenu_Example);
+PREP(customMenu_Framework);
 
 GVAR(flexiMenu) = [];

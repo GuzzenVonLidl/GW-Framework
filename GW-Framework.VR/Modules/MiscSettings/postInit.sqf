@@ -15,6 +15,15 @@ if (isClass(configFile >> "CfgPatches" >> "GW_menu")) then {
 
 	EGVAR(menu,ParadropHaloHeight) = 150;		// Set Height of Halo ParaDrop
 	EGVAR(menu,ParadropStaticHeight) = 125;		// Set Height of Static ParaDrop
+
+	// Custom Mission actions
+	[
+		"Framework >",
+		"","","",
+		[QUOTE(call FUNC(customMenu_Framework)),"framework", 1],
+		-1,true,
+		(!EGVAR(GameLoop,SafeMode_useType))
+	] call FUNC(addToFlexiMenu);
 };
 
 /*

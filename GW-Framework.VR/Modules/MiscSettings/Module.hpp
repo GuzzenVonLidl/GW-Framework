@@ -6,5 +6,6 @@
 		Authors[] = {"GuzzenVonLidl"};
 		version = 1;			// Current version of this module, used to keep track of every update for all mission makers
 		description = "Description of this module";
+		hasSettings = 1;
 	};
 #endif

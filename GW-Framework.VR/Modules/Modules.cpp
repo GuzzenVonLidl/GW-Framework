@@ -1,5 +1,6 @@
 
 	#include "Common\Module.hpp"
+	#include "GameLoop\Module.hpp"
 	#include "Gear\Module.hpp"
 	#include "HeadlessController\Module.hpp"
 	#include "MHQ\Module.hpp"
@@ -8,14 +9,14 @@
 	#include "ServiceStation\Module.hpp"
 	#include "SetDifficulty\Module.hpp"
 	#include "Settings_ACE\Module.hpp"
-	#include "StartUp\Module.hpp"
 
 //	Extra Modules
 //	#include "Effects\Module.hpp"
+//	#include "EndScreen\Module.hpp"
 //	#include "Example\Module.hpp"
 //	#include "HeadlessController_Legacy\Module.hpp"
 //	#include "Loadout\Module.hpp"
+//	#include "NameTags\Module.hpp"
 //	#include "Respawn\Module.hpp"
 //	#include "SetDifficulty_Legacy\Module.hpp"
-//	#include "VCOMAI\Module.hpp"
-//	#include "AAC_Setup\Module.hpp"
+//	#include "VCM\Module.hpp"
