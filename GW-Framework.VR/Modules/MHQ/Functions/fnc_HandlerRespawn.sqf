@@ -21,7 +21,7 @@ if (!(isPlayer _unit) && !(local _unit)) exitWith {false};
 if (([format ["%1", _unit], 1] call BIS_fnc_trimString) in BLACKLIST) exitWith {false};
 
 {
-	if ((_x getVariable QGVAR(Side)) isEqualTo toLower(GETSIDESTRING(_unit))) exitWith {
+	if ((_x getVariable QGVAR(Side)) isEqualTo toLower(str([_unit] call EFUNC(Common,getSide)))) exitWith {
 		(boundingBoxReal _x) params ["_p1","_p2"];
 		_maxLength = abs ((_p2 select 1) - (_p1 select 1));
 		_pos = (_x getRelPos [_maxLength + 2, 180]);

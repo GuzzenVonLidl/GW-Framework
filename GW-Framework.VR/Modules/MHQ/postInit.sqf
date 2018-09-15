@@ -70,13 +70,25 @@
 	_mhq setVariable [QGVAR(ActiveActions), []];
 
 	if (_mhq getVariable QGVAR(Active)) then {
-		_id = _mhq addAction ["Deactivate MHQ",{([QGVAR(Enabled), [(_this select 0), false]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),CONDITION_1,7];
+		_id = _mhq addAction ["Deactivate MHQ",{
+			["Deactivating MHQ", 5, {(((_this select 0) select 0) getVariable "GW_MHQ_Active")}, {
+				([QGVAR(Enabled), [((_this select 0) select 0), false, str([player] call EFUNC(Common,getSide))]] call CBA_fnc_serverEvent);
+			}, {hint "aborted"}, [(_this select 0)]] call CBA_fnc_progressBar;
+		},ARGUMENT(_mhq),(CONDITION_1 + "&& !" + CONDITION_2),7];
 		_add pushback [_mhq, _id];
 
-		_id = _mhq addAction ["Assemble MHQ",{([QGVAR(Assembled), [(_this select 0), true]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),(CONDITION_1 + "&& !" + CONDITION_2),7];
+		_id = _mhq addAction ["Assemble MHQ",{
+			["Assembling MHQ", 10, {!(((_this select 0) select 0) getVariable "GW_MHQ_Assembled")}, {
+				([QGVAR(Assembled), [((_this select 0) select 0), true]] call CBA_fnc_serverEvent);
+			}, {hint "aborted"}, [(_this select 0)]] call CBA_fnc_progressBar;
+		},ARGUMENT(_mhq),(CONDITION_1 + "&& !" + CONDITION_2),7];
 		_add pushback [_mhq, _id];
 
-		_id = _mhq addAction ["Disassemble MHQ",{([QGVAR(Assembled), [(_this select 0), false]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),(CONDITION_1 + "&& " + CONDITION_2),7];
+		_id = _mhq addAction ["Disassemble MHQ",{
+			["Disassemble MHQ", 10, {(((_this select 0) select 0) getVariable "GW_MHQ_Assembled")}, {
+				([QGVAR(Assembled), [((_this select 0) select 0), false]] call CBA_fnc_serverEvent);
+			}, {hint "aborted"}, [(_this select 0)]] call CBA_fnc_progressBar;
+		},ARGUMENT(_mhq),(CONDITION_1 + "&& " + CONDITION_2),7];
 		_add pushback [_mhq, _id];
 
 		_id = _mhq addAction ["Teleport to Base",{[player, ([(_this select 0)] call FUNC(getFlag))] call bis_fnc_moveToRespawnPosition},ARGUMENT(_mhq),(CONDITION_1),7];
@@ -85,7 +97,11 @@
 		_id = (([_mhq] call FUNC(getFlag))) addAction[format ["Teleport to %1", _mhq],{[player, (_this select 3)] call bis_fnc_moveToRespawnPosition},ARGUMENT(_mhq),(CONDITION_1),7];
 		_add pushback [([_mhq] call FUNC(getFlag)), _id];
 	} else {
-		_id = _mhq addAction ["Activate MHQ",{([QGVAR(Enabled), [(_this select 0), true, GETSIDESTRING(player)]] call CBA_fnc_serverEvent)},ARGUMENT(_mhq),CONDITION_1,7];
+		_id = _mhq addAction ["Activate MHQ",{
+			["Activating MHQ", 5, {!(((_this select 0) select 0) getVariable "GW_MHQ_Active")}, {
+				([QGVAR(Enabled), [((_this select 0) select 0), true, str([player] call EFUNC(Common,getSide))]] call CBA_fnc_serverEvent);
+			}, {hint "aborted"}, [(_this select 0)]] call CBA_fnc_progressBar;
+		},ARGUMENT(_mhq),CONDITION_1,7];
 		_add pushback [_mhq, _id];
 	};
 	_mhq setVariable [QGVAR(ActiveActions), _add];

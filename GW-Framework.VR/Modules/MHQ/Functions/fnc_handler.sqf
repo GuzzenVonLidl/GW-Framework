@@ -26,6 +26,10 @@ if (!isServer) exitWith {false};
 	_mhq setVariable [QGVAR(Info), [(typeOf _mhq), (getPosATL _mhq), floor(getdir _mhq), (vehicleVarName _mhq), _type, _jipID], true];	// Store for respawn
 	_mhq setVariable [QGVAR(Fuel), (fuel _mhq)];
 	_mhq setVariable [QGVAR(Side), toLower(_side), true];
+	_mhq setPlateNumber (vehicleVarName _mhq);
+	if (GVARMAIN(mod_ACE3)) then {
+		[_mhq, 20] call ace_cargo_fnc_setSpace;
+	};
 
 	_mhq addEventHandler ["Killed", {
 		[{

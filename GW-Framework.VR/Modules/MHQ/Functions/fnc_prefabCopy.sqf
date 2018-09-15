@@ -14,17 +14,23 @@
 */
 #include "script_Component.hpp"
 
-if (isNull player) exitWith { ["No player unit found!","Warning!"] call BIS_fnc_3DENShowMessage; };
+if (isNil QGVAR(object)) then {
+	["First object copied as a reference", 0, 5, true] call BIS_fnc_3DENNotification;
+	GVAR(object) = ((get3DENSelected "object") select 0);
+} else {
+	private _CopyObjects = [];
 
-private _CopyObjects = [];
+	{
+		if (!(_x isKindOf "CAManBase") && !(_x isEqualTo GVAR(object))) then {
+			_pos = GVAR(object) worldToModel (position _x);
+			_CopyObjects pushBack [(typeOf _x), round(getDir _x), _pos];
+		};
+	} forEach (get3DENSelected "object");
 
-{
-	if !(_x isKindOf "CAManBase") then {
-		_pos = player worldToModel (position _x);
-		_CopyObjects pushBack [(typeOf _x), round(getDir _x), _pos];
-	};
-} forEach get3DENSelected "object";
+//	copyToClipboard str(_CopyObjects);
+	copyToClipboard (("_return = ") + str(_CopyObjects) + (";"));
 
-systemChat format ["%1 Objects Copied", (count _CopyObjects)];
-
-copyToClipboard (("_return = ") + str(_CopyObjects) + (";"));
+	[format ["%1 Objects copied relative to First Object", (count _CopyObjects)], 0, 5, true] call BIS_fnc_3DENNotification;
+	GVAR(object) = objNull;
+	_CopyObjects
+};
