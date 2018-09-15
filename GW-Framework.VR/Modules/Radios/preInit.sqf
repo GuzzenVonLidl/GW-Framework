@@ -5,6 +5,7 @@ PREP(addJammer);
 PREP(interference);
 
 GVAR(allJamers) = [];
+GVAR(jammerActive) = false;
 
 if (GVARMAIN(mod_ACRE)) then {
 	#include "Functions\Init_ACRE.sqf"

@@ -20,7 +20,7 @@ if !(canSuspend) exitWith {
 	_this spawn FUNC(interference);
 };
 
-while {alive _unit} do {
+while {GVAR(jammerActive)} do {
 	if !((count GVAR(allJamers)) isEqualTo 0) then {
 		_arr1 = (GVAR(allJamers) apply {_x distance player});
 		_arr2 = (GVAR(allJamers) apply {_x distance player});
