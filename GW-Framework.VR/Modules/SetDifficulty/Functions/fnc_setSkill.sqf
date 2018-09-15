@@ -63,3 +63,9 @@ if ((side _unit) isEqualTo "CIV") then {
 
 _unit setUnitPosWeak "UP";
 _unit disableAI "MINEDETECTION";
+_unit allowFleeing 0;
+
+if (count (waypoints _unit) isEqualTo 0) then {
+	_unit setCombatMode "YELLOW";
+	_unit setBehaviour "AWARE";
+};

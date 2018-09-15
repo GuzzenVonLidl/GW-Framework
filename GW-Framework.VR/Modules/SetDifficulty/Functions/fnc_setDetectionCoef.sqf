@@ -18,9 +18,9 @@ params [
 	["_unit", objNull, [objNull]]
 ];
 
-_skill = (missionConfigFile >> "GW_FRAMEWORK" >> "Behaviour" >> (GVAR(names) select GVAR(unitTraining)) >> "playerCamoCoef");
+if !(isPlayer _unit) exitWith {false};
 
-(getArray(_skill)) params ["_min","_mid","_max"];
+(getArray(missionConfigFile >> "GW_FRAMEWORK" >> "Behaviour" >> (GVAR(names) select GVAR(unitTraining)) >> "playerCamoCoef")) params ["_min","_mid","_max"];
 private _value = _mid;
 
 if (GVAR(randomSkill)) then {
@@ -28,7 +28,6 @@ if (GVAR(randomSkill)) then {
 	_value = (parseNumber (_value toFixed 3));
 };
 
-if (isPlayer _unit) then {
-	_unit setUnitTrait ["camouflageCoef", _value];
-};
+_unit setUnitTrait ["camouflageCoef", _value];
+
 true

@@ -21,10 +21,7 @@ params [
 
 if (_unit getVariable [QGVAR(blackList), false]) exitWith {false};
 
-if (isPlayer _unit) exitWith {
-//	_this call FUNC(setDetectionCoef);
-	false
-};
+if (isPlayer _unit) exitWith {false};
 
 [_unit] call FUNC(setSkill);
 

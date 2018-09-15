@@ -36,10 +36,21 @@ for "_i" from 0 to ((count BEHAVIOURS) - 1) step 1 do {
 	["set Unit Training", "Sets the difficulty of newly spawned units"],
 	QUOTE(ADDON), [GVAR(index), GVAR(names), 3],
 	CBA_SERVEROVERWRITE
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
-[QGVAR(randomSkill), "CHECKBOX", ["Use Skill Variation", "Makes each unit have slightly diffrent skill levels within a defined %"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(randomSkill), "CHECKBOX", ["Use Skill Variation", "Makes each unit have slightly diffrent skill levels within a defined %"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
+
+[
+	QGVAR(UnlimitedAmmo), "LIST",
+	["Infinit Ammo", "Gives AI unlimited ammo for primary weapon"],
+	QUOTE(ADDON),
+	[
+		[0,1,2],
+		["Disabled","All Units","Only Copied Units"],
+		1
+	], CBA_SERVEROVERWRITE
+] call CBA_settings_fnc_init;
 
 if (GVARMAIN(mod_ACE3)) then {
-	[QGVAR(damageResistance), "CHECKBOX", ["Damage Resistance in Vehicles", "Players recive less direct damage when in a light vehicle example: prowler, reverts back to normal on exit"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+	[QGVAR(damageResistance), "CHECKBOX", ["Damage Resistance in Vehicles", "Players recive less direct damage when in a light vehicle example: prowler, reverts back to normal on exit"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
 };

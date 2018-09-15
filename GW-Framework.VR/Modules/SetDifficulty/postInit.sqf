@@ -13,10 +13,22 @@
 	["CAManBase", "init", {
 		_this call FUNC(init);
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
+
+	["CAManBase", "Reloaded", {
+		params ["_unit", "_weapon", "", "", "_oldMagazine"];
+
+		if (isPlayer _unit) exitWith {false};
+		if (GVAR(UnlimitedAmmo) isEqualTo 0) exitWith {false};
+		if ((GVAR(UnlimitedAmmo) isEqualTo 2) && (_unit getVariable [QGVAR(isSpawned), false])) exitWith {false};
+
+		if (_weapon isEqualTo (primaryWeapon _unit)) then {
+			_unit addMagazine (_oldMagazine select 0);
+		};
+	}] call CBA_fnc_addClassEventHandler;
 }] call CBA_fnc_addEventHandler;
 
 [QGVARMAIN(playerReady), {
-	_this call FUNC(setDetectionCoef);
+	player call FUNC(setDetectionCoef);
 
 	["CAManBase", "Respawn", {
 		[{
@@ -24,8 +36,8 @@
 		}, _this, 0.5] call CBA_fnc_waitAndExecute;
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 
-	ace_medical_playerDamageThreshold = 1;
 	if (GVARMAIN(mod_ACE3)) then {
+		ace_medical_playerDamageThreshold = 1;
 		GVAR(damageResistanceDefault) = ace_medical_playerDamageThreshold;
 		if (GVAR(damageResistance)) then {
 			["CAManBase", "GetInMan", {
