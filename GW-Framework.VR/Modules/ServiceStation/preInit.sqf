@@ -11,6 +11,6 @@ NEKY_ServiceStation_MobileSS = CompileFinal PreprocessFileLineNumbers "modules\S
 NEKY_ServiceStation_Rearm = CompileFinal PreprocessFileLineNumbers "modules\ServiceStation\Functions\Rearm.sqf";
 NEKY_ServiceStation_Refuel = CompileFinal PreprocessFileLineNumbers "modules\ServiceStation\Functions\Refuel.sqf";
 NEKY_ServiceStation_Repair = CompileFinal PreprocessFileLineNumbers "modules\ServiceStation\Functions\Repair.sqf";
-NEKY_ServiceStation_ServiceStation = CompileFinal PreprocessFileLineNumbers "modules\ServiceStation\Functions\ServiceStation.sqf";
+NEKY_ServiceStation_Init = CompileFinal PreprocessFileLineNumbers "modules\ServiceStation\Functions\ServiceStation.sqf";
 
 NEKY_ServiceStationActive = [];

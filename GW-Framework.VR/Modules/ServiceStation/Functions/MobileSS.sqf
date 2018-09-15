@@ -57,7 +57,7 @@ _Object addAction ["<t color='#00FF00'>Activate Service Station</t>",
 	_Params Params ["_MRadius","_IsMSS","_Filter"];
 
 	Hint "Service Station Activated.";
-	[[_Object,_MRadius,_IsMSS,_Filter],{_This call NEKY_ServiceStation_ServiceStation}] RemoteExec ["BIS_FNC_SPAWN",0];
+	[[_Object,_MRadius,_IsMSS,_Filter],{_This call NEKY_ServiceStation_Init}] RemoteExec ["BIS_FNC_SPAWN",0];
 	_Object setVariable ["NEKY_ServiceStation_MSS_Active",True,true];
 },[_MRadius,_IsMSS,_Filter],4,false,true,"","((_Target distance _This) < 10) && !(_Target getVariable ['NEKY_ServiceStation_MSS_Active',false]) && Alive _Target"];
 

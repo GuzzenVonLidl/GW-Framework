@@ -1,7 +1,7 @@
 //	[Vehicle, ServiceStation, FullService] Spawn NEKY_ServiceStation_Repair;
-//	
+//
 //	This handles repairing a vehicle
-//	
+//
 //	Made by NeKo-ArroW
 
 Private ["_Veh","_SS","_FullService","_InspectionSpeed","_RepairingSpeed","_RepairingTrackSpeed","_RepairSpeed","_RemoveWheelSpeed","_MountWheelSpeed","_Wheels","_Tracks","_PartHP","_MsgIndex","_Msg" ];
@@ -25,7 +25,7 @@ _AllHitPointsValue = _Temp select 2;
 _HitPoints = [];
 _Temp = [];
 // _AllHitPoints Apply { if ((_x find "Glass") isEqualTo -1) then {_HitPoints pushBack _x}; Sleep _InspectionSpeed};  // Scan for every part save Glass and FFV
-_List = ["HitAvionics","HitEngine","HitEngine2","HitFuel","HitHull","HitLAileron","HitLCElevator","HitLCRudder","HitRAileron","HitRElevator","HitRRudder","HitBody","HitLBWheel","HitLF2Wheel","HitLFWheel","HitLMWheel","HitRBWheel","HitRF2Wheel","HitRFWheel","HitRMWheel","HitLTrack","HitRTrack","HitGun","HitTurret","HitFuel2","HitVRotor","HitHRotor"];
+_List = ["hitavionics","hitengine","hitengine2","hitfuel","hithull","hitlaileron","hitlcelevator","hitlcrudder","hitraileron","hitrelevator","hitrrudder","hitbody","hitlbwheel","hitlf2wheel","hitlfwheel","hitlmwheel","hitrbwheel","hitrf2wheel","hitrfwheel","hitrmwheel","hitltrack","hitrtrack","hitgun","hitturret","hitfuel2","hitvrotor","hithrotor"];
 _AllHitPoints Apply { if ((_x in _List) && !(_x in _HitPoints)) then {_HitPoints pushBack _x}; Sleep _InspectionSpeed};  // Scan for specific parts
 { _Temp PushBack (_AllHitPoints find _x) } forEach _HitPoints;
 _DamagePoints = [];
@@ -45,7 +45,7 @@ if !((Count _DamagePoints) isEqualTo 0) then
 	{
 		For "_i" from ((Count _DamagePoints) -1) to 0 step -1 do
 		{
-			if !(((_HitPoints select _i) find "Wheel") isEqualTo -1) then
+			if !(((_HitPoints select _i) find "wheel") isEqualTo -1) then
 			{
 				_Wheels pushBack [(_HitPoints select _i),(_DamagePoints select _i)];
 				_DamagePoints deleteAt _i;
@@ -64,8 +64,8 @@ if !((Count _DamagePoints) isEqualTo 0) then
 		_Temp deleteRange [0,3];
 		_Temp = ToString _Temp;
 		_PartName = toUpper _Temp;
-		if ((_Part find "Track") isEqualTo -1) then {_RepairSpeed = _RepairingSpeed} else {_RepairSpeed = _RepairingTrackSpeed};
-		
+		if ((_Part find "track") isEqualTo -1) then {_RepairSpeed = _RepairingSpeed} else {_RepairSpeed = _RepairingTrackSpeed};
+
 		if (_PartHP >= 0.01) then
 		{
 			_MsgIndex = 0;
@@ -84,10 +84,10 @@ if !((Count _DamagePoints) isEqualTo 0) then
 	};
 
 	//	Fixing Wheels
-	if !((Count _Wheels) isEqualTo 0) then 
+	if !((Count _Wheels) isEqualTo 0) then
 	{
 		if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
-		
+
 		For "_i" from 0 to ((Count _Wheels) -1) step 1 do
 		{
 			_WheelArray = _Wheels select _i;
@@ -97,18 +97,18 @@ if !((Count _DamagePoints) isEqualTo 0) then
 			{
 				["Removing damaged wheel.", _Veh] spawn NEKY_ServiceStation_Hints;
 				Sleep _RemoveWheelSpeed;
-				
+
 				if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
 				[[_Veh,_Wheel],{(_This select 0) setHitPointDamage [(_This select 1), 1]}] remoteExec ["BIS_FNC_SPAWN",Owner _Veh];
 				["Mounting new wheel.", _Veh] spawn NEKY_ServiceStation_Hints;
 				Sleep _MountWheelSpeed;
-				
+
 				if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
 				[[_Veh,_Wheel],{(_This select 0) setHitPointDamage [(_This select 1), 0]}] remoteExec ["BIS_FNC_SPAWN",Owner _Veh];
 			} else {
 				["Repairing Wheel.", _Veh] spawn NEKY_ServiceStation_Hints;
 				Sleep _MountWheelSpeed;
-				
+
 				if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
 				[[_Veh,_Wheel],{(_This select 0) setHitPointDamage [(_This select 1), 0]}] remoteExec ["BIS_FNC_SPAWN",Owner _Veh];
 			};

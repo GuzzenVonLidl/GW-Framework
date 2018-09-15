@@ -23,4 +23,4 @@ _RearmSpeed = 0.17;							// Percent of maximum ammo (for each weapon) rearmed p
 // Mobile Service Station //
 ////////////////////////////
 // General
-_MRadius = 20;								// Area (meters) the Mobile SS will scan for vehicles.
+_MRadius = 15;								// Area (meters) the Mobile SS will scan for vehicles.
