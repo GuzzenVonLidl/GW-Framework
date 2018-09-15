@@ -97,17 +97,17 @@ if (_isMan) then {
 	};
 
 	if (_forceFaction isEqualTo "") then {
-		switch (GETSIDE(_unit)) do {
-			case 0: {
+		switch ([_unit] call EFUNC(Common,getSide)) do {
+			case east: {
 				_side = toUpper(GVAR(Opfor));
 			};
-			case 1: {
+			case west: {
 				_side = toUpper(GVAR(Blufor));
 			};
-			case 2: {
+			case independent: {
 				_side = toUpper(GVAR(Independent));
 			};
-			case 3: {
+			case civilian: {
 				_side = toUpper(GVAR(Civilian));
 			};
 		};
@@ -150,6 +150,21 @@ if (_isMan) then {
 				[{
 					_this call EFUNC(Radios,add);
 				}, [_unit, _role], 0.1] call CBA_fnc_waitAndExecute;
+			};
+		} else {
+			switch ([_unit] call EFUNC(Common,getSide)) do {
+				case east: {
+					[_unit,"insignia_Opfor"] call bis_fnc_setUnitInsignia;
+				};
+				case west: {
+					[_unit,"insignia_Blufor"] call bis_fnc_setUnitInsignia;
+				};
+				case independent: {
+					[_unit,"insignia_Indep"] call bis_fnc_setUnitInsignia;
+				};
+				case civilian: {
+					[_unit,"insignia_Civi"] call bis_fnc_setUnitInsignia;
+				};
 			};
 		};
 		LOG(FORMAT_2("Unit: %1, Role: %2", _unit, _role));

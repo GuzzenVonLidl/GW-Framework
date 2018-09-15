@@ -18,6 +18,7 @@ GVAR(Index301) = 0;
 GVAR(Index302) = 0;
 GVAR(Stamina) = true;
 GVAR(StaminaCoef) = 0.5;
+GVAR(GearboxActive) = true;
 
 [
 	QGVAR(Blufor), "LIST",
@@ -48,7 +49,7 @@ GVAR(StaminaCoef) = 0.5;
 		],
 		0
 	], CBA_SERVEROVERWRITE
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
 [
 	QGVAR(Opfor),
@@ -78,7 +79,7 @@ GVAR(StaminaCoef) = 0.5;
 		0
 	]
 	, CBA_SERVEROVERWRITE
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
 [
 	QGVAR(Independent),
@@ -101,7 +102,7 @@ GVAR(StaminaCoef) = 0.5;
 		],
 		0
 	],CBA_SERVEROVERWRITE
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
 [
 	QGVAR(Civilian),
@@ -120,7 +121,7 @@ GVAR(StaminaCoef) = 0.5;
 		],
 		0
 	], CBA_SERVEROVERWRITE
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
 [
 	QGVAR(Auto_Assign), "LIST",
@@ -131,8 +132,8 @@ GVAR(StaminaCoef) = 0.5;
 		["Disabled","All Units","Only Copied Units","Ignore Editor Placed"],
 		1
 	], CBA_SERVEROVERWRITE
-] call FUNCMAIN(settingsInit);
+] call CBA_settings_fnc_init;
 
-[QGVAR(randomGear), "CHECKBOX", ["Random Role", "Should units get random gear"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
-[QGVAR(extraGear), "CHECKBOX", ["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
-[QGVAR(autoRemoveCargo), "CHECKBOX", ["Removes cargo for vehicles", "Automaticly removes cargo"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call FUNCMAIN(settingsInit);
+[QGVAR(randomGear), "CHECKBOX", ["Random Role", "Should units get random gear"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
+[QGVAR(extraGear), "CHECKBOX", ["Gives units extra loadout", "Medics gets more supplies, AT gets more rockets etc"], QUOTE(ADDON), false, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
+[QGVAR(autoRemoveCargo), "CHECKBOX", ["Removes cargo for vehicles", "Automaticly removes cargo"], QUOTE(ADDON), true, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
