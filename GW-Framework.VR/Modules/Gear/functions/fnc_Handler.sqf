@@ -92,7 +92,7 @@ if (_isMan) then {
 		if (GVARMAIN(mod_ACE3)) then {
 			_unit setVariable ["ACE_Medical_MedicClass", 1];	// IsMedic
 			_unit setVariable ["ACE_IsEngineer", 1];			// isEngineer
-			_unit setVariable ["ACE_GForceCoef", 0.75];			// IsPilot
+			_unit setVariable ["ACE_GForceCoef", 0.5];			// IsPilot
 		};
 	};
 
